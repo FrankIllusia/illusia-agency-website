@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 56">
+  <g transform="translate(0,2)">
+    <!-- Top feather: smaller, sits upper-left -->
+    <path d="M2,2 C10,0 22,4 26,14 C30,22 24,32 14,30 C6,28 0,20 2,10 C3,5 6,2 2,2 Z"
+          fill="white"/>
+    <!-- Bottom feather: larger, sits lower, overlaps slightly -->
+    <path d="M2,22 C12,18 28,22 34,32 C38,40 32,52 20,50 C8,48 0,38 2,28 C3,24 6,22 2,22 Z"
+          fill="white"/>
+  </g>
+  <!-- B  L  A  D  E in light weight with wide tracking -->
+  <text x="58" y="38" font-family="'Helvetica Neue', 'Helvetica', Arial, sans-serif"
+        font-size="22" font-weight="300" fill="white" letter-spacing="10">BLADE</text>
+</svg>

@@ -110,24 +110,24 @@ export default function Hero() {
             maxWidth: '960px',
           }}
         >
-          <p className="section-label" style={{ marginBottom: '28px' }}>Creative Production Agency</p>
+          <p className="section-label" style={{ marginBottom: '28px' }}>Content Production Agency</p>
 
           <h1 style={{
             fontSize: 'clamp(52px, 9vw, 120px)',
             fontWeight: 500,
-            lineHeight: 1.0,
+            lineHeight: 1.1,
             letterSpacing: '-0.03em',
-            overflow: 'hidden',
             color: '#fff',
+            textAlign: 'center',
           }}>
-            <span ref={line1Ref} style={{ display: 'block' }}>We don&apos;t</span>
-            <span ref={line2Ref} style={{ display: 'block', fontStyle: 'italic', color: 'rgba(255,255,255,0.6)' }}>just</span>
-            <span ref={line3Ref} style={{ display: 'block' }}>make content.</span>
+            <span ref={line1Ref} style={{ display: 'block' }}>This is what</span>
+            <span ref={line2Ref} style={{ display: 'block', fontWeight: 800, color: '#fff' }}>great content</span>
+            <span ref={line3Ref} style={{ display: 'block' }}>looks like.</span>
           </h1>
 
           <div ref={subRef} style={{ marginTop: '36px', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '24px' }}>
-            <p style={{ fontSize: 'clamp(15px, 1.8vw, 18px)', color: 'rgba(255,255,255,0.55)', maxWidth: '480px', lineHeight: 1.6 }}>
-              AI-powered cinematic production for brands that demand the highest level.
+            <p style={{ fontSize: 'clamp(15px, 1.8vw, 18px)', color: 'rgba(255,255,255,0.55)', maxWidth: '520px', lineHeight: 1.6 }}>
+              50+ brands. Hundreds of millions of views. One team that treats your brand like it&apos;s the only one.
             </p>
             <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap', justifyContent: 'center' }}>
               <a

@@ -53,30 +53,27 @@ const projects = [
     img: '/images/work/placeholder-4.jpg',
     wide: false,
   },
-  {
-    id: 6,
-    client: 'Client Name',
-    title: 'Project Title',
-    category: 'Social · Brand',
-    year: '2025',
-    img: '/images/work/placeholder-5.jpg',
-    wide: true,
-  },
 ];
 
 export default function Work() {
   return (
-    <section id="work" style={{ padding: '120px 0', background: '#000' }}>
-      <div style={{ maxWidth: '1400px', margin: '0 auto', padding: '0 32px' }}>
+    <section id="work" style={{ padding: '16px', background: '#000' }}>
+      <div style={{
+        background: '#fff',
+        borderRadius: '24px',
+        padding: '80px 48px',
+        border: '1px solid rgba(0,0,0,0.06)',
+      }}>
+      <div style={{ maxWidth: '1400px', margin: '0 auto' }}>
         {/* Section header */}
         <div style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', marginBottom: '64px', flexWrap: 'wrap', gap: '20px' }}>
           <div>
-            <p className="section-label" style={{ marginBottom: '14px' }}>Selected Work</p>
-            <h2 style={{ fontSize: 'clamp(36px, 5vw, 64px)', fontWeight: 500, color: '#fff' }}>
+            <p className="section-label" style={{ marginBottom: '14px', color: 'rgba(0,0,0,0.45)' }}>Selected Work</p>
+            <h2 style={{ fontSize: 'clamp(36px, 5vw, 64px)', fontWeight: 500, color: '#000' }}>
               The Work
             </h2>
           </div>
-          <a href="#contact" style={{ fontSize: '12px', color: 'rgba(255,255,255,0.5)', letterSpacing: '0.08em', textTransform: 'uppercase', textDecoration: 'none', borderBottom: '1px solid rgba(255,255,255,0.2)', paddingBottom: '2px' }}>
+          <a href="#contact" style={{ fontSize: '12px', color: 'rgba(0,0,0,0.4)', letterSpacing: '0.08em', textTransform: 'uppercase', textDecoration: 'none', borderBottom: '1px solid rgba(0,0,0,0.2)', paddingBottom: '2px' }}>
             View All Projects →
           </a>
         </div>
@@ -93,12 +90,13 @@ export default function Work() {
               className="project-card"
               style={{
                 gridColumn: p.wide ? 'span 8' : 'span 4',
-                aspectRatio: p.wide ? '16/9' : '4/5',
-                borderRadius: '8px',
+                aspectRatio: p.wide ? undefined : '4/5',
+                minHeight: p.wide ? '420px' : undefined,
+                borderRadius: '12px',
                 overflow: 'hidden',
                 background: '#111',
                 cursor: 'pointer',
-                border: '1px solid rgba(255,255,255,0.06)',
+                border: '1px solid rgba(0,0,0,0.08)',
                 /* Responsive fallback handled by media query below */
               }}
             >
@@ -150,6 +148,7 @@ export default function Work() {
           .project-card { grid-column: span 12 !important; aspect-ratio: 4/3 !important; }
         }
       `}</style>
+      </div>
     </section>
   );
 }

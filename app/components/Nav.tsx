@@ -4,22 +4,14 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 
 const links = [
-  { label: 'Work', href: '#work' },
+  { label: 'Work',     href: '#work'     },
   { label: 'Services', href: '#services' },
-  { label: 'AI', href: '#ai' },
-  { label: 'About', href: '#about' },
-  { label: 'Team', href: '#team' },
+  { label: 'About',    href: '#about'    },
+  { label: 'Team',     href: '#team'     },
 ];
 
 export default function Nav() {
-  const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 40);
-    window.addEventListener('scroll', onScroll, { passive: true });
-    return () => window.removeEventListener('scroll', onScroll);
-  }, []);
 
   const scrollTo = (href: string) => {
     setMenuOpen(false);
@@ -29,95 +21,144 @@ export default function Nav() {
 
   return (
     <>
-      <nav
-        style={{
-          position: 'fixed', top: 0, left: 0, right: 0, zIndex: 100,
-          padding: '0 32px',
-          height: '64px',
-          display: 'flex', alignItems: 'center', justifyContent: 'space-between',
-          background: scrolled ? 'rgba(0,0,0,0.85)' : 'transparent',
-          backdropFilter: scrolled ? 'blur(12px)' : 'none',
-          borderBottom: scrolled ? '1px solid rgba(255,255,255,0.06)' : 'none',
-          transition: 'background 0.3s, backdrop-filter 0.3s, border-color 0.3s',
-        }}
-      >
-        {/* Logo */}
-        <Link href="/" style={{ textDecoration: 'none' }}>
-          <span style={{ fontSize: '16px', fontWeight: 600, letterSpacing: '0.08em', color: '#fff', textTransform: 'uppercase' }}>
-            Illusia
-          </span>
-        </Link>
-
-        {/* Desktop links */}
-        <div style={{ display: 'flex', gap: '36px', alignItems: 'center' }} className="hidden-mobile">
-          {links.map(l => (
-            <button
-              key={l.href}
-              onClick={() => scrollTo(l.href)}
-              className="nav-link"
-              style={{ background: 'none', border: 'none', color: 'rgba(255,255,255,0.7)', fontSize: '13px', fontWeight: 400, letterSpacing: '0.04em', cursor: 'pointer', padding: 0 }}
-            >
-              {l.label}
-            </button>
-          ))}
-          <a
-            href="mailto:parker@illusiaagency.com"
-            style={{ background: '#fff', color: '#000', borderRadius: '4px', padding: '9px 20px', fontSize: '12px', fontWeight: 600, letterSpacing: '0.06em', textDecoration: 'none', textTransform: 'uppercase' }}
-          >
-            Contact
-          </a>
-        </div>
-
-        {/* Mobile hamburger */}
-        <button
-          onClick={() => setMenuOpen(o => !o)}
-          style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#fff', display: 'none', padding: '4px' }}
-          className="show-mobile"
-          aria-label="Toggle menu"
-        >
-          <div style={{ width: '22px', display: 'flex', flexDirection: 'column', gap: '5px' }}>
-            <span style={{ display: 'block', height: '1px', background: '#fff', transition: 'transform 0.2s', transform: menuOpen ? 'rotate(45deg) translateY(6px)' : 'none' }} />
-            <span style={{ display: 'block', height: '1px', background: '#fff', transition: 'opacity 0.2s', opacity: menuOpen ? 0 : 1 }} />
-            <span style={{ display: 'block', height: '1px', background: '#fff', transition: 'transform 0.2s', transform: menuOpen ? 'rotate(-45deg) translateY(-6px)' : 'none' }} />
-          </div>
-        </button>
-      </nav>
-
-      {/* Mobile menu overlay */}
-      {menuOpen && (
-        <div style={{
-          position: 'fixed', inset: 0, zIndex: 99,
-          background: 'rgba(0,0,0,0.97)',
-          display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
-          gap: '40px',
+      {/* Floating pill nav */}
+      <div style={{
+        position: 'fixed',
+        top: '20px',
+        left: '50%',
+        transform: 'translateX(-50%)',
+        zIndex: 100,
+        width: 'calc(100% - 48px)',
+        maxWidth: '1360px',
+      }}>
+        <nav style={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          background: 'rgba(10,10,10,0.82)',
+          backdropFilter: 'blur(20px)',
+          WebkitBackdropFilter: 'blur(20px)',
+          borderRadius: '100px',
+          border: '1px solid rgba(255,255,255,0.08)',
+          padding: '0 20px 0 24px',
+          height: '56px',
         }}>
-          {links.map(l => (
-            <button
-              key={l.href}
-              onClick={() => scrollTo(l.href)}
-              style={{ background: 'none', border: 'none', color: '#fff', fontSize: '32px', fontWeight: 500, letterSpacing: '-0.02em', cursor: 'pointer' }}
-            >
-              {l.label}
-            </button>
-          ))}
+
+          {/* Left — hamburger */}
+          <button
+            onClick={() => setMenuOpen(o => !o)}
+            aria-label="Toggle menu"
+            style={{
+              background: 'none', border: 'none', cursor: 'pointer',
+              padding: '8px', display: 'flex', flexDirection: 'column',
+              gap: '5px', flexShrink: 0,
+            }}
+          >
+            <span style={{
+              display: 'block', width: '20px', height: '1.5px', background: '#fff',
+              transition: 'transform 0.25s',
+              transform: menuOpen ? 'rotate(45deg) translateY(6.5px)' : 'none',
+            }} />
+            <span style={{
+              display: 'block', width: '20px', height: '1.5px', background: '#fff',
+              transition: 'opacity 0.25s',
+              opacity: menuOpen ? 0 : 1,
+            }} />
+            <span style={{
+              display: 'block', width: '20px', height: '1.5px', background: '#fff',
+              transition: 'transform 0.25s',
+              transform: menuOpen ? 'rotate(-45deg) translateY(-6.5px)' : 'none',
+            }} />
+          </button>
+
+          {/* Center — logo */}
+          <Link
+            href="/"
+            style={{
+              position: 'absolute', left: '50%', transform: 'translateX(-50%)',
+              textDecoration: 'none', display: 'flex', alignItems: 'center',
+            }}
+          >
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/images/illusia-logo.png"
+              alt="Illusia"
+              style={{ height: '28px', width: 'auto' }}
+            />
+          </Link>
+
+          {/* Right — CTA pill */}
           <a
             href="mailto:parker@illusiaagency.com"
-            style={{ marginTop: '20px', background: '#fff', color: '#000', borderRadius: '4px', padding: '12px 32px', fontSize: '13px', fontWeight: 600, letterSpacing: '0.06em', textDecoration: 'none', textTransform: 'uppercase' }}
+            style={{
+              display: 'flex', alignItems: 'center', gap: '6px',
+              background: '#fff',
+              color: '#000',
+              borderRadius: '100px',
+              padding: '8px 18px',
+              fontSize: '11px',
+              fontWeight: 600,
+              letterSpacing: '0.07em',
+              textDecoration: 'none',
+              textTransform: 'uppercase',
+              whiteSpace: 'nowrap',
+              flexShrink: 0,
+              transition: 'background 0.2s',
+            }}
+            onMouseEnter={e => ((e.currentTarget as HTMLAnchorElement).style.background = 'rgba(255,255,255,0.88)')}
+            onMouseLeave={e => ((e.currentTarget as HTMLAnchorElement).style.background = '#fff')}
           >
-            Contact Us
+            Work With Us
+            <span style={{ fontSize: '13px' }}>↗</span>
           </a>
-        </div>
-      )}
 
-      <style>{`
-        @media (max-width: 768px) {
-          .hidden-mobile { display: none !important; }
-          .show-mobile { display: block !important; }
-        }
-        @media (min-width: 769px) {
-          .show-mobile { display: none !important; }
-        }
-      `}</style>
+        </nav>
+      </div>
+
+      {/* Full-screen menu overlay */}
+      <div style={{
+        position: 'fixed', inset: 0, zIndex: 99,
+        background: 'rgba(0,0,0,0.97)',
+        display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
+        gap: '12px',
+        pointerEvents: menuOpen ? 'all' : 'none',
+        opacity: menuOpen ? 1 : 0,
+        transition: 'opacity 0.3s',
+      }}>
+        {links.map(l => (
+          <button
+            key={l.href}
+            onClick={() => scrollTo(l.href)}
+            style={{
+              background: 'none', border: 'none',
+              color: '#fff',
+              fontSize: 'clamp(36px, 7vw, 72px)',
+              fontWeight: 500,
+              letterSpacing: '-0.03em',
+              cursor: 'pointer',
+              transition: 'opacity 0.2s',
+            }}
+            onMouseEnter={e => ((e.currentTarget as HTMLButtonElement).style.opacity = '0.4')}
+            onMouseLeave={e => ((e.currentTarget as HTMLButtonElement).style.opacity = '1')}
+          >
+            {l.label}
+          </button>
+        ))}
+        <a
+          href="mailto:parker@illusiaagency.com"
+          style={{
+            marginTop: '32px',
+            background: '#fff', color: '#000',
+            borderRadius: '100px',
+            padding: '14px 36px',
+            fontSize: '12px', fontWeight: 600,
+            letterSpacing: '0.08em',
+            textDecoration: 'none', textTransform: 'uppercase',
+          }}
+        >
+          Work With Us ↗
+        </a>
+      </div>
     </>
   );
 }

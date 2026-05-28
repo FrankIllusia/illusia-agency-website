@@ -5,21 +5,21 @@
 const services = [
   {
     num: '01',
-    title: 'AI Content Production',
-    desc: 'Cinematic, world-class AI-generated content. Each campaign is its own universe — product-as-protagonist, film-grade color science, volumetric atmosphere.',
-    tags: ['Runway', 'Midjourney', 'Suno', 'Kling'],
-  },
-  {
-    num: '02',
     title: 'Video Marketing',
     desc: 'Scroll-stopping video that converts. From brand films to social-first campaigns — tailored to every platform, designed for impact.',
     tags: ['Brand Films', 'Social Content', 'Campaign'],
   },
   {
-    num: '03',
+    num: '02',
     title: 'Social Media Strategy',
     desc: "Data-driven organic growth across every major platform. We don't post content — we build audiences.",
     tags: ['Instagram', 'TikTok', 'YouTube'],
+  },
+  {
+    num: '03',
+    title: 'AI Content Production',
+    desc: 'Cinematic, world-class AI-generated content. Each campaign is its own universe — product-as-protagonist, film-grade color science, volumetric atmosphere.',
+    tags: ['Runway', 'Midjourney', 'Suno', 'Kling'],
   },
   {
     num: '04',

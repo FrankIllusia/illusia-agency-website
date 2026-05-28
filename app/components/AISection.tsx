@@ -95,17 +95,23 @@ function AICard({ item }: { item: typeof examples[0] }) {
 
 export default function AISection() {
   return (
-    <section id="ai" style={{ padding: '120px 0', background: '#000', borderTop: '1px solid rgba(255,255,255,0.06)' }}>
-      <div style={{ maxWidth: '1400px', margin: '0 auto', padding: '0 32px' }}>
+    <section id="ai" style={{ padding: '16px', background: '#000' }}>
+      <div style={{
+        background: '#fff',
+        borderRadius: '24px',
+        padding: '80px 48px',
+        border: '1px solid rgba(0,0,0,0.06)',
+      }}>
+      <div style={{ maxWidth: '1400px', margin: '0 auto' }}>
         {/* Header — minimal */}
         <div style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', marginBottom: '48px', flexWrap: 'wrap', gap: '16px' }}>
           <div>
-            <p className="section-label" style={{ marginBottom: '14px' }}>AI-Generated</p>
-            <h2 style={{ fontSize: 'clamp(32px, 4vw, 56px)', fontWeight: 500, color: '#fff' }}>
+            <p className="section-label" style={{ marginBottom: '14px', color: 'rgba(0,0,0,0.45)' }}>AI-Generated</p>
+            <h2 style={{ fontSize: 'clamp(32px, 4vw, 56px)', fontWeight: 500, color: '#000' }}>
               The new frontier of content.
             </h2>
           </div>
-          <p style={{ fontSize: '14px', color: 'rgba(255,255,255,0.4)', maxWidth: '320px', lineHeight: 1.6, textAlign: 'right' }}>
+          <p style={{ fontSize: '14px', color: 'rgba(0,0,0,0.45)', maxWidth: '320px', lineHeight: 1.6, textAlign: 'right' }}>
             A look at what&apos;s possible when AI meets a creative direction worth executing.
           </p>
         </div>
@@ -114,6 +120,7 @@ export default function AISection() {
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '16px' }}>
           {examples.map(item => <AICard key={item.id} item={item} />)}
         </div>
+      </div>
       </div>
 
       <style>{`
