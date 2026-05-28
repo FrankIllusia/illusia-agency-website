@@ -1,5 +1,7 @@
 'use client';
 
+'use client';
+
 /* ── Work / Projects section ─────────────────────────────────────────────────
    Kursza-inspired grid: full-width cards, hover glow, category + client label.
    Replace placeholder images with real campaign assets.

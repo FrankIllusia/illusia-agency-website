@@ -1,3 +1,5 @@
+'use client';
+
 /* ── About section ────────────────────────────────────────────────────────── */
 
 export default function About() {

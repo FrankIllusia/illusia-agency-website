@@ -1,3 +1,5 @@
+'use client';
+
 /* ── Contact / Footer section ─────────────────────────────────────────────── */
 
 export default function Contact() {

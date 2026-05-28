@@ -1,3 +1,5 @@
+'use client';
+
 /* ── Services section ─────────────────────────────────────────────────────── */
 
 const services = [
@@ -16,7 +18,7 @@ const services = [
   {
     num: '03',
     title: 'Social Media Strategy',
-    desc: 'Data-driven organic growth across every major platform. We don't post content — we build audiences.',
+    desc: "Data-driven organic growth across every major platform. We don't post content — we build audiences.",
     tags: ['Instagram', 'TikTok', 'YouTube'],
   },
   {
