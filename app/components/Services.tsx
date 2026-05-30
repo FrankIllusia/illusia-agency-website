@@ -35,21 +35,21 @@ const services = [
   },
   {
     num: '05',
+    title: 'Live Production',
+    desc: 'End-to-end live show production built from scratch. Custom scenes, OBS builds, and real-time directing — every broadcast run like a flagship production.',
+    tags: ['Kick', 'Twitch', 'X', 'OBS'],
+  },
+  {
+    num: '06',
     title: 'Website Design',
     desc: 'Premium digital experiences that match your brand level. Custom-built, performance-first, conversion-optimized.',
     tags: ['Web', 'UI/UX', 'Next.js'],
   },
   {
-    num: '06',
+    num: '07',
     title: 'Podcasting',
     desc: 'Full-service audio production that establishes authority and drives growth. Strategy, production, distribution.',
     tags: ['Production', 'Strategy', 'Distribution'],
-  },
-  {
-    num: '07',
-    title: 'Live Production',
-    desc: 'Full-scale live show production across Kick, Twitch, X, and beyond. We handle everything — custom scene design, OBS builds, and real-time directing so every broadcast runs like a premium production.',
-    tags: ['Kick', 'Twitch', 'X', 'OBS'],
   },
 ];
 

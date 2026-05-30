@@ -15,15 +15,18 @@ const projects = [
     category: 'AI Content · Brand',
     year: '2024',
     img: '/images/work/tyson.jpg',
+    youtubeId: '9OvTPyQFO6M',
     wide: true,
   },
   {
     id: 2,
-    client: 'Client Name',
-    title: 'Project Title',
+    client: 'Illusia Agency',
+    title: 'Featured Reel',
     category: 'Video · Social',
     year: '2024',
-    img: '/images/work/placeholder-1.jpg',
+    img: '/images/work/ig-thumb-1.png',
+    instagramId: 'DX7asd6uZAD',
+    thumbnail: '/images/work/ig-thumb-1.png',
     wide: false,
   },
   {
@@ -100,29 +103,78 @@ export default function Work() {
                 /* Responsive fallback handled by media query below */
               }}
             >
-              {/* Image */}
+              {/* Media */}
               <div style={{ position: 'relative', width: '100%', height: '100%' }}>
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src={p.img}
-                  alt={`${p.client} — ${p.title}`}
-                  style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
-                  onError={e => { (e.target as HTMLImageElement).style.display = 'none'; }}
-                />
+                {'youtubeId' in p && p.youtubeId ? (
+                  <iframe
+                    src={`https://www.youtube.com/embed/${p.youtubeId}?rel=0&modestbranding=1`}
+                    title={`${p.client} — ${p.title}`}
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                    style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', border: 'none', display: 'block', zIndex: 1 }}
+                  />
+                ) : 'instagramId' in p && p.instagramId ? (
+                  <a
+                    href={`https://www.instagram.com/p/${p.instagramId}/`}
+                    target="_blank"
+                    rel="noreferrer"
+                    style={{ position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 1, textDecoration: 'none' }}
+                    onMouseEnter={e => { const btn = e.currentTarget.querySelector('.ig-play') as HTMLElement; if (btn) btn.style.transform = 'scale(1.1)'; }}
+                    onMouseLeave={e => { const btn = e.currentTarget.querySelector('.ig-play') as HTMLElement; if (btn) btn.style.transform = 'scale(1)'; }}
+                  >
+                    {/* Thumbnail */}
+                    {'thumbnail' in p && (p as {thumbnail: string}).thumbnail && (
+                      // eslint-disable-next-line @next/next/no-img-element
+                      <img
+                        src={(p as {thumbnail: string}).thumbnail}
+                        alt=""
+                        style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+                      />
+                    )}
+                    {/* Play button */}
+                    <div className="ig-play" style={{
+                      width: '64px', height: '64px',
+                      borderRadius: '50%',
+                      background: 'rgba(255,255,255,0.15)',
+                      backdropFilter: 'blur(8px)',
+                      border: '1px solid rgba(255,255,255,0.25)',
+                      display: 'flex', alignItems: 'center', justifyContent: 'center',
+                      transition: 'transform 0.2s ease',
+                    }}>
+                      {/* Triangle */}
+                      <div style={{
+                        width: 0, height: 0,
+                        borderTop: '10px solid transparent',
+                        borderBottom: '10px solid transparent',
+                        borderLeft: '18px solid #fff',
+                        marginLeft: '4px',
+                      }} />
+                    </div>
+                  </a>
+                ) : (
+                  <>
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
+                      src={p.img}
+                      alt={`${p.client} — ${p.title}`}
+                      style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+                      onError={e => { (e.target as HTMLImageElement).style.display = 'none'; }}
+                    />
+                    <div style={{
+                      position: 'absolute', inset: 0,
+                      background: `linear-gradient(135deg, #${['111', '0a0a14', '0d0d0d', '0a1010', '0d0a0a', '101010'][i % 6]} 0%, #1a1a1a 100%)`,
+                      zIndex: 0,
+                    }} />
+                  </>
+                )}
 
-                {/* Placeholder gradient when no real image */}
-                <div style={{
-                  position: 'absolute', inset: 0,
-                  background: `linear-gradient(135deg, #${['111', '0a0a14', '0d0d0d', '0a1010', '0d0a0a', '101010'][i % 6]} 0%, #1a1a1a 100%)`,
-                  zIndex: 0,
-                }} />
-
-                {/* Info overlay */}
+                {/* Info overlay — pointer-events none so video stays interactive */}
                 <div style={{
                   position: 'absolute', bottom: 0, left: 0, right: 0,
                   padding: '24px 20px 20px',
                   background: 'linear-gradient(to top, rgba(0,0,0,0.85) 0%, transparent 100%)',
                   zIndex: 2,
+                  pointerEvents: 'none',
                 }}>
                   <p style={{ fontSize: '10px', color: 'rgba(255,255,255,0.4)', letterSpacing: '0.12em', textTransform: 'uppercase', marginBottom: '6px' }}>
                     {p.client} · {p.year}

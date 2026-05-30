@@ -122,15 +122,37 @@ export default function About() {
           }}>
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              src="/images/about.jpg"
-              alt="Illusia in the field"
-              style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+              src="/images/founders.png"
+              alt="Parker Russo and Danny Drew, co-founders of Illusia Agency"
+              style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center 18%', display: 'block', transform: 'scale(1.2)', transformOrigin: 'center 18%' }}
               onError={e => { (e.target as HTMLImageElement).style.display = 'none'; }}
             />
+
+            {/* Bottom gradient for name legibility */}
             <div style={{
               position: 'absolute', inset: 0,
-              background: 'linear-gradient(135deg, #111 0%, #1a1a1a 100%)',
+              background: 'linear-gradient(to top, rgba(0,0,0,0.68) 0%, transparent 42%)',
+              pointerEvents: 'none',
             }} />
+
+            {/* Name overlays */}
+            <div style={{
+              position: 'absolute', bottom: '20px',
+              left: 0, right: 0,
+              display: 'flex',
+              justifyContent: 'space-between',
+              padding: '0 20px',
+              pointerEvents: 'none',
+            }}>
+              <div>
+                <p style={{ fontSize: '13px', fontWeight: 600, color: '#fff', letterSpacing: '0.14em', textTransform: 'uppercase', marginBottom: '3px' }}>Parker Russo</p>
+                <p style={{ fontSize: '10px', color: 'rgba(255,255,255,0.4)', letterSpacing: '0.1em', textTransform: 'uppercase' }}>Co-Founder</p>
+              </div>
+              <div style={{ textAlign: 'right' }}>
+                <p style={{ fontSize: '13px', fontWeight: 600, color: '#fff', letterSpacing: '0.14em', textTransform: 'uppercase', marginBottom: '3px' }}>Danny Drew</p>
+                <p style={{ fontSize: '10px', color: 'rgba(255,255,255,0.4)', letterSpacing: '0.1em', textTransform: 'uppercase' }}>Co-Founder</p>
+              </div>
+            </div>
           </div>
 
           {/* Right — description + CTA */}
