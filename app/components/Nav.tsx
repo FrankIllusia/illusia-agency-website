@@ -12,6 +12,18 @@ const links = [
 
 export default function Nav() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [navReady, setNavReady] = useState(false);
+
+  useEffect(() => {
+    // If already loaded this session, show nav immediately
+    if (sessionStorage.getItem('illusiaLoaded')) {
+      setNavReady(true);
+      return;
+    }
+    const onLoaded = () => setNavReady(true);
+    window.addEventListener('illusiaLoaded', onLoaded);
+    return () => window.removeEventListener('illusiaLoaded', onLoaded);
+  }, []);
 
   const scrollTo = (href: string) => {
     setMenuOpen(false);
@@ -30,6 +42,8 @@ export default function Nav() {
         zIndex: 100,
         width: 'calc(100% - 48px)',
         maxWidth: '1360px',
+        opacity: navReady ? 1 : 0,
+        transition: 'opacity 0.4s ease',
       }}>
         <nav style={{
           display: 'flex',
@@ -77,6 +91,8 @@ export default function Nav() {
             style={{
               position: 'absolute', left: '50%', transform: 'translateX(-50%)',
               textDecoration: 'none', display: 'flex', alignItems: 'center',
+              opacity: navReady ? 1 : 0,
+              transition: 'opacity 0.3s ease',
             }}
           >
             {/* eslint-disable-next-line @next/next/no-img-element */}

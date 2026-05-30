@@ -95,7 +95,7 @@ function AICard({ item }: { item: typeof examples[0] }) {
 
 export default function AISection() {
   return (
-    <section id="ai" style={{ padding: '16px', background: '#000' }}>
+    <section id="ai" style={{ padding: '16px', background: 'transparent' }}>
       <div style={{
         background: '#fff',
         borderRadius: '24px',

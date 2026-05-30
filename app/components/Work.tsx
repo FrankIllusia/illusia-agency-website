@@ -57,7 +57,7 @@ const projects = [
 
 export default function Work() {
   return (
-    <section id="work" style={{ padding: '16px', background: '#000' }}>
+    <section id="work" style={{ padding: '16px', background: 'transparent' }}>
       <div style={{
         background: '#fff',
         borderRadius: '24px',

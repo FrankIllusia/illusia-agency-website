@@ -11,7 +11,7 @@ const clients = [
   { name: 'Netflix',                 src: '/images/clients/netflix.svg'     },
   { name: 'Joby Aviation',           src: '/images/clients/joby.png'        },
   { name: 'Lionsgate',               src: '/images/clients/lionsgate.svg'   },
-  { name: 'Disney',                  src: '/images/clients/disney.svg'      },
+  { name: 'Disney',                  src: '/images/clients/disney.svg',     ml: -48 },
   { name: 'Polymarket',              src: '/images/clients/polymarket.png'  },
   { name: 'Life Time',               src: '/images/clients/lifetime.png'    },
   { name: 'Hulu',                    src: '/images/clients/hulu.png',       h: 44 },
@@ -19,6 +19,9 @@ const clients = [
   { name: 'Searchlight Pictures',    src: '/images/clients/searchlight.png' },
   { name: 'Experiential Supply Co.', src: '/images/clients/esc.png',        h: 38 },
   { name: 'EDM.com',                 src: '/images/clients/edm.png',        h: 38 },
+  { name: 'WWE',                     src: '/images/clients/wwe.png',        h: 32 },
+  { name: 'Topps',                   src: '/images/clients/topps.png',      h: 40 },
+  { name: 'Ford',                    src: '/images/clients/ford.png',       h: 46 },
 ];
 
 // Duplicate for seamless infinite scroll
@@ -65,6 +68,7 @@ export default function Clients() {
                 opacity: 0.65,
                 flexShrink: 0,
                 transition: 'opacity 0.2s',
+                ...(c.ml ? { marginLeft: `${c.ml}px` } : {}),
               }}
               onMouseEnter={e => ((e.currentTarget as HTMLImageElement).style.opacity = '1')}
               onMouseLeave={e => ((e.currentTarget as HTMLImageElement).style.opacity = '0.65')}

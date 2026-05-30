@@ -22,14 +22,16 @@
 
 html {
   scroll-behavior: auto; /* GSAP controls scroll behavior */
-  background: var(--bg);
+  background-image: linear-gradient(to bottom, #1e1e1e 0%, #000 55%);
+  background-attachment: fixed;
+  background-size: 100% 100%;
   color: var(--fg);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 body {
-  background: var(--bg);
+  background: transparent;
   color: var(--fg);
   font-family: var(--font-body);
   overflow-x: hidden;

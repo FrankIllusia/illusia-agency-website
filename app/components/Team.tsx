@@ -70,7 +70,7 @@ export default function Team() {
   return (
     <section
       id="team"
-      style={{ padding: '120px 0 160px', background: '#000', borderTop: '1px solid rgba(255,255,255,0.06)' }}
+      style={{ padding: '120px 0 128px', background: 'transparent', borderTop: '1px solid rgba(255,255,255,0.06)' }}
     >
       <div style={{ maxWidth: '1400px', margin: '0 auto', padding: '0 32px' }}>
 
@@ -146,38 +146,68 @@ export default function Team() {
           ))}
         </div>
 
-        {/* CTA */}
-        <div style={{ marginTop: '160px', textAlign: 'center' }}>
-          <a
-            href="/talent"
-            style={{
-              display: 'inline-flex',
-              alignItems: 'center',
-              gap: '10px',
-              background: 'transparent',
-              color: '#fff',
-              border: '1px solid rgba(255,255,255,0.2)',
-              borderRadius: '4px',
-              padding: '13px 28px',
-              fontSize: '12px',
-              fontWeight: 600,
-              letterSpacing: '0.08em',
-              textDecoration: 'none',
-              textTransform: 'uppercase',
-              transition: 'border-color 0.2s, background 0.2s',
-            }}
-            onMouseEnter={e => {
-              (e.currentTarget as HTMLAnchorElement).style.borderColor = 'rgba(255,255,255,0.6)';
-              (e.currentTarget as HTMLAnchorElement).style.background = 'rgba(255,255,255,0.05)';
-            }}
-            onMouseLeave={e => {
-              (e.currentTarget as HTMLAnchorElement).style.borderColor = 'rgba(255,255,255,0.2)';
-              (e.currentTarget as HTMLAnchorElement).style.background = 'transparent';
-            }}
-          >
-            Meet the Full Team
-            <span style={{ opacity: 0.5 }}>→</span>
-          </a>
+        {/* Social Icons */}
+        <div style={{ marginTop: '128px', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '24px' }}>
+        <p className="section-label">Holler At Us</p>
+        <div style={{ display: 'flex', justifyContent: 'center', gap: '16px' }}>
+          {[
+            {
+              href: '#',
+              label: 'Instagram',
+              svg: <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="white" stroke="none"/></svg>,
+            },
+            {
+              href: '#',
+              label: 'Facebook',
+              svg: <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>,
+            },
+            {
+              href: '#',
+              label: 'TikTok',
+              svg: <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.32 6.32 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.18 8.18 0 0 0 4.78 1.52V6.75a4.85 4.85 0 0 1-1.01-.06z"/></svg>,
+            },
+            {
+              href: '#',
+              label: 'YouTube',
+              svg: <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46A2.78 2.78 0 0 0 1.46 6.42 29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58 2.78 2.78 0 0 0 1.95 1.96C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.96-1.96A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon fill="#2d2d2d" points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"/></svg>,
+            },
+            {
+              href: '#',
+              label: 'LinkedIn',
+              svg: <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>,
+            },
+          ].map(({ href, label, svg }) => (
+            <a
+              key={label}
+              href={href}
+              aria-label={label}
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                width: '56px',
+                height: '56px',
+                borderRadius: '14px',
+                background: 'rgba(255,255,255,0.08)',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                textDecoration: 'none',
+                transition: 'background 0.2s, transform 0.2s',
+                flexShrink: 0,
+              }}
+              onMouseEnter={e => {
+                (e.currentTarget as HTMLAnchorElement).style.background = 'rgba(255,255,255,0.15)';
+                (e.currentTarget as HTMLAnchorElement).style.transform = 'translateY(-2px)';
+              }}
+              onMouseLeave={e => {
+                (e.currentTarget as HTMLAnchorElement).style.background = 'rgba(255,255,255,0.08)';
+                (e.currentTarget as HTMLAnchorElement).style.transform = 'translateY(0)';
+              }}
+            >
+              {svg}
+            </a>
+          ))}
+        </div>
         </div>
 
       </div>
