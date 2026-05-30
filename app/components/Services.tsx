@@ -45,6 +45,12 @@ const services = [
     desc: 'Full-service audio production that establishes authority and drives growth. Strategy, production, distribution.',
     tags: ['Production', 'Strategy', 'Distribution'],
   },
+  {
+    num: '07',
+    title: 'Live Production',
+    desc: 'Full-scale live show production across Kick, Twitch, X, and beyond. We handle everything — custom scene design, OBS builds, and real-time directing so every broadcast runs like a premium production.',
+    tags: ['Kick', 'Twitch', 'X', 'OBS'],
+  },
 ];
 
 export default function Services() {
