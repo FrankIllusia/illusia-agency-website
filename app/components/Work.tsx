@@ -11,11 +11,11 @@ const projects = [
   {
     id: 1,
     client: 'Tyson 2.0',
-    title: 'Cannabis Universe Campaign',
+    title: 'Behind The Brand — Episode 2',
     category: 'AI Content · Brand',
     year: '2024',
     img: '/images/work/tyson.jpg',
-    youtubeId: '9OvTPyQFO6M',
+    youtubeId: 'NY8deUujC1U',
     wide: true,
   },
   {
