@@ -3,6 +3,7 @@
 import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import VideoOrbit from './VideoOrbit';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -112,47 +113,9 @@ export default function About() {
           gap: '80px',
           alignItems: 'center',
         }}>
-          {/* Left — image */}
-          <div style={{
-            borderRadius: '16px',
-            overflow: 'hidden',
-            aspectRatio: '4/3',
-            background: '#111',
-            position: 'relative',
-          }}>
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src="/images/founders.png"
-              alt="Parker Russo and Danny Drew, co-founders of Illusia Agency"
-              style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center 18%', display: 'block', transform: 'scale(1.2)', transformOrigin: 'center 18%' }}
-              onError={e => { (e.target as HTMLImageElement).style.display = 'none'; }}
-            />
-
-            {/* Bottom gradient for name legibility */}
-            <div style={{
-              position: 'absolute', inset: 0,
-              background: 'linear-gradient(to top, rgba(0,0,0,0.68) 0%, transparent 42%)',
-              pointerEvents: 'none',
-            }} />
-
-            {/* Name overlays */}
-            <div style={{
-              position: 'absolute', bottom: '20px',
-              left: 0, right: 0,
-              display: 'flex',
-              justifyContent: 'space-between',
-              padding: '0 20px',
-              pointerEvents: 'none',
-            }}>
-              <div>
-                <p style={{ fontSize: '13px', fontWeight: 600, color: '#fff', letterSpacing: '0.14em', textTransform: 'uppercase', marginBottom: '3px' }}>Parker Russo</p>
-                <p style={{ fontSize: '10px', color: 'rgba(255,255,255,0.4)', letterSpacing: '0.1em', textTransform: 'uppercase' }}>Co-Founder</p>
-              </div>
-              <div style={{ textAlign: 'right' }}>
-                <p style={{ fontSize: '13px', fontWeight: 600, color: '#fff', letterSpacing: '0.14em', textTransform: 'uppercase', marginBottom: '3px' }}>Danny Drew</p>
-                <p style={{ fontSize: '10px', color: 'rgba(255,255,255,0.4)', letterSpacing: '0.1em', textTransform: 'uppercase' }}>Co-Founder</p>
-              </div>
-            </div>
+          {/* Left — video orbit */}
+          <div style={{ aspectRatio: '4/3', borderRadius: '16px', overflow: 'hidden' }}>
+            <VideoOrbit />
           </div>
 
           {/* Right — description + CTA */}
