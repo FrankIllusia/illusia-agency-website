@@ -19,17 +19,18 @@ export default function Hero() {
   useEffect(() => {
     const ctx = gsap.context(() => {
       // Initial entrance animation (on load)
+      gsap.set([line1Ref.current, line2Ref.current, line3Ref.current], { yPercent: 110 });
       const tl = gsap.timeline({ delay: 0.3 });
-      tl.fromTo(line1Ref.current, { yPercent: 110, opacity: 0 }, { yPercent: 0, opacity: 1, duration: 1, ease: 'power3.out' })
-        .fromTo(line2Ref.current, { yPercent: 110, opacity: 0 }, { yPercent: 0, opacity: 1, duration: 1, ease: 'power3.out' }, '-=0.7')
-        .fromTo(line3Ref.current, { yPercent: 110, opacity: 0 }, { yPercent: 0, opacity: 1, duration: 1, ease: 'power3.out' }, '-=0.7')
+      tl.to(line1Ref.current, { yPercent: 0, duration: 0.9, ease: 'power3.out' })
+        .to(line2Ref.current, { yPercent: 0, duration: 0.9, ease: 'power3.out' }, '-=0.72')
+        .to(line3Ref.current, { yPercent: 0, duration: 0.9, ease: 'power3.out' }, '-=0.72')
         .fromTo(subRef.current, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.8, ease: 'power2.out' }, '-=0.4');
 
       // Scroll-driven animation — pin the hero, animate content out as user scrolls
       ScrollTrigger.create({
         trigger: containerRef.current,
         start: 'top top',
-        end: '+=120%',
+        end: '+=50%',
         pin: stickyRef.current,
         pinSpacing: true,
         scrub: 1,
@@ -57,7 +58,7 @@ export default function Hero() {
 
   return (
     /* Scroll container — extra height gives scrolling room */
-    <div ref={containerRef} style={{ height: '220vh', position: 'relative' }}>
+    <div ref={containerRef} style={{ height: '150vh', position: 'relative' }}>
       {/* Sticky viewport */}
       <div
         ref={stickyRef}
@@ -113,16 +114,16 @@ export default function Hero() {
           <p className="section-label" style={{ marginBottom: '28px' }}>Content Production Agency</p>
 
           <h1 style={{
-            fontSize: 'clamp(52px, 9vw, 120px)',
+            fontSize: 'clamp(48px, 6.8vw, 88px)',
             fontWeight: 500,
             lineHeight: 1.1,
             letterSpacing: '-0.03em',
             color: '#fff',
             textAlign: 'center',
           }}>
-            <span ref={line1Ref} style={{ display: 'block' }}>This is what</span>
-            <span ref={line2Ref} style={{ display: 'block', fontWeight: 800, color: '#fff' }}>great content</span>
-            <span ref={line3Ref} style={{ display: 'block' }}>looks like.</span>
+            <div style={{ overflow: 'hidden' }}><span ref={line1Ref} style={{ display: 'block' }}>We make content</span></div>
+            <div style={{ overflow: 'hidden' }}><span ref={line2Ref} style={{ display: 'block', fontWeight: 800, color: '#fff' }}>impossible to</span></div>
+            <div style={{ overflow: 'hidden' }}><span ref={line3Ref} style={{ display: 'block' }}>scroll past.</span></div>
           </h1>
 
           <div ref={subRef} style={{ marginTop: '36px', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '24px' }}>
@@ -138,7 +139,7 @@ export default function Hero() {
                 See Our Work
               </a>
               <a
-                href="mailto:parker@illusiaagency.com"
+                href="mailto:parker@illusiaagency.com?subject=We%27re%20Interested%20In%20Working%20Together!"
                 style={{ background: 'transparent', color: '#fff', borderRadius: '4px', padding: '13px 28px', fontSize: '12px', fontWeight: 600, letterSpacing: '0.08em', textDecoration: 'none', textTransform: 'uppercase', border: '1px solid rgba(255,255,255,0.3)' }}
               >
                 Work With Us

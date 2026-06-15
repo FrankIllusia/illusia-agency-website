@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
@@ -55,6 +55,23 @@ const services = [
 
 export default function Services() {
   const sectionRef = useRef<HTMLElement>(null);
+  const [focused, setFocused] = useState<string | null>(null);
+  const [submitted, setSubmitted] = useState(false);
+  const [sending, setSending] = useState(false);
+
+  const inputStyle = (name: string): React.CSSProperties => ({
+    width: '100%',
+    background: 'rgba(255,255,255,0.04)',
+    border: `1px solid ${focused === name ? 'rgba(255,255,255,0.3)' : 'rgba(255,255,255,0.1)'}`,
+    borderRadius: '6px',
+    padding: '14px 16px',
+    fontSize: '14px',
+    color: '#fff',
+    outline: 'none',
+    transition: 'border-color 0.2s',
+    fontFamily: 'inherit',
+    boxSizing: 'border-box',
+  });
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -171,35 +188,80 @@ export default function Services() {
           ))}
         </div>
 
-        {/* CTA */}
-        <div className="srv-cta-wrap" style={{ marginTop: '48px', overflow: 'hidden' }}>
-          <div className="srv-cta" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '20px' }}>
-            <a
-              href="mailto:parker@illusiaagency.com"
-              style={{
-                width: '52px', height: '52px',
-                borderRadius: '50%',
-                background: '#fff',
-                display: 'flex', alignItems: 'center', justifyContent: 'center',
-                textDecoration: 'none',
-                flexShrink: 0,
-                transition: 'transform 0.2s',
-              }}
-              onMouseEnter={e => ((e.currentTarget as HTMLAnchorElement).style.transform = 'scale(1.08)')}
-              onMouseLeave={e => ((e.currentTarget as HTMLAnchorElement).style.transform = 'scale(1)')}
-            >
-              <span style={{ fontSize: '20px', color: '#000', lineHeight: 1 }}>↗</span>
-            </a>
-            <a
-              href="mailto:parker@illusiaagency.com"
-              style={{
-                fontSize: '11px', fontWeight: 600,
-                letterSpacing: '0.12em', textTransform: 'uppercase',
-                color: 'rgba(255,255,255,0.4)', textDecoration: 'none',
-              }}
-            >
-              Work With Us
-            </a>
+        {/* Contact header */}
+        <div style={{ marginTop: '64px', maxWidth: '680px', margin: '64px auto 40px' }}>
+          <p className="section-label" style={{ marginBottom: '14px' }}>Let&apos;s Build</p>
+          <h2 style={{ fontSize: 'clamp(36px, 5vw, 64px)', fontWeight: 500, color: '#fff', lineHeight: 1.05 }}>
+            Ready to elevate your brand?
+          </h2>
+        </div>
+
+        {/* Contact Form */}
+        <div className="srv-cta-wrap" style={{ overflow: 'hidden' }}>
+          <div className="srv-cta" style={{ maxWidth: '680px', margin: '0 auto' }}>
+            {submitted ? (
+              <div style={{ textAlign: 'center', padding: '48px 0' }}>
+                <p style={{ fontSize: '18px', color: '#fff', fontWeight: 500, marginBottom: '8px' }}>We&apos;ll be in touch.</p>
+                <p style={{ fontSize: '13px', color: 'rgba(255,255,255,0.4)' }}>Thanks for reaching out — we typically respond within 24 hours.</p>
+              </div>
+            ) : (
+              <form
+                onSubmit={async e => {
+                  e.preventDefault();
+                  const fd = new FormData(e.currentTarget);
+                  setSending(true);
+                  try {
+                    await fetch('/api/contact', {
+                      method: 'POST',
+                      headers: { 'Content-Type': 'application/json' },
+                      body: JSON.stringify({
+                        firstName: fd.get('firstName'),
+                        lastName: fd.get('lastName'),
+                        email: fd.get('email'),
+                        business: fd.get('business'),
+                        description: fd.get('description'),
+                      }),
+                    });
+                  } finally {
+                    setSending(false);
+                    setSubmitted(true);
+                  }
+                }}
+                style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}
+              >
+                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
+                  <div>
+                    <label style={{ display: 'block', fontSize: '11px', letterSpacing: '0.1em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.35)', marginBottom: '8px' }}>First Name</label>
+                    <input name="firstName" type="text" required placeholder="Parker" style={inputStyle('first')} onFocus={() => setFocused('first')} onBlur={() => setFocused(null)} />
+                  </div>
+                  <div>
+                    <label style={{ display: 'block', fontSize: '11px', letterSpacing: '0.1em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.35)', marginBottom: '8px' }}>Last Name</label>
+                    <input name="lastName" type="text" required placeholder="Russo" style={inputStyle('last')} onFocus={() => setFocused('last')} onBlur={() => setFocused(null)} />
+                  </div>
+                </div>
+                <div>
+                  <label style={{ display: 'block', fontSize: '11px', letterSpacing: '0.1em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.35)', marginBottom: '8px' }}>Email</label>
+                  <input name="email" type="email" required placeholder="you@company.com" style={inputStyle('email')} onFocus={() => setFocused('email')} onBlur={() => setFocused(null)} />
+                </div>
+                <div>
+                  <label style={{ display: 'block', fontSize: '11px', letterSpacing: '0.1em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.35)', marginBottom: '8px' }}>Business Name</label>
+                  <input name="business" type="text" required placeholder="Illusia Agency" style={inputStyle('business')} onFocus={() => setFocused('business')} onBlur={() => setFocused(null)} />
+                </div>
+                <div>
+                  <label style={{ display: 'block', fontSize: '11px', letterSpacing: '0.1em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.35)', marginBottom: '8px' }}>Project Description</label>
+                  <textarea name="description" required rows={5} placeholder="Tell us about your project, goals, and timeline..." style={{ ...inputStyle('project'), resize: 'vertical' }} onFocus={() => setFocused('project')} onBlur={() => setFocused(null)} />
+                </div>
+                <button
+                  type="submit"
+                  disabled={sending}
+                  style={{ alignSelf: 'flex-start', background: '#fff', color: '#000', border: 'none', borderRadius: '6px', padding: '16px 40px', fontSize: '12px', fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase', cursor: sending ? 'wait' : 'pointer', transition: 'opacity 0.2s', fontFamily: 'inherit', opacity: sending ? 0.6 : 1 }}
+                  onMouseEnter={e => { if (!sending) (e.currentTarget as HTMLButtonElement).style.opacity = '0.85'; }}
+                  onMouseLeave={e => { if (!sending) (e.currentTarget as HTMLButtonElement).style.opacity = '1'; }}
+                >
+                  {sending ? 'Sending...' : 'Submit'}
+                </button>
+              </form>
+            )}
           </div>
         </div>
 

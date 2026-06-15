@@ -105,7 +105,7 @@ export default function Nav() {
 
           {/* Right — CTA pill */}
           <a
-            href="mailto:parker@illusiaagency.com"
+            href="mailto:parker@illusiaagency.com?subject=We%27re%20Interested%20In%20Working%20Together!"
             style={{
               display: 'flex', alignItems: 'center', gap: '6px',
               background: '#fff',
@@ -161,7 +161,7 @@ export default function Nav() {
           </button>
         ))}
         <a
-          href="mailto:parker@illusiaagency.com"
+          href="mailto:parker@illusiaagency.com?subject=We%27re%20Interested%20In%20Working%20Together!"
           style={{
             marginTop: '32px',
             background: '#fff', color: '#000',

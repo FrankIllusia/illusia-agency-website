@@ -14,7 +14,8 @@ const projects = [
     title: 'Behind The Brand — Episode 2',
     category: 'AI Content · Brand',
     year: '2024',
-    img: '/images/work/tyson.jpg',
+    img: '/images/work/ciara-thumb.jpg',
+    thumbnail: '/images/work/ciara-thumb.jpg',
     youtubeId: 'NY8deUujC1U',
     wide: true,
   },
@@ -31,11 +32,13 @@ const projects = [
   },
   {
     id: 3,
-    client: 'Client Name',
+    client: 'Rove',
     title: 'Project Title',
     category: 'Branding · Identity',
     year: '2024',
-    img: '/images/work/placeholder-2.jpg',
+    img: '/images/work/rove-thumb.png',
+    videoSrc: '/images/work/rove.mp4',
+    thumbnail: '/images/work/rove-thumb.png',
     wide: false,
   },
   {
@@ -44,16 +47,21 @@ const projects = [
     title: 'Project Title',
     category: 'AI Content · Campaign',
     year: '2025',
-    img: '/images/work/placeholder-3.jpg',
+    img: '/images/work/joby.png',
+    videoSrc: '/images/work/ig-reel-5.mp4',
+    thumbnail: '/images/work/joby.png',
     wide: false,
   },
   {
     id: 5,
-    client: 'Client Name',
-    title: 'Project Title',
+    client: 'Lionsgate',
+    title: 'Predator Red Carpet Premiere',
     category: 'Video Marketing',
     year: '2025',
-    img: '/images/work/placeholder-4.jpg',
+    img: '/images/work/predator-thumb.png',
+    videoSrc: '/images/work/predator.mp4',
+    thumbnail: '/images/work/predator-thumb.png',
+    thumbPosition: 'center 100%',
     wide: false,
   },
 ];
@@ -105,23 +113,60 @@ export default function Work() {
                   <div style={{ position: 'relative', width: '100%', height: '100%' }}>
 
                     {'youtubeId' in p && p.youtubeId ? (
-                      <iframe
-                        src={`https://www.youtube.com/embed/${p.youtubeId}?rel=0&modestbranding=1`}
-                        title={`${p.client} — ${p.title}`}
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowFullScreen
-                        style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', border: 'none', display: 'block', zIndex: 1 }}
-                      />
+                      playing === p.id ? (
+                        <iframe
+                          src={`https://www.youtube.com/embed/${p.youtubeId}?rel=0&modestbranding=1&autoplay=1`}
+                          title={`${p.client} — ${p.title}`}
+                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                          allowFullScreen
+                          style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', border: 'none', display: 'block', zIndex: 1 }}
+                        />
+                      ) : (
+                        <>
+                          {/* eslint-disable-next-line @next/next/no-img-element */}
+                          <img
+                            src={'thumbnail' in p ? (p as { thumbnail: string }).thumbnail : p.img}
+                            alt={`${p.client} — ${p.title}`}
+                            style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center 70%', display: 'block', zIndex: 0 }}
+                          />
+                          <button
+                            onClick={() => setPlaying(p.id)}
+                            style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', background: 'none', border: 'none', padding: 0, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 2 }}
+                            onMouseEnter={e => { const btn = e.currentTarget.querySelector('.yt-play') as HTMLElement; if (btn) btn.style.transform = 'scale(1.1)'; }}
+                            onMouseLeave={e => { const btn = e.currentTarget.querySelector('.yt-play') as HTMLElement; if (btn) btn.style.transform = 'scale(1)'; }}
+                          >
+                            <div className="yt-play" style={{
+                              width: '72px', height: '72px',
+                              borderRadius: '50%',
+                              background: 'rgba(0,0,0,0.55)',
+                              backdropFilter: 'blur(8px)',
+                              border: '1px solid rgba(255,255,255,0.25)',
+                              display: 'flex', alignItems: 'center', justifyContent: 'center',
+                              transition: 'transform 0.2s ease',
+                            }}>
+                              <div style={{ width: 0, height: 0, borderTop: '12px solid transparent', borderBottom: '12px solid transparent', borderLeft: '22px solid #fff', marginLeft: '5px' }} />
+                            </div>
+                          </button>
+                        </>
+                      )
                     ) : 'videoSrc' in p && p.videoSrc ? (
                       <>
                         <video
                           ref={el => { videoRefs.current[p.id] = el; }}
                           src={(p as { videoSrc: string }).videoSrc}
-                          poster={'thumbnail' in p ? (p as { thumbnail: string }).thumbnail : undefined}
                           playsInline
                           loop
                           style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', display: 'block', zIndex: 1 }}
                         />
+                        {/* Thumbnail overlay — hides once playing */}
+                        {'thumbnail' in p && playing !== p.id && (
+                          // eslint-disable-next-line @next/next/no-img-element
+                          <img
+                            src={(p as { thumbnail: string }).thumbnail}
+                            alt=""
+                            style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'thumbPosition' in p ? (p as { thumbPosition: string }).thumbPosition : 'center', display: 'block', zIndex: 2 }}
+                          />
+                        )}
                         {/* Play overlay — hides once playing */}
                         {playing !== p.id && (
                           <button

@@ -39,3 +39,22 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Large videos (>50MB) — host via CDN, cannot go in git
+public/images/airo.mp4
+public/images/disney-tron.mp4
+public/images/hunger-games.mp4
+public/images/innovation-vertiport.mp4
+public/images/mike-tyson-recap.mp4
+public/images/wooooo-energy.mp4
+public/images/illusia-end-slate.mov
+public/images/work/predator.mp4
+public/images/work/rove.mp4
+public/images/ai/aegean.mp4
+public/images/ai/carmelo.mp4
+public/images/ai/f4.mp4
+public/images/ai/flynnstone.mp4
+public/images/ai/lifetime.mp4
+public/images/ai/madison.mp4
+public/images/ai/miami-swim.mp4
+public/images/ai/one-shot.mp4

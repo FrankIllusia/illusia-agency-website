@@ -152,28 +152,16 @@ export default function About() {
             {/* CTA */}
             <div style={{ display: 'flex', alignItems: 'center', gap: '20px' }}>
               <a
-                href="mailto:parker@illusiaagency.com"
-                style={{
-                  width: '52px', height: '52px',
-                  borderRadius: '50%',
-                  background: '#fff',
-                  display: 'flex', alignItems: 'center', justifyContent: 'center',
-                  textDecoration: 'none',
-                  flexShrink: 0,
-                  transition: 'transform 0.2s',
-                }}
+                href="mailto:parker@illusiaagency.com?subject=We%27re%20Interested%20In%20Working%20Together!"
+                style={{ width: '52px', height: '52px', borderRadius: '50%', background: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', textDecoration: 'none', flexShrink: 0, transition: 'transform 0.2s' }}
                 onMouseEnter={e => ((e.currentTarget as HTMLAnchorElement).style.transform = 'scale(1.08)')}
                 onMouseLeave={e => ((e.currentTarget as HTMLAnchorElement).style.transform = 'scale(1)')}
               >
                 <span style={{ fontSize: '20px', color: '#000', lineHeight: 1 }}>↗</span>
               </a>
               <a
-                href="mailto:parker@illusiaagency.com"
-                style={{
-                  fontSize: '11px', fontWeight: 600,
-                  letterSpacing: '0.12em', textTransform: 'uppercase',
-                  color: 'rgba(255,255,255,0.4)', textDecoration: 'none',
-                }}
+                href="mailto:parker@illusiaagency.com?subject=We%27re%20Interested%20In%20Working%20Together!"
+                style={{ fontSize: '11px', fontWeight: 600, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.4)', textDecoration: 'none' }}
               >
                 Work With Us
               </a>
