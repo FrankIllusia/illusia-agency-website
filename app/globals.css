@@ -50,6 +50,9 @@ h1, h2, h3, h4 {
 ::-webkit-scrollbar-track { background: #000; }
 ::-webkit-scrollbar-thumb { background: #333; border-radius: 2px; }
 
+/* Hide scrollbar on horizontal carousels */
+.carousel-track::-webkit-scrollbar { display: none; }
+
 /* ── Selection ────────────────────────────────────────────────── */
 ::selection {
   background: rgba(255, 255, 255, 0.15);
@@ -100,6 +103,7 @@ h1, h2, h3, h4 {
   text-transform: uppercase;
   color: var(--muted);
 }
+
 
 /* ── Hero scroll container ───────────────────────────────────── */
 .hero-scroll-container {

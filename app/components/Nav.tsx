@@ -13,6 +13,14 @@ const links = [
 export default function Nav() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [navReady, setNavReady] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 640);
+    check();
+    window.addEventListener('resize', check);
+    return () => window.removeEventListener('resize', check);
+  }, []);
 
   useEffect(() => {
     // If already loaded this session, show nav immediately
@@ -37,15 +45,18 @@ export default function Nav() {
       <div style={{
         position: 'fixed',
         top: '20px',
-        left: '50%',
-        transform: 'translateX(-50%)',
+        left: 0,
+        right: 0,
         zIndex: 100,
-        width: 'calc(100% - 48px)',
-        maxWidth: '1360px',
+        display: 'flex',
+        justifyContent: 'center',
+        padding: '0 12px',
+        pointerEvents: 'none',
         opacity: navReady ? 1 : 0,
         transition: 'opacity 0.4s ease',
       }}>
         <nav style={{
+          position: 'relative',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'space-between',
@@ -54,8 +65,11 @@ export default function Nav() {
           WebkitBackdropFilter: 'blur(20px)',
           borderRadius: '100px',
           border: '1px solid rgba(255,255,255,0.08)',
-          padding: '0 20px 0 24px',
-          height: '56px',
+          padding: isMobile ? '0 10px 0 14px' : '0 20px 0 24px',
+          height: isMobile ? '44px' : '56px',
+          width: '100%',
+          maxWidth: '1360px',
+          pointerEvents: 'all',
         }}>
 
           {/* Left — hamburger */}
@@ -99,7 +113,7 @@ export default function Nav() {
             <img
               src="/images/illusia-logo.png"
               alt="Illusia"
-              style={{ height: '28px', width: 'auto' }}
+              style={{ height: isMobile ? '20px' : '28px', width: 'auto' }}
             />
           </Link>
 
@@ -107,14 +121,14 @@ export default function Nav() {
           <a
             href="mailto:parker@illusiaagency.com?subject=We%27re%20Interested%20In%20Working%20Together!"
             style={{
-              display: 'flex', alignItems: 'center', gap: '6px',
+              display: 'flex', alignItems: 'center', gap: '4px',
               background: '#fff',
               color: '#000',
               borderRadius: '100px',
-              padding: '8px 18px',
-              fontSize: '11px',
+              padding: isMobile ? '6px 10px' : '8px 18px',
+              fontSize: isMobile ? '9px' : '11px',
               fontWeight: 600,
-              letterSpacing: '0.07em',
+              letterSpacing: '0.06em',
               textDecoration: 'none',
               textTransform: 'uppercase',
               whiteSpace: 'nowrap',
