@@ -229,7 +229,7 @@ export default function Services() {
                 }}
                 style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}
               >
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
+                <div className="form-name-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
                   <div>
                     <label style={{ display: 'block', fontSize: '11px', letterSpacing: '0.1em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.35)', marginBottom: '8px' }}>First Name</label>
                     <input name="firstName" type="text" required placeholder="Parker" style={inputStyle('first')} onFocus={() => setFocused('first')} onBlur={() => setFocused(null)} />
@@ -271,6 +271,9 @@ export default function Services() {
         @media (max-width: 700px) {
           #services .srv-row { grid-template-columns: 40px 1fr !important; }
           #services .srv-tags { display: none !important; }
+          #services .form-name-grid { grid-template-columns: 1fr !important; }
+          /* 16px minimum stops iOS Safari from zooming the page when an input gets focus */
+          #services input, #services textarea { font-size: 16px !important; }
         }
       `}</style>
     </section>

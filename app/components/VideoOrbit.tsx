@@ -53,7 +53,7 @@ export default function VideoOrbit() {
       background: '#000',
     }}>
       {/* Perspective container — must NOT have overflow:hidden */}
-      <div style={{
+      <div className="orbit-stage" style={{
         width: '100%',
         height: '100%',
         perspective: '700px',
@@ -138,6 +138,17 @@ export default function VideoOrbit() {
           </div>
         </div>
       </div>
+
+      {/* The ring is built from fixed px constants (~600px wide) — scale the whole
+          3D stage down on small screens instead of letting overflow clip it. */}
+      <style>{`
+        @media (max-width: 700px) {
+          .orbit-stage { transform: scale(0.8); }
+        }
+        @media (max-width: 480px) {
+          .orbit-stage { transform: scale(0.55); }
+        }
+      `}</style>
     </div>
   );
 }

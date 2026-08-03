@@ -250,6 +250,13 @@ export default function Founders() {
         </div>
 
       </div>
+
+      <style>{`
+        @media (max-width: 700px) {
+          #founders { padding: 64px 0 80px !important; }
+          #founders > div { padding: 0 24px !important; }
+        }
+      `}</style>
     </section>
   );
 }

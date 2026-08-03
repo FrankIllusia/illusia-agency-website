@@ -54,7 +54,7 @@ const projects = [
   },
   {
     id: 5,
-    client: 'Lionsgate',
+    client: '20th Century Fox',
     title: 'Predator Red Carpet Premiere',
     category: 'Video Marketing',
     year: '2025',
@@ -68,12 +68,15 @@ const projects = [
 
 export default function Work() {
   const [playing, setPlaying] = useState<number | null>(null);
+  // Cards whose video has started at least once — keeps the thumbnail from
+  // covering the paused frame when the user pauses mid-video.
+  const [started, setStarted] = useState<Set<number>>(new Set());
   const videoRefs = useRef<Record<number, HTMLVideoElement | null>>({});
 
   return (
     <>
       <section id="work" style={{ padding: '16px', background: 'transparent' }}>
-        <div style={{
+        <div className="work-shell" style={{
           background: '#fff',
           borderRadius: '24px',
           padding: '80px 48px',
@@ -125,7 +128,7 @@ export default function Work() {
                         <>
                           {/* eslint-disable-next-line @next/next/no-img-element */}
                           <img
-                            src={'thumbnail' in p ? (p as { thumbnail: string }).thumbnail : p.img}
+                            src={p.thumbnail}
                             alt={`${p.client} — ${p.title}`}
                             style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center 70%', display: 'block', zIndex: 0 }}
                           />
@@ -156,10 +159,14 @@ export default function Work() {
                           src={(p as { videoSrc: string }).videoSrc}
                           playsInline
                           loop
-                          style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', display: 'block', zIndex: 1 }}
+                          onClick={() => {
+                            const vid = videoRefs.current[p.id];
+                            if (vid && playing === p.id) { vid.pause(); setPlaying(null); }
+                          }}
+                          style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', display: 'block', zIndex: 1, cursor: playing === p.id ? 'pointer' : undefined }}
                         />
-                        {/* Thumbnail overlay — hides once playing */}
-                        {'thumbnail' in p && playing !== p.id && (
+                        {/* Thumbnail overlay — hides once the video has started */}
+                        {'thumbnail' in p && playing !== p.id && !started.has(p.id) && (
                           // eslint-disable-next-line @next/next/no-img-element
                           <img
                             src={(p as { thumbnail: string }).thumbnail}
@@ -171,8 +178,15 @@ export default function Work() {
                         {playing !== p.id && (
                           <button
                             onClick={() => {
+                              if (playing !== null && playing !== p.id) {
+                                videoRefs.current[playing]?.pause();
+                              }
                               const vid = videoRefs.current[p.id];
-                              if (vid) { vid.play(); setPlaying(p.id); }
+                              if (vid) {
+                                vid.play();
+                                setPlaying(p.id);
+                                setStarted(prev => new Set(prev).add(p.id));
+                              }
                             }}
                             style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', background: 'none', border: 'none', padding: 0, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 2 }}
                             onMouseEnter={e => { const btn = e.currentTarget.querySelector('.ig-play') as HTMLElement; if (btn) btn.style.transform = 'scale(1.1)'; }}
@@ -236,6 +250,9 @@ export default function Work() {
           <style>{`
             @media (max-width: 900px) {
               .project-card { grid-column: span 12 !important; aspect-ratio: 16/9 !important; }
+            }
+            @media (max-width: 700px) {
+              .work-shell { padding: 48px 20px !important; }
             }
             @media (max-width: 600px) {
               .project-card { grid-column: span 12 !important; aspect-ratio: 4/3 !important; }

@@ -107,7 +107,7 @@ export default function About() {
         </h2>
 
         {/* Image + text row */}
-        <div style={{
+        <div className="about-grid" style={{
           display: 'grid',
           gridTemplateColumns: '1fr 1fr',
           gap: '80px',
@@ -173,7 +173,12 @@ export default function About() {
 
       <style>{`
         @media (max-width: 900px) {
-          #about .about-grid { grid-template-columns: 1fr !important; }
+          #about .about-grid { grid-template-columns: 1fr !important; gap: 40px !important; }
+          #about h2 { margin-bottom: 48px !important; }
+        }
+        @media (max-width: 700px) {
+          #about { padding: 64px 0 80px !important; }
+          #about > div { padding: 0 24px !important; }
         }
       `}</style>
     </section>
