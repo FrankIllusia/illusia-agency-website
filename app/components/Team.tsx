@@ -54,6 +54,7 @@ export default function Team() {
         <button
           onClick={() => scroll('left')}
           aria-label="Scroll left"
+          className="team-arrow"
           style={{
             position: 'absolute', left: '24px', top: '50%', transform: 'translateY(-50%)',
             zIndex: 10,
@@ -74,6 +75,7 @@ export default function Team() {
         {/* Scrollable track */}
         <div
           ref={trackRef}
+          className="team-track"
           style={{
             display: 'flex',
             gap: `${GAP}px`,
@@ -87,6 +89,7 @@ export default function Team() {
           {team.map(member => (
             <div
               key={member.name}
+              className="team-card"
               style={{
                 flex: `0 0 ${CARD_WIDTH}px`,
                 scrollSnapAlign: 'start',
@@ -134,6 +137,7 @@ export default function Team() {
         <button
           onClick={() => scroll('right')}
           aria-label="Scroll right"
+          className="team-arrow"
           style={{
             position: 'absolute', right: '24px', top: '50%', transform: 'translateY(-50%)',
             zIndex: 10,
@@ -223,6 +227,22 @@ export default function Team() {
           </div>
         </div>
       </div>
+
+      <style>{`
+        @media (max-width: 700px) {
+          /* Vertical two-up grid on phones — the sideways carousel becomes a
+             normal scroll-down layout and the arrows disappear. */
+          .team-track {
+            display: grid !important;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px !important;
+            overflow-x: visible !important;
+            padding: 0 24px !important;
+          }
+          .team-card { flex: none !important; width: auto !important; }
+          .team-arrow { display: none !important; }
+        }
+      `}</style>
     </section>
   );
 }

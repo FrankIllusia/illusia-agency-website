@@ -24,20 +24,32 @@ export default function LogoParallax() {
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
+    // Cover-fit on landscape screens; contain-fit on portrait ones.
+    // The frames are 16:9 — cover on a tall phone screen crops to ~30% of the
+    // image and beheads the logo, and the background is black anyway so the
+    // letterbox is invisible.
+    const drawFrame = (img: HTMLImageElement) => {
+      const cw = canvas.width, ch = canvas.height;
+      const portrait = ch > cw;
+      const scale = portrait
+        ? Math.min(cw / FRAME_W, ch / FRAME_H)
+        : Math.max(cw / FRAME_W, ch / FRAME_H);
+      const sw = FRAME_W * scale, sh = FRAME_H * scale;
+      ctx.fillStyle = '#000';
+      ctx.fillRect(0, 0, cw, ch);
+      ctx.drawImage(img, (cw - sw) / 2, (ch - sh) / 2, sw, sh);
+    };
+
     const setSize = () => {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
+      // Resizing clears the canvas — repaint the current frame so rotating a
+      // phone (or resizing the window) doesn't leave it blank until scroll.
+      const frame = framesRef.current[Math.max(currentFrameRef.current, 0)];
+      if (frame) drawFrame(frame);
     };
     setSize();
     window.addEventListener('resize', setSize);
-
-    // Cover-fit draw: scales frame to fill canvas, centered
-    const drawFrame = (img: HTMLImageElement) => {
-      const cw = canvas.width, ch = canvas.height;
-      const scale = Math.max(cw / FRAME_W, ch / FRAME_H);
-      const sw = FRAME_W * scale, sh = FRAME_H * scale;
-      ctx.drawImage(img, (cw - sw) / 2, (ch - sh) / 2, sw, sh);
-    };
 
     // Preload all frames; draw frame 0 immediately when ready
     framesRef.current = new Array(FRAME_COUNT).fill(null);
