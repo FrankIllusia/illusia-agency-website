@@ -1,19 +1,10 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 gsap.registerPlugin(ScrollTrigger);
-
-const HERO_CLIPS = [
-  '/images/airo-web.mp4',
-  '/images/disney-tron-web.mp4',
-  '/images/hunger-games-web.mp4',
-  '/images/wooooo-energy-web.mp4',
-  '/images/innovation-vertiport-web.mp4',
-  '/images/mike-tyson-recap-web.mp4',
-];
 
 export default function Hero() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -24,10 +15,6 @@ export default function Hero() {
   const line1Ref = useRef<HTMLSpanElement>(null);
   const line2Ref = useRef<HTMLSpanElement>(null);
   const line3Ref = useRef<HTMLSpanElement>(null);
-  const videoRef = useRef<HTMLVideoElement>(null);
-  const clipIndexRef = useRef(0);
-  const clipTimesRef = useRef<number[]>(HERO_CLIPS.map(() => 0));
-  const [fading, setFading] = useState(false);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -69,25 +56,6 @@ export default function Hero() {
     return () => ctx.revert();
   }, []);
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      const video = videoRef.current;
-      if (video) clipTimesRef.current[clipIndexRef.current] = video.currentTime;
-      setFading(true);
-      setTimeout(() => {
-        const next = (clipIndexRef.current + 1) % HERO_CLIPS.length;
-        clipIndexRef.current = next;
-        const v = videoRef.current;
-        if (!v) return;
-        const seekAndPlay = () => { v.currentTime = clipTimesRef.current[next]; v.play().catch(() => {}); };
-        v.src = HERO_CLIPS[next];
-        v.addEventListener('loadedmetadata', seekAndPlay, { once: true });
-        v.load();
-        setFading(false);
-      }, 300);
-    }, 8000);
-    return () => clearInterval(interval);
-  }, []);
 
   return (
     /* Scroll container — extra height gives scrolling room */
@@ -106,19 +74,6 @@ export default function Hero() {
           justifyContent: 'center',
         }}
       >
-        {/* Background video — cycles through sizzle clips */}
-        <video
-          ref={videoRef}
-          autoPlay
-          muted
-          playsInline
-          style={{
-            position: 'absolute', inset: 0, width: '100%', height: '100%',
-            objectFit: 'cover', opacity: fading ? 0 : 0.55,
-            transition: 'opacity 0.3s ease',
-          }}
-          src={HERO_CLIPS[0]}
-        />
 
         {/* Gradient overlay — bottom fade */}
         <div style={{
