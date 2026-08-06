@@ -6,15 +6,13 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 gsap.registerPlugin(ScrollTrigger);
 
-const BASE = 'https://github.com/FrankIllusia/illusia-agency-website/releases/download/v1.0-assets';
-
 const HERO_CLIPS = [
-  `${BASE}/U.-.AIRO.FINAL.V2.mp4`,
-  `${BASE}/Disney.-.Tron.Ares_.Comic.Con.Stunt.mp4`,
-  `${BASE}/HUNGER.GAMES.lionsgate.horizontal.mp4`,
-  `${BASE}/2.Wooooo.Energy.MP4`,
-  `${BASE}/INNOVATION.BY.VERTIPORT.mp4`,
-  `${BASE}/Mike.Tyson.NYC.Recap.mp4`,
+  '/images/airo-web.mp4',
+  '/images/disney-tron-web.mp4',
+  '/images/hunger-games-web.mp4',
+  '/images/wooooo-energy-web.mp4',
+  '/images/innovation-vertiport-web.mp4',
+  '/images/mike-tyson-recap-web.mp4',
 ];
 
 export default function Hero() {
