@@ -6,13 +6,15 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 gsap.registerPlugin(ScrollTrigger);
 
+const BASE = 'https://github.com/FrankIllusia/illusia-agency-website/releases/download/v1.0-assets';
+
 const SIZZLE_CLIPS = [
-  '/images/airo.mp4',
-  '/images/disney-tron.mp4',
-  '/images/hunger-games.mp4',
-  '/images/wooooo-energy.mp4',
-  '/images/innovation-vertiport.mp4',
-  '/images/mike-tyson-recap.mp4',
+  `${BASE}/U.-.AIRO.FINAL.V2.mp4`,
+  `${BASE}/Disney.-.Tron.Ares_.Comic.Con.Stunt.mp4`,
+  `${BASE}/HUNGER.GAMES.lionsgate.horizontal.mp4`,
+  `${BASE}/2.Wooooo.Energy.MP4`,
+  `${BASE}/INNOVATION.BY.VERTIPORT.mp4`,
+  `${BASE}/Mike.Tyson.NYC.Recap.mp4`,
 ];
 
 export default function ParallaxVideo() {

@@ -1,10 +1,21 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 gsap.registerPlugin(ScrollTrigger);
+
+const BASE = 'https://github.com/FrankIllusia/illusia-agency-website/releases/download/v1.0-assets';
+
+const HERO_CLIPS = [
+  `${BASE}/U.-.AIRO.FINAL.V2.mp4`,
+  `${BASE}/Disney.-.Tron.Ares_.Comic.Con.Stunt.mp4`,
+  `${BASE}/HUNGER.GAMES.lionsgate.horizontal.mp4`,
+  `${BASE}/2.Wooooo.Energy.MP4`,
+  `${BASE}/INNOVATION.BY.VERTIPORT.mp4`,
+  `${BASE}/Mike.Tyson.NYC.Recap.mp4`,
+];
 
 export default function Hero() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -15,6 +26,10 @@ export default function Hero() {
   const line1Ref = useRef<HTMLSpanElement>(null);
   const line2Ref = useRef<HTMLSpanElement>(null);
   const line3Ref = useRef<HTMLSpanElement>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const clipIndexRef = useRef(0);
+  const clipTimesRef = useRef<number[]>(HERO_CLIPS.map(() => 0));
+  const [fading, setFading] = useState(false);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -56,6 +71,26 @@ export default function Hero() {
     return () => ctx.revert();
   }, []);
 
+  useEffect(() => {
+    const interval = setInterval(() => {
+      const video = videoRef.current;
+      if (video) clipTimesRef.current[clipIndexRef.current] = video.currentTime;
+      setFading(true);
+      setTimeout(() => {
+        const next = (clipIndexRef.current + 1) % HERO_CLIPS.length;
+        clipIndexRef.current = next;
+        const v = videoRef.current;
+        if (!v) return;
+        const seekAndPlay = () => { v.currentTime = clipTimesRef.current[next]; v.play().catch(() => {}); };
+        v.src = HERO_CLIPS[next];
+        v.addEventListener('loadedmetadata', seekAndPlay, { once: true });
+        v.load();
+        setFading(false);
+      }, 300);
+    }, 8000);
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     /* Scroll container — extra height gives scrolling room */
     <div ref={containerRef} style={{ height: '150vh', position: 'relative' }}>
@@ -73,19 +108,18 @@ export default function Hero() {
           justifyContent: 'center',
         }}
       >
-        {/* Background video / image */}
+        {/* Background video — cycles through sizzle clips */}
         <video
+          ref={videoRef}
           autoPlay
           muted
-          loop
           playsInline
           style={{
             position: 'absolute', inset: 0, width: '100%', height: '100%',
-            objectFit: 'cover', opacity: 0.55,
+            objectFit: 'cover', opacity: fading ? 0 : 0.55,
+            transition: 'opacity 0.3s ease',
           }}
-          /* swap src for real reel video once available */
-          src="/images/hero-reel.mp4"
-          poster="/images/hero-poster.jpg"
+          src={HERO_CLIPS[0]}
         />
 
         {/* Gradient overlay — bottom fade */}
