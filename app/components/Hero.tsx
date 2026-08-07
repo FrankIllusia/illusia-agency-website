@@ -37,10 +37,11 @@ export default function Hero() {
         onUpdate: (self) => {
           const p = self.progress;
 
-          // Fade + scale headline out
+          // Fade + scale headline out — spans most of the pin so the screen is
+          // never a long black hold before the logo section arrives
           if (headlineRef.current) {
             gsap.set(headlineRef.current, {
-              opacity: 1 - p * 2,
+              opacity: 1 - p * 1.25,
               scale: 1 - p * 0.08,
               y: -p * 60,
             });
@@ -58,8 +59,9 @@ export default function Hero() {
 
 
   return (
-    /* Scroll container — extra height gives scrolling room */
-    <div ref={containerRef} style={{ height: '150vh', position: 'relative' }}>
+    /* Scroll container — 100vh; the ScrollTrigger pin (+50%) supplies the
+       scroll room, so no extra black tail sits between hero and the logo */
+    <div ref={containerRef} style={{ height: '100vh', position: 'relative' }}>
       {/* Sticky viewport */}
       <div
         ref={stickyRef}

@@ -64,7 +64,9 @@ export default function LogoParallax() {
 
     const st = ScrollTrigger.create({
       trigger: container,
-      start: 'top top',
+      // Start while the section is still rising into view so the logo is
+      // already spinning as it appears — no static black lead-in.
+      start: 'top 80%',
       end: 'bottom top',
       scrub: true,
       onUpdate: (self) => {

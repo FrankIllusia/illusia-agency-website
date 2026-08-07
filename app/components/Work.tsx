@@ -10,10 +10,10 @@ import { useState, useRef } from 'react';
 const projects = [
   {
     id: 1,
-    client: 'Tyson 2.0',
+    client: 'Illusia Agency',
     title: 'Behind The Brand — Episode 2',
-    category: 'AI Content · Brand',
-    year: '2024',
+    category: 'Ciara Times Square',
+    year: '2025',
     img: '/images/work/ciara-thumb.jpg',
     thumbnail: '/images/work/ciara-thumb.jpg',
     youtubeId: 'NY8deUujC1U',
@@ -22,11 +22,11 @@ const projects = [
   {
     id: 2,
     client: 'Illusia Agency',
-    title: 'Featured Reel',
-    category: 'Video · Social',
+    title: 'Devil Wears Prada 2',
+    category: '20th Century Studios',
     year: '2024',
     img: '/images/work/ig-thumb-1.png',
-    videoSrc: '/images/work/ig-reel-1.mp4',
+    videoSrc: '/images/work/dwp2-sizzle-web.mp4',
     thumbnail: '/images/work/ig-thumb-1.png',
     wide: false,
   },
