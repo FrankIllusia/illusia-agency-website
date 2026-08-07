@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import { scrollToEl } from './fx';
 
 const links = [
   { label: 'Work',     href: '#work'     },
@@ -36,7 +37,9 @@ export default function Nav() {
   const scrollTo = (href: string) => {
     setMenuOpen(false);
     const el = document.querySelector(href);
-    if (el) el.scrollIntoView({ behavior: 'smooth' });
+    // Route through Lenis — native scrollIntoView fights it for scroll
+    // position and lands short. Falls back to native when Lenis is off.
+    if (el) scrollToEl(el);
   };
 
   return (

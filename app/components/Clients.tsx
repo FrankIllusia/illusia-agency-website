@@ -1,5 +1,7 @@
 'use client';
 
+import { Reveal } from './fx';
+
 const LOGO_HEIGHT = 30;
 
 const clients = [
@@ -30,9 +32,11 @@ const track = [...clients, ...clients];
 export default function Clients() {
   return (
     <section style={{ background: '#000', padding: '56px 0', borderTop: '1px solid rgba(255,255,255,0.06)', overflow: 'hidden' }}>
-      <p className="section-label" style={{ textAlign: 'center', marginBottom: '40px', color: 'rgba(255,255,255,0.25)' }}>
-        Trusted By
-      </p>
+      <Reveal y={18} duration={0.7}>
+        <p className="section-label" style={{ textAlign: 'center', marginBottom: '40px', color: 'rgba(255,255,255,0.25)' }}>
+          Trusted By
+        </p>
+      </Reveal>
 
       <div style={{ position: 'relative', overflow: 'hidden' }}>
         {/* Fade edges */}

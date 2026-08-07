@@ -4,6 +4,7 @@ import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import VideoOrbit from './VideoOrbit';
+import { ParallaxY, Reveal, ScrubText } from './fx';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -88,23 +89,27 @@ export default function About() {
       <div style={{ maxWidth: '1400px', margin: '0 auto', padding: '0 48px' }}>
 
         {/* Label + divider */}
-        <p className="section-label" style={{ marginBottom: '20px', color: 'rgba(255,255,255,0.35)' }}>
-          Who We Are
-        </p>
+        <Reveal y={18} duration={0.7}>
+          <p className="section-label" style={{ marginBottom: '20px', color: 'rgba(255,255,255,0.35)' }}>
+            Who We Are
+          </p>
+        </Reveal>
         <div style={{ height: '1px', background: 'rgba(255,255,255,0.1)', marginBottom: '56px' }} />
 
-        {/* Large statement */}
-        <h2 style={{
-          fontSize: 'clamp(24px, 3.2vw, 52px)',
-          fontWeight: 700,
-          color: '#fff',
-          lineHeight: 1.1,
-          letterSpacing: '-0.03em',
-          maxWidth: '900px',
-          marginBottom: '80px',
-        }}>
-          A creative production company built for brands and public figures worldwide.
-        </h2>
+        {/* Large statement — lights up word by word as you scroll past it */}
+        <ScrubText>
+          <h2 style={{
+            fontSize: 'clamp(24px, 3.2vw, 52px)',
+            fontWeight: 700,
+            color: '#fff',
+            lineHeight: 1.1,
+            letterSpacing: '-0.03em',
+            maxWidth: '900px',
+            marginBottom: '80px',
+          }}>
+            A creative production company built for brands and public figures worldwide.
+          </h2>
+        </ScrubText>
 
         {/* Image + text row */}
         <div className="about-grid" style={{
@@ -113,21 +118,24 @@ export default function About() {
           gap: '80px',
           alignItems: 'center',
         }}>
-          {/* Left — video orbit */}
-          <div style={{ aspectRatio: '4/3', borderRadius: '16px', overflow: 'hidden' }}>
-            <VideoOrbit />
-          </div>
+          {/* Left — video fan. Parallax drifts the whole block, not its
+              contents, so nothing clips against the rounded crop. */}
+          <ParallaxY offset={26}>
+            <div style={{ aspectRatio: '4/3', borderRadius: '16px', overflow: 'hidden' }}>
+              <VideoOrbit />
+            </div>
+          </ParallaxY>
 
           {/* Right — description + CTA */}
           <div style={{ display: 'flex', flexDirection: 'column', gap: '48px' }}>
-            <p style={{
+            <Reveal><p style={{
               fontSize: 'clamp(15px, 1.6vw, 18px)',
               color: 'rgba(255,255,255,0.5)',
               lineHeight: 1.75,
               maxWidth: '480px',
             }}>
               We become the full content marketing arm of your business — managing strategy, production, and distribution so your brand shows up with consistency and authority across every platform. Every partner we take on gets a team fully committed to building a high-end, trustworthy presence worth following.
-            </p>
+            </p></Reveal>
 
             {/* Stats */}
             <div ref={statsRef} style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '24px', maxWidth: '360px' }}>

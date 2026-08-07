@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef, useState } from 'react';
+import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 
 const CARDS = [
   { src: '/images/work/ig-reel-1.mp4', poster: '/images/work/ig-thumb-1.png', label: 'Hamilton Watch x Call of Duty' },
@@ -8,15 +8,60 @@ const CARDS = [
   { src: '/images/work/ig-reel-3.mp4', poster: '', label: 'Illusia x Surfside' },
 ];
 
-const CARD_W = 190;
-const CARD_H = 274;
-const OVERLAP = 48;   // how far each card tucks under its neighbor
-const RAISE = 26;     // hover lift
-const HEADROOM = 34;  // space above the row so a raised card never clips
+/* The fan used to be fixed at 190×274 regardless of how large its container
+   was, which left it marooned in dead space. Everything is now derived from a
+   measured card width so the fan fills whatever box it is given.
+
+   Cards are 9:16 to match the source reels — they read considerably larger in
+   the same frame and the video is cropped less than the old 1:1.44. */
+const CARD_RATIO = 16 / 9;      // height as a multiple of width
+const OVERLAP_RATIO = 0.25;     // how far each card tucks under its neighbour
+const HEADROOM_RATIO = 0.17;    // clearance above AND below the row: the top
+                                // absorbs the hover lift, the bottom keeps the
+                                // cards off the frame edge so they sit centred
+const RAISE_RATIO = 0.11;       // hover lift
+const FILL = 0.94;              // fraction of the container the fan occupies
+const MIN_W = 96;
+const MAX_W = 300;              // stops the cards ballooning on very wide layouts
+
+/* Measure before paint on the client so the fan never flashes at the wrong
+   size; useLayoutEffect would warn during SSR. */
+const useIsoLayoutEffect = typeof window !== 'undefined' ? useLayoutEffect : useEffect;
 
 export default function VideoFan() {
   const [hovered, setHovered] = useState<number | null>(null);
   const videoRefs = useRef<(HTMLVideoElement | null)[]>([]);
+  const wrapRef = useRef<HTMLDivElement>(null);
+  const [cardW, setCardW] = useState(220);
+
+  useIsoLayoutEffect(() => {
+    const el = wrapRef.current;
+    if (!el) return;
+
+    // Total fan width expressed in card widths: the first card, plus the
+    // exposed portion of each one after it.
+    const span = 1 + (CARDS.length - 1) * (1 - OVERLAP_RATIO);
+
+    const measure = () => {
+      const { width, height } = el.getBoundingClientRect();
+      if (!width || !height) return;
+      const byWidth = (width * FILL) / span;
+      const byHeight = height / (CARD_RATIO + HEADROOM_RATIO * 2);
+      setCardW(Math.max(MIN_W, Math.min(MAX_W, Math.min(byWidth, byHeight))));
+    };
+
+    measure();
+    const ro = new ResizeObserver(measure);
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, []);
+
+  const CARD_H = cardW * CARD_RATIO;
+  const OVERLAP = cardW * OVERLAP_RATIO;
+  const HEADROOM = cardW * HEADROOM_RATIO;
+  const RAISE = cardW * RAISE_RATIO;
+  const RADIUS = Math.round(cardW * 0.095);
+  const CARD_W = cardW;
 
   const enter = (i: number) => {
     setHovered(i);
@@ -31,7 +76,7 @@ export default function VideoFan() {
   const totalW = CARD_W + step * (CARDS.length - 1);
 
   return (
-    <div style={{
+    <div ref={wrapRef} style={{
       width: '100%',
       height: '100%',
       overflow: 'hidden',
@@ -41,7 +86,7 @@ export default function VideoFan() {
       alignItems: 'center',
       justifyContent: 'center',
     }}>
-      <div className="fan-stage" style={{ position: 'relative', width: `${totalW}px`, height: `${CARD_H + HEADROOM}px` }}>
+      <div className="fan-stage" style={{ position: 'relative', width: `${Math.round(totalW)}px`, height: `${Math.round(CARD_H + HEADROOM * 2)}px` }}>
         {CARDS.map((card, i) => {
           const isHovered = hovered === i;
           return (
@@ -51,14 +96,14 @@ export default function VideoFan() {
               onMouseLeave={() => leave(i)}
               style={{
                 position: 'absolute',
-                left: `${i * step}px`,
-                top: `${HEADROOM}px`,
-                width: `${CARD_W}px`,
-                height: `${CARD_H}px`,
-                borderRadius: '18px',
+                left: `${Math.round(i * step)}px`,
+                top: `${Math.round(HEADROOM)}px`,
+                width: `${Math.round(CARD_W)}px`,
+                height: `${Math.round(CARD_H)}px`,
+                borderRadius: `${RADIUS}px`,
                 overflow: 'hidden',
                 background: '#1a1a1a',
-                transform: isHovered ? `translateY(-${RAISE}px) scale(1.05)` : 'none',
+                transform: isHovered ? `translateY(-${Math.round(RAISE)}px) scale(1.05)` : 'none',
                 transition: 'transform .35s cubic-bezier(.22,1,.36,1), box-shadow .35s ease',
                 boxShadow: isHovered ? '0 32px 80px rgba(0,0,0,0.75)' : '0 18px 48px rgba(0,0,0,0.55)',
                 zIndex: isHovered ? 10 : i === 1 ? 2 : 1, // middle card rides on top of the bunch
@@ -82,8 +127,8 @@ export default function VideoFan() {
                 position: 'absolute',
                 left: 0, right: 0, bottom: 0,
                 padding: '30px 14px 12px',
-                paddingRight: i === 0 ? `${OVERLAP + 12}px` : '14px',
-                paddingLeft: i === CARDS.length - 1 ? `${OVERLAP + 12}px` : '14px',
+                paddingRight: i === 0 ? `${Math.round(OVERLAP) + 12}px` : '14px',
+                paddingLeft: i === CARDS.length - 1 ? `${Math.round(OVERLAP) + 12}px` : '14px',
                 background: 'linear-gradient(to top, rgba(0,0,0,0.55), transparent)',
                 pointerEvents: 'none',
               }}>
@@ -106,15 +151,8 @@ export default function VideoFan() {
         })}
       </div>
 
-      {/* Fixed-px layout (~480px wide) — scale the whole fan down on small screens */}
-      <style>{`
-        @media (max-width: 700px) {
-          .fan-stage { transform: scale(0.8); }
-        }
-        @media (max-width: 480px) {
-          .fan-stage { transform: scale(0.55); }
-        }
-      `}</style>
+      {/* No scale() media queries — the fan measures its container, so it
+          already fits on small screens without being shrunk twice. */}
     </div>
   );
 }

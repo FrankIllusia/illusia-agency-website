@@ -1,6 +1,7 @@
 'use client';
 
 import { useRef } from 'react';
+import { Reveal, RiseIn } from './fx';
 
 const team = [
   { name: 'Parker Russo',       role: 'Co-Founder, Chief Executive Officer',        img: '/images/team/parker.jpg'  },
@@ -41,10 +42,14 @@ export default function Team() {
     >
       {/* Header */}
       <div style={{ maxWidth: '1400px', margin: '0 auto', padding: '0 32px', marginBottom: '64px' }}>
-        <p className="section-label" style={{ marginBottom: '14px' }}>The People</p>
-        <h2 style={{ fontSize: 'clamp(36px, 5vw, 64px)', fontWeight: 500, color: '#fff' }}>
-          Our Team
-        </h2>
+        <Reveal y={18} duration={0.7}>
+          <p className="section-label" style={{ marginBottom: '14px' }}>The People</p>
+        </Reveal>
+        <RiseIn delay={0.08}>
+          <h2 style={{ fontSize: 'clamp(36px, 5vw, 64px)', fontWeight: 500, color: '#fff' }}>
+            Our Team
+          </h2>
+        </RiseIn>
       </div>
 
       {/* Carousel */}

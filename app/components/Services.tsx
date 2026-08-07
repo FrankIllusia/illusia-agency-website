@@ -23,9 +23,9 @@ const services = [
   },
   {
     num: '03',
-    title: 'AI Content Production',
-    desc: 'Cinematic, world-class AI-generated content. Each campaign is its own universe — product-as-protagonist, film-grade color science, volumetric atmosphere.',
-    tags: ['Runway', 'Midjourney', 'Suno', 'Kling'],
+    title: 'Generative Content Production',
+    desc: 'Cinematic, world-class produced content. Each campaign is its own universe — product-as-protagonist, film-grade color science, volumetric atmosphere.',
+    tags: ['Concept', 'Direction', 'Post'],
   },
   {
     num: '04',

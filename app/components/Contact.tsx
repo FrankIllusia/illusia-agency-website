@@ -11,24 +11,6 @@ export default function Contact() {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Header label
-      gsap.set('.contact-label', { yPercent: 110 });
-      ScrollTrigger.create({
-        trigger: '.contact-label-wrap',
-        start: 'top 88%',
-        once: true,
-        onEnter: () => gsap.to('.contact-label', { yPercent: 0, duration: 0.75, ease: 'power3.out' }),
-      });
-
-      // Header heading
-      gsap.set('.contact-heading', { yPercent: 105 });
-      ScrollTrigger.create({
-        trigger: '.contact-heading-wrap',
-        start: 'top 88%',
-        once: true,
-        onEnter: () => gsap.to('.contact-heading', { yPercent: 0, duration: 0.9, ease: 'power3.out', delay: 0.1 }),
-      });
-
       // Footer
       gsap.set('.contact-footer', { yPercent: 40, opacity: 0 });
       ScrollTrigger.create({

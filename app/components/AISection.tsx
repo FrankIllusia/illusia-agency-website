@@ -1,6 +1,7 @@
 'use client';
 
 import { useRef, useState } from 'react';
+import { Reveal } from './fx';
 
 const examples = [
   {
@@ -181,23 +182,12 @@ export default function AISection() {
         border: '1px solid rgba(0,0,0,0.06)',
       }}>
       <div style={{ maxWidth: '1400px', margin: '0 auto' }}>
-        {/* Header — minimal */}
-        <div style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', marginBottom: '48px', flexWrap: 'wrap', gap: '16px' }}>
-          <div>
-            <p className="section-label" style={{ marginBottom: '14px', color: 'rgba(0,0,0,0.45)' }}>AI-Generated</p>
-            <h2 style={{ fontSize: 'clamp(32px, 4vw, 56px)', fontWeight: 500, color: '#000' }}>
-              The new frontier of content.
-            </h2>
-          </div>
-          <p style={{ fontSize: '14px', color: 'rgba(0,0,0,0.45)', maxWidth: '320px', lineHeight: 1.6, textAlign: 'right' }}>
-            A look at what&apos;s possible when AI meets a creative direction worth executing.
-          </p>
-        </div>
+        {/* Header removed — section leads straight into the work. */}
 
         {/* 4-col grid — 2 rows of 4 */}
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '12px' }}>
+        <Reveal stagger={0.09} y={70} style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '12px' }}>
           {examples.map(item => <AICard key={item.id} item={item} />)}
-        </div>
+        </Reveal>
       </div>
       </div>
 

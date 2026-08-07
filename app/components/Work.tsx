@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useRef } from 'react';
+import { Reveal, RiseIn } from './fx';
 
 /* ── Work / Projects section ─────────────────────────────────────────────────
    Kursza-inspired grid: full-width cards, hover glow, category + client label.
@@ -43,10 +44,10 @@ const projects = [
   },
   {
     id: 4,
-    client: 'Client Name',
-    title: 'Project Title',
-    category: 'AI Content · Campaign',
-    year: '2025',
+    client: 'Vertiports',
+    title: 'Joby NYC Launch',
+    category: 'Illusia Agency 2026',
+    year: '2026',
     img: '/images/work/joby.png',
     videoSrc: '/images/work/ig-reel-5.mp4',
     thumbnail: '/images/work/joby.png',
@@ -86,18 +87,25 @@ export default function Work() {
             {/* Section header */}
             <div style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', marginBottom: '64px', flexWrap: 'wrap', gap: '20px' }}>
               <div>
-                <p className="section-label" style={{ marginBottom: '14px', color: 'rgba(0,0,0,0.45)' }}>Selected Work</p>
-                <h2 style={{ fontSize: 'clamp(36px, 5vw, 64px)', fontWeight: 500, color: '#000' }}>
-                  The Work
-                </h2>
+                <Reveal y={18} duration={0.7}>
+                  <p className="section-label" style={{ marginBottom: '14px', color: 'rgba(0,0,0,0.45)' }}>Selected Work</p>
+                </Reveal>
+                <RiseIn delay={0.08}>
+                  <h2 style={{ fontSize: 'clamp(36px, 5vw, 64px)', fontWeight: 500, color: '#000' }}>
+                    The Work
+                  </h2>
+                </RiseIn>
               </div>
-              <a href="#contact" style={{ fontSize: '12px', color: 'rgba(0,0,0,0.4)', letterSpacing: '0.08em', textTransform: 'uppercase', textDecoration: 'none', borderBottom: '1px solid rgba(0,0,0,0.2)', paddingBottom: '2px' }}>
-                View All Projects →
-              </a>
+              <Reveal delay={0.2}>
+                <a href="#contact" style={{ fontSize: '12px', color: 'rgba(0,0,0,0.4)', letterSpacing: '0.08em', textTransform: 'uppercase', textDecoration: 'none', borderBottom: '1px solid rgba(0,0,0,0.2)', paddingBottom: '2px' }}>
+                  View All Projects →
+                </a>
+              </Reveal>
             </div>
 
-            {/* Grid */}
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(12, 1fr)', gap: '16px' }}>
+            {/* Grid — Reveal *is* the grid container, so the cards stay direct
+                children and the layout is unchanged; they stagger in on enter. */}
+            <Reveal stagger={0.14} y={80} style={{ display: 'grid', gridTemplateColumns: 'repeat(12, 1fr)', gap: '16px' }}>
               {projects.map((p, i) => (
                 <div
                   key={p.id}
@@ -244,7 +252,7 @@ export default function Work() {
                   </div>
                 </div>
               ))}
-            </div>
+            </Reveal>
           </div>
 
           <style>{`
