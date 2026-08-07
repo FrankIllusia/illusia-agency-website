@@ -3,7 +3,7 @@
 import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 
 const CARDS = [
-  { src: '/images/work/ig-reel-1.mp4', poster: '/images/work/ig-thumb-1.png', label: 'Hamilton Watch x Call of Duty' },
+  { src: '/images/work/ig-reel-1.mp4', poster: '/images/work/hamilton-thumb.jpg', label: 'Hamilton Watch x Call of Duty' },
   { src: '/images/work/ig-reel-2.mp4', poster: '', label: 'LA Dodger Parade' },
   { src: '/images/work/ig-reel-3.mp4', poster: '', label: 'Illusia x Surfside' },
 ];
