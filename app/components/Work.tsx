@@ -26,7 +26,7 @@ const projects = [
     category: '20th Century Studios',
     year: '2024',
     img: '/images/work/ig-thumb-1.png',
-    videoSrc: '/images/work/devil-wears-prada-web.mp4',
+    videoSrc: '/images/work/dwp2-sizzle-web.mp4',
     thumbnail: '/images/work/ig-thumb-1.png',
     wide: false,
   },
