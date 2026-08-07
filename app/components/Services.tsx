@@ -232,11 +232,11 @@ export default function Services() {
                 <div className="form-name-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
                   <div>
                     <label style={{ display: 'block', fontSize: '11px', letterSpacing: '0.1em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.35)', marginBottom: '8px' }}>First Name</label>
-                    <input name="firstName" type="text" required placeholder="Parker" style={inputStyle('first')} onFocus={() => setFocused('first')} onBlur={() => setFocused(null)} />
+                    <input name="firstName" type="text" required placeholder="Jack" style={inputStyle('first')} onFocus={() => setFocused('first')} onBlur={() => setFocused(null)} />
                   </div>
                   <div>
                     <label style={{ display: 'block', fontSize: '11px', letterSpacing: '0.1em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.35)', marginBottom: '8px' }}>Last Name</label>
-                    <input name="lastName" type="text" required placeholder="Russo" style={inputStyle('last')} onFocus={() => setFocused('last')} onBlur={() => setFocused(null)} />
+                    <input name="lastName" type="text" required placeholder="Black" style={inputStyle('last')} onFocus={() => setFocused('last')} onBlur={() => setFocused(null)} />
                   </div>
                 </div>
                 <div>
@@ -245,7 +245,7 @@ export default function Services() {
                 </div>
                 <div>
                   <label style={{ display: 'block', fontSize: '11px', letterSpacing: '0.1em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.35)', marginBottom: '8px' }}>Business Name</label>
-                  <input name="business" type="text" required placeholder="Illusia Agency" style={inputStyle('business')} onFocus={() => setFocused('business')} onBlur={() => setFocused(null)} />
+                  <input name="business" type="text" required placeholder="Business Name" style={inputStyle('business')} onFocus={() => setFocused('business')} onBlur={() => setFocused(null)} />
                 </div>
                 <div>
                   <label style={{ display: 'block', fontSize: '11px', letterSpacing: '0.1em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.35)', marginBottom: '8px' }}>Project Description</label>
