@@ -34,7 +34,7 @@ const projects = [
   {
     id: 3,
     client: 'Rove',
-    title: 'Project Title',
+    title: 'Rove - Summer Launch Hero',
     category: 'Branding · Identity',
     year: '2024',
     img: '/images/work/rove-thumb.png',
