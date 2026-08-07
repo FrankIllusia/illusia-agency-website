@@ -8,12 +8,15 @@ import { SmoothScroll } from './components/fx';
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
 
 export const metadata: Metadata = {
+  // Without this, OG/Twitter image URLs resolve against localhost and every
+  // shared link previews broken once deployed.
+  metadataBase: new URL('https://illusiaagency.com'),
   title: 'Illusia Agency — Creative Production',
   description: 'We build empires. Cinematic content, brand campaigns, and creative strategy for the world\'s most recognizable brands.',
   openGraph: {
     title: 'Illusia Agency',
     description: 'Creative Production Agency',
-    url: 'https://www.illusiaagency.com',
+    url: 'https://illusiaagency.com',
     siteName: 'Illusia Agency',
     images: [{ url: '/og-image.jpg', width: 1200, height: 630 }],
     type: 'website',
