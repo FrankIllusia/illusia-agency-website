@@ -40,22 +40,21 @@ export default function Clients() {
 
       <div style={{ position: 'relative', overflow: 'hidden' }}>
         {/* Fade edges */}
-        <div style={{
-          position: 'absolute', left: 0, top: 0, bottom: 0, width: '120px', zIndex: 2,
+        <div className="client-fade" style={{
+          position: 'absolute', left: 0, top: 0, bottom: 0, zIndex: 2,
           background: 'linear-gradient(to right, #000 0%, transparent 100%)',
           pointerEvents: 'none',
         }} />
-        <div style={{
-          position: 'absolute', right: 0, top: 0, bottom: 0, width: '120px', zIndex: 2,
+        <div className="client-fade" style={{
+          position: 'absolute', right: 0, top: 0, bottom: 0, zIndex: 2,
           background: 'linear-gradient(to left, #000 0%, transparent 100%)',
           pointerEvents: 'none',
         }} />
 
         {/* Scrolling track */}
-        <div style={{
+        <div className="client-track" style={{
           display: 'flex',
           alignItems: 'center',
-          gap: '96px',
           width: 'max-content',
           animation: 'marquee 32s linear infinite',
         }}>
@@ -85,6 +84,17 @@ export default function Clients() {
         @keyframes marquee {
           from { transform: translateX(0); }
           to   { transform: translateX(-50%); }
+        }
+
+        .client-fade  { width: 120px; }
+        .client-track { gap: 96px; }
+
+        /* On a phone the 120px fades ate ~240px of a ~390px viewport and the
+           96px gaps did the rest, so a gap could fill the whole visible strip
+           and the row read as empty. Shrink both so logos are always on screen. */
+        @media (max-width: 700px) {
+          .client-fade  { width: 32px; }
+          .client-track { gap: 40px; }
         }
       `}</style>
     </section>

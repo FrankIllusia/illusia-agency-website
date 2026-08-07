@@ -4,8 +4,8 @@ import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 
 const CARDS = [
   { src: '/images/work/ig-reel-1.mp4', poster: '/images/work/hamilton-thumb.jpg', label: 'Hamilton Watch x Call of Duty' },
-  { src: '/images/work/ig-reel-2.mp4', poster: '', label: 'LA Dodger Parade' },
-  { src: '/images/work/ig-reel-3.mp4', poster: '', label: 'Illusia x Surfside' },
+  { src: '/images/work/ig-reel-2.mp4', poster: '/images/work/dodgers-thumb.jpg', label: 'LA Dodger Parade' },
+  { src: '/images/work/ig-reel-3.mp4', poster: '/images/work/surfside-thumb.jpg', label: 'Illusia x Surfside' },
 ];
 
 /* The fan used to be fixed at 190×274 regardless of how large its container
@@ -54,6 +54,15 @@ export default function VideoFan() {
     const ro = new ResizeObserver(measure);
     ro.observe(el);
     return () => ro.disconnect();
+  }, []);
+
+  /* Touch devices never fire hover, so the fan sat frozen on its posters.
+     Start the reels on mount instead — muted + playsInline is what lets iOS
+     play them inline. Low Power Mode still refuses, which is why every card
+     carries a real poster frame rather than falling back to a black box. */
+  useEffect(() => {
+    if (!window.matchMedia('(hover: none)').matches) return;
+    videoRefs.current.forEach(v => v?.play().catch(() => { /* poster stays */ }));
   }, []);
 
   const CARD_H = cardW * CARD_RATIO;
