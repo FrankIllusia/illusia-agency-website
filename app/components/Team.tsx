@@ -16,10 +16,10 @@ const team = [
   { name: 'Brendan Yasuk',      role: 'Marketing Coordinator',                      img: '/images/team/brendan.jpg' },
   { name: 'Cory Morales',       role: 'Videographer, Editor, Social Media Manager', img: '/images/team/cory.jpg'    },
   { name: 'Nolan Mariziti',     role: 'Editor',                                     img: '/images/team/nolan.jpg'   },
-  { name: 'James Hart',         role: 'Videographer, Editor',                       img: '/images/team/james.jpg'   },
   { name: 'Sofia Lynn',         role: 'Social Media Manager',                       img: '/images/team/sofia.jpg'   },
   { name: 'Jason Keats',        role: 'Social Media Manager',                       img: '/images/team/jason.jpg'   },
   { name: 'Kevin Drew',         role: 'Podcast Production Manager',                 img: '/images/team/kevin.jpg'   },
+  { name: 'Alex "Lecky" Harford', role: 'Videographer',                             img: '/images/team/lecky.jpg'   },
 ];
 
 const CARD_WIDTH = 280;
