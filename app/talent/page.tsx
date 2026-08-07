@@ -18,6 +18,7 @@ const team = [
   { name: 'Jason Keats',        role: 'Social Media Manager',                         img: '/images/team/jason.jpg'   },
   { name: 'Kevin Drew',         role: 'Podcast Production Manager',                   img: '/images/team/kevin.jpg'   },
   { name: 'Alex "Lecky" Harford', role: 'Videographer',                               img: '/images/team/lecky.jpg'   },
+  { name: 'Jordin Hugger',      role: 'Content & Brand Coordinator',                  img: '/images/team/jordin.jpg'  },
 ];
 
 export default function TalentPage() {
