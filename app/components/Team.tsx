@@ -120,7 +120,11 @@ export default function Team() {
                     width: '100%', height: '100%',
                     objectFit: member.name.includes('Kiley') ? 'contain' : 'cover',
                     objectPosition: member.name.includes('Jordin') ? '30% top' : 'top',
-                    transform: member.name.includes('Jordin') ? 'scale(1.04) translateY(2%)' : undefined,
+                    transform: member.name.includes('Jordin')
+                      ? 'scale(1.04) translateY(2%)'
+                      : member.name.includes('Brendan')
+                        ? 'scale(1.1)'
+                        : undefined,
                     backgroundColor: member.name.includes('Kiley') ? '#d6d6d6' : undefined,
                     zIndex: 1,
                     filter: 'grayscale(100%)',
