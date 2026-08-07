@@ -58,6 +58,7 @@ export default function Services() {
   const [focused, setFocused] = useState<string | null>(null);
   const [submitted, setSubmitted] = useState(false);
   const [sending, setSending] = useState(false);
+  const [sendError, setSendError] = useState(false);
 
   const inputStyle = (name: string): React.CSSProperties => ({
     width: '100%',
@@ -210,8 +211,13 @@ export default function Services() {
                   e.preventDefault();
                   const fd = new FormData(e.currentTarget);
                   setSending(true);
+                  setSendError(false);
+                  /* The response used to be discarded in a finally block, so a
+                     500 from the mail transport still rendered "We'll be in
+                     touch." — enquiries were being dropped with the sender
+                     told they'd landed. Only confirm on a genuine ok. */
                   try {
-                    await fetch('/api/contact', {
+                    const res = await fetch('/api/contact', {
                       method: 'POST',
                       headers: { 'Content-Type': 'application/json' },
                       body: JSON.stringify({
@@ -222,9 +228,13 @@ export default function Services() {
                         description: fd.get('description'),
                       }),
                     });
+                    if (!res.ok) throw new Error(`contact endpoint returned ${res.status}`);
+                    setSubmitted(true);
+                  } catch (err) {
+                    console.error(err);
+                    setSendError(true);
                   } finally {
                     setSending(false);
-                    setSubmitted(true);
                   }
                 }}
                 style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}
@@ -260,6 +270,14 @@ export default function Services() {
                 >
                   {sending ? 'Sending...' : 'Submit'}
                 </button>
+                {sendError && (
+                  <p role="alert" style={{ fontSize: '13px', color: '#ff8a8a', lineHeight: 1.6 }}>
+                    Something went wrong sending your message. Please email us directly at{' '}
+                    <a href="mailto:parker@illusiaagency.com" style={{ color: '#ff8a8a', textDecoration: 'underline' }}>
+                      parker@illusiaagency.com
+                    </a>.
+                  </p>
+                )}
               </form>
             )}
           </div>
