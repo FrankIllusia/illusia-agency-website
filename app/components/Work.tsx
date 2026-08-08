@@ -12,12 +12,12 @@ const projects = [
   {
     id: 1,
     client: 'Illusia Agency',
-    title: 'Behind The Brand — Episode 2',
-    category: 'Ciara Times Square',
-    year: '2025',
-    img: '/images/work/ciara-thumb.jpg',
-    thumbnail: '/images/work/ciara-thumb.jpg',
-    youtubeId: 'NY8deUujC1U',
+    title: 'The Odyssey - Experiential Official Movie Premiere',
+    category: 'Movie Premiere',
+    year: '2026',
+    img: '/images/work/odyssey-thumb.jpg',
+    videoSrc: '/images/work/odyssey-web.mp4',
+    thumbnail: '/images/work/odyssey-thumb.jpg',
     wide: true,
   },
   {
