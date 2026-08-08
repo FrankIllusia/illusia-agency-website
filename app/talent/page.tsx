@@ -3,8 +3,8 @@
 const team = [
   { name: 'Parker Russo',       role: 'Co-Founder, Chief Executive Officer',          img: '/images/team/parker.jpg'  },
   { name: 'Danny Drew',         role: 'Co-Founder, Director of Videography',          img: '/images/team/danny.jpg'   },
-  { name: 'Frank Bonilla',      role: 'Managing Director, Lead Videographer',         img: '/images/team/frank.jpg'   },
-  { name: 'Jack Masella',       role: 'Lead Editor, Videographer',                    img: '/images/team/jack.jpg'    },
+  { name: 'Frank Bonilla',      role: 'Managing Director, Executive Producer',        img: '/images/team/frank.jpg'   },
+  { name: 'Jack Masella',       role: 'Executive Producer, Videographer',             img: '/images/team/jack.jpg'    },
   { name: 'Chris Corradino',    role: 'Lead Director, Videographer',                  img: '/images/team/chris.jpg'   },
   { name: 'Brian Kohn',         role: 'Administrative Director',                      img: '/images/team/brian.jpg'   },
   { name: 'Kiley Baker',        role: 'Social Media Manager',                         img: '/images/team/kiley.jpg'   },
