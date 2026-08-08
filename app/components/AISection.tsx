@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef, useState } from 'react';
+import { useRef, useState, type ChangeEvent } from 'react';
 import { Reveal } from './fx';
 
 const examples = [
@@ -73,13 +73,41 @@ const examples = [
 function AICard({ item }: { item: typeof examples[0] }) {
   const [playing, setPlaying] = useState(false);
   const [hovered, setHovered] = useState(false);
+  const [volume, setVolume] = useState(1);
+  const [muted, setMuted] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
 
   const toggle = () => {
     const vid = videoRef.current;
     if (!vid) return;
-    if (vid.paused) { vid.play(); setPlaying(true); }
-    else { vid.pause(); setPlaying(false); }
+    if (vid.paused) {
+      // Only one AI video plays at a time so the audio never stacks.
+      document.querySelectorAll<HTMLVideoElement>('video.ai-video').forEach(v => {
+        if (v !== vid) v.pause();
+      });
+      vid.muted = muted;
+      vid.volume = volume;
+      vid.play();
+      setPlaying(true);
+    } else {
+      vid.pause();
+      setPlaying(false);
+    }
+  };
+
+  const onVolume = (e: ChangeEvent<HTMLInputElement>) => {
+    const v = parseFloat(e.target.value);
+    setVolume(v);
+    setMuted(v === 0);
+    const vid = videoRef.current;
+    if (vid) { vid.volume = v; vid.muted = v === 0; }
+  };
+
+  const toggleMute = () => {
+    const next = !muted;
+    setMuted(next);
+    const vid = videoRef.current;
+    if (vid) vid.muted = next;
   };
 
   return (
@@ -112,6 +140,7 @@ function AICard({ item }: { item: typeof examples[0] }) {
       {item.type === 'video' && item.src && (
         <video
           ref={videoRef}
+          className="ai-video"
           loop playsInline
           poster={item.poster || undefined}
           style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', display: 'block', zIndex: 1 }}
@@ -156,6 +185,45 @@ function AICard({ item }: { item: typeof examples[0] }) {
             )}
           </div>
         </button>
+      )}
+
+      {/* Volume control — appears while the video is playing */}
+      {item.type === 'video' && item.src && playing && (
+        <div
+          onClick={e => e.stopPropagation()}
+          style={{
+            position: 'absolute', top: 12, right: 12, zIndex: 5,
+            display: 'flex', alignItems: 'center', gap: '8px',
+            padding: '7px 11px', borderRadius: '999px',
+            background: 'rgba(0,0,0,0.5)', backdropFilter: 'blur(8px)',
+            border: '1px solid rgba(255,255,255,0.18)',
+          }}
+        >
+          <button
+            onClick={toggleMute}
+            aria-label={muted ? 'Unmute' : 'Mute'}
+            style={{ background: 'none', border: 'none', padding: 0, cursor: 'pointer', display: 'flex', color: '#fff' }}
+          >
+            {muted || volume === 0 ? (
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="#fff" aria-hidden>
+                <path d="M4 9v6h4l5 4V5L8 9H4z" />
+                <path d="M16 9l5 6M21 9l-5 6" stroke="#fff" strokeWidth="1.8" strokeLinecap="round" />
+              </svg>
+            ) : (
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="#fff" aria-hidden>
+                <path d="M4 9v6h4l5 4V5L8 9H4z" />
+                <path d="M16 8.5a4 4 0 010 7" fill="none" stroke="#fff" strokeWidth="1.8" strokeLinecap="round" />
+              </svg>
+            )}
+          </button>
+          <input
+            type="range" min={0} max={1} step={0.01}
+            value={muted ? 0 : volume}
+            onChange={onVolume}
+            aria-label="Volume"
+            style={{ width: '72px', accentColor: '#fff', cursor: 'pointer' }}
+          />
+        </div>
       )}
 
       {/* Label overlay */}
