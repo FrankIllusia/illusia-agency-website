@@ -258,14 +258,16 @@ export default function Work() {
           <style>{`
             @media (max-width: 900px) {
               /* min-height: 0 kills the wide card's 420px desktop floor, which
-                 otherwise overrides the 16/9 ratio and crops the thumbnail */
-              .project-card { grid-column: span 12 !important; aspect-ratio: 16/9 !important; min-height: 0 !important; }
+                 otherwise overrides the 16/9 ratio and crops the thumbnail.
+                 Scoped to #work so the shared .project-card class does not
+                 override the AI section's 9:16 cards. */
+              #work .project-card { grid-column: span 12 !important; aspect-ratio: 16/9 !important; min-height: 0 !important; }
             }
             @media (max-width: 700px) {
               .work-shell { padding: 48px 20px !important; }
             }
             @media (max-width: 600px) {
-              .project-card { grid-column: span 12 !important; aspect-ratio: 4/3 !important; }
+              #work .project-card { grid-column: span 12 !important; aspect-ratio: 4/3 !important; }
             }
           `}</style>
         </div>
