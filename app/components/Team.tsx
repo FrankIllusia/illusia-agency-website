@@ -15,7 +15,7 @@ const team = [
   { name: 'Joe Gervase',        role: 'Editor',                                     img: '/images/team/joe.jpg'     },
   { name: 'Anthony Densieski',  role: 'Editor, Videographer',                       img: '/images/team/tony.jpg'    },
   { name: 'Brendan Yasuk',      role: 'Head of Pre-Production Marketing Strategy',  img: '/images/team/brendan.jpg' },
-  { name: 'Cory Morales',       role: 'Videographer, Editor, Social Media Manager', img: '/images/team/cory.jpg'    },
+  { name: 'Cory Morales',       role: 'Videographer, Editor',                       img: '/images/team/cory.jpg'    },
   { name: 'Nolan Mariziti',     role: 'Editor',                                     img: '/images/team/nolan.jpg'   },
   { name: 'Jordin Hugger',      role: 'Content & Brand Coordinator',                img: '/images/team/jordin.jpg'  },
   { name: 'Jason Keats',        role: 'Social Media Manager',                       img: '/images/team/jason.jpg'   },
