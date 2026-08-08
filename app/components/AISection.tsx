@@ -56,8 +56,8 @@ const examples = [
     id: 7,
     title: 'Flynnstone Experience',
     type: 'video',
-    src: '/images/ai/flynnstone-web.mp4',
-    poster: '/images/ai/flynnstone-thumb.jpg',
+    src: '/images/ai/tyson-web.mp4',
+    poster: '/images/ai/tyson-thumb.jpg',
     tool: 'Video',
   },
   {
