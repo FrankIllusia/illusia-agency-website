@@ -185,15 +185,19 @@ export default function AISection() {
         {/* Header removed — section leads straight into the work. */}
 
         {/* 4-col grid — 2 rows of 4 */}
-        <Reveal stagger={0.09} y={70} style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '12px' }}>
+        <Reveal className="ai-grid" stagger={0.09} y={70} style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '12px' }}>
           {examples.map(item => <AICard key={item.id} item={item} />)}
         </Reveal>
       </div>
       </div>
 
       <style>{`
-        @media (max-width: 700px) {
-          #ai > div > div:last-child { grid-template-columns: repeat(2, 1fr) !important; }
+        @media (max-width: 900px) {
+          .ai-grid { grid-template-columns: repeat(2, 1fr) !important; }
+        }
+        @media (max-width: 640px) {
+          .ai-grid { grid-template-columns: 1fr !important; }
+          #ai > div { padding: 32px 12px !important; }
         }
       `}</style>
     </section>
