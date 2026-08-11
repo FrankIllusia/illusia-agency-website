@@ -57,11 +57,14 @@ export default function Clients() {
           alignItems: 'center',
           width: 'max-content',
           animation: 'marquee 32s linear infinite',
+          willChange: 'transform',
+          transform: 'translateZ(0)',
         }}>
           {track.map((c, i) => (
             // eslint-disable-next-line @next/next/no-img-element
             <img
               key={i}
+              className="client-logo"
               src={c.src}
               alt={c.name}
               style={{
@@ -86,15 +89,18 @@ export default function Clients() {
           to   { transform: translateX(-50%); }
         }
 
+        /* Spacing lives on each logo as margin-right (not flex gap) so the
+           duplicated track tiles perfectly: translateX(-50%) lands exactly on
+           one full set, giving a seamless loop with no seam jump. */
         .client-fade  { width: 120px; }
-        .client-track { gap: 96px; }
+        .client-logo  { margin-right: 96px; }
 
         /* On a phone the 120px fades ate ~240px of a ~390px viewport and the
            96px gaps did the rest, so a gap could fill the whole visible strip
            and the row read as empty. Shrink both so logos are always on screen. */
         @media (max-width: 700px) {
           .client-fade  { width: 32px; }
-          .client-track { gap: 40px; }
+          .client-logo  { margin-right: 40px; }
         }
       `}</style>
     </section>
