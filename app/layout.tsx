@@ -1,8 +1,7 @@
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import './globals.css';
-import Nav from './components/Nav';
-import LoadingScreen from './components/LoadingScreen';
+import SiteChrome from './components/SiteChrome';
 import { SmoothScroll } from './components/fx';
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
@@ -34,8 +33,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         {/* Renders nothing — drives window scroll through Lenis and keeps
             ScrollTrigger in sync. Must stay outside anything it animates. */}
         <SmoothScroll />
-        <LoadingScreen />
-        <Nav />
+        {/* Renders the agency nav + intro on marketing routes, nothing on /shop. */}
+        <SiteChrome />
         <main>{children}</main>
       </body>
     </html>

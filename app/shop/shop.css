@@ -1,0 +1,120 @@
+/* ── Shop: repeated-component styles ──────────────────────────────────────────
+   ProductCard renders once per product, so its CSS cannot live in a <style>
+   block inside the component — a twelve-product grid would ship twelve
+   identical copies, and the extra <style> nodes would count as grid children
+   and skew the Reveal stagger. Everything rendered more than once lives here.
+──────────────────────────────────────────────────────────────────────────── */
+
+.pcard { position: relative; }
+
+/* Anchors the badge and quick-add rail to the image, not the card —
+   the meta block below must stay clear of both. */
+.pcard-frame {
+  position: relative;
+  overflow: hidden;
+}
+
+.pcard-media {
+  position: relative;
+  display: block;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  background: #101010;
+}
+.pcard-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.8s cubic-bezier(0.25,0.46,0.45,0.94),
+              opacity 0.45s ease;
+}
+.pcard-img-alt { opacity: 0; }
+.pcard-img-alt[data-show] { opacity: 1; }
+.pcard:hover .pcard-img { transform: scale(1.045); }
+
+.pcard-badge {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  z-index: 2;
+  background: rgba(0,0,0,0.72);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border: 1px solid rgba(255,255,255,0.18);
+  color: #fff;
+  font-size: 8.5px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  padding: 5px 9px;
+}
+
+.pcard-quick {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  gap: 4px;
+  padding: 10px;
+  background: linear-gradient(to top, rgba(0,0,0,0.88), rgba(0,0,0,0));
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.28s ease, transform 0.28s ease;
+  pointer-events: none;
+}
+.pcard-quick[data-show] {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: all;
+}
+.pcard-quick button {
+  flex: 1;
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.22);
+  color: #fff;
+  font-family: inherit;
+  font-size: 9.5px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 8px 0;
+  cursor: pointer;
+  transition: background 0.18s ease, color 0.18s ease;
+}
+.pcard-quick button:hover:not(:disabled) { background: #fff; color: #000; }
+.pcard-quick button:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+  text-decoration: line-through;
+}
+.pcard-quick-one { flex: 1; }
+
+.pcard-meta { padding: 14px 2px 0; }
+.pcard-name {
+  color: #fff;
+  text-decoration: none;
+  font-size: 11.5px;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+}
+.pcard-name:hover { opacity: 0.65; }
+.pcard-price {
+  margin-top: 6px;
+  font-size: 12px;
+  color: rgba(255,255,255,0.92);
+  display: flex;
+  gap: 8px;
+}
+.pcard-price s { color: rgba(255,255,255,0.35); }
+.pcard-color {
+  margin-top: 4px;
+  font-size: 10.5px;
+  color: rgba(255,255,255,0.4);
+}
+
+/* Touch devices have no hover, so the quick-add rail can never be
+   reached — hide it and let the card link to the product page. */
+@media (hover: none) {
+  .pcard-quick { display: none; }
+}

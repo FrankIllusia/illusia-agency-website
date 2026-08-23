@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1500" viewBox="0 0 1200 1500">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#2a2a2a"/>
+      <stop offset="1" stop-color="#0b0b0b"/>
+    </linearGradient>
+    <radialGradient id="s" cx="50%" cy="34%" r="52%">
+      <stop offset="0" stop-color="rgba(255,255,255,0.10)"/>
+      <stop offset="1" stop-color="rgba(0,0,0,0)"/>
+    </radialGradient>
+  </defs>
+  <rect width="1200" height="1500" fill="url(#g)"/>
+  <rect width="1200" height="1500" fill="url(#s)"/>
+  <g fill="none" stroke="rgba(255,255,255,0.14)" stroke-width="2">
+    <circle cx="600" cy="690" r="86"/>
+    <ellipse cx="600" cy="690" rx="150" ry="52" transform="rotate(-18 600 690)"/>
+  </g>
+  <text x="600" y="880" fill="rgba(255,255,255,0.34)" font-family="Inter,system-ui,sans-serif" font-size="22" letter-spacing="7" text-anchor="middle">ILLUSIA AGENCY</text>
+  <text x="600" y="918" fill="rgba(255,255,255,0.18)" font-family="Inter,system-ui,sans-serif" font-size="15" letter-spacing="4" text-anchor="middle">IMAGE COMING SOON</text>
+</svg>
