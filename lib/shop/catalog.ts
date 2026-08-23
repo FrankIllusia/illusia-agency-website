@@ -48,20 +48,33 @@ function placeholderFor(seed: string, index: number): string {
 }
 
 /**
- * Swaps in a placeholder for any product photo that is not on disk yet.
+ * Drops product photos that are not on disk yet, and falls back to a
+ * placeholder only when a product has no usable image at all.
  *
- * The seed catalogue names the real shoot files ahead of time, so dropping
- * the photography into `public/images/shop/` is all it takes to light them
- * up — no code change. Live Shopify images are remote and always pass through.
+ * Dropping rather than substituting matters for the second image: the card
+ * cross-fades to it on hover, so a placeholder there would make hovering look
+ * like a loading failure. Better to show one good shot and no swap.
+ *
+ * The seed catalogue names the shoot files optimistically, so dropping more
+ * photography into `public/images/shop/` lights it up with no code change.
+ * Live Shopify images are remote and always pass through.
  */
 function withResolvedImages(product: Product): Product {
-  const images = product.images.map((image, i) => {
-    const isLocal = image.url.startsWith('/');
-    if (!isLocal || publicFileExists(image.url)) return image;
-    return { ...image, url: placeholderFor(product.handle, i) };
-  });
+  const present = product.images.filter(
+    (image) => !image.url.startsWith('/') || publicFileExists(image.url)
+  );
 
-  return { ...product, images };
+  if (present.length) return { ...product, images: present };
+
+  return {
+    ...product,
+    images: [
+      {
+        url: placeholderFor(product.handle, 0),
+        altText: `${product.title} — photography coming soon`,
+      },
+    ],
+  };
 }
 
 /**

@@ -169,7 +169,9 @@ export default function ShopHome({
           width: 100%;
           height: 100%;
           object-fit: cover;
-          object-position: center 28%;
+          /* Pushed right of centre so the subject clears the headline, which
+             is bottom-left. */
+          object-position: 68% 20%;
         }
         .shop-hero-scrim {
           position: absolute;
