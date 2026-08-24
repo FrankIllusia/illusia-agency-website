@@ -117,7 +117,7 @@ export default function Hero() {
 
           <div ref={subRef} style={{ marginTop: '36px', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '24px' }}>
             <p style={{ fontSize: 'clamp(15px, 1.8vw, 18px)', color: 'rgba(255,255,255,0.55)', maxWidth: '520px', lineHeight: 1.6 }}>
-              50+ brands. Hundreds of millions of views. One team that treats your brand like it&apos;s the only one.
+              Trusted by hundreds of brands. Seen by hundreds of millions. Built by one creative team.
             </p>
             <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap', justifyContent: 'center' }}>
               <a

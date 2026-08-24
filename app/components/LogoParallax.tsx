@@ -23,16 +23,22 @@ export default function LogoParallax() {
 
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
+    ctx.imageSmoothingEnabled = true;
+    ctx.imageSmoothingQuality = 'high';
 
-    // Cover-fit on landscape screens; contain-fit on portrait ones.
-    // The frames are 16:9 — cover on a tall phone screen crops to ~30% of the
-    // image and beheads the logo, and the background is black anyway so the
-    // letterbox is invisible.
+    // On portrait the logo would otherwise sit small inside a contained 16:9
+    // frame; nudge it up so it reads at the intended size.
+    const PORTRAIT_FILL = 1.44;
+
+    // Cover-fit on landscape screens; contain-fit (boosted) on portrait ones.
+    // The frames are 16:9 — plain cover on a tall phone crops to ~30% of the
+    // image and beheads the logo; the background is black so the letterbox is
+    // invisible.
     const drawFrame = (img: HTMLImageElement) => {
       const cw = canvas.width, ch = canvas.height;
       const portrait = ch > cw;
       const scale = portrait
-        ? Math.min(cw / FRAME_W, ch / FRAME_H)
+        ? Math.min(cw / FRAME_W, ch / FRAME_H) * PORTRAIT_FILL
         : Math.max(cw / FRAME_W, ch / FRAME_H);
       const sw = FRAME_W * scale, sh = FRAME_H * scale;
       ctx.fillStyle = '#000';
@@ -41,8 +47,19 @@ export default function LogoParallax() {
     };
 
     const setSize = () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
+      // Size the backing store to the device pixel ratio so the logo is sharp
+      // on retina/phone screens instead of a scaled-up low-res blur. Cap the
+      // ratio so the canvas never balloons past what the 1280px frames warrant.
+      // Cap lower on touch devices: a 2.5x canvas is heavier to redraw every
+      // scroll tick and that is what makes the sequence stutter on phones.
+      const maxDpr = window.matchMedia('(hover: none)').matches ? 2 : 2.5;
+      const dpr = Math.min(window.devicePixelRatio || 1, maxDpr);
+      canvas.width = Math.round(window.innerWidth * dpr);
+      canvas.height = Math.round(window.innerHeight * dpr);
+      canvas.style.width = window.innerWidth + 'px';
+      canvas.style.height = window.innerHeight + 'px';
+      ctx.imageSmoothingEnabled = true;
+      ctx.imageSmoothingQuality = 'high';
       // Resizing clears the canvas — repaint the current frame so rotating a
       // phone (or resizing the window) doesn't leave it blank until scroll.
       const frame = framesRef.current[Math.max(currentFrameRef.current, 0)];
@@ -68,7 +85,10 @@ export default function LogoParallax() {
       // already spinning as it appears — no static black lead-in.
       start: 'top 80%',
       end: 'bottom top',
-      scrub: true,
+      // A small scrub lag eases the frame progression instead of snapping it
+      // 1:1 to every scroll delta — this is what makes the spin read as smooth
+      // parallax rather than a jumpy flipbook, especially on mobile.
+      scrub: 0.6,
       onUpdate: (self) => {
         const idx = Math.min(Math.round(self.progress * (FRAME_COUNT - 1)), FRAME_COUNT - 1);
         if (idx === currentFrameRef.current) return;

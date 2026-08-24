@@ -6,22 +6,22 @@ import { Reveal, RiseIn } from './fx';
 const team = [
   { name: 'Parker Russo',       role: 'Co-Founder, Chief Executive Officer',        img: '/images/team/parker.jpg'  },
   { name: 'Danny Drew',         role: 'Co-Founder, Director of Videography',        img: '/images/team/danny.jpg'   },
-  { name: 'Frank Bonilla',      role: 'Managing Director, Lead Videographer',       img: '/images/team/frank.jpg'   },
-  { name: 'Jack Masella',       role: 'Lead Editor, Videographer',                  img: '/images/team/jack.jpg'    },
+  { name: 'Frank Bonilla',      role: 'Managing Director, Executive Producer',      img: '/images/team/frank.jpg'   },
+  { name: 'Jack Masella',       role: 'Executive Producer, Videographer',           img: '/images/team/jack-v2.jpg' },
   { name: 'Chris Corradino',    role: 'Lead Director, Videographer',                img: '/images/team/chris.jpg'   },
-  { name: 'Brian Kohn',         role: 'Administrative Director',                    img: '/images/team/brian.jpg'   },
-  { name: 'Kiley Baker',        role: 'Social Media Manager',                       img: '/images/team/kiley.jpg'   },
+  { name: 'Brian Kohn',         role: 'Head of Operations & Client Strategy',       img: '/images/team/brian.jpg'   },
+  { name: 'Kiley Baker',        role: 'Social Media Manager',                       img: '/images/team/kiley-v2.jpg' },
   { name: '"Juice" Sherard',    role: 'Videographer, Editor',                       img: '/images/team/juice.jpg'   },
   { name: 'Joe Gervase',        role: 'Editor',                                     img: '/images/team/joe.jpg'     },
   { name: 'Anthony Densieski',  role: 'Editor, Videographer',                       img: '/images/team/tony.jpg'    },
-  { name: 'Brendan Yasuk',      role: 'Marketing Coordinator',                      img: '/images/team/brendan.jpg' },
-  { name: 'Cory Morales',       role: 'Videographer, Editor, Social Media Manager', img: '/images/team/cory.jpg'    },
+  { name: 'Brendan Yasuk',      role: 'Head of Pre-Production Marketing Strategy',  img: '/images/team/brendan.jpg' },
+  { name: 'Cory Morales',       role: 'Videographer, Editor',                       img: '/images/team/cory.jpg'    },
   { name: 'Nolan Mariziti',     role: 'Editor',                                     img: '/images/team/nolan.jpg'   },
-  { name: 'Sofia Lynn',         role: 'Social Media Manager',                       img: '/images/team/sofia.jpg'   },
-  { name: 'Jason Keats',        role: 'Social Media Manager',                       img: '/images/team/jason.jpg'   },
-  { name: 'Kevin Drew',         role: 'Podcast Production Manager',                 img: '/images/team/kevin.jpg'   },
-  { name: 'Alex "Lecky" Harford', role: 'Videographer',                             img: '/images/team/lecky.jpg'   },
   { name: 'Jordin Hugger',      role: 'Content & Brand Coordinator',                img: '/images/team/jordin.jpg'  },
+  { name: 'Jason Keats',        role: 'Social Media Manager',                       img: '/images/team/jason.jpg'   },
+  { name: 'Alex "Lecky" Harford', role: 'Videographer',                             img: '/images/team/lecky-v2.jpg' },
+  { name: 'Sofia Lynn',         role: 'Social Media Manager',                       img: '/images/team/sofia-v2.jpg' },
+  { name: 'Kevin Drew',         role: 'Podcast Production Manager',                 img: '/images/team/kevin.jpg'   },
 ];
 
 const CARD_WIDTH = 280;
@@ -118,7 +118,14 @@ export default function Team() {
                   style={{
                     position: 'absolute', inset: 0,
                     width: '100%', height: '100%',
-                    objectFit: 'cover', objectPosition: 'top',
+                    objectFit: member.name.includes('Kiley') ? 'contain' : 'cover',
+                    objectPosition: member.name.includes('Jordin') ? '30% top' : 'top',
+                    transform: member.name.includes('Jordin')
+                      ? 'scale(1.04) translateY(2%)'
+                      : member.name.includes('Brendan')
+                        ? 'scale(1.1)'
+                        : undefined,
+                    backgroundColor: member.name.includes('Kiley') ? '#d6d6d6' : undefined,
                     zIndex: 1,
                     filter: 'grayscale(100%)',
                   }}

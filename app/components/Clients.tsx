@@ -40,29 +40,31 @@ export default function Clients() {
 
       <div style={{ position: 'relative', overflow: 'hidden' }}>
         {/* Fade edges */}
-        <div style={{
-          position: 'absolute', left: 0, top: 0, bottom: 0, width: '120px', zIndex: 2,
+        <div className="client-fade" style={{
+          position: 'absolute', left: 0, top: 0, bottom: 0, zIndex: 2,
           background: 'linear-gradient(to right, #000 0%, transparent 100%)',
           pointerEvents: 'none',
         }} />
-        <div style={{
-          position: 'absolute', right: 0, top: 0, bottom: 0, width: '120px', zIndex: 2,
+        <div className="client-fade" style={{
+          position: 'absolute', right: 0, top: 0, bottom: 0, zIndex: 2,
           background: 'linear-gradient(to left, #000 0%, transparent 100%)',
           pointerEvents: 'none',
         }} />
 
         {/* Scrolling track */}
-        <div style={{
+        <div className="client-track" style={{
           display: 'flex',
           alignItems: 'center',
-          gap: '96px',
           width: 'max-content',
           animation: 'marquee 32s linear infinite',
+          willChange: 'transform',
+          transform: 'translateZ(0)',
         }}>
           {track.map((c, i) => (
             // eslint-disable-next-line @next/next/no-img-element
             <img
               key={i}
+              className="client-logo"
               src={c.src}
               alt={c.name}
               style={{
@@ -85,6 +87,20 @@ export default function Clients() {
         @keyframes marquee {
           from { transform: translateX(0); }
           to   { transform: translateX(-50%); }
+        }
+
+        /* Spacing lives on each logo as margin-right (not flex gap) so the
+           duplicated track tiles perfectly: translateX(-50%) lands exactly on
+           one full set, giving a seamless loop with no seam jump. */
+        .client-fade  { width: 120px; }
+        .client-logo  { margin-right: 96px; }
+
+        /* On a phone the 120px fades ate ~240px of a ~390px viewport and the
+           96px gaps did the rest, so a gap could fill the whole visible strip
+           and the row read as empty. Shrink both so logos are always on screen. */
+        @media (max-width: 700px) {
+          .client-fade  { width: 32px; }
+          .client-logo  { margin-right: 40px; }
         }
       `}</style>
     </section>
