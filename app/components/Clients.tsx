@@ -56,7 +56,6 @@ export default function Clients() {
           display: 'flex',
           alignItems: 'center',
           width: 'max-content',
-          animation: 'marquee 32s linear infinite',
           willChange: 'transform',
           transform: 'translateZ(0)',
         }}>
@@ -64,7 +63,7 @@ export default function Clients() {
             // eslint-disable-next-line @next/next/no-img-element
             <img
               key={i}
-              className="client-logo"
+              className={`client-logo${c.ml ? ' client-logo--tight' : ''}`}
               src={c.src}
               alt={c.name}
               style={{
@@ -74,7 +73,6 @@ export default function Clients() {
                 opacity: 0.65,
                 flexShrink: 0,
                 transition: 'opacity 0.2s',
-                ...(c.ml ? { marginLeft: `${c.ml}px` } : {}),
               }}
               onMouseEnter={e => ((e.currentTarget as HTMLImageElement).style.opacity = '1')}
               onMouseLeave={e => ((e.currentTarget as HTMLImageElement).style.opacity = '0.65')}
@@ -94,13 +92,26 @@ export default function Clients() {
            one full set, giving a seamless loop with no seam jump. */
         .client-fade  { width: 120px; }
         .client-logo  { margin-right: 96px; }
+        .client-track { animation: marquee 32s linear infinite; }
+
+        /* Disney's mark carries a lot of internal whitespace, so it's pulled
+           back toward its neighbour. The pull has to stay smaller than the gap
+           it's eating into, or the logos collide. */
+        .client-logo--tight { margin-left: -48px; }
 
         /* On a phone the 120px fades ate ~240px of a ~390px viewport and the
            96px gaps did the rest, so a gap could fill the whole visible strip
            and the row read as empty. Shrink both so logos are always on screen. */
         @media (max-width: 700px) {
-          .client-fade  { width: 32px; }
+          .client-fade  { width: 56px; }
           .client-logo  { margin-right: 40px; }
+
+          /* -48px against a 40px gap left Disney 8px *under* Lionsgate. */
+          .client-logo--tight { margin-left: -12px; }
+
+          /* One set is ~2640px on a phone versus ~3710px on desktop, so the
+             same 32s ran the strip 29% slower on the smaller screen. */
+          .client-track { animation-duration: 18s; }
         }
       `}</style>
     </section>
