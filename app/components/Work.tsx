@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef } from 'react';
 import { Reveal, RiseIn } from './fx';
 
 /* ── Work / Projects section ─────────────────────────────────────────────────
@@ -67,46 +67,12 @@ const projects = [
   },
 ];
 
-
-/* Project videos autoplay rather than waiting on a play button. Autoplay is
-   only permitted when the video is muted and inline, so both are required
-   here, not optional. Playback follows visibility: five clips decoding at once
-   is a lot to ask of a phone, and offscreen video is bandwidth nobody sees. */
-function WorkVideo({ src, poster }: { src: string; poster?: string }) {
-  const ref = useRef<HTMLVideoElement>(null);
-
-  useEffect(() => {
-    const video = ref.current;
-    if (!video) return;
-
-    const io = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) video.play().catch(() => {});
-        else video.pause();
-      },
-      { threshold: 0.35 }
-    );
-    io.observe(video);
-    return () => io.disconnect();
-  }, []);
-
-  return (
-    <video
-      ref={ref}
-      src={src}
-      poster={poster}
-      autoPlay
-      muted
-      loop
-      playsInline
-      preload="metadata"
-      style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', display: 'block', zIndex: 1 }}
-    />
-  );
-}
-
 export default function Work() {
   const [playing, setPlaying] = useState<number | null>(null);
+  // Cards whose video has started at least once — keeps the thumbnail from
+  // covering the paused frame when the user pauses mid-video.
+  const [started, setStarted] = useState<Set<number>>(new Set());
+  const videoRefs = useRef<Record<number, HTMLVideoElement | null>>({});
 
   return (
     <>
@@ -195,10 +161,59 @@ export default function Work() {
                         </>
                       )
                     ) : 'videoSrc' in p && p.videoSrc ? (
-                      <WorkVideo
-                        src={(p as { videoSrc: string }).videoSrc}
-                        poster={'thumbnail' in p ? (p as { thumbnail: string }).thumbnail : undefined}
-                      />
+                      <>
+                        <video
+                          ref={el => { videoRefs.current[p.id] = el; }}
+                          src={(p as { videoSrc: string }).videoSrc}
+                          playsInline
+                          loop
+                          onClick={() => {
+                            const vid = videoRefs.current[p.id];
+                            if (vid && playing === p.id) { vid.pause(); setPlaying(null); }
+                          }}
+                          style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', display: 'block', zIndex: 1, cursor: playing === p.id ? 'pointer' : undefined }}
+                        />
+                        {/* Thumbnail overlay — hides once the video has started */}
+                        {'thumbnail' in p && playing !== p.id && !started.has(p.id) && (
+                          // eslint-disable-next-line @next/next/no-img-element
+                          <img
+                            src={(p as { thumbnail: string }).thumbnail}
+                            alt=""
+                            style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'thumbPosition' in p ? (p as { thumbPosition: string }).thumbPosition : 'center', display: 'block', zIndex: 2 }}
+                          />
+                        )}
+                        {/* Play overlay — hides once playing */}
+                        {playing !== p.id && (
+                          <button
+                            onClick={() => {
+                              if (playing !== null && playing !== p.id) {
+                                videoRefs.current[playing]?.pause();
+                              }
+                              const vid = videoRefs.current[p.id];
+                              if (vid) {
+                                vid.play();
+                                setPlaying(p.id);
+                                setStarted(prev => new Set(prev).add(p.id));
+                              }
+                            }}
+                            style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', background: 'none', border: 'none', padding: 0, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 2 }}
+                            onMouseEnter={e => { const btn = e.currentTarget.querySelector('.ig-play') as HTMLElement; if (btn) btn.style.transform = 'scale(1.1)'; }}
+                            onMouseLeave={e => { const btn = e.currentTarget.querySelector('.ig-play') as HTMLElement; if (btn) btn.style.transform = 'scale(1)'; }}
+                          >
+                            <div className="ig-play" style={{
+                              width: '64px', height: '64px',
+                              borderRadius: '50%',
+                              background: 'rgba(255,255,255,0.15)',
+                              backdropFilter: 'blur(8px)',
+                              border: '1px solid rgba(255,255,255,0.25)',
+                              display: 'flex', alignItems: 'center', justifyContent: 'center',
+                              transition: 'transform 0.2s ease',
+                            }}>
+                              <div style={{ width: 0, height: 0, borderTop: '10px solid transparent', borderBottom: '10px solid transparent', borderLeft: '18px solid #fff', marginLeft: '4px' }} />
+                            </div>
+                          </button>
+                        )}
+                      </>
                     ) : (
                       <>
                         {/* eslint-disable-next-line @next/next/no-img-element */}
