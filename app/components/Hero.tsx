@@ -102,14 +102,7 @@ export default function Hero() {
         >
           <p className="section-label" style={{ marginBottom: '28px' }}>Content Production Agency</p>
 
-          <h1 style={{
-            fontSize: 'clamp(48px, 6.8vw, 88px)',
-            fontWeight: 500,
-            lineHeight: 1.1,
-            letterSpacing: '-0.03em',
-            color: '#fff',
-            textAlign: 'center',
-          }}>
+          <h1 className="hero-headline">
             <div style={{ overflow: 'hidden' }}><span ref={line1Ref} style={{ display: 'block' }}>We make content</span></div>
             <div style={{ overflow: 'hidden' }}><span ref={line2Ref} style={{ display: 'block', fontWeight: 800, color: '#fff' }}>impossible to</span></div>
             <div style={{ overflow: 'hidden' }}><span ref={line3Ref} style={{ display: 'block' }}>scroll past.</span></div>
@@ -147,6 +140,27 @@ export default function Hero() {
           <div style={{ width: '1px', height: '48px', background: 'linear-gradient(to bottom, #fff, transparent)' }} />
         </div>
       </div>
+
+      <style>{`
+        /* clamp(48px, ...) floors at 48px, so every phone got the desktop
+           minimum: "We make content" wrapped to two lines, turning the
+           three-line headline into four, and "impossible to" ran the full
+           390px with no margin. Below 700px the size scales with the
+           viewport instead. The 48px cap meets the desktop clamp exactly at
+           700px, so there's no jump at the breakpoint. */
+        .hero-headline {
+          font-size: clamp(48px, 6.8vw, 88px);
+          font-weight: 500;
+          line-height: 1.1;
+          letter-spacing: -0.03em;
+          color: #fff;
+          text-align: center;
+        }
+
+        @media (max-width: 700px) {
+          .hero-headline { font-size: clamp(30px, 9.5vw, 48px); }
+        }
+      `}</style>
     </div>
   );
 }
