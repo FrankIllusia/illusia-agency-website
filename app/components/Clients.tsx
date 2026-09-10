@@ -104,14 +104,20 @@ export default function Clients() {
            and the row read as empty. Shrink both so logos are always on screen. */
         @media (max-width: 700px) {
           .client-fade  { width: 56px; }
-          .client-logo  { margin-right: 40px; }
 
-          /* -48px against a 40px gap left Disney 8px *under* Lionsgate. */
-          .client-logo--tight { margin-left: -12px; }
+          /* Speed and repeat interval are the same number here: one set is only
+             ~7 phone-screens wide, so at 40px gaps a logo came back every 18s
+             and the strip read as constantly restarting. Widening the gap makes
+             the set longer, which buys a slower repeat at a quicker pace -
+             120px/s returning every 26s, against 84px/s every 32s originally.
+             Still well short of the 96px gaps that used to leave the row
+             looking empty on a phone. */
+          .client-logo  { margin-right: 64px; }
+          .client-track { animation-duration: 26s; }
 
-          /* One set is ~2640px on a phone versus ~3710px on desktop, so the
-             same 32s ran the strip 29% slower on the smaller screen. */
-          .client-track { animation-duration: 18s; }
+          /* The pull has to stay smaller than the gap it eats into: at -48px
+             against the old 40px gap, Disney sat 8px *under* Lionsgate. */
+          .client-logo--tight { margin-left: -20px; }
         }
       `}</style>
     </section>
