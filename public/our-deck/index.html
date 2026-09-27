@@ -530,7 +530,7 @@ video.card{display:block;object-fit:cover;background:#000}
           <div class="glass stat"><b>850M+</b><span>Organic views</span></div>
           <div class="glass stat"><b>50+</b><span>Active brands</span></div>
           <div class="glass stat"><b>18</b><span>Full-time crew</span></div>
-          <div class="glass stat"><b>2023</b><span>Founded</span></div>
+          <div class="glass stat"><b data-nocount>2023</b><span>Founded</span></div>
           <div class="glass stat"><b style="font-size:36px">NJ / NYC</b><span>Headquarters</span></div>
         </div>
       </div>
@@ -1443,6 +1443,77 @@ video.card{display:block;object-fit:cover;background:#000}
     if(Math.abs(a.currentTime - v.currentTime) > 0.3){
       try{ a.currentTime=v.currentTime; }catch(e){}
     }
+  });
+})();
+</script>
+
+<script>
+/* Stat figures count up from zero the first time their slide comes into view.
+   The text is parsed rather than hard-coded, so the markup stays the single
+   source of truth: "$0.51", "850M+" and "140,623,706" each keep their prefix,
+   suffix, decimals and grouping. */
+(function(){
+  var els = [].slice.call(document.querySelectorAll(
+    '.stat b, .res b, .phone .ph-hero, .phone .ph-n'));
+  if (!els.length) return;
+
+  var still = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  var targets = [];
+  els.forEach(function(el){
+    if (el.hasAttribute('data-nocount')) return;
+    var m = /^(\D*?)([\d,]+(?:\.\d+)?)(.*)$/.exec(el.textContent.trim());
+    if (!m) return;                                  // no digits, e.g. "NJ / NYC"
+    var raw = m[2];
+    var value = parseFloat(raw.replace(/,/g, ''));
+    if (!isFinite(value)) return;
+    var dot = raw.indexOf('.');
+    targets.push({
+      el: el, prefix: m[1], suffix: m[3], value: value,
+      decimals: dot < 0 ? 0 : raw.length - dot - 1,
+      grouped: raw.indexOf(',') > -1
+    });
+    // hold the final width so the tile does not reflow while it counts
+    el.style.display = 'inline-block';
+    el.style.minWidth = el.getBoundingClientRect().width + 'px';
+    el.style.fontVariantNumeric = 'tabular-nums';
+  });
+
+  function render(t, v){
+    var n = t.decimals ? v.toFixed(t.decimals) : String(Math.round(v));
+    if (t.grouped) n = Number(n).toLocaleString('en-US');
+    t.el.textContent = t.prefix + n + t.suffix;
+  }
+
+  function run(t){
+    if (t.done) return;
+    t.done = true;
+    if (still) return;                               // leave the final value in place
+    var DUR = 900, start = null;
+    function step(now){
+      if (start === null) start = now;
+      var p = Math.min((now - start) / DUR, 1);
+      render(t, t.value * (1 - Math.pow(1 - p, 3)));  // ease out
+      if (p < 1) requestAnimationFrame(step);
+      else render(t, t.value);
+    }
+    render(t, 0);
+    requestAnimationFrame(step);
+  }
+
+  if (!('IntersectionObserver' in window)) { targets.forEach(run); return; }
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if (!e.isIntersecting) return;
+      targets.forEach(function(t){ if (e.target.contains(t.el)) run(t); });
+      io.unobserve(e.target);
+    });
+  }, { threshold: 0.4 });
+
+  var slides = [];
+  targets.forEach(function(t){
+    var sl = t.el.closest('.slide');
+    if (sl && slides.indexOf(sl) < 0) { slides.push(sl); io.observe(sl); }
   });
 })();
 </script>
