@@ -447,15 +447,14 @@ video.card{display:block;object-fit:cover;background:#000}
 
 @media (prefers-reduced-motion:reduce){ .rail i{transition:none} }
 
-/* Phones. The 1600px stage shrunk to a 390px screen puts body copy near 4px,
-   so narrow viewports get a legible slide that pans instead. zoom rather than
-   transform: a transform leaves the layout box at 1600px, so the frame would
-   have nothing to scroll over. */
+/* Phones. A 16:9 stage cannot be both full-width and large on a portrait
+   screen, so the slide is shown whole — never cropped — and each frame takes
+   one screen so you page through them one at a time. Pinch to zoom in. */
 @media (max-width:820px){
-  .deck{gap:10px;padding:10px 0 68px}
-  .frame{width:100vw;height:auto;overflow-x:auto;overflow-y:hidden;
-    -webkit-overflow-scrolling:touch;overscroll-behavior-x:contain}
-  .frame > .slide{transform:none;zoom:var(--s,.8)}
+  .deck{gap:0;padding:0 0 64px}
+  .frame{width:100vw;height:100vh;height:100svh;position:relative}
+  .frame > .slide{position:absolute;left:50%;top:50%;
+    transform:translate(-50%,-50%) scale(var(--s,.24));transform-origin:center center}
   .counter{padding:8px 14px;font-size:10px;gap:9px}
   .counter kbd{display:none}
 }
@@ -1242,14 +1241,11 @@ video.card{display:block;object-fit:cover;background:#000}
   // One scale factor drives the deck: the 1600×900 stage is authored at true
   // size and scaled down to whatever the viewport allows.
   function fit(){
-    var s;
-    if (window.innerWidth < 820) {
-      // Fill the screen's height and let the slide pan sideways — fitting the
-      // full width would leave the copy unreadable.
-      s = Math.min(Math.max((window.innerHeight - 140) / 900, 0.45), 1);
-    } else {
-      s = Math.min((window.innerWidth - 28)/1600, (window.innerHeight - 96)/900);
-    }
+    // Phones give the slide nearly the whole width; the frame is a full screen
+    // tall, so one complete slide sits centred in view at a time.
+    var s = window.innerWidth < 820
+      ? Math.min((window.innerWidth - 16)/1600, (window.innerHeight - 72)/900)
+      : Math.min((window.innerWidth - 28)/1600, (window.innerHeight - 96)/900);
     document.documentElement.style.setProperty('--s', Math.max(s, 0.12));
   }
   fit();
