@@ -1,0 +1,667 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Illusia — Experiential Work</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Three experiential productions — a one-market premiere, a multi-day LA activation, and a custom 4D screening.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700&family=Inter+Tight:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+
+<style>
+/* ═══════════════════════════════════════════════════════════════════════
+   Tokens — carried over from the capabilities and Grid decks so all three
+   read as one system. Depth comes from glass and light, not hue.
+   ═══════════════════════════════════════════════════════════════════════ */
+:root{
+  --ink:#000;
+  --riser:#16171a;
+  --paper:#fff;
+  --ash:rgba(255,255,255,.74);
+  --dim:rgba(255,255,255,.54);
+  --faint:rgba(255,255,255,.36);
+  --hair:rgba(255,255,255,.12);
+  --hair-hi:rgba(255,255,255,.24);
+
+  --glass-fill:linear-gradient(145deg,rgba(255,255,255,.085) 0%,rgba(255,255,255,.03) 46%,rgba(255,255,255,.05) 100%);
+  --glass-edge:rgba(255,255,255,.18);
+  --glass-rim:inset 0 1px 0 rgba(255,255,255,.32);
+  --glass-cast:0 28px 70px rgba(0,0,0,.55);
+  --blur:blur(20px) saturate(155%);
+
+  --display:'Schibsted Grotesk','PP Neue Montreal','Helvetica Neue',Arial,sans-serif;
+  --body:'Inter Tight','Inter',system-ui,sans-serif;
+  --mono:'JetBrains Mono',ui-monospace,'SF Mono',Menlo,monospace;
+}
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{background:var(--ink)}
+html,body{scroll-snap-type:y proximity}
+body{
+  background:var(--ink);color:var(--paper);
+  font-family:var(--body);
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;
+}
+img{display:block;max-width:100%}
+
+/* ═══ Stage — authored at true 1600×900, scaled to the viewport ═══ */
+.deck{display:flex;flex-direction:column;align-items:center;gap:14px;padding:14px 0 72px}
+.frame{
+  width:calc(1600px * var(--s,.5));
+  height:calc(900px * var(--s,.5));
+  scroll-snap-align:center;flex:0 0 auto;position:relative;
+}
+.slide{
+  width:1600px;height:900px;transform:scale(var(--s,.5));transform-origin:0 0;
+  position:relative;overflow:hidden;background:var(--ink);
+  font-size:19px;line-height:1.6;
+}
+.slide.lift{background:
+  radial-gradient(120% 78% at 50% -12%,rgba(255,255,255,.10) 0%,transparent 58%),
+  linear-gradient(to bottom,var(--riser) 0%,var(--ink) 62%);}
+
+.pad{position:absolute;inset:0;padding:78px 92px;display:flex;flex-direction:column;z-index:2}
+
+.watermark{position:absolute;z-index:1;pointer-events:none;
+  width:923px;max-width:none;height:auto;opacity:.07;
+  right:-184px;bottom:-74px;filter:blur(8px)}
+
+/* ═══ Type scale ═══ */
+.d1{font-family:var(--display);font-weight:600;font-size:100px;line-height:.97;letter-spacing:-.045em;text-wrap:balance}
+.d2{font-family:var(--display);font-weight:600;font-size:66px;line-height:1.03;letter-spacing:-.038em;text-wrap:balance}
+.d3{font-family:var(--display);font-weight:600;font-size:42px;line-height:1.1;letter-spacing:-.03em;text-wrap:balance}
+.lede{font-size:22.5px;line-height:1.54;color:var(--ash);max-width:25em}
+.body{font-size:18px;line-height:1.62;color:var(--ash)}
+.label{font-family:var(--mono);font-size:13px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:var(--dim)}
+.tag{font-family:var(--mono);font-size:12px;letter-spacing:.13em;text-transform:uppercase;color:var(--faint)}
+
+/* ═══ Liquid glass ═══ */
+.glass{
+  position:relative;
+  background:var(--glass-fill);
+  -webkit-backdrop-filter:var(--blur);
+  backdrop-filter:var(--blur);
+  border:1px solid var(--glass-edge);
+  border-radius:28px;
+  box-shadow:var(--glass-rim),var(--glass-cast);
+}
+.glass::before{
+  content:'';position:absolute;inset:0;border-radius:inherit;pointer-events:none;
+  background:linear-gradient(160deg,rgba(255,255,255,.11) 0%,rgba(255,255,255,.02) 34%,transparent 62%);
+}
+.glass > *{position:relative;z-index:1}
+.glass.dense{background-color:rgba(11,12,15,.5)}
+
+.pill{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:9px 17px;border-radius:999px;
+  background:rgba(255,255,255,.09);
+  -webkit-backdrop-filter:blur(22px) saturate(170%);
+  backdrop-filter:blur(22px) saturate(170%);
+  border:1px solid rgba(255,255,255,.17);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.26);
+  font-family:var(--mono);font-size:12px;letter-spacing:.13em;text-transform:uppercase;
+  color:rgba(255,255,255,.92);white-space:nowrap;
+}
+.pill.sm{padding:7px 14px;font-size:11px;letter-spacing:.11em}
+.pills{display:flex;gap:10px;flex-wrap:wrap}
+
+/* ═══ Cards ═══ */
+.card{
+  position:relative;overflow:hidden;border-radius:20px;
+  border:1px solid rgba(255,255,255,.14);background:#101114;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.10),0 20px 48px rgba(0,0,0,.5);
+}
+.card > img{width:100%;height:100%;object-fit:cover}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   The player — the hero of every project slide. Controls ride on their own
+   glass bar and stay hidden until the frame is hovered or playing.
+   ═══════════════════════════════════════════════════════════════════════ */
+.player{position:relative;background:#000}
+.player video{width:100%;height:100%;object-fit:cover;display:block}
+.vbar{position:absolute;left:14px;right:14px;bottom:14px;display:flex;align-items:center;gap:14px;
+  padding:11px 16px;border-radius:14px;
+  background:rgba(10,10,12,.62);-webkit-backdrop-filter:blur(26px) saturate(160%);
+  backdrop-filter:blur(26px) saturate(160%);
+  border:1px solid rgba(255,255,255,.16);box-shadow:inset 0 1px 0 rgba(255,255,255,.22);
+  opacity:0;transition:opacity .25s}
+.player:hover .vbar,.player.playing .vbar,.player:focus-within .vbar{opacity:1}
+.vbtn{width:26px;height:26px;flex:0 0 26px;border:0;background:none;cursor:pointer;padding:0;
+  display:flex;align-items:center;justify-content:center}
+.vbtn svg{width:16px;height:16px;fill:rgba(255,255,255,.92)}
+.vtrack{flex:1;height:3px;border-radius:2px;background:rgba(255,255,255,.22);cursor:pointer;position:relative}
+.vtrack i{position:absolute;left:0;top:0;bottom:0;width:0;border-radius:2px;background:#fff}
+.vtime{font-family:var(--mono);font-size:11px;letter-spacing:.06em;color:rgba(255,255,255,.8);
+  font-variant-numeric:tabular-nums;white-space:nowrap}
+/* Poster-state play button, centred until first play. */
+.vbig{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+  border:0;cursor:pointer;
+  /* White glass on a bright frame loses its edge, so the button sits in a soft
+     pool of its own — invisible on a dark poster, enough on a lit one. */
+  background:radial-gradient(circle at 50% 50%,rgba(0,0,0,.42) 0%,rgba(0,0,0,.18) 9%,transparent 22%)}
+.vbig span{width:88px;height:88px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+  background:rgba(255,255,255,.12);-webkit-backdrop-filter:blur(22px) saturate(170%);
+  backdrop-filter:blur(22px) saturate(170%);
+  border:1px solid rgba(255,255,255,.26);box-shadow:inset 0 1px 0 rgba(255,255,255,.34),0 12px 40px rgba(0,0,0,.5);
+  transition:background .2s,transform .2s}
+.vbig:hover span,.vbig:focus-visible span{background:rgba(255,255,255,.2);transform:scale(1.05)}
+.vbig span::after{content:'';border-left:26px solid rgba(255,255,255,.95);
+  border-top:16px solid transparent;border-bottom:16px solid transparent;margin-left:7px}
+.player.playing .vbig{display:none}
+/* Caption riding the top-left of the player, so the frame identifies itself
+   before anyone presses play. */
+.vcap{position:absolute;left:16px;top:16px;z-index:2;
+  padding:9px 15px;border-radius:12px;
+  background:rgba(10,10,12,.6);-webkit-backdrop-filter:blur(26px) saturate(150%);
+  backdrop-filter:blur(26px) saturate(150%);
+  border:1px solid rgba(255,255,255,.14);box-shadow:inset 0 1px 0 rgba(255,255,255,.2);
+  font-family:var(--mono);font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;
+  color:rgba(255,255,255,.78)}
+
+.filmlink{display:none}
+.filmnote{display:none}
+
+/* A frame still waiting on its cut. Same footprint as a player, so dropping
+   the file in changes nothing else on the slide. */
+.slot{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;text-align:center;
+  border:1px dashed rgba(255,255,255,.24);border-radius:20px;
+  background:rgba(255,255,255,.03)}
+.slot p{font-family:var(--mono);font-size:12px;letter-spacing:.13em;text-transform:uppercase;
+  color:var(--faint);line-height:1.9}
+
+/* ═══ Slate marks ═══ */
+.slate{position:relative;display:flex;justify-content:space-between;align-items:center;flex:0 0 auto}
+.wm{font-family:var(--display);font-weight:600;font-size:16px;letter-spacing:.3em;text-transform:uppercase;color:var(--paper)}
+.folio{font-variant-numeric:tabular-nums;color:var(--paper);opacity:.85}
+
+/* ═══ Panel interiors ═══ */
+.stat{padding:22px 24px 24px;display:flex;flex-direction:column;gap:5px}
+.stat b{font-family:var(--display);font-weight:600;font-size:40px;letter-spacing:-.04em;line-height:1;font-variant-numeric:tabular-nums;color:#fff}
+.stat span{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--dim)}
+
+/* Work block — three columns of what was covered, what shipped, how fast.
+   Checked lines rather than pills: denser vertically, and the eye reads them
+   as a list of work done rather than a row of labels. */
+.work{display:grid;grid-template-columns:repeat(3,1fr);gap:36px}
+.mini{display:flex;flex-direction:column}
+.mini div{position:relative;padding:6px 0 6px 27px;font-size:15px;line-height:1.45;color:var(--ash)}
+.mini div::before{content:'';position:absolute;left:0;top:12px;width:14px;height:14px;
+  background:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23ffffff' stroke-opacity='0.62' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><circle cx='12' cy='12' r='9'/><path d='M8 12.4l2.7 2.7L16.2 9.5'/></svg>") no-repeat center/contain}
+.mini b{color:#fff;font-weight:600}
+
+/* Spec rows — label left, value right, hairline between. */
+.spec{display:flex;flex-direction:column}
+.spec div{border-top:1px solid var(--hair);padding:8px 0;display:flex;justify-content:space-between;gap:16px;
+  font-family:var(--mono);font-size:12.5px;letter-spacing:.07em;text-transform:uppercase;color:var(--dim);
+  font-variant-numeric:tabular-nums}
+.spec div b{font-family:var(--mono);font-size:12.5px;font-weight:500;letter-spacing:.07em;color:#fff;text-align:right}
+
+.note{font-family:var(--mono);font-size:11.5px;line-height:1.72;letter-spacing:.04em;color:var(--faint)}
+.rule{height:1px;background:var(--hair);width:100%;flex:0 0 1px}
+:focus-visible{outline:2px solid rgba(255,255,255,.7);outline-offset:3px}
+
+/* ═══ Full-bleed backgrounds ═══ */
+.bleed{position:absolute;inset:0;z-index:0}
+.bleed img{width:100%;height:100%;object-fit:cover}
+.bleed.push img{transform:scale(1.12)}
+.scrim{position:absolute;inset:0;z-index:1}
+.scrim.even{background:rgba(0,0,0,.34)}
+.scrim.top{background:linear-gradient(to bottom,rgba(0,0,0,.6) 0%,rgba(0,0,0,.15) 16%,transparent 30%)}
+.scrim.bottom{background:linear-gradient(to bottom,transparent 34%,rgba(0,0,0,.6) 74%,rgba(0,0,0,.88) 100%)}
+
+/* ═══ Chrome ═══ */
+.rail{position:fixed;top:0;left:0;right:0;height:2px;background:rgba(255,255,255,.07);z-index:50}
+.rail i{display:block;height:100%;width:0;background:#fff;transition:width .18s linear}
+.counter{
+  position:fixed;bottom:20px;left:50%;transform:translateX(-50%);z-index:50;
+  display:flex;align-items:center;gap:13px;
+  background:rgba(255,255,255,.08);
+  -webkit-backdrop-filter:blur(26px) saturate(170%);
+  backdrop-filter:blur(26px) saturate(170%);
+  border:1px solid rgba(255,255,255,.16);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.24),0 10px 30px rgba(0,0,0,.5);
+  border-radius:999px;padding:9px 18px;
+  font-family:var(--mono);font-size:11px;letter-spacing:.14em;color:var(--dim)}
+.counter b{color:#fff;font-weight:500;font-variant-numeric:tabular-nums}
+.counter kbd{font-family:var(--mono);font-size:10px;border:1px solid rgba(255,255,255,.2);
+  border-radius:5px;padding:2px 6px;color:rgba(255,255,255,.75)}
+@media (prefers-reduced-motion:reduce){ .rail i{transition:none} }
+
+@media (max-width:820px){
+  .deck{gap:8px;padding:8px 0 56px}
+  .counter{padding:8px 14px;font-size:10px;gap:9px}
+  .counter kbd{display:none}
+}
+
+/* ═══ Print — 13.333in × 7.5in is the standard 16:9 slide page; the 1600px
+   stage scales to 1280×720 to land on it exactly. Video prints as its poster
+   frame, so the play button stays: on the page it reads as "this is a film".
+   backdrop-filter does not print, so glass falls back to a solid tinted pane.
+   ═══ */
+@media print{
+  @page{size:13.333in 7.5in;margin:0}
+  html,body{background:#000;scroll-snap-type:none}
+  .rail,.counter{display:none}
+  .deck{display:block;gap:0;padding:0}
+  .frame{width:1280px;height:720px;overflow:hidden;page-break-after:always;break-after:page}
+  .frame:last-child{page-break-after:auto;break-after:auto}
+  .slide{transform:scale(.8)!important;transform-origin:0 0}
+  .glass,.pill,.vcap,.vbar{-webkit-backdrop-filter:none!important;backdrop-filter:none!important}
+  /* A large blurred box-shadow rasterizes into its own layer, whose bounding
+     box shows as a faint rectangle on the page; the sheen gradient tiles and
+     leaves a seam. Both go in print, rim and border stay. */
+  .glass::before{display:none!important}
+  .glass{background:rgba(24,25,28,.9)!important;box-shadow:inset 0 1px 0 rgba(255,255,255,.32)!important}
+  .card,.player{box-shadow:inset 0 1px 0 rgba(255,255,255,.10)!important}
+  .pill{background:rgba(30,31,35,.9)!important;box-shadow:inset 0 1px 0 rgba(255,255,255,.26)!important}
+  .vcap{background:rgba(10,10,12,.86)!important}
+  .vbar{display:none!important}
+  /* The whole poster becomes the hit area, and a line underneath says so —
+     a play button alone on a printed page reads as decoration. */
+  .filmlink{display:block!important;position:absolute;inset:0;z-index:3}
+  /* The note rides inside the frame — .player clips, so it cannot sit under it —
+     on the same glass bar the on-screen controls use. */
+  .filmnote{display:block!important;position:absolute;left:16px;bottom:16px;z-index:4;
+    padding:9px 15px;border-radius:12px;
+    background:rgba(10,10,12,.86);border:1px solid rgba(255,255,255,.14);
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.2);
+    font-family:var(--mono);font-size:11.5px;letter-spacing:.13em;text-transform:uppercase;
+    color:rgba(255,255,255,.88)}
+  *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+}
+</style>
+</head>
+<body>
+
+<div class="rail"><i id="railFill"></i></div>
+
+<div class="deck" id="deck">
+
+  <!-- ══════════ 01 — COVER ══════════ -->
+  <div class="frame"><section class="slide">
+    <div class="bleed push"><img src="img/cover-4d.jpg" alt="A full house in protective ponchos under red light at a custom 4D screening"></div>
+    <div class="scrim even"></div>
+    <div class="scrim bottom"></div>
+    <div class="pad">
+      <div class="slate">
+        <span class="wm">Illusia</span>
+        <span class="pill">NJ / NYC · Worldwide</span>
+      </div>
+
+      <div class="glass dense" style="margin-top:auto;align-self:flex-start;padding:52px 56px 48px;max-width:1060px">
+        <p class="label" style="margin-bottom:24px;color:rgba(255,255,255,.72)">Selected experiential work — 2026</p>
+        <h1 class="d1" style="text-wrap:normal">Premieres,<br>activations<br>and builds.</h1>
+        <div class="rule" style="margin:36px 0 26px"></div>
+        <div class="pills">
+          <span class="pill">The Odyssey · NYC</span>
+          <span class="pill">Hoppers · Los Angeles</span>
+          <span class="pill">Ready or Not 2 · 4D Screening</span>
+        </div>
+      </div>
+    </div>
+  </section></div>
+
+  <!-- ══════════ 02 — THE ODYSSEY ══════════ -->
+  <div class="frame" id="odyssey"><section class="slide lift">
+    <img class="watermark" src="logo/illusia-mark.svg" alt="">
+    <div class="pad">
+      <div class="slate"><span class="wm">Illusia</span><span class="tag">Experiential premiere · <span class="folio">02</span></span></div>
+
+      <div style="display:grid;grid-template-columns:850px 1fr;grid-template-rows:478px;gap:30px;margin-top:32px">
+        <div class="player card" id="p1" style="aspect-ratio:16/9">
+          <a class="filmlink" href="https://illusiaagency.com/experiential-examples#odyssey" aria-label="Watch the film at illusiaagency.com"></a>
+          <video id="p1v" playsinline preload="none" poster="img/odyssey-poster.jpg" src="img/odyssey-sizzle.mp4"></video>
+          <span class="vcap">The Odyssey · Overall sizzle</span>
+          <button class="vbig" aria-label="Play the recap film"><span></span></button>
+          <div class="vbar">
+            <button class="vbtn" data-play aria-label="Play or pause"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
+            <div class="vtrack"><i></i></div>
+            <span class="vtime">0:00</span>
+          </div>
+          <p class="filmnote">Watch the film — illusiaagency.com/experiential-examples</p>
+        </div>
+
+        <div style="display:flex;flex-direction:column;gap:20px">
+          <div class="glass" style="padding:30px 32px;flex:1;display:flex;flex-direction:column">
+            <p class="label" style="margin-bottom:14px;color:rgba(255,255,255,.72)">New York City</p>
+            <h2 class="d3">The Odyssey</h2>
+            <p class="tag" style="margin-top:8px">Experiential premiere</p>
+            <p class="body" style="margin-top:18px;font-size:16px">
+              A focused one-market activation and premiere — small crew, full coverage from
+              load-in to the last arrival.
+            </p>
+            <div class="spec" style="margin-top:auto;padding-top:20px">
+              <div><span>Market</span><b>NYC, one market</b></div>
+              <div><span>Crew</span><b>Lean</b></div>
+              <div><span>Coverage</span><b>Load-in → premiere</b></div>
+              <div><span>Films</span><b>Hero recap</b></div>
+              <div><span>Stills</span><b>Edited gallery</b></div>
+              <div><span>Investment</span><b>$6,750</b></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="work" style="margin-top:auto">
+        <div>
+          <p class="label" style="margin-bottom:10px">On site</p>
+          <div class="mini">
+            <div>Load-in and setup coverage</div>
+            <div>Live activation through the premiere</div>
+            <div>Cinematic brand and environment B-roll</div>
+            <div>Fan and guest interaction capture</div>
+          </div>
+        </div>
+        <div>
+          <p class="label" style="margin-bottom:10px">Delivered</p>
+          <div class="mini">
+            <div><b>Hero recap film</b></div>
+            <div><b>Edited photo gallery</b> from the full day</div>
+            <div>Organized raw footage handoff</div>
+          </div>
+        </div>
+        <div>
+          <p class="label" style="margin-bottom:10px">Turnaround</p>
+          <div class="mini">
+            <div><b>Rushed recap cut</b> — turned while the premiere was still news</div>
+            <div>Stills selected, edited and delivered as a gallery</div>
+            <div>Raw organized and labelled at handoff</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section></div>
+
+  <!-- ══════════ 03 — HOPPERS ══════════ -->
+  <div class="frame" id="hoppers"><section class="slide lift">
+    <img class="watermark" src="logo/illusia-mark.svg" alt="">
+    <div class="pad">
+      <div class="slate"><span class="wm">Illusia</span><span class="tag">Multi-day activation · <span class="folio">03</span></span></div>
+
+      <div style="display:grid;grid-template-columns:850px 1fr;grid-template-rows:478px;gap:30px;margin-top:32px">
+        <div class="player card" id="p3" style="aspect-ratio:16/9">
+          <a class="filmlink" href="https://illusiaagency.com/experiential-examples#hoppers" aria-label="Watch the film at illusiaagency.com"></a>
+          <video id="p3v" playsinline preload="none" poster="img/hoppers-poster.jpg" src="img/hoppers-sizzle.mp4"></video>
+          <span class="vcap">Hoppers · Shark Sedan activation</span>
+          <button class="vbig" aria-label="Play the Shark Sedan sizzle"><span></span></button>
+          <div class="vbar">
+            <button class="vbtn" data-play aria-label="Play or pause"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
+            <div class="vtrack"><i></i></div>
+            <span class="vtime">0:00</span>
+          </div>
+          <p class="filmnote">Watch the film — illusiaagency.com/experiential-examples</p>
+        </div>
+
+        <div style="display:flex;flex-direction:column;gap:20px">
+          <div class="glass" style="padding:30px 32px;flex:1;display:flex;flex-direction:column">
+            <p class="label" style="margin-bottom:14px;color:rgba(255,255,255,.72)">Los Angeles</p>
+            <h2 class="d3">Hoppers</h2>
+            <p class="tag" style="margin-top:8px">Public activation + premiere</p>
+            <p class="body" style="margin-top:18px;font-size:16px">
+              Three days across three parts of LA, each cut and delivered inside 24 hours so
+              the campaign had new work every day it ran.
+            </p>
+            <div class="spec" style="margin-top:auto;padding-top:20px">
+              <div><span>Market</span><b>LA, 3 areas</b></div>
+              <div><span>Shoot days</span><b>3</b></div>
+              <div><span>Crew</span><b>2 videographers</b></div>
+              <div><span>Films</span><b>3 sizzles + premiere recap</b></div>
+              <div><span>Turnaround</span><b>24 hrs per sizzle</b></div>
+              <div><span>Investment</span><b>$19,500</b></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="work" style="margin-top:auto">
+        <div>
+          <p class="label" style="margin-bottom:10px">On site</p>
+          <div class="mini">
+            <div>Shark Sedan public activation</div>
+            <div>Hollywood Blvd premiere</div>
+            <div>Canary Tree and animatronic elements</div>
+            <div>Guest interaction, driving and environmental coverage</div>
+          </div>
+        </div>
+        <div>
+          <p class="label" style="margin-bottom:10px">Delivered</p>
+          <div class="mini">
+            <div><b>3 rushed sizzles</b> — one per day, each a different part of LA</div>
+            <div><b>Premiere / red-carpet recap</b></div>
+            <div><b>Edited photo gallery</b></div>
+            <div>Full organized raw footage handoff</div>
+          </div>
+        </div>
+        <div>
+          <p class="label" style="margin-bottom:10px">Turnaround</p>
+          <div class="mini">
+            <div><b>24 hours</b> per sizzle — shot, cut and delivered overnight</div>
+            <div><b>72 hours</b> on the premiere recap</div>
+            <div>Cut on the road, between shoot days</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section></div>
+
+  <!-- ══════════ 04 — READY OR NOT 2 ══════════ -->
+  <div class="frame" id="ready-or-not-2"><section class="slide lift">
+    <img class="watermark" src="logo/illusia-mark.svg" alt="">
+    <div class="pad">
+      <div class="slate"><span class="wm">Illusia</span><span class="tag">Custom 4D screening · <span class="folio">04</span></span></div>
+
+      <div style="display:grid;grid-template-columns:850px 1fr;grid-template-rows:478px;gap:30px;margin-top:32px">
+        <div class="player card" id="p2" style="aspect-ratio:16/9">
+          <a class="filmlink" href="https://illusiaagency.com/experiential-examples#ready-or-not-2" aria-label="Watch the film at illusiaagency.com"></a>
+          <video id="p2v" playsinline preload="none" poster="img/ron2-poster.jpg" src="img/ron2-sizzle.mp4"></video>
+          <span class="vcap">Ready or Not 2 · Hero sizzle</span>
+          <button class="vbig" aria-label="Play the hero sizzle"><span></span></button>
+          <div class="vbar">
+            <button class="vbtn" data-play aria-label="Play or pause"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
+            <div class="vtrack"><i></i></div>
+            <span class="vtime">0:00</span>
+          </div>
+          <p class="filmnote">Watch the film — illusiaagency.com/experiential-examples</p>
+        </div>
+
+        <div style="display:flex;flex-direction:column;gap:20px">
+          <div class="glass" style="padding:30px 32px;flex:1;display:flex;flex-direction:column">
+            <p class="label" style="margin-bottom:14px;color:rgba(255,255,255,.72)">OBB Studios, Los Angeles</p>
+            <h2 class="d3">Ready or Not 2</h2>
+            <p class="tag" style="margin-top:8px">Custom 4D screening</p>
+            <p class="body" style="margin-top:18px;font-size:16px">
+              A built screening environment, covered from a 14-camera rig — with every frame
+              back to the studio inside 8 hours of wrap.
+            </p>
+            <div class="spec" style="margin-top:auto;padding-top:20px">
+              <div><span>Guests</span><b>~150</b></div>
+              <div><span>Cameras</span><b>~14 mirrorless</b></div>
+              <div><span>Crew</span><b>4–5 + on-site DIT</b></div>
+              <div><span>Prep</span><b>Full dry run, day prior</b></div>
+              <div><span>Raw handoff</span><b>Within 8 hrs of wrap</b></div>
+              <div><span>Investment</span><b>$37,450</b></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="work" style="margin-top:auto">
+        <div>
+          <p class="label" style="margin-bottom:10px">Pre-production</p>
+          <div class="mini">
+            <div><b>Full dry run</b> and low-light testing the day prior</div>
+            <div>Camera-angle and interview-flow planning</div>
+            <div>Data and media workflow planned in advance</div>
+            <div>Effects cued to the film — spray, air blasts, lighting</div>
+          </div>
+        </div>
+        <div>
+          <p class="label" style="margin-bottom:10px">On site</p>
+          <div class="mini">
+            <div><b>~14 mirrorless cameras</b> across fixed and reaction angles</div>
+            <div>Roaming hero coverage and guest reaction capture</div>
+            <div>Creator interviews straight off the screening</div>
+            <div>On-site DIT, backup workflow, organized uploads</div>
+          </div>
+        </div>
+        <div>
+          <p class="label" style="margin-bottom:10px">Delivered</p>
+          <div class="mini">
+            <div><b>Hero sizzle recap</b> — same-night where needed</div>
+            <div>Interview assets, reaction content and build BTS</div>
+            <div><b>Edited photo gallery</b></div>
+            <div><b>All raw to the studio within 8 hrs of wrap</b></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section></div>
+
+</div>
+
+<div class="counter">Slide <b id="cur">01</b> / <b id="tot">04</b> <kbd>↑</kbd><kbd>↓</kbd></div>
+
+<script>
+(function(){
+  var frames = Array.prototype.slice.call(document.querySelectorAll('.frame'));
+  var railFill = document.getElementById('railFill');
+  var cur = document.getElementById('cur');
+  document.getElementById('tot').textContent = String(frames.length).padStart(2,'0');
+
+  // One scale factor drives the deck: the 1600×900 stage is authored at true
+  // size and scaled down to whatever the viewport allows.
+  function fit(){
+    var s = window.innerWidth < 820
+      ? Math.min((window.innerWidth - 16)/1600, (window.innerHeight - 72)/900)
+      : Math.min((window.innerWidth - 28)/1600, (window.innerHeight - 96)/900);
+    document.documentElement.style.setProperty('--s', Math.max(s, 0.12));
+  }
+  fit();
+  window.addEventListener('resize', fit);
+
+  function active(){
+    var mid = window.innerHeight/2, best = 0, bestD = Infinity;
+    frames.forEach(function(f,i){
+      var r = f.getBoundingClientRect();
+      var d = Math.abs(r.top + r.height/2 - mid);
+      if(d < bestD){ bestD = d; best = i; }
+    });
+    return best;
+  }
+
+  function sync(){
+    var i = active();
+    cur.textContent = String(i+1).padStart(2,'0');
+    railFill.style.width = ((i+1)/frames.length*100) + '%';
+  }
+  sync();
+
+  var ticking = false;
+  window.addEventListener('scroll', function(){
+    if(ticking) return;
+    ticking = true;
+    requestAnimationFrame(function(){ sync(); ticking = false; });
+  }, {passive:true});
+
+  // scrollIntoView is unreliable when the document lands in quirks mode (as it
+  // does when this file is opened straight off disk), so page by offset.
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function go(n){
+    n = Math.max(0, Math.min(frames.length-1, n));
+    var f = frames[n];
+    var top = f.offsetTop - Math.max(0, (window.innerHeight - f.offsetHeight)/2);
+    window.scrollTo({top: top, behavior: reduce ? 'auto' : 'smooth'});
+  }
+
+  function fromHash(){
+    if(!location.hash) return;
+    var el = document.querySelector(location.hash);
+    if(!el) return;
+    var i = frames.indexOf(el);
+    if(i > -1) setTimeout(function(){ go(i); }, 60);
+  }
+  fromHash();
+  window.addEventListener('hashchange', fromHash);
+
+  document.addEventListener('keydown', function(e){
+    if(e.metaKey || e.ctrlKey || e.altKey) return;
+    if(/^(INPUT|TEXTAREA)$/.test((e.target.tagName||''))) return;
+    var k = e.key;
+    if(k==='ArrowDown' || k==='ArrowRight' || k==='PageDown' || k===' '){ e.preventDefault(); go(active()+1); }
+    else if(k==='ArrowUp' || k==='ArrowLeft' || k==='PageUp'){ e.preventDefault(); go(active()-1); }
+    else if(k==='Home'){ e.preventDefault(); go(0); }
+    else if(k==='End'){ e.preventDefault(); go(frames.length-1); }
+  });
+})();
+</script>
+
+<script>
+/* ── Players ──
+   One behaviour shared by every .player on the deck: press anywhere on the
+   poster to start, scrub on the bar, and starting one stops the others so two
+   soundtracks can never run at once. */
+(function(){
+  var PLAY = 'M8 5v14l11-7z';
+  var PAUSE = 'M6 5h4v14H6zM14 5h4v14h-4z';
+  var all = Array.prototype.slice.call(document.querySelectorAll('.player'));
+
+  function fmt(t){
+    if(!isFinite(t)) return '0:00';
+    var m = Math.floor(t/60), s = Math.floor(t%60);
+    return m + ':' + (s<10?'0':'') + s;
+  }
+
+  all.forEach(function(wrap){
+    var v = wrap.querySelector('video');
+    var big = wrap.querySelector('.vbig');
+    var btn = wrap.querySelector('[data-play]');
+    var path = btn.querySelector('path');
+    var track = wrap.querySelector('.vtrack');
+    var fill = track.querySelector('i');
+    var time = wrap.querySelector('.vtime');
+
+    function toggle(){
+      if(v.paused){
+        all.forEach(function(o){ if(o !== wrap) o.querySelector('video').pause(); });
+        v.play();
+      } else {
+        v.pause();
+      }
+    }
+
+    big.addEventListener('click', toggle);
+    btn.addEventListener('click', toggle);
+
+    v.addEventListener('play', function(){
+      wrap.classList.add('playing');
+      path.setAttribute('d', PAUSE);
+    });
+    v.addEventListener('pause', function(){
+      path.setAttribute('d', PLAY);
+    });
+    v.addEventListener('ended', function(){
+      wrap.classList.remove('playing');
+      path.setAttribute('d', PLAY);
+      v.currentTime = 0;
+    });
+    v.addEventListener('timeupdate', function(){
+      var d = v.duration;
+      fill.style.width = (d ? (v.currentTime/d*100) : 0) + '%';
+      time.textContent = fmt(v.currentTime);
+    });
+
+    function seek(e){
+      var r = track.getBoundingClientRect();
+      var p = Math.min(Math.max((e.clientX - r.left)/r.width, 0), 1);
+      if(v.duration) v.currentTime = p * v.duration;
+    }
+    track.addEventListener('click', seek);
+  });
+})();
+</script>
+
+</body>
+</html>
