@@ -10,6 +10,10 @@
      robots.txt rule — that file is public, so a Disallow line would advertise
      the very path it is meant to keep quiet. -->
 <meta name="robots" content="noindex, nofollow">
+<!-- HOSTED COPY: asset paths are absolute because this page is served at
+     /experiential-examples with no trailing slash, so relative paths would
+     resolve against the site root. The authoring copy in ~/Downloads uses
+     relative paths so it still opens from disk. Same split as /our-deck. -->
 <meta name="googlebot" content="noindex, nofollow">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -288,7 +292,7 @@ img{display:block;max-width:100%}
 
   <!-- ══════════ 01 — COVER ══════════ -->
   <div class="frame"><section class="slide">
-    <div class="bleed push"><img src="img/cover-4d.jpg" alt="A full house in protective ponchos under red light at a custom 4D screening"></div>
+    <div class="bleed push"><img src="/experiential-examples/img/cover-4d.jpg" alt="A full house in protective ponchos under red light at a custom 4D screening"></div>
     <div class="scrim even"></div>
     <div class="scrim bottom"></div>
     <div class="pad">
@@ -312,14 +316,14 @@ img{display:block;max-width:100%}
 
   <!-- ══════════ 02 — THE ODYSSEY ══════════ -->
   <div class="frame" id="odyssey"><section class="slide lift">
-    <img class="watermark" src="logo/illusia-mark.svg" alt="">
+    <img class="watermark" src="/experiential-examples/logo/illusia-mark.svg" alt="">
     <div class="pad">
       <div class="slate"><span class="wm">Illusia</span><span class="tag">Experiential premiere · <span class="folio">02</span></span></div>
 
       <div style="display:grid;grid-template-columns:850px 1fr;grid-template-rows:478px;gap:30px;margin-top:32px">
         <div class="player card" id="p1" style="aspect-ratio:16/9">
           <a class="filmlink" href="https://illusiaagency.com/experiential-examples#odyssey" aria-label="Watch the film at illusiaagency.com"></a>
-          <video id="p1v" playsinline preload="none" poster="img/odyssey-poster.jpg" src="img/odyssey-sizzle.mp4"></video>
+          <video id="p1v" playsinline preload="none" poster="/experiential-examples/img/odyssey-poster.jpg" src="/experiential-examples/img/odyssey-sizzle.mp4"></video>
           <span class="vcap">The Odyssey · Overall sizzle</span>
           <button class="vbig" aria-label="Play the recap film"><span></span></button>
           <div class="vbar">
@@ -383,14 +387,14 @@ img{display:block;max-width:100%}
 
   <!-- ══════════ 03 — HOPPERS ══════════ -->
   <div class="frame" id="hoppers"><section class="slide lift">
-    <img class="watermark" src="logo/illusia-mark.svg" alt="">
+    <img class="watermark" src="/experiential-examples/logo/illusia-mark.svg" alt="">
     <div class="pad">
       <div class="slate"><span class="wm">Illusia</span><span class="tag">Multi-day activation · <span class="folio">03</span></span></div>
 
       <div style="display:grid;grid-template-columns:850px 1fr;grid-template-rows:478px;gap:30px;margin-top:32px">
         <div class="player card" id="p3" style="aspect-ratio:16/9">
           <a class="filmlink" href="https://illusiaagency.com/experiential-examples#hoppers" aria-label="Watch the film at illusiaagency.com"></a>
-          <video id="p3v" playsinline preload="none" poster="img/hoppers-poster.jpg" src="img/hoppers-sizzle.mp4"></video>
+          <video id="p3v" playsinline preload="none" poster="/experiential-examples/img/hoppers-poster.jpg" src="/experiential-examples/img/hoppers-sizzle.mp4"></video>
           <span class="vcap">Hoppers · Shark Sedan activation</span>
           <button class="vbig" aria-label="Play the Shark Sedan sizzle"><span></span></button>
           <div class="vbar">
@@ -455,14 +459,14 @@ img{display:block;max-width:100%}
 
   <!-- ══════════ 04 — READY OR NOT 2 ══════════ -->
   <div class="frame" id="ready-or-not-2"><section class="slide lift">
-    <img class="watermark" src="logo/illusia-mark.svg" alt="">
+    <img class="watermark" src="/experiential-examples/logo/illusia-mark.svg" alt="">
     <div class="pad">
       <div class="slate"><span class="wm">Illusia</span><span class="tag">Custom 4D screening · <span class="folio">04</span></span></div>
 
       <div style="display:grid;grid-template-columns:850px 1fr;grid-template-rows:478px;gap:30px;margin-top:32px">
         <div class="player card" id="p2" style="aspect-ratio:16/9">
           <a class="filmlink" href="https://illusiaagency.com/experiential-examples#ready-or-not-2" aria-label="Watch the film at illusiaagency.com"></a>
-          <video id="p2v" playsinline preload="none" poster="img/ron2-poster.jpg" src="img/ron2-sizzle.mp4"></video>
+          <video id="p2v" playsinline preload="none" poster="/experiential-examples/img/ron2-poster.jpg" src="/experiential-examples/img/ron2-sizzle.mp4"></video>
           <span class="vcap">Ready or Not 2 · Hero sizzle</span>
           <button class="vbig" aria-label="Play the hero sizzle"><span></span></button>
           <div class="vbar">
