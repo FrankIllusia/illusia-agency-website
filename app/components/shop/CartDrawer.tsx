@@ -107,7 +107,10 @@ export default function CartDrawer() {
                   >
                     {product.title}
                   </Link>
-                  <p className="bag-variant">{variant.title}</p>
+                  {/* Shopify names the lone variant of a one-size item "Default Title". */}
+                  {variant.title !== 'Default Title' && (
+                    <p className="bag-variant">{variant.title}</p>
+                  )}
 
                   <div className="bag-qty">
                     <button

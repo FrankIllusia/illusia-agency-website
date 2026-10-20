@@ -10,7 +10,10 @@ function editorialArt(): EditorialArt {
     hero: resolveLocalImage('/images/shop/editorial-hero.jpg'),
     splitLeft: resolveLocalImage('/images/shop/editorial-apparel.jpg'),
     splitRight: resolveLocalImage('/images/shop/editorial-headwear.jpg'),
-    banner: resolveLocalImage('/images/shop/editorial-banner.jpg'),
+    banner: resolveLocalImage('/images/shop/editorial-banner-james.jpg'),
+    takeover: resolveLocalImage('/images/shop/editorial-takeover.jpg'),
+    cutoutLeft: resolveLocalImage('/images/shop/cutout-james.webp'),
+    cutoutRight: resolveLocalImage('/images/shop/cutout-la-flame.webp'),
   };
 }
 

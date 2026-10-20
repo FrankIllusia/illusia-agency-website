@@ -38,7 +38,10 @@ export default function ProductDetail({
 }) {
   const { add, open } = useCart();
 
-  const sizes = product.options.find((o) => o.name === 'Size')?.values ?? [];
+  // Synced variants arrive in creation order (Tapstitch gives "M, L, XL, 2XL, S").
+  const sizes = [...(product.options.find((o) => o.name === 'Size')?.values ?? [])].sort(
+    (a, b) => sizeRank(a) - sizeRank(b)
+  );
   const isOneSize = sizes.length <= 1;
 
   const firstAvailable = useMemo(
@@ -54,12 +57,18 @@ export default function ProductDetail({
   const [openPanel, setOpenPanel] = useState<string | null>('Details');
   const [error, setError] = useState<string | null>(null);
 
+  // Printful/Tapstitch one-size items carry no Size option at all — a single
+  // "Default Title" variant — so matching on Size would never find it.
   const selectedVariant = useMemo(
     () =>
-      product.variants.find((v) => v.selectedOptions.Size === selectedSize) ??
-      null,
-    [product.variants, selectedSize]
+      isOneSize
+        ? firstAvailable ?? product.variants[0] ?? null
+        : product.variants.find((v) => v.selectedOptions.Size === selectedSize) ??
+          null,
+    [isOneSize, firstAvailable, product.variants, selectedSize]
   );
+
+  const desc = useMemo(() => splitDescription(product), [product]);
 
   const soldOut = !product.availableForSale;
   const colorway = product.options.find((o) => o.name === 'Color')?.values.join(' / ');
@@ -117,7 +126,18 @@ export default function ProductDetail({
 
               {colorway && <p className="pdp-color">{colorway}</p>}
 
-              <p className="pdp-desc">{product.description}</p>
+              <div className="pdp-desc">
+                {desc.paragraphs.map((para, i) => (
+                  <p key={i}>{para}</p>
+                ))}
+                {desc.bullets.length > 0 && (
+                  <ul>
+                    {desc.bullets.map((b, i) => (
+                      <li key={i}>{b}</li>
+                    ))}
+                  </ul>
+                )}
+              </div>
 
               {!isOneSize && (
                 <div className="pdp-sizes">
@@ -164,7 +184,12 @@ export default function ProductDetail({
               </button>
 
               <div className="pdp-accordions">
-                {ACCORDIONS.map((panel) => {
+                {ACCORDIONS.map((base) => {
+                  // The apparel fit note is meaningless on a cap.
+                  const panel =
+                    base.title === 'Sizing' && isOneSize
+                      ? { ...base, body: 'One size fits most, with an adjustable snap closure at the back.' }
+                      : base;
                   const isOpen = openPanel === panel.title;
                   return (
                     <div key={panel.title} className="pdp-panel">
@@ -177,6 +202,39 @@ export default function ProductDetail({
                       </button>
                       <div className="pdp-panel-body" data-open={isOpen || undefined}>
                         <p>{panel.body}</p>
+                        {panel.title === 'Details' &&
+                          desc.sections.map((sec) => (
+                            <div key={sec.title} className="pdp-spec">
+                              <h4>{sec.title}</h4>
+                              <ul>
+                                {sec.items.map((item, i) => (
+                                  <li key={i}>{item}</li>
+                                ))}
+                              </ul>
+                            </div>
+                          ))}
+                        {panel.title === 'Sizing' && desc.sizeChart && (
+                          <table className="pdp-chart">
+                            <thead>
+                              <tr>
+                                <th>Inches</th>
+                                {desc.sizeChart.sizes.map((sz) => (
+                                  <th key={sz}>{sz}</th>
+                                ))}
+                              </tr>
+                            </thead>
+                            <tbody>
+                              {desc.sizeChart.rows.map((row) => (
+                                <tr key={row.label}>
+                                  <td>{row.label}</td>
+                                  {row.values.map((v, i) => (
+                                    <td key={i}>{v}</td>
+                                  ))}
+                                </tr>
+                              ))}
+                            </tbody>
+                          </table>
+                        )}
                       </div>
                     </div>
                   );
@@ -262,6 +320,61 @@ export default function ProductDetail({
           line-height: 1.65;
           color: rgba(255,255,255,0.62);
         }
+        .pdp-desc p + p { margin-top: 10px; }
+        .pdp-desc ul {
+          margin-top: 14px;
+          padding-left: 0;
+          list-style: none;
+        }
+        .pdp-desc li {
+          position: relative;
+          padding-left: 16px;
+        }
+        .pdp-desc li + li { margin-top: 4px; }
+        .pdp-desc li::before {
+          content: '';
+          position: absolute;
+          left: 0;
+          top: 0.78em;
+          width: 6px;
+          height: 1px;
+          background: rgba(255,255,255,0.45);
+        }
+
+        .pdp-spec { margin-top: 16px; }
+        .pdp-spec h4 {
+          font-size: 10px;
+          font-weight: 500;
+          letter-spacing: 0.16em;
+          text-transform: uppercase;
+          color: rgba(255,255,255,0.85);
+        }
+        .pdp-spec ul { margin-top: 8px; padding: 0; list-style: none; }
+        .pdp-spec li {
+          font-size: 12.5px;
+          line-height: 1.65;
+          color: rgba(255,255,255,0.55);
+        }
+        .pdp-chart {
+          margin-top: 14px;
+          width: 100%;
+          border-collapse: collapse;
+          font-size: 12px;
+          font-variant-numeric: tabular-nums;
+        }
+        .pdp-chart th, .pdp-chart td {
+          padding: 8px 6px;
+          border-bottom: 1px solid rgba(255,255,255,0.08);
+          text-align: center;
+        }
+        .pdp-chart th {
+          font-size: 10px;
+          font-weight: 500;
+          letter-spacing: 0.12em;
+          text-transform: uppercase;
+          color: rgba(255,255,255,0.85);
+        }
+        .pdp-chart th:first-child, .pdp-chart td:first-child { text-align: left; }
 
         .pdp-sizes { margin-top: 30px; }
         .pdp-sizes-head {
@@ -372,7 +485,7 @@ export default function ProductDetail({
           overflow: hidden;
           transition: max-height 0.34s ease;
         }
-        .pdp-panel-body[data-open] { max-height: 240px; }
+        .pdp-panel-body[data-open] { max-height: 1200px; padding-bottom: 18px; }
         .pdp-panel-body p {
           padding-bottom: 18px;
           font-size: 12.5px;
@@ -409,4 +522,83 @@ export default function ProductDetail({
       `}</style>
     </>
   );
+}
+
+/* ── Synced descriptions ──────────────────────────────────────────────────────
+   Printful writes prose followed by "•" lines split with <br>. Tapstitch writes
+   an intro <p>, then <h3>Features / Care Instructions / Fabric</h3> sections of
+   "- " paragraphs, then an inline-styled <table id="size-guide">. Both are
+   rebuilt as plain text rather than injecting their HTML, so nothing from a
+   third-party sync reaches the page as markup.
+──────────────────────────────────────────────────────────────────────────── */
+const SIZE_ORDER = ['XXS', 'XS', 'S', 'M', 'L', 'XL', '2XL', 'XXL', '3XL', 'XXXL', '4XL', '5XL'];
+function sizeRank(size: string): number {
+  const i = SIZE_ORDER.indexOf(size.toUpperCase());
+  return i === -1 ? SIZE_ORDER.length : i;
+}
+
+type SizeChart = { sizes: string[]; rows: { label: string; values: string[] }[] };
+type Description = {
+  paragraphs: string[];
+  bullets: string[];
+  sections: { title: string; items: string[] }[];
+  sizeChart: SizeChart | null;
+};
+
+const BULLET = /^[•\-–*]\s*/;
+
+function text(html: string): string {
+  return html
+    .replace(/<[^>]+>/g, '')
+    .replace(/&nbsp;/g, ' ')
+    .replace(/&amp;/g, '&')
+    .replace(/&quot;/g, '"')
+    .replace(/&#39;/g, "'")
+    .trim();
+}
+
+function lines(html: string): string[] {
+  return html.split(/<br\s*\/?>|<\/p>|<\/li>|\n/i).map(text).filter(Boolean);
+}
+
+/* Tapstitch's table: row 1 is the sizes (colspan 2 each), row 2 the
+   inch/cm unit labels, then one row per measurement as label + inch,cm pairs.
+   Only inches are kept — the shop prices in USD. */
+function parseSizeChart(table: string): SizeChart | null {
+  const rows = [...table.matchAll(/<tr[\s\S]*?<\/tr>/gi)].map((m) =>
+    [...m[0].matchAll(/<td[^>]*>([\s\S]*?)<\/td>/gi)].map((c) => text(c[1]))
+  );
+  if (rows.length < 3) return null;
+  const sizes = rows[0].filter(Boolean);
+  const body = rows
+    .slice(2)
+    .map(([label, ...cells]) => ({ label, values: cells.filter((_, i) => i % 2 === 0) }))
+    .filter((r) => r.label && r.values.length === sizes.length);
+  return sizes.length && body.length ? { sizes, rows: body } : null;
+}
+
+function splitDescription(product: Product): Description {
+  let html = product.descriptionHtml || product.description;
+
+  let sizeChart: SizeChart | null = null;
+  html = html.replace(/<table[\s\S]*?<\/table>/gi, (table) => {
+    sizeChart ??= parseSizeChart(table);
+    return '';
+  });
+
+  // Alternating [intro, heading, body, heading, body, …]
+  const parts = html.split(/<h[1-6][^>]*>([\s\S]*?)<\/h[1-6]>/i);
+  const intro = lines(parts[0]);
+  const sections: Description['sections'] = [];
+  for (let i = 1; i < parts.length; i += 2) {
+    const items = lines(parts[i + 1] ?? '').map((l) => l.replace(BULLET, ''));
+    if (items.length) sections.push({ title: text(parts[i]), items });
+  }
+
+  return {
+    paragraphs: intro.filter((l) => !BULLET.test(l)),
+    bullets: intro.filter((l) => BULLET.test(l)).map((l) => l.replace(BULLET, '')),
+    sections,
+    sizeChart,
+  };
 }

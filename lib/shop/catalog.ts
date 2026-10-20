@@ -88,11 +88,84 @@ export function resolveLocalImage(urlPath: string, seed = urlPath): string {
   return placeholderFor(seed, 0);
 }
 
+/* ── Shoot photography for live products ─────────────────────────────────────
+   Printful/Tapstitch only sync flat mockups into Shopify. The 2026 merch shoot
+   (Dropbox: Illusia Agency/Illusia Merch 2026) is layered in front of them
+   here, so the card and PDP lead with a person wearing the piece and the
+   mockups follow as detail shots.
+
+   Keyed by Shopify handle. A key also matches handles that extend it, because
+   the fulfilment apps derive handles from long product titles
+   ("pegasus-x-ray-vintage-washed-long-sleeve-…").
+──────────────────────────────────────────────────────────────────────────── */
+const SHOOT_PHOTOS: Record<string, string[]> = {
+  'illusia-global-cap': [
+    '/images/shop/illusia-global-cap-1.jpg',
+    '/images/shop/illusia-global-cap-2.jpg',
+    '/images/shop/illusia-global-cap-3.jpg',
+  ],
+  'la-flame': ['/images/shop/la-flame-1.jpg', '/images/shop/la-flame-2.jpg'],
+  'ascended-hat': [
+    '/images/shop/ascended-hat-1.jpg',
+    '/images/shop/ascended-hat-2.jpg',
+    '/images/shop/ascended-hat-3.jpg',
+  ],
+  'pegasus-x-ray': [
+    '/images/shop/pegasus-xray-long-sleeve-1.jpg',
+    '/images/shop/pegasus-xray-long-sleeve-2.jpg',
+    '/images/shop/pegasus-xray-long-sleeve-3.jpg',
+  ],
+};
+
+function shootPhotosFor(handle: string): string[] {
+  for (const [key, photos] of Object.entries(SHOOT_PHOTOS)) {
+    if (handle === key || handle.startsWith(`${key}-`)) return photos;
+  }
+  return [];
+}
+
+function withShootPhotos(product: Product): Product {
+  const shoot = shootPhotosFor(product.handle)
+    .filter(publicFileExists)
+    .map((url) => ({ url, altText: `${product.title} — worn` }));
+
+  return shoot.length ? { ...product, images: [...shoot, ...product.images] } : product;
+}
+
+/* ── Category tags ────────────────────────────────────────────────────────────
+   The shop's filters read the `apparel` / `headwear` / `new` tags. Products
+   synced from Printful/Tapstitch arrive untagged, so a missed tag would leave
+   a category page empty — infer the category from the title instead, and
+   treat the whole catalogue as "new" until anything is tagged `new` (at
+   launch, everything is). Explicit Shopify tags always win.
+──────────────────────────────────────────────────────────────────────────── */
+const HEADWEAR = /\b(cap|hat|trucker|snapback|beanie|bucket)\b/i;
+const APPAREL = /\b(tee|t-shirt|shirt|sleeve|hood(ie)?|crew(neck)?|jersey|sweat\w*|jacket|zip|pants?|shorts?)\b/i;
+
+function withCategoryTags(products: Product[]): Product[] {
+  const anyNew = products.some((p) => p.tags.includes('new'));
+
+  return products.map((p) => {
+    const tags = new Set(p.tags);
+    if (!tags.has('apparel') && !tags.has('headwear')) {
+      // Title first; names like "LA FLAME" say nothing, so fall back to the
+      // synced description ("The 5 panel cap is…").
+      for (const text of [p.title, p.description]) {
+        if (HEADWEAR.test(text) || /\bheadwear\b/i.test(text)) tags.add('headwear');
+        else if (APPAREL.test(text)) tags.add('apparel');
+        if (tags.has('headwear') || tags.has('apparel')) break;
+      }
+    }
+    if (!anyNew) tags.add('new');
+    return tags.size === p.tags.length ? p : { ...p, tags: [...tags] };
+  });
+}
+
 export async function getProducts(): Promise<Product[]> {
   if (!isLiveStore) return SEED_PRODUCTS.map(withResolvedImages);
 
   try {
-    return await fetchCollectionProducts();
+    return withCategoryTags((await fetchCollectionProducts()).map(withShootPhotos));
   } catch (err) {
     // A Shopify outage should degrade to a browsable shop, not a broken page.
     console.error('[shop] falling back to seed catalogue:', err);
@@ -107,7 +180,8 @@ export async function getProduct(handle: string): Promise<Product | null> {
   }
 
   try {
-    return await fetchProduct(handle);
+    const product = await fetchProduct(handle);
+    return product ? withShootPhotos(product) : null;
   } catch (err) {
     console.error(`[shop] product "${handle}" fetch failed:`, err);
     const seeded = SEED_PRODUCTS.find((p) => p.handle === handle);
