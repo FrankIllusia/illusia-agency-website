@@ -155,18 +155,20 @@ img{display:block;max-width:100%}
 /* ═══ Process rail — the four stages as one continuous line ═══
    The rail is drawn per step and bled across the gap so it reads unbroken,
    with a node at each stage and the step number sitting above it. */
-.flow{display:grid;grid-template-columns:repeat(4,1fr);gap:44px}
+.flow{display:grid;grid-template-columns:repeat(5,1fr);gap:34px}
 .step{position:relative;padding-top:56px}
 .step .n{position:absolute;top:0;left:0;font-family:var(--mono);font-size:13px;
   font-weight:500;letter-spacing:.2em;color:var(--faint)}
-.step::before{content:'';position:absolute;top:38px;left:0;right:-44px;height:1px;background:var(--hair-hi)}
+.step::before{content:'';position:absolute;top:38px;left:0;right:-34px;height:1px;background:var(--hair-hi)}
 .step:last-child::before{right:0}
 .step::after{content:'';position:absolute;top:34px;left:0;width:9px;height:9px;border-radius:50%;
   background:#fff;box-shadow:0 0 0 4px rgba(0,0,0,.9)}
-.step h3{font-family:var(--display);font-weight:600;font-size:25px;letter-spacing:-.024em;color:#fff}
-.step p{margin-top:12px;font-size:15px;line-height:1.55;color:var(--ash)}
-.step .out{margin-top:18px;padding-top:14px;border-top:1px solid var(--hair);
-  font-family:var(--mono);font-size:11.5px;line-height:1.6;letter-spacing:.06em;
+.step h3{font-family:var(--display);font-weight:600;font-size:23px;letter-spacing:-.024em;color:#fff}
+/* Three lines of description reserved for every stage, so the YOU GET rules
+   land on one baseline instead of stepping with the copy. */
+.step p{margin-top:12px;font-size:14.5px;line-height:1.55;color:var(--ash);min-height:68px}
+.step .out{margin-top:16px;padding-top:13px;border-top:1px solid var(--hair);
+  font-family:var(--mono);font-size:11px;line-height:1.6;letter-spacing:.06em;
   text-transform:uppercase;color:var(--dim)}
 .step .out b{display:block;color:rgba(255,255,255,.85);font-weight:500;margin-bottom:4px}
 
@@ -346,36 +348,43 @@ img{display:block;max-width:100%}
       <div style="display:grid;grid-template-columns:6fr 6fr;gap:64px;margin-top:40px;align-items:start">
         <div>
           <p class="label" style="margin-bottom:16px">What this looks like in practice</p>
-          <h2 class="d2" style="font-size:58px">One crew, start to finish.</h2>
+          <h2 class="d2" style="font-size:56px">One in-house team, start to finish.</h2>
         </div>
-        <p class="body" style="padding-top:38px">
-          The same team walks the site, shoots it and cuts it. Nothing is handed to a freelance
-          bench halfway through — which is why the schedule holds, and why a restricted site
-          stays comfortable with who is in the room on day three.
+        <p class="body" style="padding-top:34px">
+          Every stage lives in-house — strategy, pre-production, production, post and final
+          delivery. The people who set the brief are on the floor when it is shot and at the
+          desk when it is cut, so context carries the whole way through and each stage builds
+          on the one before it.
         </p>
       </div>
 
       <div class="flow" style="margin-top:auto;margin-bottom:auto">
         <div class="step">
           <span class="n">01</span>
+          <h3>Strategy</h3>
+          <p>What the work is for, who it has to reach and what it has to do — settled before a single camera is specced.</p>
+          <p class="out"><b>You get</b>Content plan · channels · success measures</p>
+        </div>
+        <div class="step">
+          <span class="n">02</span>
           <h3>Pre-production</h3>
           <p>Site walks, camera-angle plans, interview flow and a media workflow agreed before anyone rolls.</p>
           <p class="out"><b>You get</b>Shot plan · access list · approval chain</p>
         </div>
         <div class="step">
-          <span class="n">02</span>
+          <span class="n">03</span>
           <h3>Production</h3>
           <p>Small crews that move fast in live, operating and regulated spaces without stopping the work.</p>
           <p class="out"><b>You get</b>Covered footage · backed up on site</p>
         </div>
         <div class="step">
-          <span class="n">03</span>
+          <span class="n">04</span>
           <h3>Post</h3>
           <p>Cut, colour, sound and versioning — hero films down to platform-native social.</p>
           <p class="out"><b>You get</b>Hero film · platform versions</p>
         </div>
         <div class="step">
-          <span class="n">04</span>
+          <span class="n">05</span>
           <h3>Delivery</h3>
           <p>Rushed turnarounds where the moment demands it, and organised raw handed back every time.</p>
           <p class="out"><b>You get</b>Final files · organised, labelled raw</p>
