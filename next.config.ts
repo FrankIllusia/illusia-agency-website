@@ -8,6 +8,7 @@ const nextConfig: NextConfig = {
     return [
       { source: "/our-deck", destination: "/our-deck/index.html" },
       { source: "/experiential-examples", destination: "/experiential-examples/index.html" },
+      { source: "/bms-examples", destination: "/bms-examples/index.html" },
     ];
   },
 };

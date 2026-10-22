@@ -1,0 +1,828 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Illusia — Capabilities for Bristol Myers Squibb</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Content production across complex, regulated and technical environments — experiential, manufacturing and enterprise aviation.">
+<!-- Unlisted: nothing on the site links here, and this keeps it out of search
+     results for anyone who did not get the link directly. Deliberately not a
+     robots.txt rule — that file is public, so a Disallow line would advertise
+     the very path it is meant to keep quiet. -->
+<meta name="robots" content="noindex, nofollow">
+<!-- HOSTED COPY: asset paths are absolute because this page is served at
+     /bms-examples with no trailing slash, so relative paths would resolve
+     against the site root. The authoring copy in ~/Downloads stays relative
+     so it still opens from disk for the PDF render. Same split as /our-deck. -->
+<meta name="googlebot" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700&family=Inter+Tight:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+
+<style>
+/* ═══════════════════════════════════════════════════════════════════════
+   Tokens — carried from the capabilities, Grid and experiential decks so
+   all of them read as one system. Depth comes from glass and light.
+   ═══════════════════════════════════════════════════════════════════════ */
+:root{
+  --ink:#000; --riser:#16171a; --paper:#fff;
+  --ash:rgba(255,255,255,.74); --dim:rgba(255,255,255,.54);
+  --faint:rgba(255,255,255,.36); --hair:rgba(255,255,255,.12);
+  --hair-hi:rgba(255,255,255,.24);
+  --glass-fill:linear-gradient(145deg,rgba(255,255,255,.085) 0%,rgba(255,255,255,.03) 46%,rgba(255,255,255,.05) 100%);
+  --glass-edge:rgba(255,255,255,.18);
+  --glass-rim:inset 0 1px 0 rgba(255,255,255,.32);
+  --glass-cast:0 28px 70px rgba(0,0,0,.55);
+  --blur:blur(20px) saturate(155%);
+  --display:'Schibsted Grotesk','PP Neue Montreal','Helvetica Neue',Arial,sans-serif;
+  --body:'Inter Tight','Inter',system-ui,sans-serif;
+  --mono:'JetBrains Mono',ui-monospace,'SF Mono',Menlo,monospace;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{background:var(--ink)}
+html,body{scroll-snap-type:y proximity}
+body{background:var(--ink);color:var(--paper);font-family:var(--body);overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+img{display:block;max-width:100%}
+
+/* ═══ Stage — authored at true 1600×900, scaled to the viewport ═══ */
+.deck{display:flex;flex-direction:column;align-items:center;gap:14px;padding:14px 0 72px}
+.frame{width:calc(1600px * var(--s,.5));height:calc(900px * var(--s,.5));
+  scroll-snap-align:center;flex:0 0 auto;position:relative}
+.slide{width:1600px;height:900px;transform:scale(var(--s,.5));transform-origin:0 0;
+  position:relative;overflow:hidden;background:var(--ink);font-size:19px;line-height:1.6}
+.slide.lift{background:
+  radial-gradient(120% 78% at 50% -12%,rgba(255,255,255,.10) 0%,transparent 58%),
+  linear-gradient(to bottom,var(--riser) 0%,var(--ink) 62%)}
+.pad{position:absolute;inset:0;padding:78px 92px;display:flex;flex-direction:column;z-index:2}
+.watermark{position:absolute;z-index:1;pointer-events:none;width:923px;max-width:none;height:auto;
+  opacity:.07;right:-184px;bottom:-74px;filter:blur(8px)}
+
+/* ═══ Type scale ═══ */
+.d1{font-family:var(--display);font-weight:600;font-size:100px;line-height:.97;letter-spacing:-.045em;text-wrap:balance}
+.d2{font-family:var(--display);font-weight:600;font-size:66px;line-height:1.03;letter-spacing:-.038em;text-wrap:balance}
+.d3{font-family:var(--display);font-weight:600;font-size:42px;line-height:1.1;letter-spacing:-.03em;text-wrap:balance}
+.lede{font-size:22.5px;line-height:1.54;color:var(--ash);max-width:25em}
+.body{font-size:18px;line-height:1.62;color:var(--ash)}
+.label{font-family:var(--mono);font-size:13px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:var(--dim)}
+.tag{font-family:var(--mono);font-size:12px;letter-spacing:.13em;text-transform:uppercase;color:var(--faint)}
+
+/* ═══ Liquid glass ═══ */
+.glass{position:relative;background:var(--glass-fill);
+  -webkit-backdrop-filter:var(--blur);backdrop-filter:var(--blur);
+  border:1px solid var(--glass-edge);border-radius:28px;
+  box-shadow:var(--glass-rim),var(--glass-cast)}
+.glass::before{content:'';position:absolute;inset:0;border-radius:inherit;pointer-events:none;
+  background:linear-gradient(160deg,rgba(255,255,255,.11) 0%,rgba(255,255,255,.02) 34%,transparent 62%)}
+.glass > *{position:relative;z-index:1}
+.glass.dense{background-color:rgba(11,12,15,.5)}
+.pill{display:inline-flex;align-items:center;gap:8px;padding:9px 17px;border-radius:999px;
+  background:rgba(255,255,255,.09);
+  -webkit-backdrop-filter:blur(22px) saturate(170%);backdrop-filter:blur(22px) saturate(170%);
+  border:1px solid rgba(255,255,255,.17);box-shadow:inset 0 1px 0 rgba(255,255,255,.26);
+  font-family:var(--mono);font-size:12px;letter-spacing:.13em;text-transform:uppercase;
+  color:rgba(255,255,255,.92);white-space:nowrap}
+.pill.sm{padding:7px 14px;font-size:11px;letter-spacing:.11em}
+.pills{display:flex;gap:10px;flex-wrap:wrap}
+
+/* ═══ Cards and players ═══ */
+.card{position:relative;overflow:hidden;border-radius:20px;
+  border:1px solid rgba(255,255,255,.14);background:#101114;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.10),0 20px 48px rgba(0,0,0,.5)}
+.card > img{width:100%;height:100%;object-fit:cover}
+.player{position:relative;background:#000}
+.player video{width:100%;height:100%;object-fit:cover;display:block}
+.vbar{position:absolute;left:12px;right:12px;bottom:12px;display:flex;align-items:center;gap:12px;
+  padding:9px 13px;border-radius:13px;background:rgba(10,10,12,.62);
+  -webkit-backdrop-filter:blur(26px) saturate(160%);backdrop-filter:blur(26px) saturate(160%);
+  border:1px solid rgba(255,255,255,.16);box-shadow:inset 0 1px 0 rgba(255,255,255,.22);
+  opacity:0;transition:opacity .25s}
+.player:hover .vbar,.player.playing .vbar,.player:focus-within .vbar{opacity:1}
+.vbtn{width:24px;height:24px;flex:0 0 24px;border:0;background:none;cursor:pointer;padding:0;
+  display:flex;align-items:center;justify-content:center}
+.vbtn svg{width:15px;height:15px;fill:rgba(255,255,255,.92)}
+.vtrack{flex:1;height:3px;border-radius:2px;background:rgba(255,255,255,.22);cursor:pointer;position:relative}
+.vtrack i{position:absolute;left:0;top:0;bottom:0;width:0;border-radius:2px;background:#fff}
+.vtime{font-family:var(--mono);font-size:10.5px;letter-spacing:.06em;color:rgba(255,255,255,.8);
+  font-variant-numeric:tabular-nums;white-space:nowrap}
+.vbig{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;border:0;cursor:pointer;
+  background:radial-gradient(circle at 50% 50%,rgba(0,0,0,.42) 0%,rgba(0,0,0,.18) 9%,transparent 22%)}
+.vbig span{width:72px;height:72px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+  background:rgba(255,255,255,.12);
+  -webkit-backdrop-filter:blur(22px) saturate(170%);backdrop-filter:blur(22px) saturate(170%);
+  border:1px solid rgba(255,255,255,.26);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.34),0 12px 40px rgba(0,0,0,.5);
+  transition:background .2s,transform .2s}
+.vbig:hover span,.vbig:focus-visible span{background:rgba(255,255,255,.2);transform:scale(1.05)}
+.vbig span::after{content:'';border-left:21px solid rgba(255,255,255,.95);
+  border-top:13px solid transparent;border-bottom:13px solid transparent;margin-left:6px}
+.vbig.sm span{width:52px;height:52px}
+.vbig.sm span::after{border-left-width:15px;border-top-width:9px;border-bottom-width:9px;margin-left:4px}
+.player.playing .vbig{display:none}
+.vcap{position:absolute;left:14px;top:14px;z-index:2;padding:8px 13px;border-radius:11px;
+  background:rgba(10,10,12,.6);
+  -webkit-backdrop-filter:blur(26px) saturate(150%);backdrop-filter:blur(26px) saturate(150%);
+  border:1px solid rgba(255,255,255,.14);box-shadow:inset 0 1px 0 rgba(255,255,255,.2);
+  font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;
+  color:rgba(255,255,255,.8)}
+.filmlink{display:none}
+.filmnote{display:none}
+/* Caption under a film tile, outside the clipped player box. */
+.tilecap{margin-top:11px}
+.tilecap b{display:block;font-family:var(--display);font-weight:600;font-size:17px;
+  letter-spacing:-.02em;line-height:1.25;color:#fff}
+.tilecap span{display:block;margin-top:4px;font-size:14px;line-height:1.45;color:var(--dim)}
+
+/* ═══ Slate ═══ */
+.slate{position:relative;display:flex;justify-content:space-between;align-items:center;flex:0 0 auto}
+.wm{font-family:var(--display);font-weight:600;font-size:16px;letter-spacing:.3em;text-transform:uppercase;color:var(--paper)}
+.folio{font-variant-numeric:tabular-nums;color:var(--paper);opacity:.85}
+
+/* ═══ Panel interiors ═══ */
+.tile{padding:26px 28px 28px;display:flex;flex-direction:column;gap:9px}
+.tile h3{font-family:var(--display);font-weight:600;font-size:22px;letter-spacing:-.022em;color:#fff}
+.tile p{font-size:15px;line-height:1.6;color:var(--ash)}
+.stat{padding:22px 24px 24px;display:flex;flex-direction:column;gap:5px}
+.stat b{font-family:var(--display);font-weight:600;font-size:44px;letter-spacing:-.04em;line-height:1;
+  font-variant-numeric:tabular-nums;color:#fff}
+.stat span{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--dim)}
+.mini{display:flex;flex-direction:column}
+.mini div{position:relative;padding:6px 0 6px 27px;font-size:15px;line-height:1.45;color:var(--ash)}
+.mini div::before{content:'';position:absolute;left:0;top:12px;width:14px;height:14px;
+  background:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23ffffff' stroke-opacity='0.62' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><circle cx='12' cy='12' r='9'/><path d='M8 12.4l2.7 2.7L16.2 9.5'/></svg>") no-repeat center/contain}
+.mini b{color:#fff;font-weight:600}
+
+/* Logo wall — each mark in its own glass cell */
+.wall{display:grid;grid-template-columns:repeat(6,1fr);gap:14px;flex:1;min-height:0;
+  align-content:center;grid-auto-rows:124px}
+.cell{display:flex;align-items:center;justify-content:center;padding:16px;border-radius:16px;
+  background:rgba(255,255,255,.045);
+  -webkit-backdrop-filter:blur(18px) saturate(150%);backdrop-filter:blur(18px) saturate(150%);
+  border:1px solid rgba(255,255,255,.11);box-shadow:inset 0 1px 0 rgba(255,255,255,.14)}
+.wordmark{font-family:var(--display);font-weight:700;font-size:27px;letter-spacing:.055em;
+  text-transform:uppercase;color:#fff;opacity:.9;white-space:nowrap;line-height:1}
+.cell img{width:auto;max-width:96%;object-fit:contain;filter:brightness(0) invert(1);opacity:.9}
+
+/* Team */
+.crew{display:grid;grid-template-columns:repeat(9,1fr);gap:12px}
+.person{display:flex;flex-direction:column;gap:9px;min-width:0}
+.person .ph{aspect-ratio:1;border-radius:16px;overflow:hidden;
+  border:1px solid rgba(255,255,255,.14);background:#101114;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.1),0 10px 24px rgba(0,0,0,.4)}
+.person .ph img{width:100%;height:100%;object-fit:cover;filter:grayscale(1) contrast(1.05)}
+.person b{font-size:13px;font-weight:600;letter-spacing:-.01em;line-height:1.25;color:#fff}
+.person span{font-family:var(--mono);font-size:9px;letter-spacing:.07em;text-transform:uppercase;color:var(--dim);line-height:1.4}
+
+/* Contact */
+.chan{display:grid;grid-template-columns:130px 1fr;gap:20px;align-items:baseline;
+  border-top:1px solid var(--hair);padding:15px 0}
+.chan:first-child{border-top:0}
+.chan dt{font-family:var(--mono);font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--dim)}
+.chan dd{font-family:var(--display);font-weight:600;font-size:22px;letter-spacing:-.022em}
+.chan a{color:#fff;text-decoration:none;border-bottom:1px solid var(--hair-hi);padding-bottom:2px}
+.chan a:hover,.chan a:focus-visible{border-bottom-color:#fff}
+
+.note{font-family:var(--mono);font-size:11.5px;line-height:1.72;letter-spacing:.04em;color:var(--faint)}
+.rule{height:1px;background:var(--hair);width:100%;flex:0 0 1px}
+:focus-visible{outline:2px solid rgba(255,255,255,.7);outline-offset:3px}
+
+/* ═══ Full-bleed ═══ */
+.bleed{position:absolute;inset:0;z-index:0}
+.bleed img{width:100%;height:100%;object-fit:cover}
+.bleed.push img{transform:scale(1.12)}
+.scrim{position:absolute;inset:0;z-index:1}
+.scrim.even{background:rgba(0,0,0,.4)}
+.scrim.bottom{background:linear-gradient(to bottom,transparent 34%,rgba(0,0,0,.6) 74%,rgba(0,0,0,.88) 100%)}
+
+/* ═══ Chrome ═══ */
+.rail{position:fixed;top:0;left:0;right:0;height:2px;background:rgba(255,255,255,.07);z-index:50}
+.rail i{display:block;height:100%;width:0;background:#fff;transition:width .18s linear}
+.counter{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);z-index:50;
+  display:flex;align-items:center;gap:13px;background:rgba(255,255,255,.08);
+  -webkit-backdrop-filter:blur(26px) saturate(170%);backdrop-filter:blur(26px) saturate(170%);
+  border:1px solid rgba(255,255,255,.16);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.24),0 10px 30px rgba(0,0,0,.5);
+  border-radius:999px;padding:9px 18px;
+  font-family:var(--mono);font-size:11px;letter-spacing:.14em;color:var(--dim)}
+.counter b{color:#fff;font-weight:500;font-variant-numeric:tabular-nums}
+.counter kbd{font-family:var(--mono);font-size:10px;border:1px solid rgba(255,255,255,.2);
+  border-radius:5px;padding:2px 6px;color:rgba(255,255,255,.75)}
+@media (prefers-reduced-motion:reduce){ .rail i{transition:none} }
+@media (max-width:820px){
+  .deck{gap:8px;padding:8px 0 56px}
+  .counter{padding:8px 14px;font-size:10px;gap:9px}
+  .counter kbd{display:none}
+}
+
+/* ═══ Print — 13.333in × 7.5in is the standard 16:9 slide page. Video prints
+   as its poster, so each player becomes a link to the hosted page where it
+   plays. backdrop-filter does not print; glass falls back to a tinted pane.
+   ═══ */
+@media print{
+  @page{size:13.333in 7.5in;margin:0}
+  html,body{background:#000;scroll-snap-type:none}
+  .rail,.counter{display:none}
+  .deck{display:block;gap:0;padding:0}
+  .frame{width:1280px;height:720px;overflow:hidden;page-break-after:always;break-after:page}
+  .frame:last-child{page-break-after:auto;break-after:auto}
+  .slide{transform:scale(.8)!important;transform-origin:0 0}
+  .glass,.pill,.vcap,.vbar,.cell{-webkit-backdrop-filter:none!important;backdrop-filter:none!important}
+  .glass::before{display:none!important}
+  .glass{background:rgba(24,25,28,.9)!important;box-shadow:inset 0 1px 0 rgba(255,255,255,.32)!important}
+  .card,.player{box-shadow:inset 0 1px 0 rgba(255,255,255,.10)!important}
+  .pill{background:rgba(30,31,35,.9)!important;box-shadow:inset 0 1px 0 rgba(255,255,255,.26)!important}
+  .cell{background:rgba(30,31,35,.9)!important}
+  .vcap{background:rgba(10,10,12,.86)!important}
+  .vbar{display:none!important}
+  .filmlink{display:block!important;position:absolute;inset:0;z-index:3}
+  .filmnote{display:block!important;position:absolute;left:14px;bottom:14px;z-index:4;
+    padding:8px 13px;border-radius:11px;background:rgba(10,10,12,.86);
+    border:1px solid rgba(255,255,255,.14);box-shadow:inset 0 1px 0 rgba(255,255,255,.2);
+    font-family:var(--mono);font-size:10.5px;letter-spacing:.13em;text-transform:uppercase;
+    color:rgba(255,255,255,.88)}
+  *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+}
+</style>
+</head>
+<body>
+
+<div class="rail"><i id="railFill"></i></div>
+
+<div class="deck" id="deck">
+
+  <!-- ══════════ 01 — COVER ══════════ -->
+  <div class="frame"><section class="slide">
+    <div class="bleed push"><img src="/bms-examples/img/joby-vertiport-poster.jpg" alt="An electric aircraft on a Manhattan vertiport pad surrounded by press"></div>
+    <div class="scrim even"></div>
+    <div class="scrim bottom"></div>
+    <div class="pad">
+      <div class="slate">
+        <span class="wm">Illusia</span>
+        <span class="pill">NJ / NYC · Worldwide</span>
+      </div>
+      <div class="glass dense" style="margin-top:auto;align-self:flex-start;padding:52px 56px 48px;max-width:1080px">
+        <p class="label" style="margin-bottom:24px;color:rgba(255,255,255,.72)">Prepared for Bristol Myers Squibb — 2026</p>
+        <h1 class="d1" style="text-wrap:normal">Content built<br>for complex<br>environments.</h1>
+        <div class="rule" style="margin:36px 0 26px"></div>
+        <div class="pills">
+          <span class="pill">Experiential</span>
+          <span class="pill">Manufacturing</span>
+          <span class="pill">Enterprise aviation</span>
+        </div>
+      </div>
+    </div>
+  </section></div>
+
+  <!-- ══════════ 02 — THE FIRM ══════════ -->
+  <div class="frame"><section class="slide lift">
+    <img class="watermark" src="/bms-examples/logo/illusia-mark.svg" alt="">
+    <div class="pad">
+      <div class="slate"><span class="wm">Illusia</span><span class="tag">Who we are · <span class="folio">02</span></span></div>
+      <div style="display:grid;grid-template-columns:7fr 5fr;gap:64px;margin-top:62px">
+        <h2 class="d2" style="max-width:13em">A creative production company built for brands operating at enterprise scale.</h2>
+        <div style="display:flex;flex-direction:column;gap:20px;padding-top:8px">
+          <p class="lede" style="max-width:none">
+            We become the content arm of the business — strategy, production and distribution —
+            so the work ships on a schedule rather than a favour.
+          </p>
+          <p class="body">
+            Most of what we shoot happens somewhere difficult: a live premiere with one take at it,
+            a plant floor that cannot stop running, an airfield with a safety officer and a hard
+            window. The three sections that follow are each one of those.
+          </p>
+        </div>
+      </div>
+      <div style="margin-top:auto;display:grid;grid-template-columns:repeat(3,1fr);gap:18px">
+        <div class="glass stat"><b>850M+</b><span>Organic views</span></div>
+        <div class="glass stat"><b>50+</b><span>Active brands</span></div>
+        <div class="glass stat"><b>18</b><span>Full-time crew</span></div>
+      </div>
+    </div>
+  </section></div>
+
+  <!-- ══════════ 03 — HOW WE WORK ══════════ -->
+  <div class="frame"><section class="slide lift">
+    <img class="watermark" src="/bms-examples/logo/illusia-mark.svg" alt="">
+    <div class="pad">
+      <div class="slate"><span class="wm">Illusia</span><span class="tag">How we work · <span class="folio">03</span></span></div>
+      <div style="margin-top:56px">
+        <p class="label" style="margin-bottom:16px">What this looks like in practice</p>
+        <h2 class="d3" style="max-width:22em">One crew that plans the shoot, runs the floor and cuts the film.</h2>
+      </div>
+      <div style="margin-top:auto;display:grid;grid-template-columns:repeat(4,1fr);gap:18px">
+        <div class="glass tile"><h3>Pre-production</h3><p>Site walks, camera-angle plans, interview flow and a media workflow agreed before anyone rolls.</p></div>
+        <div class="glass tile"><h3>Production</h3><p>Small crews that move fast in live, operating and regulated spaces without stopping the work.</p></div>
+        <div class="glass tile"><h3>Post</h3><p>Cut, colour, sound and versioning — hero films down to platform-native social.</p></div>
+        <div class="glass tile"><h3>Delivery</h3><p>Rushed turnarounds where the moment demands it, and organised raw handed back every time.</p></div>
+      </div>
+      <p class="note" style="margin-top:24px">
+        Confidentiality, site-access rules and approval chains are planned for in pre-production, not improvised on the day.
+      </p>
+    </div>
+  </section></div>
+
+  <!-- ══════════ 04 — SECTOR 1 · MOVIE EXPERIENTIAL ══════════ -->
+  <div class="frame" id="experiential"><section class="slide lift">
+    <img class="watermark" src="/bms-examples/logo/illusia-mark.svg" alt="">
+    <div class="pad">
+      <div class="slate"><span class="wm">Illusia</span><span class="tag">Sector 01 · Movie experiential · <span class="folio">04</span></span></div>
+      <div style="display:grid;grid-template-columns:980px 1fr;gap:30px;margin-top:34px;grid-template-rows:551px">
+        <div class="player card" id="p1" style="aspect-ratio:16/9">
+          <a class="filmlink" href="https://illusiaagency.com/bms-examples#experiential" aria-label="Watch the film at illusiaagency.com"></a>
+          <video playsinline preload="none" poster="/bms-examples/img/dwp2-poster.jpg" src="/bms-examples/img/dwp2.mp4"></video>
+          <span class="vcap">The Devil Wears Prada 2 · Premiere</span>
+          <button class="vbig" aria-label="Play The Devil Wears Prada 2 · Premiere"><span></span></button>
+          <div class="vbar">
+            <button class="vbtn" data-play aria-label="Play or pause"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
+            <div class="vtrack"><i></i></div>
+            <span class="vtime">0:00</span>
+          </div>
+          <p class="filmnote">Watch — illusiaagency.com/bms-examples</p>
+        </div>
+        <div class="glass" style="padding:32px 34px;display:flex;flex-direction:column">
+          <p class="label" style="margin-bottom:14px;color:rgba(255,255,255,.72)">Sector 01</p>
+          <h2 class="d3">Movie experiential</h2>
+          <p class="body" style="margin-top:20px;font-size:16px">
+            Studio premieres, installations and press moments — one night, no second take, and a
+            recap expected while the opening is still news.
+          </p>
+          <div class="mini" style="margin-top:auto">
+            <div>Red carpet, talent and press lines</div>
+            <div>Builds and installations, load-in to strike</div>
+            <div>Guest reaction and creator capture</div>
+            <div>Rushed recap cuts and edited stills</div>
+          </div>
+        </div>
+      </div>
+      <div style="margin-top:auto;display:grid;grid-template-columns:repeat(3,1fr);gap:22px">
+        <div class="tilecap"><b>Universal Pictures — The Devil Wears Prada 2</b><span>Premiere coverage, recap film.</span></div>
+        <div class="tilecap"><b>Universal Pictures — The Odyssey</b><span>Installation and premiere across two markets.</span></div>
+        <div class="tilecap"><b>Ready or Not 2 — 4D screening</b><span>Behind the build of a custom screening.</span></div>
+      </div>
+    </div>
+  </section></div>
+
+  <!-- ══════════ 05 — SECTOR 1 · THE FILMS ══════════ -->
+  <div class="frame"><section class="slide lift">
+    <img class="watermark" src="/bms-examples/logo/illusia-mark.svg" alt="">
+    <div class="pad">
+      <div class="slate"><span class="wm">Illusia</span><span class="tag">Movie experiential · The films · <span class="folio">05</span></span></div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-top:40px">
+        <div>
+          <div class="player card" id="p2" style="aspect-ratio:16/9">
+          <a class="filmlink" href="https://illusiaagency.com/bms-examples#experiential" aria-label="Watch the film at illusiaagency.com"></a>
+          <video playsinline preload="none" poster="/bms-examples/img/odyssey-poster.jpg" src="/bms-examples/img/odyssey.mp4"></video>
+          <span class="vcap">The Odyssey · Installation</span>
+          <button class="vbig" aria-label="Play The Odyssey · Installation"><span></span></button>
+          <div class="vbar">
+            <button class="vbtn" data-play aria-label="Play or pause"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
+            <div class="vtrack"><i></i></div>
+            <span class="vtime">0:00</span>
+          </div>
+          <p class="filmnote">Watch — illusiaagency.com/bms-examples</p>
+        </div>
+          <div class="tilecap"><b>The Odyssey</b><span>A sand build in Miami and a Trojan horse through Manhattan — two markets, one campaign.</span></div>
+        </div>
+        <div>
+          <div class="player card" id="p3" style="aspect-ratio:16/9">
+          <a class="filmlink" href="https://illusiaagency.com/bms-examples#experiential" aria-label="Watch the film at illusiaagency.com"></a>
+          <video playsinline preload="none" poster="/bms-examples/img/ron2-bts-poster.jpg" src="/bms-examples/img/ron2-bts.mp4"></video>
+          <span class="vcap">Ready or Not 2 · Build BTS</span>
+          <button class="vbig" aria-label="Play Ready or Not 2 · Build BTS"><span></span></button>
+          <div class="vbar">
+            <button class="vbtn" data-play aria-label="Play or pause"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
+            <div class="vtrack"><i></i></div>
+            <span class="vtime">0:00</span>
+          </div>
+          <p class="filmnote">Watch — illusiaagency.com/bms-examples</p>
+        </div>
+          <div class="tilecap"><b>Ready or Not 2 — behind the 4D screening</b><span>The build, the dry run and the effects rig, cut as its own film.</span></div>
+        </div>
+      </div>
+      <div style="margin-top:auto;display:grid;grid-template-columns:repeat(4,1fr);gap:18px">
+        <div class="glass stat"><b>14</b><span>Cameras, 4D screening</span></div>
+        <div class="glass stat"><b>2</b><span>Markets, one campaign</span></div>
+        <div class="glass stat"><b>24h</b><span>Typical recap turnaround</span></div>
+        <div class="glass stat"><b>8h</b><span>Raw to studio after wrap</span></div>
+      </div>
+    </div>
+  </section></div>
+
+  <!-- ══════════ 06 — SECTOR 2 · MANUFACTURING ══════════
+       The intro and the films share one slide: the copy alone left half the
+       frame empty, and the four cuts are the argument anyway. -->
+  <div class="frame" id="manufacturing"><section class="slide lift">
+    <img class="watermark" src="/bms-examples/logo/illusia-mark.svg" alt="">
+    <div class="pad">
+      <div class="slate"><span class="wm">Illusia</span><span class="tag">Sector 02 · Manufacturing at scale · <span class="folio">06</span></span></div>
+
+      <div style="display:grid;grid-template-columns:4.6fr 7.4fr;gap:54px;margin-top:auto;margin-bottom:auto;align-items:start">
+        <div>
+          <p class="label" style="margin-bottom:16px">Sector 02</p>
+          <h2 class="d2" style="max-width:9em">Manufacturing at scale.</h2>
+          <p class="lede" style="margin-top:24px;font-size:20px">
+            Hatteras is a nine-figure commercial print manufacturer. We work its floor as an
+            ongoing programme — presses running, people working, nothing staged.
+          </p>
+          <div class="mini" style="margin-top:26px">
+            <div><b>A floor that does not stop.</b> We shoot around production, not through it.</div>
+            <div><b>Technical work made legible.</b> Presses and finishing, explained to outsiders.</div>
+            <div><b>The people on the line.</b> Operators on camera, not just machines.</div>
+          </div>
+        </div>
+
+        <div>
+          <p class="label" style="margin-bottom:16px">Social-first, shot vertical on the floor</p>
+          <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:18px">
+        <div>
+          <div class="player card" id="p4" style="aspect-ratio:9/16">
+            <a class="filmlink" href="https://illusiaagency.com/bms-examples#manufacturing" aria-label="Watch the film at illusiaagency.com"></a>
+            <video playsinline preload="none" poster="/bms-examples/img/hat-team-poster.jpg" src="/bms-examples/img/hat-team.mp4"></video>
+            <span class="vcap">The floor</span>
+            <button class="vbig sm" aria-label="Play Hatteras · The floor"><span></span></button>
+            <div class="vbar">
+              <button class="vbtn" data-play aria-label="Play or pause"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
+              <div class="vtrack"><i></i></div>
+              <span class="vtime">0:00</span>
+            </div>
+            <p class="filmnote">Watch — illusiaagency.com/bms-examples</p>
+          </div>
+          <div class="tilecap"><b>Team Hatteras</b><span>The presses, at their own scale.</span></div>
+        </div>
+        <div>
+          <div class="player card" id="p5" style="aspect-ratio:9/16">
+            <a class="filmlink" href="https://illusiaagency.com/bms-examples#manufacturing" aria-label="Watch the film at illusiaagency.com"></a>
+            <video playsinline preload="none" poster="/bms-examples/img/hat-speedmaster-poster.jpg" src="/bms-examples/img/hat-speedmaster.mp4"></video>
+            <span class="vcap">Press check</span>
+            <button class="vbig sm" aria-label="Play Hatteras · Press check"><span></span></button>
+            <div class="vbar">
+              <button class="vbtn" data-play aria-label="Play or pause"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
+              <div class="vtrack"><i></i></div>
+              <span class="vtime">0:00</span>
+            </div>
+            <p class="filmnote">Watch — illusiaagency.com/bms-examples</p>
+          </div>
+          <div class="tilecap"><b>Speedmaster</b><span>A press check, start to sheet.</span></div>
+        </div>
+        <div>
+          <div class="player card" id="p6" style="aspect-ratio:9/16">
+            <a class="filmlink" href="https://illusiaagency.com/bms-examples#manufacturing" aria-label="Watch the film at illusiaagency.com"></a>
+            <video playsinline preload="none" poster="/bms-examples/img/hat-skit-poster.jpg" src="/bms-examples/img/hat-skit.mp4"></video>
+            <span class="vcap">Culture</span>
+            <button class="vbig sm" aria-label="Play Hatteras · Culture"><span></span></button>
+            <div class="vbar">
+              <button class="vbtn" data-play aria-label="Play or pause"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
+              <div class="vtrack"><i></i></div>
+              <span class="vtime">0:00</span>
+            </div>
+            <p class="filmnote">Watch — illusiaagency.com/bms-examples</p>
+          </div>
+          <div class="tilecap"><b>New vs Old</b><span>Culture piece, cast from staff.</span></div>
+        </div>
+        <div>
+          <div class="player card" id="p7" style="aspect-ratio:9/16">
+            <a class="filmlink" href="https://illusiaagency.com/bms-examples#manufacturing" aria-label="Watch the film at illusiaagency.com"></a>
+            <video playsinline preload="none" poster="/bms-examples/img/hat-hyper-poster.jpg" src="/bms-examples/img/hat-hyper.mp4"></video>
+            <span class="vcap">Craft</span>
+            <button class="vbig sm" aria-label="Play Hatteras · Craft"><span></span></button>
+            <div class="vbar">
+              <button class="vbtn" data-play aria-label="Play or pause"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
+              <div class="vtrack"><i></i></div>
+              <span class="vtime">0:00</span>
+            </div>
+            <p class="filmnote">Watch — illusiaagency.com/bms-examples</p>
+          </div>
+          <div class="tilecap"><b>Hyper edit</b><span>Print history to present day.</span></div>
+        </div>
+          </div>
+        </div>
+      </div>
+
+      <p class="note" style="margin-top:0">
+        The same conditions as a regulated production environment: restricted access, live equipment, and people who have a job to do while you film them.
+      </p>
+    </div>
+  </section></div>
+
+  <!-- ══════════ 08 — SECTOR 3 · ENTERPRISE AVIATION ══════════ -->
+  <div class="frame" id="aviation"><section class="slide lift">
+    <img class="watermark" src="/bms-examples/logo/illusia-mark.svg" alt="">
+    <div class="pad">
+      <div class="slate"><span class="wm">Illusia</span><span class="tag">Sector 03 · Enterprise aviation · <span class="folio">07</span></span></div>
+      <div style="display:grid;grid-template-columns:980px 1fr;gap:30px;margin-top:34px;grid-template-rows:551px">
+        <div class="player card" id="p8" style="aspect-ratio:16/9">
+          <a class="filmlink" href="https://illusiaagency.com/bms-examples#aviation" aria-label="Watch the film at illusiaagency.com"></a>
+          <video playsinline preload="none" poster="/bms-examples/img/joby-texas-poster.jpg" src="/bms-examples/img/joby-texas.mp4"></video>
+          <span class="vcap">Joby Aviation · Flight operations</span>
+          <button class="vbig sm" aria-label="Play Joby Aviation · Flight operations"><span></span></button>
+          <div class="vbar">
+            <button class="vbtn" data-play aria-label="Play or pause"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
+            <div class="vtrack"><i></i></div>
+            <span class="vtime">0:00</span>
+          </div>
+          <p class="filmnote">Watch — illusiaagency.com/bms-examples</p>
+        </div>
+        <div class="glass" style="padding:32px 34px;display:flex;flex-direction:column">
+          <p class="label" style="margin-bottom:14px;color:rgba(255,255,255,.72)">Sector 03</p>
+          <h2 class="d3">Enterprise aviation</h2>
+          <p class="body" style="margin-top:20px;font-size:16px">
+            BLADE and Joby — aircraft, crews and airfields, filmed inside the rules that govern
+            them, with executives and regulators in the room.
+          </p>
+          <div class="mini" style="margin-top:auto">
+            <div>Airside access and safety briefings</div>
+            <div>Flight operations and ground crew</div>
+            <div>Executive, partner and press moments</div>
+            <div>Hero films and platform-native cutdowns</div>
+          </div>
+        </div>
+      </div>
+      <div style="margin-top:auto;display:grid;grid-template-columns:repeat(3,1fr);gap:22px">
+        <div class="tilecap"><b>Joby Aviation — flight operations</b><span>Ground crew, pre-flight and the aircraft working.</span></div>
+        <div class="tilecap"><b>Joby — Manhattan vertiport</b><span>A public first-flight moment with press on the pad.</span></div>
+        <div class="tilecap"><b>BLADE — brand and partnership</b><span>Fleet films and the US Open air experience.</span></div>
+      </div>
+    </div>
+  </section></div>
+
+  <!-- ══════════ 09 — SECTOR 3 · THE FILMS ══════════ -->
+  <div class="frame"><section class="slide lift">
+    <div class="pad">
+      <div class="slate"><span class="wm">Illusia</span><span class="tag">Enterprise aviation · The films · <span class="folio">08</span></span></div>
+      <div style="display:grid;grid-template-columns:8fr 2.5fr 2.5fr;gap:24px;margin-top:auto;margin-bottom:auto;align-items:start">
+        <div>
+          <div class="player card" id="p9" style="aspect-ratio:16/9">
+          <a class="filmlink" href="https://illusiaagency.com/bms-examples#aviation" aria-label="Watch the film at illusiaagency.com"></a>
+          <video playsinline preload="none" poster="/bms-examples/img/joby-vertiport-poster.jpg" src="/bms-examples/img/joby-vertiport.mp4"></video>
+          <span class="vcap">Joby · Manhattan vertiport</span>
+          <button class="vbig sm" aria-label="Play Joby · Manhattan vertiport"><span></span></button>
+          <div class="vbar">
+            <button class="vbtn" data-play aria-label="Play or pause"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
+            <div class="vtrack"><i></i></div>
+            <span class="vtime">0:00</span>
+          </div>
+          <p class="filmnote">Watch — illusiaagency.com/bms-examples</p>
+        </div>
+          <div class="tilecap"><b>Joby — Manhattan vertiport</b><span>The first electric air taxi flight over Manhattan, covered live with press on the pad.</span></div>
+        </div>
+        <div>
+          <div class="player card" id="p10" style="aspect-ratio:9/16">
+          <a class="filmlink" href="https://illusiaagency.com/bms-examples#aviation" aria-label="Watch the film at illusiaagency.com"></a>
+          <video playsinline preload="none" poster="/bms-examples/img/blade-aero-poster.jpg" src="/bms-examples/img/blade-aero.mp4"></video>
+          <span class="vcap">BLADE · Fleet</span>
+          <button class="vbig sm" aria-label="Play BLADE · Fleet"><span></span></button>
+          <div class="vbar">
+            <button class="vbtn" data-play aria-label="Play or pause"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
+            <div class="vtrack"><i></i></div>
+            <span class="vtime">0:00</span>
+          </div>
+          <p class="filmnote">Watch — illusiaagency.com/bms-examples</p>
+        </div>
+          <div class="tilecap"><b>BLADE One</b><span>Fleet and livery film.</span></div>
+        </div>
+        <div>
+          <div class="player card" id="p11" style="aspect-ratio:9/16">
+          <a class="filmlink" href="https://illusiaagency.com/bms-examples#aviation" aria-label="Watch the film at illusiaagency.com"></a>
+          <video playsinline preload="none" poster="/bms-examples/img/blade-usopen-poster.jpg" src="/bms-examples/img/blade-usopen.mp4"></video>
+          <span class="vcap">BLADE · US Open</span>
+          <button class="vbig sm" aria-label="Play BLADE · US Open"><span></span></button>
+          <div class="vbar">
+            <button class="vbtn" data-play aria-label="Play or pause"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
+            <div class="vtrack"><i></i></div>
+            <span class="vtime">0:00</span>
+          </div>
+          <p class="filmnote">Watch — illusiaagency.com/bms-examples</p>
+        </div>
+          <div class="tilecap"><b>US Open air experience</b><span>Partnership activation.</span></div>
+        </div>
+      </div>
+    </div>
+  </section></div>
+
+  <!-- ══════════ 10 — CLIENTS ══════════ -->
+  <div class="frame"><section class="slide lift">
+    <div class="pad">
+      <div class="slate"><span class="wm">Illusia</span><span class="tag">Selected clients · <span class="folio">09</span></span></div>
+      <p class="label" style="margin-top:28px;margin-bottom:22px">Studios, operators, manufacturers and brands</p>
+      <div class="wall">
+        <div class="cell"><img src="/bms-examples/logo/disney.svg" alt=""></div>
+        <div class="cell"><img src="/bms-examples/logo/netflix.svg" alt=""></div>
+        <div class="cell"><img src="/bms-examples/logo/hulu.png" alt=""></div>
+        <div class="cell"><img src="/bms-examples/logo/polymarket.png" alt=""></div>
+        <div class="cell"><img src="/bms-examples/logo/searchlight.png" alt=""></div>
+        <div class="cell"><img src="/bms-examples/logo/blade.png" alt=""></div>
+        <div class="cell"><img src="/bms-examples/logo/joby.png" alt=""></div>
+        <div class="cell"><img src="/bms-examples/logo/prada.png" alt=""></div>
+        <div class="cell"><img src="/bms-examples/logo/authentic.png" alt=""></div>
+        <div class="cell"><img src="/bms-examples/logo/whp.png" alt=""></div>
+        <div class="cell"><img src="/bms-examples/logo/ford.png" alt=""></div>
+        <div class="cell"><img src="/bms-examples/logo/topps.png" alt=""></div>
+        <div class="cell"><img src="/bms-examples/logo/champion.png" alt=""></div>
+        <div class="cell"><img src="/bms-examples/logo/tyson.svg" alt=""></div>
+        <div class="cell"><img src="/bms-examples/logo/lifetime.png" alt=""></div>
+        <div class="cell"><img src="/bms-examples/logo/wwe.png" alt=""></div>
+        <div class="cell"><img src="/bms-examples/logo/esc.png" alt=""></div>
+        <div class="cell"><span class="wordmark">Lionsgate</span></div>
+      </div>
+    </div>
+  </section></div>
+
+  <!-- ══════════ 11 — THE TEAM ══════════ -->
+  <div class="frame"><section class="slide lift">
+    <div class="pad">
+      <div class="slate"><span class="wm">Illusia</span><span class="tag">The team · <span class="folio">10</span></span></div>
+      <div style="margin-top:auto">
+        <h2 class="d3" style="max-width:24em">Eighteen full-time — the same people plan the shoot and cut the film.</h2>
+        <p class="body" style="margin-top:18px;max-width:46em">
+          No freelance bench assembled per job: the crew that walks the site is the crew that
+          shoots it and the crew that cuts it, which is why the schedule holds.
+        </p>
+      </div>
+      <div class="crew" style="margin-top:44px;margin-bottom:auto">
+        <div class="person"><div class="ph"><img src="/bms-examples/team/parker.jpg" alt=""></div><b>Parker Russo</b><span>Co-Founder, CEO</span></div>
+        <div class="person"><div class="ph"><img src="/bms-examples/team/danny.jpg" alt=""></div><b>Danny Drew</b><span>Co-Founder, Dir. Videography</span></div>
+        <div class="person"><div class="ph"><img src="/bms-examples/team/frank.jpg" alt=""></div><b>Frank Bonilla</b><span>Managing Dir., Exec Producer</span></div>
+        <div class="person"><div class="ph"><img src="/bms-examples/team/jack-v2.jpg" alt=""></div><b>Jack Masella</b><span>Exec Producer, Videographer</span></div>
+        <div class="person"><div class="ph"><img src="/bms-examples/team/chris.jpg" alt=""></div><b>Chris Corradino</b><span>Lead Director, Videographer</span></div>
+        <div class="person"><div class="ph"><img src="/bms-examples/team/brian.jpg" alt=""></div><b>Brian Kohn</b><span>Head of Ops &amp; Client Strategy</span></div>
+        <div class="person"><div class="ph"><img src="/bms-examples/team/brendan.jpg" alt=""></div><b>Brendan Yasuk</b><span>Head of Pre-Pro Strategy</span></div>
+        <div class="person"><div class="ph"><img src="/bms-examples/team/kevin.jpg" alt=""></div><b>Kevin Drew</b><span>Podcast Production Mgr.</span></div>
+        <div class="person"><div class="ph"><img src="/bms-examples/team/jordin.jpg" alt=""></div><b>Jordin Hugger</b><span>Content &amp; Brand Coordinator</span></div>
+        <div class="person"><div class="ph"><img src="/bms-examples/team/juice.jpg" alt=""></div><b>&quot;Juice&quot; Sherard</b><span>Videographer, Editor</span></div>
+        <div class="person"><div class="ph"><img src="/bms-examples/team/cory.jpg" alt=""></div><b>Cory Morales</b><span>Videographer, Editor</span></div>
+        <div class="person"><div class="ph"><img src="/bms-examples/team/lecky-v2.jpg" alt=""></div><b>Alex &quot;Lecky&quot; Harford</b><span>Videographer</span></div>
+        <div class="person"><div class="ph"><img src="/bms-examples/team/tony.jpg" alt=""></div><b>Anthony Densieski</b><span>Editor, Videographer</span></div>
+        <div class="person"><div class="ph"><img src="/bms-examples/team/joe.jpg" alt=""></div><b>Joe Gervase</b><span>Editor</span></div>
+        <div class="person"><div class="ph"><img src="/bms-examples/team/nolan.jpg" alt=""></div><b>Nolan Mariziti</b><span>Editor</span></div>
+        <div class="person"><div class="ph"><img src="/bms-examples/team/kiley-v2.jpg" alt=""></div><b>Kiley Baker</b><span>Social Media Manager</span></div>
+        <div class="person"><div class="ph"><img src="/bms-examples/team/jason.jpg" alt=""></div><b>Jason Keats</b><span>Social Media Manager</span></div>
+        <div class="person"><div class="ph"><img src="/bms-examples/team/sofia-v2.jpg" alt=""></div><b>Sofia Lynn</b><span>Social Media Manager</span></div>
+      </div>
+    </div>
+  </section></div>
+
+  <!-- ══════════ 12 — START HERE ══════════ -->
+  <div class="frame"><section class="slide lift">
+    <img class="watermark" src="/bms-examples/logo/illusia-mark.svg" alt="">
+    <div class="pad">
+      <div class="slate"><span class="wm">Illusia</span><span class="tag">Next step · <span class="folio">11</span></span></div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:26px;margin-top:44px;flex:1;min-height:0">
+        <div class="glass" style="padding:48px 50px 44px;display:flex;flex-direction:column">
+          <h2 class="d2">Let's scope the first one.</h2>
+          <p class="lede" style="margin-top:26px">
+            The fastest way in is a single defined piece — one site, one film — so the working
+            relationship gets tested before anything larger is committed to.
+          </p>
+          <dl style="margin-top:auto;padding-top:32px">
+            <div class="chan"><dt>Email</dt><dd><a href="mailto:parker@illusiaagency.com">parker@illusiaagency.com</a></dd></div>
+            <div class="chan"><dt>Web</dt><dd><a href="https://illusiaagency.com">illusiaagency.com</a></dd></div>
+            <div class="chan"><dt>Instagram</dt><dd><a href="https://instagram.com/illusiaagency">@illusiaagency</a></dd></div>
+          </dl>
+        </div>
+        <div class="glass" style="padding:44px 46px 40px;display:flex;flex-direction:column">
+          <p class="label" style="margin-bottom:20px;color:rgba(255,255,255,.72)">What we'd need to scope it</p>
+          <div class="mini">
+            <div><b>The site and the window</b> — where, and what it takes to get a camera in</div>
+            <div><b>Who appears</b> — staff, executives, external talent, and who approves</div>
+            <div><b>The deliverable</b> — what has to exist when we leave</div>
+            <div><b>Where it runs</b> — internal, recruiting, social, paid, or press</div>
+            <div><b>Review and approvals</b> — who signs off, and how long that takes</div>
+          </div>
+          <p class="tag" style="margin-top:auto;padding-top:22px">Typical lead time: 2–3 weeks. Faster when the date demands it.</p>
+        </div>
+      </div>
+    </div>
+  </section></div>
+
+</div>
+
+<div class="counter">Slide <b id="cur">01</b> / <b id="tot">11</b> <kbd>↑</kbd><kbd>↓</kbd></div>
+
+<script>
+(function(){
+  var frames = Array.prototype.slice.call(document.querySelectorAll('.frame'));
+  var railFill = document.getElementById('railFill');
+  var cur = document.getElementById('cur');
+  document.getElementById('tot').textContent = String(frames.length).padStart(2,'0');
+
+  // One scale factor drives the deck: the 1600×900 stage is authored at true
+  // size and scaled down to whatever the viewport allows.
+  function fit(){
+    var s = window.innerWidth < 820
+      ? Math.min((window.innerWidth - 16)/1600, (window.innerHeight - 72)/900)
+      : Math.min((window.innerWidth - 28)/1600, (window.innerHeight - 96)/900);
+    document.documentElement.style.setProperty('--s', Math.max(s, 0.12));
+  }
+  fit();
+  window.addEventListener('resize', fit);
+
+  function active(){
+    var mid = window.innerHeight/2, best = 0, bestD = Infinity;
+    frames.forEach(function(f,i){
+      var r = f.getBoundingClientRect();
+      var d = Math.abs(r.top + r.height/2 - mid);
+      if(d < bestD){ bestD = d; best = i; }
+    });
+    return best;
+  }
+  function sync(){
+    var i = active();
+    cur.textContent = String(i+1).padStart(2,'0');
+    railFill.style.width = ((i+1)/frames.length*100) + '%';
+  }
+  sync();
+
+  var ticking = false;
+  window.addEventListener('scroll', function(){
+    if(ticking) return;
+    ticking = true;
+    requestAnimationFrame(function(){ sync(); ticking = false; });
+  }, {passive:true});
+
+  // scrollIntoView is unreliable when the document lands in quirks mode (as it
+  // does when this file is opened straight off disk), so page by offset.
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function go(n){
+    n = Math.max(0, Math.min(frames.length-1, n));
+    var f = frames[n];
+    var top = f.offsetTop - Math.max(0, (window.innerHeight - f.offsetHeight)/2);
+    window.scrollTo({top: top, behavior: reduce ? 'auto' : 'smooth'});
+  }
+  function fromHash(){
+    if(!location.hash) return;
+    var el = document.querySelector(location.hash);
+    if(!el) return;
+    var i = frames.indexOf(el);
+    if(i > -1) setTimeout(function(){ go(i); }, 60);
+  }
+  fromHash();
+  window.addEventListener('hashchange', fromHash);
+
+  document.addEventListener('keydown', function(e){
+    if(e.metaKey || e.ctrlKey || e.altKey) return;
+    if(/^(INPUT|TEXTAREA)$/.test((e.target.tagName||''))) return;
+    var k = e.key;
+    if(k==='ArrowDown' || k==='ArrowRight' || k==='PageDown' || k===' '){ e.preventDefault(); go(active()+1); }
+    else if(k==='ArrowUp' || k==='ArrowLeft' || k==='PageUp'){ e.preventDefault(); go(active()-1); }
+    else if(k==='Home'){ e.preventDefault(); go(0); }
+    else if(k==='End'){ e.preventDefault(); go(frames.length-1); }
+  });
+})();
+</script>
+
+<script>
+/* ── Players ──
+   One behaviour shared by every .player on the deck: press the poster to
+   start, scrub on the bar, and starting one stops the others so two
+   soundtracks can never run at once. */
+(function(){
+  var PLAY = 'M8 5v14l11-7z';
+  var PAUSE = 'M6 5h4v14H6zM14 5h4v14h-4z';
+  var all = Array.prototype.slice.call(document.querySelectorAll('.player'));
+
+  function fmt(t){
+    if(!isFinite(t)) return '0:00';
+    var m = Math.floor(t/60), s = Math.floor(t%60);
+    return m + ':' + (s<10?'0':'') + s;
+  }
+
+  all.forEach(function(wrap){
+    var v = wrap.querySelector('video');
+    var big = wrap.querySelector('.vbig');
+    var btn = wrap.querySelector('[data-play]');
+    var path = btn.querySelector('path');
+    var track = wrap.querySelector('.vtrack');
+    var fill = track.querySelector('i');
+    var time = wrap.querySelector('.vtime');
+
+    function toggle(){
+      if(v.paused){
+        all.forEach(function(o){ if(o !== wrap) o.querySelector('video').pause(); });
+        v.play();
+      } else { v.pause(); }
+    }
+    big.addEventListener('click', toggle);
+    btn.addEventListener('click', toggle);
+
+    v.addEventListener('play', function(){ wrap.classList.add('playing'); path.setAttribute('d', PAUSE); });
+    v.addEventListener('pause', function(){ path.setAttribute('d', PLAY); });
+    v.addEventListener('ended', function(){
+      wrap.classList.remove('playing'); path.setAttribute('d', PLAY); v.currentTime = 0;
+    });
+    v.addEventListener('timeupdate', function(){
+      var d = v.duration;
+      fill.style.width = (d ? (v.currentTime/d*100) : 0) + '%';
+      time.textContent = fmt(v.currentTime);
+    });
+
+    track.addEventListener('click', function(e){
+      var r = track.getBoundingClientRect();
+      var p = Math.min(Math.max((e.clientX - r.left)/r.width, 0), 1);
+      if(v.duration) v.currentTime = p * v.duration;
+    });
+  });
+})();
+</script>
+
+</body>
+</html>
