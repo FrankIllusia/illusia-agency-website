@@ -152,6 +152,24 @@ img{display:block;max-width:100%}
   background:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23ffffff' stroke-opacity='0.62' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><circle cx='12' cy='12' r='9'/><path d='M8 12.4l2.7 2.7L16.2 9.5'/></svg>") no-repeat center/contain}
 .mini b{color:#fff;font-weight:600}
 
+/* ═══ Process rail — the four stages as one continuous line ═══
+   The rail is drawn per step and bled across the gap so it reads unbroken,
+   with a node at each stage and the step number sitting above it. */
+.flow{display:grid;grid-template-columns:repeat(4,1fr);gap:44px}
+.step{position:relative;padding-top:56px}
+.step .n{position:absolute;top:0;left:0;font-family:var(--mono);font-size:13px;
+  font-weight:500;letter-spacing:.2em;color:var(--faint)}
+.step::before{content:'';position:absolute;top:38px;left:0;right:-44px;height:1px;background:var(--hair-hi)}
+.step:last-child::before{right:0}
+.step::after{content:'';position:absolute;top:34px;left:0;width:9px;height:9px;border-radius:50%;
+  background:#fff;box-shadow:0 0 0 4px rgba(0,0,0,.9)}
+.step h3{font-family:var(--display);font-weight:600;font-size:25px;letter-spacing:-.024em;color:#fff}
+.step p{margin-top:12px;font-size:15px;line-height:1.55;color:var(--ash)}
+.step .out{margin-top:18px;padding-top:14px;border-top:1px solid var(--hair);
+  font-family:var(--mono);font-size:11.5px;line-height:1.6;letter-spacing:.06em;
+  text-transform:uppercase;color:var(--dim)}
+.step .out b{display:block;color:rgba(255,255,255,.85);font-weight:500;margin-bottom:4px}
+
 /* Logo wall — each mark in its own glass cell */
 .wall{display:grid;grid-template-columns:repeat(6,1fr);gap:14px;flex:1;min-height:0;
   align-content:center;grid-auto-rows:142px}
@@ -316,22 +334,55 @@ img{display:block;max-width:100%}
     </div>
   </section></div>
 
-  <!-- ══════════ 03 — HOW WE WORK ══════════ -->
+  <!-- ══════════ 03 — HOW WE WORK ══════════
+       Four cards in a row read as four unrelated capabilities. The same four
+       on a numbered rail read as one sequence with a handoff at each node —
+       which is the actual claim the slide is making. -->
   <div class="frame"><section class="slide lift">
     <img class="watermark" src="/bms-examples/logo/illusia-mark.svg" alt="">
     <div class="pad">
       <div class="slate"><span class="wm">Illusia</span><span class="tag">How we work · <span class="folio">03</span></span></div>
-      <div style="margin-top:56px">
-        <p class="label" style="margin-bottom:16px">What this looks like in practice</p>
-        <h2 class="d3" style="max-width:22em">One crew that plans the shoot, runs the floor and cuts the film.</h2>
+
+      <div style="display:grid;grid-template-columns:6fr 6fr;gap:64px;margin-top:40px;align-items:start">
+        <div>
+          <p class="label" style="margin-bottom:16px">What this looks like in practice</p>
+          <h2 class="d2" style="font-size:58px">One crew, start to finish.</h2>
+        </div>
+        <p class="body" style="padding-top:38px">
+          The same team walks the site, shoots it and cuts it. Nothing is handed to a freelance
+          bench halfway through — which is why the schedule holds, and why a restricted site
+          stays comfortable with who is in the room on day three.
+        </p>
       </div>
-      <div style="margin-top:auto;display:grid;grid-template-columns:repeat(4,1fr);gap:18px">
-        <div class="glass tile"><h3>Pre-production</h3><p>Site walks, camera-angle plans, interview flow and a media workflow agreed before anyone rolls.</p></div>
-        <div class="glass tile"><h3>Production</h3><p>Small crews that move fast in live, operating and regulated spaces without stopping the work.</p></div>
-        <div class="glass tile"><h3>Post</h3><p>Cut, colour, sound and versioning — hero films down to platform-native social.</p></div>
-        <div class="glass tile"><h3>Delivery</h3><p>Rushed turnarounds where the moment demands it, and organised raw handed back every time.</p></div>
+
+      <div class="flow" style="margin-top:auto;margin-bottom:auto">
+        <div class="step">
+          <span class="n">01</span>
+          <h3>Pre-production</h3>
+          <p>Site walks, camera-angle plans, interview flow and a media workflow agreed before anyone rolls.</p>
+          <p class="out"><b>You get</b>Shot plan · access list · approval chain</p>
+        </div>
+        <div class="step">
+          <span class="n">02</span>
+          <h3>Production</h3>
+          <p>Small crews that move fast in live, operating and regulated spaces without stopping the work.</p>
+          <p class="out"><b>You get</b>Covered footage · backed up on site</p>
+        </div>
+        <div class="step">
+          <span class="n">03</span>
+          <h3>Post</h3>
+          <p>Cut, colour, sound and versioning — hero films down to platform-native social.</p>
+          <p class="out"><b>You get</b>Hero film · platform versions</p>
+        </div>
+        <div class="step">
+          <span class="n">04</span>
+          <h3>Delivery</h3>
+          <p>Rushed turnarounds where the moment demands it, and organised raw handed back every time.</p>
+          <p class="out"><b>You get</b>Final files · organised, labelled raw</p>
+        </div>
       </div>
-      <p class="note" style="margin-top:24px">
+
+      <p class="note">
         Confidentiality, site-access rules and approval chains are planned for in pre-production, not improvised on the day.
       </p>
     </div>
