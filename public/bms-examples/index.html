@@ -154,14 +154,19 @@ img{display:block;max-width:100%}
 
 /* Logo wall — each mark in its own glass cell */
 .wall{display:grid;grid-template-columns:repeat(6,1fr);gap:14px;flex:1;min-height:0;
-  align-content:center;grid-auto-rows:124px}
+  align-content:center;grid-auto-rows:142px}
 .cell{display:flex;align-items:center;justify-content:center;padding:16px;border-radius:16px;
   background:rgba(255,255,255,.045);
   -webkit-backdrop-filter:blur(18px) saturate(150%);backdrop-filter:blur(18px) saturate(150%);
   border:1px solid rgba(255,255,255,.11);box-shadow:inset 0 1px 0 rgba(255,255,255,.14)}
 .wordmark{font-family:var(--display);font-weight:700;font-size:27px;letter-spacing:.055em;
   text-transform:uppercase;color:#fff;opacity:.9;white-space:nowrap;line-height:1}
-.cell img{width:auto;max-width:96%;object-fit:contain;filter:brightness(0) invert(1);opacity:.9}
+/* Both axes are capped. Without a height limit a square mark (ESC, WWE) takes
+   96% of the cell's WIDTH as its height and spills out of the row; the wide
+   wordmarks never hit that because width governs them first. 70% also keeps a
+   square mark optically comparable to a wordmark rather than twice its size. */
+.cell img{width:auto;height:auto;max-width:92%;max-height:70%;
+  object-fit:contain;filter:brightness(0) invert(1);opacity:.9}
 
 /* Team */
 .crew{display:grid;grid-template-columns:repeat(9,1fr);gap:12px}
@@ -638,23 +643,23 @@ img{display:block;max-width:100%}
       <div class="slate"><span class="wm">Illusia</span><span class="tag">Selected clients · <span class="folio">09</span></span></div>
       <p class="label" style="margin-top:28px;margin-bottom:22px">Studios, operators, manufacturers and brands</p>
       <div class="wall">
-        <div class="cell"><img src="/bms-examples/logo/disney.svg" alt=""></div>
-        <div class="cell"><img src="/bms-examples/logo/netflix.svg" alt=""></div>
-        <div class="cell"><img src="/bms-examples/logo/hulu.png" alt=""></div>
-        <div class="cell"><img src="/bms-examples/logo/polymarket.png" alt=""></div>
-        <div class="cell"><img src="/bms-examples/logo/searchlight.png" alt=""></div>
-        <div class="cell"><img src="/bms-examples/logo/blade.png" alt=""></div>
-        <div class="cell"><img src="/bms-examples/logo/joby.png" alt=""></div>
-        <div class="cell"><img src="/bms-examples/logo/prada.png" alt=""></div>
-        <div class="cell"><img src="/bms-examples/logo/authentic.png" alt=""></div>
-        <div class="cell"><img src="/bms-examples/logo/whp.png" alt=""></div>
-        <div class="cell"><img src="/bms-examples/logo/ford.png" alt=""></div>
-        <div class="cell"><img src="/bms-examples/logo/topps.png" alt=""></div>
-        <div class="cell"><img src="/bms-examples/logo/champion.png" alt=""></div>
-        <div class="cell"><img src="/bms-examples/logo/tyson.svg" alt=""></div>
-        <div class="cell"><img src="/bms-examples/logo/lifetime.png" alt=""></div>
-        <div class="cell"><img src="/bms-examples/logo/wwe.png" alt=""></div>
-        <div class="cell"><img src="/bms-examples/logo/esc.png" alt=""></div>
+        <div class="cell"><img style="height:38px" src="/bms-examples/logo/disney.svg" alt=""></div>
+        <div class="cell"><img style="height:38px" src="/bms-examples/logo/netflix.svg" alt=""></div>
+        <div class="cell"><img style="height:55px" src="/bms-examples/logo/hulu.png" alt=""></div>
+        <div class="cell"><img style="height:38px" src="/bms-examples/logo/polymarket.png" alt=""></div>
+        <div class="cell"><img style="height:38px" src="/bms-examples/logo/searchlight.png" alt=""></div>
+        <div class="cell"><img style="height:23px" src="/bms-examples/logo/blade.png" alt=""></div>
+        <div class="cell"><img style="height:38px" src="/bms-examples/logo/joby.png" alt=""></div>
+        <div class="cell"><img style="height:23px" src="/bms-examples/logo/prada.png" alt=""></div>
+        <div class="cell"><img style="height:39px" src="/bms-examples/logo/authentic.png" alt=""></div>
+        <div class="cell"><img style="height:23px" src="/bms-examples/logo/whp.png" alt=""></div>
+        <div class="cell"><img style="height:58px" src="/bms-examples/logo/ford.png" alt=""></div>
+        <div class="cell"><img style="height:50px" src="/bms-examples/logo/topps.png" alt=""></div>
+        <div class="cell"><img style="height:36px" src="/bms-examples/logo/champion.png" alt=""></div>
+        <div class="cell"><img style="height:24px" src="/bms-examples/logo/tyson.svg" alt=""></div>
+        <div class="cell"><img style="height:38px" src="/bms-examples/logo/lifetime.png" alt=""></div>
+        <div class="cell"><img style="height:53px" src="/bms-examples/logo/wwe.png" alt=""></div>
+        <div class="cell"><img style="height:48px" src="/bms-examples/logo/esc.png" alt=""></div>
         <div class="cell"><span class="wordmark">Lionsgate</span></div>
       </div>
     </div>
