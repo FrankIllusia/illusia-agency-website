@@ -295,10 +295,15 @@ img{display:block;max-width:100%}
       <div class="rule" style="margin:44px 0 30px"></div>
 
       <div style="display:flex;justify-content:space-between;align-items:flex-end;gap:48px">
-        <div class="pills">
-          <span class="pill">Experiential</span>
-          <span class="pill">Manufacturing</span>
-          <span class="pill">Enterprise aviation</span>
+        <div>
+          <!-- Without this the three pills read as services on offer rather than
+               as the sectors the work inside actually comes from. -->
+          <p class="label" style="margin-bottom:14px">Recent client work across</p>
+          <div class="pills">
+            <span class="pill">Experiential</span>
+            <span class="pill">Manufacturing</span>
+            <span class="pill">Enterprise aviation</span>
+          </div>
         </div>
         <div style="text-align:right;flex:0 0 auto">
           <p class="tag" style="margin-bottom:9px">Prepared for</p>
