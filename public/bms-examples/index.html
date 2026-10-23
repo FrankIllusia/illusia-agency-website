@@ -185,6 +185,7 @@ img{display:block;max-width:100%}
    96% of the cell's WIDTH as its height and spills out of the row; the wide
    wordmarks never hit that because width governs them first. 70% also keeps a
    square mark optically comparable to a wordmark rather than twice its size. */
+.sfmark{filter:brightness(0) invert(1);opacity:.85}
 .cell img{width:auto;height:auto;max-width:92%;max-height:70%;
   object-fit:contain;filter:brightness(0) invert(1);opacity:.9}
 
@@ -735,6 +736,10 @@ img{display:block;max-width:100%}
             the activation and executive interviews, cut into a recap film and the social
             versions that ran alongside it.
           </p>
+          <!-- The panel is a flex column, so without align-self the mark
+               stretches to the full cross axis instead of keeping its ratio. -->
+          <img class="sfmark" src="/bms-examples/logo/salesforce.png" alt="Salesforce"
+               style="height:70px;width:auto;align-self:flex-start;margin-top:24px">
           <div class="mini" style="margin-top:auto">
             <div>Keynotes, panels and stage content</div>
             <div>Executive interviews captured on site</div>
@@ -1020,6 +1025,7 @@ html,body{background:#dfe3e7}
 .cell{background:rgba(255,255,255,.55);border:1px solid rgba(11,12,14,.09);
   box-shadow:inset 0 1px 0 rgba(255,255,255,1)}
 .cell img{filter:brightness(0);opacity:.88}
+.sfmark{filter:brightness(0)!important;opacity:.78}
 /* A dark hairline round the media so it sits on the silver instead of floating. */
 .card,.player{background:#d9dee3;border:1px solid rgba(11,12,14,.72);
   box-shadow:0 16px 40px rgba(11,12,14,.16)}
@@ -1038,6 +1044,7 @@ img[src*="bms.png"]{filter:invert(1);opacity:.92}
   .pill{background:rgba(255,255,255,.62)!important;color:rgba(11,12,14,.84)!important;
     box-shadow:inset 0 1px 0 rgba(255,255,255,1)!important}
   .cell{background:rgba(255,255,255,.55)!important}
+  .sfmark{filter:brightness(0)!important;opacity:.78}
   .card,.player{border:1px solid rgba(11,12,14,.72)!important;box-shadow:none!important}
   .filmnote{background:rgba(255,255,255,.94)!important;border-color:rgba(11,12,14,.16)!important;
     color:rgba(11,12,14,.82)!important;box-shadow:inset 0 1px 0 rgba(255,255,255,1)!important}
