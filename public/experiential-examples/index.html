@@ -306,7 +306,91 @@ img{display:block;max-width:100%}
     box-shadow:inset 0 1px 0 rgba(255,255,255,.2);
     font-family:var(--mono);font-size:11.5px;letter-spacing:.13em;text-transform:uppercase;
     color:rgba(255,255,255,.88)}
+  /* Blade's hero is the one 9:16 player in the deck — 269px wide, which the
+     note cannot fit, so it wrapped to three lines and ran out of the tile.
+     The poster is already the link there. */
+  #p4 .filmnote{display:none!important}
   *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+}
+</style>
+
+<style id="paper">
+/* ═══════════════════════════════════════════════════════════════════════
+   PAPER — the deck on a warm off-white ground with black type.
+
+   Rides as an override layer after the base styles rather than rewriting
+   them, same as the silver theme on the BMS deck: a token flip alone does
+   not reach everywhere this deck hard-codes white. Panel eyebrows carry
+   inline white, the checkmark bullets are drawn white inside a data URI,
+   the client mark forces itself white, and the cover's scrims darken a
+   photograph that black type now has to sit on. Each is answered below,
+   and print restates the lot, because the print block hard-codes its own
+   dark glass.
+
+   What stays dark: anything riding on footage — video captions, the
+   control bar, the play button, the print film note. Those sit on the
+   poster frame, not on the page.
+   ═══════════════════════════════════════════════════════════════════════ */
+:root{
+  --ink:#F4F3EB;
+  --riser:#FBFAF6;
+  --paper:#0b0c0e;
+  --ash:rgba(11,12,14,.74);
+  --dim:rgba(11,12,14,.56);
+  --faint:rgba(11,12,14,.40);
+  --hair:rgba(11,12,14,.14);
+  --hair-hi:rgba(11,12,14,.26);
+  /* Frost: mostly white over the cream, so the blur reads as frost and not haze. */
+  --glass-fill:linear-gradient(145deg,rgba(255,255,255,.82) 0%,rgba(255,255,255,.54) 46%,rgba(255,255,255,.68) 100%);
+  --glass-edge:rgba(255,255,255,.92);
+  --glass-rim:inset 0 1px 0 rgba(255,255,255,1);
+  --glass-cast:0 18px 44px rgba(11,12,14,.12);
+}
+/* The page sits a half-step under the slide so the stack still reads as cards. */
+html,body{background:#E9E7DC}
+.slide{background:var(--ink)}
+.slide.lift{background:
+  radial-gradient(120% 78% at 50% -12%,rgba(255,255,255,.95) 0%,rgba(255,255,255,0) 58%),
+  linear-gradient(to bottom,var(--riser) 0%,var(--ink) 64%)}
+
+/* ── type ── */
+.spec div b,.mini b,.res b,.counter b{color:#0b0c0e}
+.glass .label,.glass .tag{color:rgba(11,12,14,.56)}
+.glass .d3,.glass h2,.glass .body{color:inherit}
+/* The eyebrow colour is inline in the markup, so it has to be answered here. */
+[style*="rgba(255,255,255"]{color:rgba(11,12,14,.60)!important}
+/* Checkmark bullets are a white-stroked SVG in a data URI. */
+.mini div::before{filter:invert(1)}
+.watermark{filter:blur(8px) invert(1);opacity:.028}
+
+/* ── chrome ── */
+.pill{background:rgba(255,255,255,.68);border:1px solid rgba(11,12,14,.14);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,1);color:rgba(11,12,14,.84)}
+.rail{background:rgba(11,12,14,.08)}
+.rail i{background:rgba(11,12,14,.5)}
+.counter{background:rgba(255,255,255,.72);border:1px solid rgba(11,12,14,.14);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,1),0 10px 30px rgba(11,12,14,.14)}
+.counter kbd{border:1px solid rgba(11,12,14,.2);color:rgba(11,12,14,.7)}
+/* A dark hairline round the media, so film sits on the paper instead of floating. */
+.card,.player{background:#E4E2D6;border:1px solid rgba(11,12,14,.68);
+  box-shadow:0 16px 40px rgba(11,12,14,.15)}
+.clientmark{filter:brightness(0);opacity:.84}
+
+/* ── the cover photograph ──
+   The scrims were darkening the picture so white type could sit on it. Black
+   type needs the opposite: veil it toward the paper. */
+.scrim.even{background:rgba(244,243,235,.34)}
+.scrim.top{background:linear-gradient(to bottom,rgba(244,243,235,.74) 0%,rgba(244,243,235,.3) 16%,transparent 30%)}
+.scrim.bottom{background:linear-gradient(to bottom,transparent 34%,rgba(244,243,235,.58) 74%,rgba(244,243,235,.86) 100%)}
+.glass.dense{background-color:rgba(255,255,255,.6)}
+
+@media print{
+  html,body{background:#F4F3EB!important}
+  .glass{background:rgba(255,255,255,.92)!important;
+    box-shadow:inset 0 1px 0 rgba(255,255,255,1)!important}
+  .pill{background:rgba(255,255,255,.88)!important;
+    box-shadow:inset 0 1px 0 rgba(255,255,255,1)!important}
+  .card,.player{box-shadow:inset 0 1px 0 rgba(255,255,255,.5)!important}
 }
 </style>
 </head>
