@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <title>Illusia — Experiential Work</title>
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="description" content="Three experiential productions — a one-market premiere, a multi-day LA activation, and a custom 4D screening.">
+<meta name="description" content="Seven experiential productions — a 20th Century Studios red-carpet premiere, a one-market premiere, an immersive launch activation, a Ryder Cup brand activation, a multi-day LA activation, a 36-hour overnight build at Rockefeller Center, and a custom 4D screening.">
 <!-- Unlisted: nothing on the site links here, and this keeps it out of search
      results for anyone who did not get the link directly. Deliberately not a
      robots.txt rule — that file is public, so a Disallow line would advertise
@@ -171,6 +171,20 @@ img{display:block;max-width:100%}
   font-family:var(--mono);font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;
   color:rgba(255,255,255,.78)}
 
+/* Small variant — the 9:16 cut-down tiles sit three to a row, so the caption,
+   play button and control bar all step down a size. */
+.player.sm .vcap{left:10px;top:10px;padding:7px 11px;border-radius:10px;font-size:10px;letter-spacing:.11em}
+.player.sm .vbig span{width:52px;height:52px}
+.player.sm .vbig span::after{border-left:15px solid rgba(255,255,255,.95);
+  border-top:9px solid transparent;border-bottom:9px solid transparent;margin-left:4px}
+.player.sm .vbar{left:9px;right:9px;bottom:9px;padding:8px 11px;gap:9px;border-radius:11px}
+.player.sm .vtime{display:none}
+
+/* A prospect's mark on the cover. Flattened to the deck's monochrome so a
+   brand colour can't fight the cover photograph — same treatment the
+   capabilities decks give the client wall. */
+.clientmark{filter:brightness(0) invert(1);opacity:.88}
+
 .filmlink{display:none}
 .filmnote{display:none}
 
@@ -195,6 +209,15 @@ img{display:block;max-width:100%}
 /* Work block — three columns of what was covered, what shipped, how fast.
    Checked lines rather than pills: denser vertically, and the eye reads them
    as a list of work done rather than a row of labels. */
+/* Outcome figures, carried over from the capabilities deck. Stacked rather
+   than in a row, because here they sit in a work-band column beside the scope. */
+.res{display:flex;flex-direction:column;gap:13px}
+.res div{display:flex;flex-direction:column;gap:4px}
+.res b{font-family:var(--display);font-weight:600;font-size:27px;letter-spacing:-.035em;
+  line-height:1;color:#fff}
+.res span{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--dim);line-height:1.45}
+
 .work{display:grid;grid-template-columns:repeat(3,1fr);gap:36px}
 .mini{display:flex;flex-direction:column}
 .mini div{position:relative;padding:6px 0 6px 27px;font-size:15px;line-height:1.45;color:var(--ash)}
@@ -217,6 +240,9 @@ img{display:block;max-width:100%}
 .bleed{position:absolute;inset:0;z-index:0}
 .bleed img{width:100%;height:100%;object-fit:cover}
 .bleed.push img{transform:scale(1.12)}
+/* Carried over from the capabilities deck so the cover frames this photograph
+   exactly as slide 03 does there — pushed in and offset right. */
+.bleed.cast img{transform:scale(1.32) translate(11%,4%)}
 .scrim{position:absolute;inset:0;z-index:1}
 .scrim.even{background:rgba(0,0,0,.34)}
 .scrim.top{background:linear-gradient(to bottom,rgba(0,0,0,.6) 0%,rgba(0,0,0,.15) 16%,transparent 30%)}
@@ -292,8 +318,9 @@ img{display:block;max-width:100%}
 
   <!-- ══════════ 01 — COVER ══════════ -->
   <div class="frame"><section class="slide">
-    <div class="bleed push"><img src="/experiential-examples/img/cover-4d.jpg" alt="A full house in protective ponchos under red light at a custom 4D screening"></div>
+    <div class="bleed cast" style="opacity:.7"><img src="/experiential-examples/img/zootopia.jpg" alt=""></div>
     <div class="scrim even"></div>
+    <div class="scrim top"></div>
     <div class="scrim bottom"></div>
     <div class="pad">
       <div class="slate">
@@ -301,15 +328,29 @@ img{display:block;max-width:100%}
         <span class="pill">NJ / NYC · Worldwide</span>
       </div>
 
-      <div class="glass dense" style="margin-top:auto;align-self:flex-start;padding:52px 56px 48px;max-width:1060px">
+      <!-- The card holds the left, the prospect's mark the right, both sitting on
+           the same baseline so the cover reads as one lockup. -->
+      <div style="margin-top:auto;display:flex;align-items:flex-end;justify-content:space-between;gap:56px">
+      <div class="glass dense" style="padding:52px 56px 48px;max-width:1060px">
         <p class="label" style="margin-bottom:24px;color:rgba(255,255,255,.72)">Selected experiential work — 2026</p>
         <h1 class="d1" style="text-wrap:normal">Premieres,<br>activations<br>and builds.</h1>
         <div class="rule" style="margin:36px 0 26px"></div>
         <div class="pills">
           <span class="pill">The Odyssey · NYC</span>
+          <span class="pill">Predator Badlands</span>
+          <span class="pill">Play Dirty · Amazon</span>
+          <span class="pill">Blade · Ryder Cup</span>
           <span class="pill">Hoppers · Los Angeles</span>
+          <span class="pill">Jurassic World Rebirth</span>
           <span class="pill">Ready or Not 2 · 4D Screening</span>
         </div>
+      </div>
+
+      <div style="text-align:right;flex:0 0 auto;padding-bottom:10px">
+        <p class="tag" style="margin-bottom:11px;color:rgba(255,255,255,.66)">Prepared for</p>
+        <img class="clientmark" src="/experiential-examples/logo/obe.png" alt="OBE"
+             style="height:46px;width:auto;margin-left:auto">
+      </div>
       </div>
     </div>
   </section></div>
@@ -340,22 +381,22 @@ img{display:block;max-width:100%}
             <h2 class="d3">The Odyssey</h2>
             <p class="tag" style="margin-top:8px">Experiential premiere</p>
             <p class="body" style="margin-top:18px;font-size:16px">
-              A focused one-market activation and premiere — small crew, full coverage from
-              load-in to the last arrival.
+              A focused one-market activation and premiere — two videographers, full coverage
+              from load-in to the last arrival.
             </p>
             <div class="spec" style="margin-top:auto;padding-top:20px">
               <div><span>Market</span><b>NYC, one market</b></div>
-              <div><span>Crew</span><b>Lean</b></div>
-              <div><span>Coverage</span><b>Load-in → premiere</b></div>
+              <div><span>Shoot days</span><b>1</b></div>
+              <div><span>Crew</span><b>2 videographers</b></div>
               <div><span>Films</span><b>Hero recap</b></div>
-              <div><span>Stills</span><b>Edited gallery</b></div>
+              <div><span>Turnaround</span><b>Rushed recap cut</b></div>
               <div><span>Investment</span><b>$6,750</b></div>
             </div>
           </div>
         </div>
       </div>
 
-      <div class="work" style="margin-top:auto">
+      <div class="work" style="margin-top:auto;grid-template-columns:repeat(4,1fr);gap:30px">
         <div>
           <p class="label" style="margin-bottom:10px">On site</p>
           <div class="mini">
@@ -381,15 +422,289 @@ img{display:block;max-width:100%}
             <div>Raw organized and labelled at handoff</div>
           </div>
         </div>
+        <div>
+          <p class="label" style="margin-bottom:10px">What it returned</p>
+          <div class="res">
+            <div><b>323K+</b><span>Views across social</span></div>
+            <div><b>1,700+</b><span>New followers for the client</span></div>
+            <div><b>2</b><span>Major accounts signed, agency-side</span></div>
+          </div>
+        </div>
       </div>
     </div>
   </section></div>
 
-  <!-- ══════════ 03 — HOPPERS ══════════ -->
+  <!-- ══════════ 03 — PREDATOR: BADLANDS ══════════
+       The floor of the ladder — one night, one carpet, one film. -->
+  <div class="frame" id="predator-badlands"><section class="slide lift">
+    <img class="watermark" src="/experiential-examples/logo/illusia-mark.svg" alt="">
+    <div class="pad">
+      <div class="slate"><span class="wm">Illusia</span><span class="tag">Red carpet premiere · <span class="folio">03</span></span></div>
+
+      <div style="display:grid;grid-template-columns:850px 1fr;grid-template-rows:478px;gap:30px;margin-top:32px">
+        <div class="player card" id="p11" style="aspect-ratio:16/9">
+          <a class="filmlink" href="https://illusiaagency.com/experiential-examples#predator-badlands" aria-label="Watch the film at illusiaagency.com"></a>
+          <video id="p11v" playsinline preload="none" poster="/experiential-examples/img/predator-poster.jpg" src="/experiential-examples/img/predator-recap.mp4"></video>
+          <span class="vcap">Predator: Badlands · Premiere recap</span>
+          <button class="vbig" aria-label="Play the premiere recap film"><span></span></button>
+          <div class="vbar">
+            <button class="vbtn" data-play aria-label="Play or pause"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
+            <div class="vtrack"><i></i></div>
+            <span class="vtime">0:00</span>
+          </div>
+          <p class="filmnote">Watch the film — illusiaagency.com/experiential-examples</p>
+        </div>
+
+        <div style="display:flex;flex-direction:column;gap:20px">
+          <div class="glass" style="padding:30px 32px;flex:1;display:flex;flex-direction:column">
+            <p class="label" style="margin-bottom:14px;color:rgba(255,255,255,.72)">Los Angeles</p>
+            <h2 class="d3">Predator: Badlands</h2>
+            <p class="tag" style="margin-top:8px">20th Century Studios · red carpet premiere</p>
+            <p class="body" style="margin-top:18px;font-size:16px">
+              Carpet arrivals, in-costume moments and the marquee — one night, covered end
+              to end and cut into a single film.
+            </p>
+            <div class="spec" style="margin-top:auto;padding-top:20px">
+              <div><span>Market</span><b>Los Angeles</b></div>
+              <div><span>Shoot days</span><b>1</b></div>
+              <div><span>Crew</span><b>2 videographers</b></div>
+              <div><span>Films</span><b>Premiere recap</b></div>
+              <div><span>Turnaround</span><b>Cut after premiere night</b></div>
+              <div><span>Investment</span><b>$8,500</b></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="work" style="margin-top:auto">
+        <div>
+          <p class="label" style="margin-bottom:10px">On site</p>
+          <div class="mini">
+            <div>Carpet arrivals and step-and-repeat</div>
+            <div>In-costume character moments</div>
+            <div>Marquee, signage and environment detail</div>
+            <div>Crowd and fan atmosphere</div>
+          </div>
+        </div>
+        <div>
+          <p class="label" style="margin-bottom:10px">Delivered</p>
+          <div class="mini">
+            <div><b>Premiere recap film</b> — 1:00, cut for social</div>
+            <div>Carpet, talent and atmosphere coverage</div>
+            <div>Organized raw footage handoff</div>
+          </div>
+        </div>
+        <div>
+          <p class="label" style="margin-bottom:10px">Scope</p>
+          <div class="mini">
+            <div>One night, one carpet</div>
+            <div>Lean footprint — in and out without slowing the line</div>
+            <div><b>Out-of-market</b> — an LA carpet on a single-night window</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section></div>
+
+  <!-- ══════════ 04 — PLAY DIRTY ══════════ -->
+  <div class="frame" id="play-dirty"><section class="slide lift">
+    <img class="watermark" src="/experiential-examples/logo/illusia-mark.svg" alt="">
+    <div class="pad">
+      <div class="slate"><span class="wm">Illusia</span><span class="tag">Launch activation · <span class="folio">04</span></span></div>
+
+      <div style="display:grid;grid-template-columns:850px 1fr;grid-template-rows:478px;gap:30px;margin-top:32px">
+        <div class="player card" id="p10" style="aspect-ratio:16/9">
+          <a class="filmlink" href="https://illusiaagency.com/experiential-examples#play-dirty" aria-label="Watch the film at illusiaagency.com"></a>
+          <video id="p10v" playsinline preload="none" poster="/experiential-examples/img/playdirty-poster.jpg" src="/experiential-examples/img/playdirty-sizzle.mp4"></video>
+          <span class="vcap">Play Dirty · Activation sizzle</span>
+          <button class="vbig" aria-label="Play the Play Dirty activation sizzle"><span></span></button>
+          <div class="vbar">
+            <button class="vbtn" data-play aria-label="Play or pause"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
+            <div class="vtrack"><i></i></div>
+            <span class="vtime">0:00</span>
+          </div>
+          <p class="filmnote">Watch the film — illusiaagency.com/experiential-examples</p>
+        </div>
+
+        <div style="display:flex;flex-direction:column;gap:20px">
+          <div class="glass" style="padding:30px 32px;flex:1;display:flex;flex-direction:column">
+            <p class="label" style="margin-bottom:14px;color:rgba(255,255,255,.72)">New York</p>
+            <h2 class="d3">Play Dirty</h2>
+            <p class="tag" style="margin-top:8px">Amazon Prime Video · launch activation</p>
+            <p class="body" style="margin-top:18px;font-size:16px">
+              A built heist world — vault, casino floor and money room — covered in a single
+              night by two videographers, for film and stills.
+            </p>
+            <div class="spec" style="margin-top:auto;padding-top:20px">
+              <div><span>Market</span><b>New York</b></div>
+              <div><span>Shoot days</span><b>1</b></div>
+              <div><span>Crew</span><b>2 videographers</b></div>
+              <div><span>Films</span><b>Activation sizzle</b></div>
+              <div><span>Turnaround</span><b>Cut after the activation</b></div>
+              <div><span>Investment</span><b>$8,750</b></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="work" style="margin-top:auto">
+        <div>
+          <p class="label" style="margin-bottom:10px">On site</p>
+          <div class="mini">
+            <div>Vault photo moment and guest portraits</div>
+            <div>Casino floor and table play</div>
+            <div>Set-dressed environment and brand detail</div>
+            <div>Guest arrivals and reaction coverage</div>
+          </div>
+        </div>
+        <div>
+          <p class="label" style="margin-bottom:10px">Delivered</p>
+          <div class="mini">
+            <div><b>Activation sizzle</b> cut from the night</div>
+            <div><b>Edited photo gallery</b></div>
+            <div><b>Full raw content</b> — everything shot, not just selects</div>
+          </div>
+        </div>
+        <div>
+          <p class="label" style="margin-bottom:10px">Handoff</p>
+          <div class="mini">
+            <div>Raw organized and labelled at delivery</div>
+            <div>Stills selected, edited and delivered as a gallery</div>
+            <div>Stacked coverage from two videographers, one night</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section></div>
+
+  <!-- ══════════ 05 — BLADE · RYDER CUP ══════════ -->
+  <div class="frame" id="blade"><section class="slide lift">
+    <img class="watermark" src="/experiential-examples/logo/illusia-mark.svg" alt="">
+    <div class="pad">
+      <div class="slate"><span class="wm">Illusia</span><span class="tag">Brand activation · <span class="folio">05</span></span></div>
+
+      <div style="display:grid;grid-template-columns:850px 1fr;grid-template-rows:478px;gap:30px;margin-top:32px">
+        <!-- Everything shot here is 9:16, so this slide splits the media band the
+             other three don't: the hero recap runs the full 478px height, and the
+             three cut-downs sit beside it. Widths are solved off the ratio so the
+             four tiles land exactly on 850 — 269 + 20 + (177×3 + 15×2). -->
+        <div style="display:grid;grid-template-columns:269px 1fr;gap:20px">
+          <div class="player card" id="p4">
+            <a class="filmlink" href="https://illusiaagency.com/experiential-examples#blade" aria-label="Watch the film at illusiaagency.com"></a>
+            <video id="p4v" playsinline preload="none" poster="/experiential-examples/img/blade-poster.jpg" src="/experiential-examples/img/blade-recap.mp4"></video>
+            <span class="vcap">Blade · Hero recap</span>
+            <button class="vbig" aria-label="Play the Ryder Cup recap film"><span></span></button>
+            <div class="vbar">
+            <button class="vbtn" data-play aria-label="Play or pause"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
+            <div class="vtrack"><i></i></div>
+            <span class="vtime">0:00</span>
+          </div>
+            <p class="filmnote">Watch the film — illusiaagency.com/experiential-examples</p>
+          </div>
+
+          <div style="display:flex;flex-direction:column;gap:18px">
+            <div style="display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:315px;gap:15px">
+              <div class="player card sm" id="p5">
+              <video id="p5v" playsinline preload="none" poster="/experiential-examples/img/blade-ugc-poster.jpg" src="/experiential-examples/img/blade-ugc.mp4"></video>
+              <span class="vcap">UGC · POV</span>
+              <button class="vbig" aria-label="Play the POV social cut"><span></span></button>
+              <div class="vbar">
+                <button class="vbtn" data-play aria-label="Play or pause"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
+                <div class="vtrack"><i></i></div>
+                <span class="vtime">0:00</span>
+              </div>
+            </div>
+
+              <div class="player card sm" id="p6">
+              <video id="p6v" playsinline preload="none" poster="/experiential-examples/img/blade-micd-poster.jpg" src="/experiential-examples/img/blade-micd.mp4"></video>
+              <span class="vcap">Mic'd up</span>
+              <button class="vbig" aria-label="Play the mic'd-up guest film"><span></span></button>
+              <div class="vbar">
+                <button class="vbtn" data-play aria-label="Play or pause"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
+                <div class="vtrack"><i></i></div>
+                <span class="vtime">0:00</span>
+              </div>
+            </div>
+
+              <div class="player card sm" id="p7">
+              <video id="p7v" playsinline preload="none" poster="/experiential-examples/img/blade-testimonial-poster.jpg" src="/experiential-examples/img/blade-testimonial.mp4"></video>
+              <span class="vcap">Testimonial</span>
+              <button class="vbig" aria-label="Play the testimonial film"><span></span></button>
+              <div class="vbar">
+                <button class="vbtn" data-play aria-label="Play or pause"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
+                <div class="vtrack"><i></i></div>
+                <span class="vtime">0:00</span>
+              </div>
+            </div>
+            </div>
+
+            <div class="glass" style="padding:22px 26px;flex:1;display:flex;flex-direction:column;justify-content:center">
+              <p class="label" style="margin-bottom:9px">Social cut-downs</p>
+              <p class="body" style="font-size:15px">
+                Three vertical films off the same two days — a POV cut for feed, and two
+                testimonials, captioned and framed 9:16.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div style="display:flex;flex-direction:column;gap:20px">
+          <div class="glass" style="padding:30px 32px;flex:1;display:flex;flex-direction:column">
+            <p class="label" style="margin-bottom:14px;color:rgba(255,255,255,.72)">Bethpage Black, New York</p>
+            <h2 class="d3">Blade</h2>
+            <p class="tag" style="margin-top:8px">Ryder Cup activation</p>
+            <p class="body" style="margin-top:18px;font-size:16px">
+              Two days at Bethpage — transfers, lounge and tournament atmosphere — cut
+              into a recap and three vertical films.
+            </p>
+            <div class="spec" style="margin-top:auto;padding-top:20px">
+              <div><span>Market</span><b>NY, Ryder Cup</b></div>
+              <div><span>Shoot days</span><b>2</b></div>
+              <div><span>Crew</span><b>2 videographers</b></div>
+              <div><span>Films</span><b>Hero recap + 3 social</b></div>
+              <div><span>Turnaround</span><b>24 hrs on the recap</b></div>
+              <div><span>Investment</span><b>$10,950</b></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="work" style="margin-top:auto">
+        <div>
+          <p class="label" style="margin-bottom:10px">On site</p>
+          <div class="mini">
+            <div>Heliport departures and guest arrivals</div>
+            <div>Lounge and hospitality coverage on course</div>
+            <div>Tournament atmosphere and crowd B-roll</div>
+            <div>Mic'd-up guest interviews on the ground</div>
+          </div>
+        </div>
+        <div>
+          <p class="label" style="margin-bottom:10px">Delivered</p>
+          <div class="mini">
+            <div><b>Hero recap film</b> — the Blade experience end to end</div>
+            <div><b>UGC-style POV cut</b> built for social</div>
+            <div><b>Two testimonial films</b> — guest and brand-side</div>
+            <div>Organized raw footage handoff</div>
+          </div>
+        </div>
+        <div>
+          <p class="label" style="margin-bottom:10px">Turnaround</p>
+          <div class="mini">
+            <div><b>24 hours</b> on the hero recap</div>
+            <div>Vertical cuts delivered alongside the recap</div>
+            <div>Captioned and framed 9:16 for feed and stories</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section></div>
+
+  <!-- ══════════ 06 — HOPPERS ══════════ -->
   <div class="frame" id="hoppers"><section class="slide lift">
     <img class="watermark" src="/experiential-examples/logo/illusia-mark.svg" alt="">
     <div class="pad">
-      <div class="slate"><span class="wm">Illusia</span><span class="tag">Multi-day activation · <span class="folio">03</span></span></div>
+      <div class="slate"><span class="wm">Illusia</span><span class="tag">Multi-day activation · <span class="folio">06</span></span></div>
 
       <div style="display:grid;grid-template-columns:850px 1fr;grid-template-rows:478px;gap:30px;margin-top:32px">
         <div class="player card" id="p3" style="aspect-ratio:16/9">
@@ -457,11 +772,83 @@ img{display:block;max-width:100%}
     </div>
   </section></div>
 
-  <!-- ══════════ 04 — READY OR NOT 2 ══════════ -->
+  <!-- ══════════ 07 — JURASSIC WORLD REBIRTH ══════════ -->
+  <div class="frame" id="jurassic-world-rebirth"><section class="slide lift">
+    <img class="watermark" src="/experiential-examples/logo/illusia-mark.svg" alt="">
+    <div class="pad">
+      <div class="slate"><span class="wm">Illusia</span><span class="tag">Overnight build + reveal · <span class="folio">07</span></span></div>
+
+      <div style="display:grid;grid-template-columns:850px 1fr;grid-template-rows:478px;gap:30px;margin-top:32px">
+        <div class="player card" id="p9" style="aspect-ratio:16/9">
+          <a class="filmlink" href="https://illusiaagency.com/experiential-examples#jurassic-world-rebirth" aria-label="Watch the film at illusiaagency.com"></a>
+          <video id="p9v" playsinline preload="none" poster="/experiential-examples/img/jurassic-poster.jpg" src="/experiential-examples/img/jurassic-recap.mp4"></video>
+          <span class="vcap">Jurassic World Rebirth · Recap</span>
+          <button class="vbig" aria-label="Play the Jurassic World Rebirth recap"><span></span></button>
+          <div class="vbar">
+            <button class="vbtn" data-play aria-label="Play or pause"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
+            <div class="vtrack"><i></i></div>
+            <span class="vtime">0:00</span>
+          </div>
+          <p class="filmnote">Watch the film — illusiaagency.com/experiential-examples</p>
+        </div>
+
+        <div style="display:flex;flex-direction:column;gap:20px">
+          <div class="glass" style="padding:30px 32px;flex:1;display:flex;flex-direction:column">
+            <p class="label" style="margin-bottom:14px;color:rgba(255,255,255,.72)">Rockefeller Center, New York</p>
+            <h2 class="d3">Jurassic World Rebirth</h2>
+            <p class="tag" style="margin-top:8px">Universal · overnight build to reveal</p>
+            <p class="body" style="margin-top:18px;font-size:16px">
+              Thirty-six hours straight — the overnight install through the public reveal —
+              covered continuously by three videographers.
+            </p>
+            <div class="spec" style="margin-top:auto;padding-top:20px">
+              <div><span>Market</span><b>NYC, Rockefeller Center</b></div>
+              <div><span>Shoot days</span><b>36 hrs straight</b></div>
+              <div><span>Crew</span><b>3 videographers</b></div>
+              <div><span>Films</span><b>Recap + stringout + selects</b></div>
+              <div><span>Turnaround</span><b>24 hrs on the recap</b></div>
+              <div><span>Investment</span><b>$26,750</b></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="work" style="margin-top:auto">
+        <div>
+          <p class="label" style="margin-bottom:10px">On site</p>
+          <div class="mini">
+            <div>Overnight install, rig and crane work</div>
+            <div>Build through to the public reveal</div>
+            <div>Street-level crowd and reaction coverage</div>
+            <div>Three videographers rolling across the full 36 hours</div>
+          </div>
+        </div>
+        <div>
+          <p class="label" style="margin-bottom:10px">Delivered</p>
+          <div class="mini">
+            <div><b>24-hour recap film</b></div>
+            <div><b>Media stringout</b> — assembled for press use</div>
+            <div><b>Selects cut for clippers</b></div>
+            <div>Organized raw footage handoff</div>
+          </div>
+        </div>
+        <div>
+          <p class="label" style="margin-bottom:10px">Turnaround</p>
+          <div class="mini">
+            <div><b>24 hours</b> on the recap, off a 36-hour shoot</div>
+            <div>Stringout and selects delivered alongside it</div>
+            <div>Cut straight off the job, no reset day</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section></div>
+
+  <!-- ══════════ 08 — READY OR NOT 2 ══════════ -->
   <div class="frame" id="ready-or-not-2"><section class="slide lift">
     <img class="watermark" src="/experiential-examples/logo/illusia-mark.svg" alt="">
     <div class="pad">
-      <div class="slate"><span class="wm">Illusia</span><span class="tag">Custom 4D screening · <span class="folio">04</span></span></div>
+      <div class="slate"><span class="wm">Illusia</span><span class="tag">Custom 4D screening · <span class="folio">08</span></span></div>
 
       <div style="display:grid;grid-template-columns:850px 1fr;grid-template-rows:478px;gap:30px;margin-top:32px">
         <div class="player card" id="p2" style="aspect-ratio:16/9">
@@ -483,15 +870,15 @@ img{display:block;max-width:100%}
             <h2 class="d3">Ready or Not 2</h2>
             <p class="tag" style="margin-top:8px">Custom 4D screening</p>
             <p class="body" style="margin-top:18px;font-size:16px">
-              A built screening environment, covered from a 14-camera rig — with every frame
-              back to the studio inside 8 hours of wrap.
+              A built screening environment for ~150 guests, covered from a 14-camera rig —
+              every frame back to the studio inside 8 hrs of wrap.
             </p>
             <div class="spec" style="margin-top:auto;padding-top:20px">
-              <div><span>Guests</span><b>~150</b></div>
-              <div><span>Cameras</span><b>~14 mirrorless</b></div>
+              <div><span>Market</span><b>OBB Studios, LA</b></div>
+              <div><span>Shoot days</span><b>1 + dry run</b></div>
               <div><span>Crew</span><b>4–5 + on-site DIT</b></div>
-              <div><span>Prep</span><b>Full dry run, day prior</b></div>
-              <div><span>Raw handoff</span><b>Within 8 hrs of wrap</b></div>
+              <div><span>Films</span><b>Hero sizzle + BTS film</b></div>
+              <div><span>Turnaround</span><b>Raw in 8 hrs of wrap</b></div>
               <div><span>Investment</span><b>$37,450</b></div>
             </div>
           </div>
@@ -521,9 +908,84 @@ img{display:block;max-width:100%}
           <p class="label" style="margin-bottom:10px">Delivered</p>
           <div class="mini">
             <div><b>Hero sizzle recap</b> — same-night where needed</div>
-            <div>Interview assets, reaction content and build BTS</div>
+            <div><b>Behind-the-build film</b> — in scope, no price change</div>
+            <div>Interview assets and reaction content</div>
             <div><b>Edited photo gallery</b></div>
             <div><b>All raw to the studio within 8 hrs of wrap</b></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section></div>
+
+  <!-- ══════════ 09 — READY OR NOT 2 · THE BUILD FILM ══════════
+       The BTS ran onto the Ready or Not 2 scope at no change in price, and it is
+       now the film the client pitches with — so it earns its own frame rather
+       than a line in the deliverables list. -->
+  <div class="frame" id="ready-or-not-2-bts"><section class="slide lift">
+    <img class="watermark" src="/experiential-examples/logo/illusia-mark.svg" alt="">
+    <div class="pad">
+      <div class="slate"><span class="wm">Illusia</span><span class="tag">Ready or Not 2 · continued · <span class="folio">09</span></span></div>
+
+      <div style="display:grid;grid-template-columns:850px 1fr;grid-template-rows:478px;gap:30px;margin-top:32px">
+        <div class="player card" id="p8" style="aspect-ratio:16/9">
+          <a class="filmlink" href="https://illusiaagency.com/experiential-examples#ready-or-not-2-bts" aria-label="Watch the film at illusiaagency.com"></a>
+          <video id="p8v" playsinline preload="none" poster="/experiential-examples/img/ron2-bts-poster.jpg" src="/experiential-examples/img/ron2-bts.mp4"></video>
+          <span class="vcap">Ready or Not 2 · The build film</span>
+          <button class="vbig" aria-label="Play the behind-the-build film"><span></span></button>
+          <div class="vbar">
+            <button class="vbtn" data-play aria-label="Play or pause"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
+            <div class="vtrack"><i></i></div>
+            <span class="vtime">0:00</span>
+          </div>
+          <p class="filmnote">Watch the film — illusiaagency.com/experiential-examples</p>
+        </div>
+
+        <div style="display:flex;flex-direction:column;gap:20px">
+          <div class="glass" style="padding:30px 32px;flex:1;display:flex;flex-direction:column">
+            <p class="label" style="margin-bottom:14px;color:rgba(255,255,255,.72)">Same project as slide 08</p>
+            <h2 class="d3">Ready or Not 2 — BTS</h2>
+            <p class="tag" style="margin-top:8px">Inside the $37,450 · not quoted separately</p>
+            <p class="body" style="margin-top:18px;font-size:16px">
+              Same crew, same job, same invoice — the build documented inside the
+              Ready or Not 2 deliverables.
+            </p>
+            <div class="spec" style="margin-top:auto;padding-top:20px">
+              <div><span>Project</span><b>Ready or Not 2</b></div>
+              <div><span>Scope</span><b>Same deliverables</b></div>
+              <div><span>Crew</span><b>Same crew</b></div>
+              <div><span>Covers</span><b>Load-in → show night</b></div>
+              <div><span>In use for</span><b>New business</b></div>
+              <div><span>Investment</span><b>Included in $37,450</b></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="work" style="margin-top:auto">
+        <div>
+          <p class="label" style="margin-bottom:10px">Covered, on the same job</p>
+          <div class="mini">
+            <div>Load-in, rig and staging build</div>
+            <div>Lighting and effects install</div>
+            <div>Rehearsal and the full dry run</div>
+            <div>Show night, start to finish</div>
+          </div>
+        </div>
+        <div>
+          <p class="label" style="margin-bottom:10px">Why we shoot the process</p>
+          <div class="mini">
+            <div>A highlight reel shows the result</div>
+            <div><b>BTS shows the team, the hours and the craft</b></div>
+            <div>Which is what a client is actually buying</div>
+          </div>
+        </div>
+        <div>
+          <p class="label" style="margin-bottom:10px">What it became</p>
+          <div class="mini">
+            <div><b>The film the client pitches with</b> — now in front of their own prospects</div>
+            <div>Larger projects since awarded by the same studio</div>
+            <div>A new-business asset, not just a deliverable</div>
           </div>
         </div>
       </div>
