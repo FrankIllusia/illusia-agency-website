@@ -5,6 +5,8 @@ import { Reveal } from './fx';
 const LOGO_HEIGHT = 30;
 
 const clients = [
+  { name: 'Salesforce',              src: '/images/clients/salesforce.png', h: 46 },
+  { name: 'Expedia',                 src: '/images/clients/expedia.png',    h: 27 },
   { name: 'AIRO',                    src: '/images/clients/airo.svg'        },
   { name: '50 Cent',                 src: '/images/clients/50cent.png',     h: 52 },
   { name: 'BLADE',                   src: '/images/clients/blade.png',       h: 18 },
@@ -27,8 +29,6 @@ const clients = [
   { name: 'Authentic Brands Group',  src: '/images/clients/authentic.png',  h: 31 },
   { name: 'WHP Global',              src: '/images/clients/whp.png',        h: 18 },
   { name: 'Champion',                src: '/images/clients/champion.png',   h: 29 },
-  { name: 'Salesforce',              src: '/images/clients/salesforce.png', h: 46 },
-  { name: 'Expedia',                 src: '/images/clients/expedia.png',    h: 27 },
 ];
 
 // Duplicate for seamless infinite scroll
