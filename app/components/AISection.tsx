@@ -54,7 +54,7 @@ const examples = [
   },
   {
     id: 7,
-    title: 'Flynnstone Experience',
+    title: 'Mike Tyson NYC Launch Video',
     type: 'video',
     src: '/images/ai/tyson-web.mp4',
     poster: '/images/ai/tyson-thumb.jpg',
