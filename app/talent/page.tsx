@@ -15,7 +15,6 @@ const team = [
   { name: 'Cory Morales',       role: 'Videographer, Editor',                         img: '/images/team/cory.jpg'    },
   { name: 'Nolan Mariziti',     role: 'Editor',                                       img: '/images/team/nolan.jpg'   },
   { name: 'Sofia Lynn',         role: 'Social Media Manager',                         img: '/images/team/sofia.jpg'   },
-  { name: 'Jason Keats',        role: 'Social Media Manager',                         img: '/images/team/jason.jpg'   },
   { name: 'Kevin Drew',         role: 'Podcast Production Manager',                   img: '/images/team/kevin.jpg'   },
   { name: 'Alex "Lecky" Harford', role: 'Videographer',                               img: '/images/team/lecky.jpg'   },
   { name: 'Jordin Hugger',      role: 'Content & Brand Coordinator',                  img: '/images/team/jordin.jpg'  },
