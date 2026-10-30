@@ -1,0 +1,1857 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Illusia × Salesforce — Every Moment, Made Social</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Social content production for Salesforce: nine shipped productions — Expedia Group's product launch, Universal's Rockefeller Center build, Salesforce's own Advertising Week — the full scope we would cover, and four original formats with Clip.tech distribution.">
+<!-- Unlisted: nothing on the site links here, and this keeps it out of search
+     results for anyone who did not get the link directly. Deliberately not a
+     robots.txt rule — that file is public, so a Disallow line would advertise
+     the very path it is meant to keep quiet. -->
+<meta name="robots" content="noindex, nofollow">
+<meta name="googlebot" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700&family=Inter+Tight:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+
+<style>
+/* ═══════════════════════════════════════════════════════════════════════
+   Tokens — carried over from the capabilities and Grid decks so all three
+   read as one system. Depth comes from glass and light, not hue.
+   ═══════════════════════════════════════════════════════════════════════ */
+:root{
+  --ink:#000;
+  --riser:#16171a;
+  --paper:#fff;
+  --ash:rgba(255,255,255,.74);
+  --dim:rgba(255,255,255,.54);
+  --faint:rgba(255,255,255,.36);
+  --hair:rgba(255,255,255,.12);
+  --hair-hi:rgba(255,255,255,.24);
+
+  --glass-fill:linear-gradient(145deg,rgba(255,255,255,.085) 0%,rgba(255,255,255,.03) 46%,rgba(255,255,255,.05) 100%);
+  --glass-edge:rgba(255,255,255,.18);
+  --glass-rim:inset 0 1px 0 rgba(255,255,255,.32);
+  --glass-cast:0 28px 70px rgba(0,0,0,.55);
+  --blur:blur(20px) saturate(155%);
+
+  --display:'Schibsted Grotesk','PP Neue Montreal','Helvetica Neue',Arial,sans-serif;
+  --body:'Inter Tight','Inter',system-ui,sans-serif;
+  --mono:'JetBrains Mono',ui-monospace,'SF Mono',Menlo,monospace;
+}
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{background:var(--ink)}
+html,body{scroll-snap-type:y proximity}
+body{
+  background:var(--ink);color:var(--paper);
+  font-family:var(--body);
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;
+}
+img{display:block;max-width:100%}
+
+/* ═══ Stage — authored at true 1600×900, scaled to the viewport ═══ */
+.deck{display:flex;flex-direction:column;align-items:center;gap:14px;padding:14px 0 72px}
+.frame{
+  width:calc(1600px * var(--s,.5));
+  height:calc(900px * var(--s,.5));
+  scroll-snap-align:center;flex:0 0 auto;position:relative;
+}
+.slide{
+  width:1600px;height:900px;transform:scale(var(--s,.5));transform-origin:0 0;
+  position:relative;overflow:hidden;background:var(--ink);
+  font-size:19px;line-height:1.6;
+}
+.slide.lift{background:
+  radial-gradient(120% 78% at 50% -12%,rgba(255,255,255,.10) 0%,transparent 58%),
+  linear-gradient(to bottom,var(--riser) 0%,var(--ink) 62%);}
+
+.pad{position:absolute;inset:0;padding:78px 92px;display:flex;flex-direction:column;z-index:2}
+
+.watermark{position:absolute;z-index:1;pointer-events:none;
+  width:923px;max-width:none;height:auto;opacity:.07;
+  right:-184px;bottom:-74px;filter:blur(8px)}
+
+/* ═══ Type scale ═══ */
+.d1{font-family:var(--display);font-weight:600;font-size:100px;line-height:.97;letter-spacing:-.045em;text-wrap:balance}
+.d2{font-family:var(--display);font-weight:600;font-size:66px;line-height:1.03;letter-spacing:-.038em;text-wrap:balance}
+.d3{font-family:var(--display);font-weight:600;font-size:42px;line-height:1.1;letter-spacing:-.03em;text-wrap:balance}
+.lede{font-size:22.5px;line-height:1.54;color:var(--ash);max-width:25em}
+.body{font-size:18px;line-height:1.62;color:var(--ash)}
+.label{font-family:var(--mono);font-size:13px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:var(--dim)}
+.tag{font-family:var(--mono);font-size:12px;letter-spacing:.13em;text-transform:uppercase;color:var(--faint)}
+
+/* ═══ Liquid glass ═══ */
+.glass{
+  position:relative;
+  background:var(--glass-fill);
+  -webkit-backdrop-filter:var(--blur);
+  backdrop-filter:var(--blur);
+  border:1px solid var(--glass-edge);
+  border-radius:28px;
+  box-shadow:var(--glass-rim),var(--glass-cast);
+}
+.glass::before{
+  content:'';position:absolute;inset:0;border-radius:inherit;pointer-events:none;
+  background:linear-gradient(160deg,rgba(255,255,255,.11) 0%,rgba(255,255,255,.02) 34%,transparent 62%);
+}
+.glass > *{position:relative;z-index:1}
+.glass.dense{background-color:rgba(11,12,15,.5)}
+
+.pill{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:9px 17px;border-radius:999px;
+  background:rgba(255,255,255,.09);
+  -webkit-backdrop-filter:blur(22px) saturate(170%);
+  backdrop-filter:blur(22px) saturate(170%);
+  border:1px solid rgba(255,255,255,.17);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.26);
+  font-family:var(--mono);font-size:12px;letter-spacing:.13em;text-transform:uppercase;
+  color:rgba(255,255,255,.92);white-space:nowrap;
+}
+.pill.sm{padding:7px 14px;font-size:11px;letter-spacing:.11em}
+.pills{display:flex;gap:10px;flex-wrap:wrap}
+
+/* ═══ Cards ═══ */
+.card{
+  position:relative;overflow:hidden;border-radius:20px;
+  border:1px solid rgba(255,255,255,.14);background:#101114;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.10),0 20px 48px rgba(0,0,0,.5);
+}
+.card > img{width:100%;height:100%;object-fit:cover}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   The player — the hero of every project slide. Controls ride on their own
+   glass bar and stay hidden until the frame is hovered or playing.
+   ═══════════════════════════════════════════════════════════════════════ */
+.player{position:relative;background:#000}
+.player video{width:100%;height:100%;object-fit:cover;display:block}
+.vbar{position:absolute;left:14px;right:14px;bottom:14px;display:flex;align-items:center;gap:14px;
+  padding:11px 16px;border-radius:14px;
+  background:rgba(10,10,12,.62);-webkit-backdrop-filter:blur(26px) saturate(160%);
+  backdrop-filter:blur(26px) saturate(160%);
+  border:1px solid rgba(255,255,255,.16);box-shadow:inset 0 1px 0 rgba(255,255,255,.22);
+  opacity:0;transition:opacity .25s}
+.player:hover .vbar,.player.playing .vbar,.player:focus-within .vbar{opacity:1}
+.vbtn{width:26px;height:26px;flex:0 0 26px;border:0;background:none;cursor:pointer;padding:0;
+  display:flex;align-items:center;justify-content:center}
+.vbtn svg{width:16px;height:16px;fill:rgba(255,255,255,.92)}
+.vtrack{flex:1;height:3px;border-radius:2px;background:rgba(255,255,255,.22);cursor:pointer;position:relative}
+.vtrack i{position:absolute;left:0;top:0;bottom:0;width:0;border-radius:2px;background:#fff}
+.vtime{font-family:var(--mono);font-size:11px;letter-spacing:.06em;color:rgba(255,255,255,.8);
+  font-variant-numeric:tabular-nums;white-space:nowrap}
+/* Poster-state play button, centred until first play. */
+.vbig{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+  border:0;cursor:pointer;
+  /* White glass on a bright frame loses its edge, so the button sits in a soft
+     pool of its own — invisible on a dark poster, enough on a lit one. */
+  background:radial-gradient(circle at 50% 50%,rgba(0,0,0,.42) 0%,rgba(0,0,0,.18) 9%,transparent 22%)}
+.vbig span{width:88px;height:88px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+  background:rgba(255,255,255,.12);-webkit-backdrop-filter:blur(22px) saturate(170%);
+  backdrop-filter:blur(22px) saturate(170%);
+  border:1px solid rgba(255,255,255,.26);box-shadow:inset 0 1px 0 rgba(255,255,255,.34),0 12px 40px rgba(0,0,0,.5);
+  transition:background .2s,transform .2s}
+.vbig:hover span,.vbig:focus-visible span{background:rgba(255,255,255,.2);transform:scale(1.05)}
+.vbig span::after{content:'';border-left:26px solid rgba(255,255,255,.95);
+  border-top:16px solid transparent;border-bottom:16px solid transparent;margin-left:7px}
+.player.playing .vbig{display:none}
+/* Caption riding the top-left of the player, so the frame identifies itself
+   before anyone presses play. */
+.vcap{position:absolute;left:16px;top:16px;z-index:2;
+  padding:9px 15px;border-radius:12px;
+  background:rgba(10,10,12,.6);-webkit-backdrop-filter:blur(26px) saturate(150%);
+  backdrop-filter:blur(26px) saturate(150%);
+  border:1px solid rgba(255,255,255,.14);box-shadow:inset 0 1px 0 rgba(255,255,255,.2);
+  font-family:var(--mono);font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;
+  color:rgba(255,255,255,.78)}
+
+/* Small variant — the 9:16 cut-down tiles sit three to a row, so the caption,
+   play button and control bar all step down a size. */
+.player.sm .vcap{left:10px;top:10px;padding:7px 11px;border-radius:10px;font-size:10px;letter-spacing:.11em}
+.player.sm .vbig span{width:52px;height:52px}
+.player.sm .vbig span::after{border-left:15px solid rgba(255,255,255,.95);
+  border-top:9px solid transparent;border-bottom:9px solid transparent;margin-left:4px}
+.player.sm .vbar{left:9px;right:9px;bottom:9px;padding:8px 11px;gap:9px;border-radius:11px}
+.player.sm .vtime{display:none}
+
+/* A prospect's mark on the cover. Flattened to the deck's monochrome so a
+   brand colour can't fight the cover photograph — same treatment the
+   capabilities decks give the client wall. */
+.clientmark{filter:brightness(0) invert(1);opacity:.88}
+
+.filmlink{display:none}
+.filmnote{display:none}
+
+/* A frame still waiting on its cut. Same footprint as a player, so dropping
+   the file in changes nothing else on the slide. */
+.slot{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;text-align:center;
+  border:1px dashed rgba(255,255,255,.24);border-radius:20px;
+  background:rgba(255,255,255,.03)}
+.slot p{font-family:var(--mono);font-size:12px;letter-spacing:.13em;text-transform:uppercase;
+  color:var(--faint);line-height:1.9}
+
+/* Tile captions — a film named under its own frame, for the grids where a
+   full spec panel would not fit. Both draw from --paper, so they follow
+   whichever theme layer is active without a rule of their own. */
+.tilecap{margin-top:11px}
+.tilecap b{display:block;font-family:var(--display);font-weight:600;font-size:16.5px;
+  letter-spacing:-.02em;line-height:1.25;color:var(--paper)}
+.tilecap span{display:block;margin-top:4px;font-size:13.5px;line-height:1.45;color:var(--dim)}
+
+/* Outcome tiles — three short statements across the foot of a slide. */
+.tile{padding:26px 28px 28px;display:flex;flex-direction:column;gap:9px}
+.tile h3{font-family:var(--display);font-weight:600;font-size:21px;letter-spacing:-.022em;
+  line-height:1.15;color:var(--paper)}
+.tile p{font-size:15px;line-height:1.55;color:var(--ash)}
+
+/* ═══ Slate marks ═══ */
+.slate{position:relative;display:flex;justify-content:space-between;align-items:center;flex:0 0 auto}
+.wm{font-family:var(--display);font-weight:600;font-size:16px;letter-spacing:.3em;text-transform:uppercase;color:var(--paper)}
+.folio{font-variant-numeric:tabular-nums;color:var(--paper);opacity:.85}
+
+/* ═══ Panel interiors ═══ */
+.stat{padding:22px 24px 24px;display:flex;flex-direction:column;gap:5px}
+.stat b{font-family:var(--display);font-weight:600;font-size:40px;letter-spacing:-.04em;line-height:1;font-variant-numeric:tabular-nums;color:#fff}
+.stat span{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--dim)}
+
+/* Work block — three columns of what was covered, what shipped, how fast.
+   Checked lines rather than pills: denser vertically, and the eye reads them
+   as a list of work done rather than a row of labels. */
+/* Outcome figures, carried over from the capabilities deck. Stacked rather
+   than in a row, because here they sit in a work-band column beside the scope. */
+.res{display:flex;flex-direction:column;gap:13px}
+.res div{display:flex;flex-direction:column;gap:4px}
+.res b{font-family:var(--display);font-weight:600;font-size:27px;letter-spacing:-.035em;
+  line-height:1;color:#fff}
+.res span{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--dim);line-height:1.45}
+
+.work{display:grid;grid-template-columns:repeat(3,1fr);gap:36px}
+.mini{display:flex;flex-direction:column}
+.mini div{position:relative;padding:6px 0 6px 27px;font-size:15px;line-height:1.45;color:var(--ash)}
+.mini div::before{content:'';position:absolute;left:0;top:12px;width:14px;height:14px;
+  background:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23ffffff' stroke-opacity='0.62' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><circle cx='12' cy='12' r='9'/><path d='M8 12.4l2.7 2.7L16.2 9.5'/></svg>") no-repeat center/contain}
+.mini b{color:#fff;font-weight:600}
+
+/* Spec rows — label left, value right, hairline between. */
+.spec{display:flex;flex-direction:column}
+.spec div{border-top:1px solid var(--hair);padding:8px 0;display:flex;justify-content:space-between;gap:16px;
+  font-family:var(--mono);font-size:12.5px;letter-spacing:.07em;text-transform:uppercase;color:var(--dim);
+  font-variant-numeric:tabular-nums}
+.spec div b{font-family:var(--mono);font-size:12.5px;font-weight:500;letter-spacing:.07em;color:#fff;text-align:right}
+
+.note{font-family:var(--mono);font-size:11.5px;line-height:1.72;letter-spacing:.04em;color:var(--faint)}
+.rule{height:1px;background:var(--hair);width:100%;flex:0 0 1px}
+:focus-visible{outline:2px solid rgba(255,255,255,.7);outline-offset:3px}
+
+/* ═══ Full-bleed backgrounds ═══ */
+.bleed{position:absolute;inset:0;z-index:0}
+.bleed img{width:100%;height:100%;object-fit:cover}
+.bleed.push img{transform:scale(1.12)}
+/* Carried over from the capabilities deck so the cover frames this photograph
+   exactly as slide 03 does there — pushed in and offset right. */
+.bleed.cast img{transform:scale(1.32) translate(11%,4%)}
+.scrim{position:absolute;inset:0;z-index:1}
+.scrim.even{background:rgba(0,0,0,.34)}
+.scrim.top{background:linear-gradient(to bottom,rgba(0,0,0,.6) 0%,rgba(0,0,0,.15) 16%,transparent 30%)}
+.scrim.bottom{background:linear-gradient(to bottom,transparent 34%,rgba(0,0,0,.6) 74%,rgba(0,0,0,.88) 100%)}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   ACT II — the concept slides.
+
+   Act I shows films; Act II shows shows that have not been shot yet, and
+   the two halves have to read as one deck. So a concept gets the same
+   850px band a project slide gives its player, and what fills it is a
+   title card — the frame the series would open on. Like the players it
+   stays dark under the paper theme: it is footage, not a panel on the
+   page, even though the footage does not exist yet.
+   ═══════════════════════════════════════════════════════════════════════ */
+.titlecard{
+  position:relative;overflow:hidden;border-radius:20px;
+  border:1px solid rgba(255,255,255,.14);
+  background:
+    radial-gradient(118% 84% at 50% -10%,rgba(255,255,255,.13) 0%,transparent 56%),
+    linear-gradient(to bottom,#1c1d22 0%,#0a0b0d 74%);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.10),0 20px 48px rgba(0,0,0,.5);
+  display:flex;flex-direction:column;padding:46px 50px;color:#fff;
+}
+/* Colours here are literal rather than tokens: the paper theme repoints
+   --paper at near-black, and this card has to stay dark in both themes. */
+.titlecard .tcbrand{
+  font-family:var(--mono);font-size:11.5px;letter-spacing:.2em;text-transform:uppercase;
+  color:rgba(255,255,255,.52);padding-bottom:22px;border-bottom:1px solid rgba(255,255,255,.12)}
+.titlecard .tcmid{flex:1;display:flex;flex-direction:column;justify-content:center;gap:20px}
+.titlecard .tcquote{font-family:var(--display);font-weight:600;font-size:62px;line-height:1.02;
+  letter-spacing:-.038em;color:#fff;text-wrap:balance}
+.titlecard .tcsub{font-size:19.5px;line-height:1.5;color:rgba(255,255,255,.60);max-width:24em}
+.titlecard .tcfoot{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;
+  font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;
+  color:rgba(255,255,255,.42)}
+.titlecard .tcfoot b{font-weight:500;color:rgba(255,255,255,.82)}
+
+/* Hook cards — the opening line of a format, four across. */
+.quote{display:flex;flex-direction:column;padding:32px 30px}
+.quote .qt{font-family:var(--display);font-weight:600;font-size:31px;line-height:1.14;
+  letter-spacing:-.03em;text-wrap:balance}
+.quote .qt{margin-top:auto;margin-bottom:auto}
+.quote .qs{padding-top:24px;font-family:var(--mono);font-size:11px;
+  letter-spacing:.15em;text-transform:uppercase;color:var(--dim)}
+
+/* Numbered steps — the three-beat slides: point of view, the engine, the phasing. */
+.step{display:flex;flex-direction:column;gap:13px;padding:32px 34px}
+.step .sn{font-family:var(--mono);font-size:11px;letter-spacing:.19em;text-transform:uppercase;
+  color:var(--dim)}
+.step h3{font-family:var(--display);font-weight:600;font-size:28px;line-height:1.1;
+  letter-spacing:-.032em}
+.step p:not(.sn){font-size:16px;line-height:1.55;color:var(--ash);margin-top:auto;padding-top:8px}
+
+/* Act numerals — the one place a figure runs large, so each half announces
+   itself. Drawn from --paper so it is pale on the dark theme and grey on the
+   paper one, rather than a second colour to keep in sync. */
+.act{font-family:var(--display);font-weight:600;font-size:116px;line-height:.8;
+  letter-spacing:-.06em;color:var(--paper);opacity:.15;font-variant-numeric:tabular-nums}
+
+/* A single-series magnitude cue, used once: the Clip campaign figures. One
+   hue, no axis, measured against the largest of the four — enough to compare
+   at a glance without the slide pretending to carry a chart. */
+.meter{height:4px;border-radius:2px;background:var(--hair);overflow:hidden}
+.meter i{display:block;height:100%;border-radius:2px;background:var(--paper);opacity:.8}
+
+/* ═══ Chrome ═══ */
+.rail{position:fixed;top:0;left:0;right:0;height:2px;background:rgba(255,255,255,.07);z-index:50}
+.rail i{display:block;height:100%;width:0;background:#fff;transition:width .18s linear}
+.counter{
+  position:fixed;bottom:20px;left:50%;transform:translateX(-50%);z-index:50;
+  display:flex;align-items:center;gap:13px;
+  background:rgba(255,255,255,.08);
+  -webkit-backdrop-filter:blur(26px) saturate(170%);
+  backdrop-filter:blur(26px) saturate(170%);
+  border:1px solid rgba(255,255,255,.16);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.24),0 10px 30px rgba(0,0,0,.5);
+  border-radius:999px;padding:9px 18px;
+  font-family:var(--mono);font-size:11px;letter-spacing:.14em;color:var(--dim)}
+.counter b{color:#fff;font-weight:500;font-variant-numeric:tabular-nums}
+.counter kbd{font-family:var(--mono);font-size:10px;border:1px solid rgba(255,255,255,.2);
+  border-radius:5px;padding:2px 6px;color:rgba(255,255,255,.75)}
+@media (prefers-reduced-motion:reduce){ .rail i{transition:none} }
+
+@media (max-width:820px){
+  .deck{gap:8px;padding:8px 0 56px}
+  .counter{padding:8px 14px;font-size:10px;gap:9px}
+  .counter kbd{display:none}
+}
+
+/* ═══ Print — 13.333in × 7.5in is the standard 16:9 slide page; the 1600px
+   stage scales to 1280×720 to land on it exactly. Video prints as its poster
+   frame, so the play button stays: on the page it reads as "this is a film".
+   backdrop-filter does not print, so glass falls back to a solid tinted pane.
+   ═══ */
+@media print{
+  @page{size:13.333in 7.5in;margin:0}
+  html,body{background:#000;scroll-snap-type:none}
+  .rail,.counter{display:none}
+  .deck{display:block;gap:0;padding:0}
+  .frame{width:1280px;height:720px;overflow:hidden;page-break-after:always;break-after:page}
+  .frame:last-child{page-break-after:auto;break-after:auto}
+  .slide{transform:scale(.8)!important;transform-origin:0 0}
+  .glass,.pill,.vcap,.vbar{-webkit-backdrop-filter:none!important;backdrop-filter:none!important}
+  /* A large blurred box-shadow rasterizes into its own layer, whose bounding
+     box shows as a faint rectangle on the page; the sheen gradient tiles and
+     leaves a seam. Both go in print, rim and border stay. */
+  .glass::before{display:none!important}
+  .glass{background:rgba(24,25,28,.9)!important;box-shadow:inset 0 1px 0 rgba(255,255,255,.32)!important}
+  .card,.player{box-shadow:inset 0 1px 0 rgba(255,255,255,.10)!important}
+  .pill{background:rgba(30,31,35,.9)!important;box-shadow:inset 0 1px 0 rgba(255,255,255,.26)!important}
+  .vcap{background:rgba(10,10,12,.86)!important}
+  .vbar{display:none!important}
+  /* The whole poster becomes the hit area, and a line underneath says so —
+     a play button alone on a printed page reads as decoration. */
+  .filmlink{display:block!important;position:absolute;inset:0;z-index:3}
+  /* The note rides inside the frame — .player clips, so it cannot sit under it —
+     on the same glass bar the on-screen controls use. */
+  .filmnote{display:block!important;position:absolute;left:16px;bottom:16px;z-index:4;
+    padding:9px 15px;border-radius:12px;
+    background:rgba(10,10,12,.86);border:1px solid rgba(255,255,255,.14);
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.2);
+    font-family:var(--mono);font-size:11.5px;letter-spacing:.13em;text-transform:uppercase;
+    color:rgba(255,255,255,.88)}
+  /* Blade's hero is the one 9:16 player in the deck — 269px wide, which the
+     note cannot fit, so it wrapped to three lines and ran out of the tile.
+     The poster is already the link there. */
+  #p4 .filmnote{display:none!important}
+  *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+}
+</style>
+
+<style id="salesforce">
+/* ═══════════════════════════════════════════════════════════════════════
+   SALESFORCE — the deck in their colours, inverted.
+
+   Salesforce leads with blue grounds and white type. A deck that copied
+   that would be a wall of blue for twenty-six slides and would fight every
+   photograph in it. So the relationship is flipped: white ground, their
+   blues carrying the type. Midnight (#032D60) does the headings, Salesforce
+   Blue (#0176D3) does every eyebrow and accent, and the Blue 90 tint
+   (#D8E6FE) does the hairlines and the riser glow.
+
+   Values are the published SLDS ramp. If their brand team sends the real
+   sheet, the eight hexes in this :root are the only things to change.
+
+   Rides as an override layer after the base styles rather than rewriting
+   them, same as the paper theme it replaces: a token flip alone does not
+   reach everywhere the deck hard-codes white. Panel eyebrows carry inline
+   white, the checkmark bullets are drawn white inside a data URI, and the
+   cover's scrims darken a photograph that blue type now has to sit on.
+
+   What stays dark: anything riding on footage — video captions, the control
+   bar, the play button, the print film note, and the Act II title cards,
+   which move from near-black to Salesforce midnight.
+   ═══════════════════════════════════════════════════════════════════════ */
+:root{
+  --sf-blue:#0176D3;    /* Salesforce Blue — the accent that reads as "them" */
+  --sf-bright:#1B96FF;  /* Blue 60 */
+  --sf-mid:#014486;     /* Blue 30 */
+  --sf-deep:#032D60;    /* Midnight — headings */
+  --sf-tint:#EEF4FF;    /* Blue 95 */
+  --sf-tint-2:#D8E6FE;  /* Blue 90 */
+  --sf-pale:#AACBFF;    /* Blue 80 */
+
+  --ink:#FFFFFF;
+  --riser:#F6FAFF;
+  --paper:#032D60;
+  --ash:rgba(3,45,96,.76);
+  --dim:rgba(3,45,96,.56);
+  --faint:rgba(3,45,96,.42);
+  --hair:rgba(1,118,211,.18);
+  --hair-hi:rgba(1,118,211,.30);
+  /* Frost: white over the blue tint, so the blur reads as frost, not haze. */
+  --glass-fill:linear-gradient(145deg,rgba(255,255,255,.97) 0%,rgba(233,242,255,.90) 48%,rgba(246,250,255,.94) 100%);
+  --glass-edge:rgba(1,118,211,.17);
+  --glass-rim:inset 0 1px 0 rgba(255,255,255,1);
+  --glass-cast:0 16px 40px rgba(3,45,96,.10);
+}
+/* The page sits a step under the slide so the stack still reads as cards. */
+html,body{background:#DEEBFA}
+.slide{background:var(--ink)}
+.slide.lift{background:
+  radial-gradient(120% 78% at 50% -12%,rgba(216,230,254,.9) 0%,rgba(255,255,255,0) 62%),
+  linear-gradient(to bottom,var(--riser) 0%,var(--ink) 58%)}
+
+/* ── type ── */
+.spec div b,.mini b,.res b,.counter b{color:var(--sf-deep)}
+.glass .d3,.glass h2,.glass .body{color:inherit}
+/* Eyebrows carry the brand blue — the single cheapest signal that this deck
+   belongs to them, repeated on every slide. */
+.label{color:var(--sf-blue)}
+.tag{color:rgba(3,45,96,.50)}
+.glass .label{color:var(--sf-blue)}
+.glass .tag{color:rgba(3,45,96,.50)}
+/* The eyebrow colour is inline in the markup, so it has to be answered here. */
+[style*="rgba(255,255,255"]{color:var(--sf-blue)!important}
+/* Checkmark bullets are a white-stroked SVG in a data URI; the paper theme
+   inverted them to black, this one redraws them in Salesforce Blue. */
+.mini div::before{filter:none;
+  background:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230176D3' stroke-opacity='0.85' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><circle cx='12' cy='12' r='9'/><path d='M8 12.4l2.7 2.7L16.2 9.5'/></svg>") no-repeat center/contain}
+.watermark{filter:blur(8px) invert(1);opacity:.03}
+.act{color:var(--sf-blue);opacity:.17}
+
+/* Six cards where the three-beat slides fit three: the scope slide steps its
+   type down rather than overflowing into the footnote. */
+#scope .step{padding:25px 27px;gap:9px}
+#scope .step h3{font-size:23px;line-height:1.12}
+#scope .step p:not(.sn){font-size:15px;line-height:1.5;padding-top:6px}
+
+/* ── chrome ── */
+.pill{background:rgba(255,255,255,.82);border:1px solid rgba(1,118,211,.30);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,1);color:var(--sf-mid)}
+.rail{background:rgba(1,118,211,.12)}
+.rail i{background:var(--sf-blue)}
+.counter{background:rgba(255,255,255,.88);border:1px solid rgba(1,118,211,.24);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,1),0 10px 30px rgba(3,45,96,.16)}
+.counter kbd{border:1px solid rgba(1,118,211,.30);color:var(--sf-mid)}
+/* A navy hairline round the media, so film sits on the page instead of floating. */
+.card,.player{background:#DCE9F9;border:1px solid rgba(3,45,96,.58);
+  box-shadow:0 16px 40px rgba(3,45,96,.17)}
+/* The mark is already recoloured to brand blue in the file — no filter needed. */
+.clientmark{filter:none;opacity:1}
+
+/* ── the cover photograph ──
+   The scrims were darkening the picture so white type could sit on it. Blue
+   type needs the opposite: veil it toward the page. */
+.scrim.even{background:rgba(255,255,255,.30)}
+.scrim.top{background:linear-gradient(to bottom,rgba(255,255,255,.74) 0%,rgba(255,255,255,.3) 16%,transparent 30%)}
+.scrim.bottom{background:linear-gradient(to bottom,transparent 34%,rgba(255,255,255,.58) 74%,rgba(255,255,255,.88) 100%)}
+.glass.dense{background-color:rgba(255,255,255,.74)}
+
+/* ── Act II components ──
+   Title cards stay footage-side, but move from near-black to Salesforce
+   midnight: on a white deck they are the one place their blue runs full-bleed,
+   which is where it belongs — behind the name of a show. */
+.titlecard{
+  background:
+    radial-gradient(118% 84% at 50% -10%,rgba(27,150,255,.36) 0%,transparent 58%),
+    linear-gradient(to bottom,#06407F 0%,#001639 80%);
+  border:1px solid rgba(27,150,255,.32);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.17),0 18px 44px rgba(3,45,96,.27)}
+.titlecard .tcbrand{color:rgba(170,203,255,.88);border-bottom:1px solid rgba(170,203,255,.28)}
+.titlecard .tcsub{color:rgba(216,230,254,.80)}
+.titlecard .tcfoot{color:rgba(170,203,255,.62)}
+.titlecard .tcfoot b{color:rgba(255,255,255,.94)}
+.quote .qs,.step .sn{color:var(--sf-blue)}
+.meter{background:rgba(1,118,211,.16)}
+.meter i{background:var(--sf-blue);opacity:1}
+
+@media print{
+  html,body{background:#FFFFFF!important}
+  .glass{background:rgba(242,247,255,.96)!important;
+    box-shadow:inset 0 1px 0 rgba(255,255,255,1)!important}
+  .pill{background:#FFFFFF!important;
+    box-shadow:inset 0 1px 0 rgba(255,255,255,1)!important}
+  .card,.player{box-shadow:inset 0 1px 0 rgba(255,255,255,.5)!important}
+  .titlecard{box-shadow:inset 0 1px 0 rgba(255,255,255,.17)!important}
+}
+</style>
+</head>
+<body>
+
+<div class="rail"><i id="railFill"></i></div>
+
+<div class="deck" id="deck">
+
+  <!-- ══════════ 01 — COVER ══════════
+       The cover photograph is Salesforce's own Advertising Week floor, shot by
+       us. A film-activation still would have opened the deck on someone else's
+       brand; this opens it on theirs. -->
+  <div class="frame"><section class="slide">
+    <div class="bleed push" style="opacity:.92"><img src="img/sf-cover.jpg" alt=""></div>
+    <div class="scrim even"></div>
+    <div class="scrim top"></div>
+    <div class="scrim bottom"></div>
+    <div class="pad">
+      <div class="slate">
+        <span class="wm">Illusia</span>
+        <span class="pill">Illusia Agency + Clip.tech</span>
+      </div>
+
+      <div style="margin-top:auto;display:flex;align-items:flex-end;justify-content:space-between;gap:56px">
+      <div class="glass dense" style="padding:52px 56px 48px;max-width:1060px">
+        <p class="label" style="margin-bottom:24px;color:rgba(255,255,255,.72)">Social content production for Salesforce — October 2026</p>
+        <h1 class="d1" style="text-wrap:normal">Every moment,<br>made social.</h1>
+        <div class="rule" style="margin:36px 0 26px"></div>
+        <div class="pills">
+          <span class="pill">Events + product launches</span>
+          <span class="pill">Executive + original series</span>
+          <span class="pill">Always-on social</span>
+          <span class="pill">Rapid-turn editing</span>
+        </div>
+      </div>
+
+      <div style="text-align:right;flex:0 0 auto;padding-bottom:10px">
+        <p class="tag" style="margin-bottom:13px;color:rgba(255,255,255,.66)">Prepared for</p>
+        <img class="clientmark" src="logo/salesforce-blue.png" alt="Salesforce"
+             style="height:62px;width:auto;margin-left:auto">
+      </div>
+      </div>
+    </div>
+  </section></div>
+
+  <!-- ══════════ 02 — THE TWO HALVES ══════════
+       The contents page and the Act I opener in one frame. The deck is split
+       deliberately, so the split is stated before either half starts rather
+       than discovered somewhere around slide eleven. -->
+  <div class="frame" id="contents"><section class="slide lift">
+    <img class="watermark" src="logo/illusia-mark.svg" alt="">
+    <div class="pad">
+      <div class="slate"><span class="wm">Illusia</span><span class="tag">This deck, in two halves · <span class="folio">02</span></span></div>
+
+      <div style="margin-top:46px">
+        <p class="label" style="margin-bottom:20px">How this is built</p>
+        <h2 class="d2" style="max-width:19em">Proof first.<br>Then the pitch.</h2>
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:30px;margin-top:auto">
+        <div class="glass" style="padding:36px 38px;display:flex;flex-direction:column">
+          <div style="display:flex;align-items:baseline;justify-content:space-between;gap:20px">
+            <p class="label" style="color:rgba(255,255,255,.72)">Act I · Slides 03—09</p>
+            <span class="act">I</span>
+          </div>
+          <h3 class="d3" style="margin-top:4px">The work, and<br>the scope.</h3>
+          <p class="body" style="margin-top:16px;font-size:16px;max-width:26em">
+            Expedia Group's product launch, then three sectors shot by the same team —
+            studio premieres, a working factory floor, and enterprise aviation.
+            Then everything we'd cover for you.
+          </p>
+          <div class="mini" style="margin-top:22px">
+            <div><b>Expedia Group, Universal, Searchlight, Joby, BLADE, Hatteras</b></div>
+            <div>Eighteen full-time — the same people plan the shoot and cut the film</div>
+            <div>Every film on these slides is playable</div>
+          </div>
+        </div>
+
+        <div class="glass" style="padding:36px 38px;display:flex;flex-direction:column">
+          <div style="display:flex;align-items:baseline;justify-content:space-between;gap:20px">
+            <p class="label" style="color:rgba(255,255,255,.72)">Act II · Slides 10—22</p>
+            <span class="act">II</span>
+          </div>
+          <h3 class="d3" style="margin-top:4px">The originals<br>on top of it.</h3>
+          <p class="body" style="margin-top:16px;font-size:16px;max-width:26em">
+            Coverage captures the moments you already have. These four formats make
+            moments that don't exist yet — low lift, no activation buildout — plus how
+            Clip.tech moves them past the brand feed.
+          </p>
+          <div class="mini" style="margin-top:22px">
+            <div><b>Erin, Out of Office · Future You Called</b></div>
+            <div><b>Access Granted · Hot Takes, No Slides</b></div>
+            <div>One location, a small cast, a season banked per shoot</div>
+          </div>
+        </div>
+      </div>
+
+      <p class="note" style="margin-top:auto;padding-top:30px">
+        The first half is evidence. The second half is a proposal. Nothing in Act II asks for
+        anything the first half has not already been done at scale.
+      </p>
+    </div>
+  </section></div>
+  <!-- ══════════ 03 — EXPEDIA GROUP ══════════
+       Act I opens here rather than on a film premiere: a corporate product
+       launch, covered multi-camera and cut on site, is the nearest thing in
+       the book to a Dreamforce keynote or a Salesforce product drop. The hero
+       is 9:16 because that is the deliverable — a captioned vertical recap,
+       not a landscape sizzle nobody posts.
+
+       The band splits 269 + 24 + 557 to land on 850, the same width every
+       other project slide gives its media. -->
+  <div class="frame" id="expedia-group"><section class="slide lift">
+    <img class="watermark" src="logo/illusia-mark.svg" alt="">
+    <div class="pad">
+      <div class="slate"><span class="wm">Illusia</span><span class="tag">Product launch · social-first · <span class="folio">03</span></span></div>
+
+      <div style="display:grid;grid-template-columns:850px 1fr;grid-template-rows:478px;gap:30px;margin-top:32px">
+        <div style="display:grid;grid-template-columns:269px 1fr;gap:24px">
+          <div class="player card" id="p13">
+            <a class="filmlink" href="https://illusiaagency.com/salesforce-deck#expedia-group" aria-label="Watch the film at illusiaagency.com"></a>
+            <video id="p13v" playsinline preload="none" poster="img/expedia-poster.jpg" src="img/expedia-recap.mp4"></video>
+            <span class="vcap">Expedia Group · Recap</span>
+            <button class="vbig" aria-label="Play the Expedia Group event recap"><span></span></button>
+            <div class="vbar">
+              <button class="vbtn" data-play aria-label="Play or pause"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
+              <div class="vtrack"><i></i></div>
+              <span class="vtime">0:00</span>
+            </div>
+          </div>
+
+          <div class="glass" style="padding:34px 36px;display:flex;flex-direction:column">
+            <p class="label" style="margin-bottom:16px;color:rgba(255,255,255,.72)">The brief</p>
+            <h3 class="d3" style="font-size:34px;max-width:13em">Turn a major corporate product launch into content ready to post.</h3>
+            <p class="body" style="margin-top:20px;font-size:16.5px">
+              Expedia Group — the parent company behind Expedia, Vrbo and Hotels.com — hosted
+              its Fall Product Event in New York City to unveil its latest innovations and
+              product updates.
+            </p>
+            <p class="body" style="margin-top:14px;font-size:16.5px">
+              We were brought on to capture it and produce high-quality, social-first content
+              on an accelerated timeline.
+            </p>
+            <div class="pills" style="margin-top:auto;padding-top:22px">
+              <span class="pill sm">Multi-camera</span>
+              <span class="pill sm">On-site editing</span>
+              <span class="pill sm">Cinematic recap</span>
+              <span class="pill sm">Social assets</span>
+            </div>
+          </div>
+        </div>
+
+        <div style="display:flex;flex-direction:column;gap:20px">
+          <div class="glass" style="padding:30px 32px;flex:1;display:flex;flex-direction:column">
+            <p class="label" style="margin-bottom:14px;color:rgba(255,255,255,.72)">New York City</p>
+            <h2 class="d3">Expedia Group</h2>
+            <p class="tag" style="margin-top:8px">Fall Product Event</p>
+            <p class="body" style="margin-top:18px;font-size:16px">
+              Innovations and product updates unveiled on stage, turned into polished social
+              content while the announcements were still news.
+            </p>
+            <div class="spec" style="margin-top:auto;padding-top:20px">
+              <div><span>Client</span><b>Expedia Group</b></div>
+              <div><span>Brands</span><b>Expedia · Vrbo · Hotels.com</b></div>
+              <div><span>Event</span><b>Fall Product Event</b></div>
+              <div><span>Coverage</span><b>Multi-camera</b></div>
+              <div><span>Editing</span><b>On site, as it ran</b></div>
+              <div><span>Timeline</span><b>Accelerated</b></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="work" style="margin-top:auto">
+        <div>
+          <p class="label" style="margin-bottom:10px">On site</p>
+          <div class="mini">
+            <div>Multi-camera coverage across the full event</div>
+            <div>Keynote stage and product-reveal moments</div>
+            <div><b>On-site editing while the event was still running</b></div>
+            <div>Room, audience and environment coverage</div>
+          </div>
+        </div>
+        <div>
+          <p class="label" style="margin-bottom:10px">Delivered</p>
+          <div class="mini">
+            <div><b>Cinematic event recap</b></div>
+            <div><b>Social-first assets</b> — vertical, captioned, platform-ready</div>
+            <div>Key announcements cut for immediate distribution</div>
+            <div>Organized raw footage handoff</div>
+          </div>
+        </div>
+        <div>
+          <p class="label" style="margin-bottom:10px">Why it leads this deck</p>
+          <div class="mini">
+            <div><b>This is the Salesforce shape</b> — a corporate product launch, not a film premiere</div>
+            <div>A keynote, a product drop, a Dreamforce moment all run the same way</div>
+            <div>Accelerated timeline, no drop in finish</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section></div>
+  <!-- ══════════ 04 — SECTOR 01 · MOVIE EXPERIENTIAL ══════════
+       The sector slides come across from the capabilities deck at
+       illusiaagency.com/bms-examples. They group by sector rather than running
+       one project per frame, which is the right shape for this ask: the
+       argument is range — a premiere, a factory floor and an airfield shot by
+       the same eighteen people — not a catalogue. -->
+  <div class="frame" id="experiential"><section class="slide lift">
+    <img class="watermark" src="logo/illusia-mark.svg" alt="">
+    <div class="pad">
+      <div class="slate"><span class="wm">Illusia</span><span class="tag">Sector 01 · Movie experiential · <span class="folio">04</span></span></div>
+
+      <div style="display:grid;grid-template-columns:5fr 7fr;gap:56px;margin-top:34px;align-items:start">
+        <div>
+          <p class="label" style="margin-bottom:14px">Sector 01</p>
+          <h2 class="d3">Movie experiential</h2>
+          <p class="label" style="margin-top:26px;margin-bottom:11px">Video production for</p>
+          <p style="font-family:var(--display);font-weight:600;font-size:23px;
+                    letter-spacing:-.022em;line-height:1.42;color:var(--paper)">
+            Disney · Universal · Sony<br>Hulu · Amazon · Netflix &amp; more
+          </p>
+        </div>
+        <div style="padding-top:6px">
+          <p class="body" style="max-width:none">
+            Studio premieres, installations and press moments — one night, no second take, and a
+            recap expected while the opening is still news. Red carpet and talent lines, builds
+            from load-in to strike, guest and creator reaction, cut fast and handed back polished.
+          </p>
+        </div>
+      </div>
+
+      <div style="margin-top:auto;display:grid;grid-template-columns:1fr 1fr;gap:28px">
+        <div>
+          <div class="player card" id="p20" style="aspect-ratio:16/9">
+            <a class="filmlink" href="https://illusiaagency.com/salesforce-deck#experiential" aria-label="Watch the film at illusiaagency.com"></a>
+            <video playsinline preload="none" poster="img/dwp2-poster.jpg" src="img/dwp2.mp4"></video>
+            <span class="vcap">The Devil Wears Prada 2 · Premiere</span>
+            <button class="vbig" aria-label="Play The Devil Wears Prada 2 · Premiere"><span></span></button>
+            <div class="vbar">
+              <button class="vbtn" data-play aria-label="Play or pause"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
+              <div class="vtrack"><i></i></div>
+              <span class="vtime">0:00</span>
+            </div>
+            <p class="filmnote">Watch — illusiaagency.com/salesforce-deck</p>
+          </div>
+          <div class="tilecap"><b>Universal Pictures — The Devil Wears Prada 2</b><span>Premiere night, recap film.</span></div>
+        </div>
+        <div>
+          <div class="player card" id="p21" style="aspect-ratio:16/9">
+            <a class="filmlink" href="https://illusiaagency.com/salesforce-deck#experiential" aria-label="Watch the film at illusiaagency.com"></a>
+            <video playsinline preload="none" poster="img/odyssey-poster.jpg" src="img/odyssey.mp4"></video>
+            <span class="vcap">The Odyssey · Installation</span>
+            <button class="vbig" aria-label="Play The Odyssey · Installation"><span></span></button>
+            <div class="vbar">
+              <button class="vbtn" data-play aria-label="Play or pause"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
+              <div class="vtrack"><i></i></div>
+              <span class="vtime">0:00</span>
+            </div>
+            <p class="filmnote">Watch — illusiaagency.com/salesforce-deck</p>
+          </div>
+          <div class="tilecap"><b>Universal Pictures — The Odyssey</b><span>A sand build in Miami and a Trojan horse through Manhattan.</span></div>
+        </div>
+      </div>
+    </div>
+  </section></div>
+
+  <!-- ══════════ 05 — BTS CASE STUDY · READY OR NOT 2 ══════════
+       Figures deliberately absent: the outcome here is a named studio
+       relationship and a pitch reel, not a view count. -->
+  <div class="frame" id="bts"><section class="slide lift">
+    <img class="watermark" src="logo/illusia-mark.svg" alt="">
+    <div class="pad">
+      <div class="slate"><span class="wm">Illusia</span><span class="tag">BTS case study · <span class="folio">05</span></span></div>
+
+      <div style="display:grid;grid-template-columns:850px 1fr;gap:30px;margin-top:32px;grid-template-rows:478px">
+        <div class="player card" id="p22" style="aspect-ratio:16/9">
+          <a class="filmlink" href="https://illusiaagency.com/salesforce-deck#bts" aria-label="Watch the film at illusiaagency.com"></a>
+          <video playsinline preload="none" poster="img/ron2-bts-poster.jpg" src="img/ron2-bts.mp4"></video>
+          <span class="vcap">Ready or Not 2 · The build</span>
+          <button class="vbig" aria-label="Play Ready or Not 2 · The build"><span></span></button>
+          <div class="vbar">
+            <button class="vbtn" data-play aria-label="Play or pause"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
+            <div class="vtrack"><i></i></div>
+            <span class="vtime">0:00</span>
+          </div>
+          <p class="filmnote">Watch — illusiaagency.com/salesforce-deck</p>
+        </div>
+        <div class="glass" style="padding:32px 34px;display:flex;flex-direction:column">
+          <p class="label" style="margin-bottom:14px;color:rgba(255,255,255,.72)">Why we shoot the process</p>
+          <h2 class="d3" style="font-size:34px">Highlight reels open the door. Behind the scenes wins the business.</h2>
+          <p class="body" style="margin-top:20px;font-size:16px">
+            A highlight reel shows the result. BTS shows the team, the hours and the craft behind
+            it — which is what a client is actually buying, and increasingly what an audience
+            will stop for. It is also the one thing a competitor cannot lift from a finished film.
+          </p>
+          <div class="mini" style="margin-top:auto">
+            <div>Ready or Not 2 premiere, for Searchlight Pictures</div>
+            <div>Load-in, rig, rehearsal and show night</div>
+            <div>Cut as its own film, not offcuts</div>
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top:auto;display:grid;grid-template-columns:repeat(3,1fr);gap:22px">
+        <div class="glass tile"><h3>Larger projects, same studio</h3><p>Experiential Supply Co. has since been awarded bigger work by Searchlight.</p></div>
+        <div class="glass tile"><h3>It became their pitch reel</h3><p>This film, and the BTS that followed, is what they put in front of prospects.</p></div>
+        <div class="glass tile"><h3>It wins new business</h3><p>The process film does the convincing the highlight reel could not.</p></div>
+      </div>
+    </div>
+  </section></div>
+
+  <!-- ══════════ 06 — SECTOR 02 · MANUFACTURING ══════════
+       The intro and the films share one slide: the copy alone left half the
+       frame empty, and the four cuts are the argument anyway. These are the
+       closest thing in the book to always-on social — vertical, shot on a
+       working floor, on a standing programme rather than a one-off booking. -->
+  <div class="frame" id="manufacturing"><section class="slide lift">
+    <img class="watermark" src="logo/illusia-mark.svg" alt="">
+    <div class="pad">
+      <div class="slate"><span class="wm">Illusia</span><span class="tag">Sector 02 · Manufacturing at scale · <span class="folio">06</span></span></div>
+
+      <div style="display:grid;grid-template-columns:3.5fr 8.5fr;gap:42px;margin-top:auto;margin-bottom:auto;align-items:start">
+        <div>
+          <p class="label" style="margin-bottom:16px">Sector 02</p>
+          <h2 class="d2" style="font-size:48px;max-width:9em">Manufacturing at scale.</h2>
+          <p class="lede" style="margin-top:24px;font-size:19px">
+            Hatteras is a nine-figure commercial print manufacturer. We work its floor as an
+            ongoing programme — presses running, people working, nothing staged.
+          </p>
+          <div class="mini" style="margin-top:26px">
+            <div><b>A floor that does not stop.</b> We shoot around production, not through it.</div>
+            <div><b>Technical work made legible.</b> Presses and finishing, explained to outsiders.</div>
+            <div><b>The people on the line.</b> Operators on camera, not just machines.</div>
+          </div>
+        </div>
+
+        <div>
+          <p class="label" style="margin-bottom:16px">Social-first, shot vertical on the floor</p>
+          <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:13px">
+            <div>
+              <div class="player card sm" id="p23" style="aspect-ratio:9/16">
+                <a class="filmlink" href="https://illusiaagency.com/salesforce-deck#manufacturing" aria-label="Watch the film at illusiaagency.com"></a>
+                <video playsinline preload="none" poster="img/hat-team-poster.jpg" src="img/hat-team.mp4"></video>
+                <span class="vcap">The floor</span>
+                <button class="vbig" aria-label="Play Hatteras · The floor"><span></span></button>
+                <div class="vbar">
+                  <button class="vbtn" data-play aria-label="Play or pause"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
+                  <div class="vtrack"><i></i></div>
+                  <span class="vtime">0:00</span>
+                </div>
+              </div>
+              <div class="tilecap"><b>Team Hatteras</b><span>The presses, at their own scale.</span></div>
+            </div>
+            <div>
+              <div class="player card sm" id="p24" style="aspect-ratio:9/16">
+                <a class="filmlink" href="https://illusiaagency.com/salesforce-deck#manufacturing" aria-label="Watch the film at illusiaagency.com"></a>
+                <video playsinline preload="none" poster="img/hat-speedmaster-poster.jpg" src="img/hat-speedmaster.mp4"></video>
+                <span class="vcap">Press check</span>
+                <button class="vbig" aria-label="Play Hatteras · Press check"><span></span></button>
+                <div class="vbar">
+                  <button class="vbtn" data-play aria-label="Play or pause"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
+                  <div class="vtrack"><i></i></div>
+                  <span class="vtime">0:00</span>
+                </div>
+              </div>
+              <div class="tilecap"><b>Speedmaster</b><span>A press check, start to sheet.</span></div>
+            </div>
+            <div>
+              <div class="player card sm" id="p25" style="aspect-ratio:9/16">
+                <a class="filmlink" href="https://illusiaagency.com/salesforce-deck#manufacturing" aria-label="Watch the film at illusiaagency.com"></a>
+                <video playsinline preload="none" poster="img/hat-skit-poster.jpg" src="img/hat-skit.mp4"></video>
+                <span class="vcap">Culture</span>
+                <button class="vbig" aria-label="Play Hatteras · Culture"><span></span></button>
+                <div class="vbar">
+                  <button class="vbtn" data-play aria-label="Play or pause"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
+                  <div class="vtrack"><i></i></div>
+                  <span class="vtime">0:00</span>
+                </div>
+              </div>
+              <div class="tilecap"><b>New vs Old</b><span>Culture piece, cast from staff.</span></div>
+            </div>
+            <div>
+              <div class="player card sm" id="p26" style="aspect-ratio:9/16">
+                <a class="filmlink" href="https://illusiaagency.com/salesforce-deck#manufacturing" aria-label="Watch the film at illusiaagency.com"></a>
+                <video playsinline preload="none" poster="img/hat-hyper-poster.jpg" src="img/hat-hyper.mp4"></video>
+                <span class="vcap">Craft</span>
+                <button class="vbig" aria-label="Play Hatteras · Craft"><span></span></button>
+                <div class="vbar">
+                  <button class="vbtn" data-play aria-label="Play or pause"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
+                  <div class="vtrack"><i></i></div>
+                  <span class="vtime">0:00</span>
+                </div>
+              </div>
+              <div class="tilecap"><b>Hyper edit</b><span>Print history to present day.</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <p class="note" style="margin-top:0">
+        The same conditions as a regulated production environment: restricted access, live equipment,
+        and people who have a job to do while you film them.
+      </p>
+    </div>
+  </section></div>
+
+  <!-- ══════════ 07 — SECTOR 03 · ENTERPRISE AVIATION ══════════ -->
+  <div class="frame" id="aviation"><section class="slide lift">
+    <img class="watermark" src="logo/illusia-mark.svg" alt="">
+    <div class="pad">
+      <div class="slate"><span class="wm">Illusia</span><span class="tag">Sector 03 · Enterprise aviation · <span class="folio">07</span></span></div>
+
+      <div style="display:grid;grid-template-columns:850px 1fr;gap:30px;margin-top:32px;grid-template-rows:478px">
+        <div class="player card" id="p27" style="aspect-ratio:16/9">
+          <a class="filmlink" href="https://illusiaagency.com/salesforce-deck#aviation" aria-label="Watch the film at illusiaagency.com"></a>
+          <video playsinline preload="none" poster="img/joby-texas-poster.jpg" src="img/joby-texas.mp4"></video>
+          <span class="vcap">Joby Aviation · Flight operations</span>
+          <button class="vbig" aria-label="Play Joby Aviation · Flight operations"><span></span></button>
+          <div class="vbar">
+            <button class="vbtn" data-play aria-label="Play or pause"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
+            <div class="vtrack"><i></i></div>
+            <span class="vtime">0:00</span>
+          </div>
+          <p class="filmnote">Watch — illusiaagency.com/salesforce-deck</p>
+        </div>
+        <div class="glass" style="padding:32px 34px;display:flex;flex-direction:column">
+          <p class="label" style="margin-bottom:14px;color:rgba(255,255,255,.72)">Sector 03</p>
+          <h2 class="d3">Enterprise aviation</h2>
+          <p class="body" style="margin-top:20px;font-size:16px">
+            BLADE, Aero and Joby — aircraft, crews and airfields, filmed inside the rules that
+            govern them, with executives and regulators in the room, and a brand relaunch
+            riding on the footage.
+          </p>
+          <img class="clientmark" src="logo/joby.png" alt="Joby Aviation"
+               style="height:34px;width:auto;align-self:flex-start;margin-top:28px">
+          <div class="mini" style="margin-top:auto">
+            <div>Airside access and safety briefings</div>
+            <div>Flight operations and ground crew</div>
+            <div>Executive, partner and press moments</div>
+            <div>Hero films and platform-native cutdowns</div>
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top:auto;display:grid;grid-template-columns:repeat(3,1fr);gap:22px">
+        <div class="tilecap" style="margin-top:0"><b>Joby Aviation — flight operations</b><span>Ground crew, pre-flight and the aircraft working.</span></div>
+        <div class="tilecap" style="margin-top:0"><b>Joby — Manhattan vertiport</b><span>A public first-flight moment with press on the pad.</span></div>
+        <div class="tilecap" style="margin-top:0"><b>BLADE — brand and partnership</b><span>The Aero relaunch, and the US Open air experience.</span></div>
+      </div>
+    </div>
+  </section></div>
+
+  <!-- ══════════ 08 — ENTERPRISE AVIATION · THE FILMS ══════════ -->
+  <div class="frame" id="aviation-films"><section class="slide lift">
+    <img class="watermark" src="logo/illusia-mark.svg" alt="">
+    <div class="pad">
+      <div class="slate"><span class="wm">Illusia</span><span class="tag">Enterprise aviation · the films · <span class="folio">08</span></span></div>
+
+      <div style="display:grid;grid-template-columns:8fr 2.5fr 2.5fr;gap:24px;margin-top:auto;margin-bottom:auto;align-items:start">
+        <div>
+          <div class="player card" id="p28" style="aspect-ratio:16/9">
+            <a class="filmlink" href="https://illusiaagency.com/salesforce-deck#aviation-films" aria-label="Watch the film at illusiaagency.com"></a>
+            <video playsinline preload="none" poster="img/joby-vertiport-poster.jpg" src="img/joby-vertiport.mp4"></video>
+            <span class="vcap">Joby · Manhattan vertiport</span>
+            <button class="vbig" aria-label="Play Joby · Manhattan vertiport"><span></span></button>
+            <div class="vbar">
+              <button class="vbtn" data-play aria-label="Play or pause"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
+              <div class="vtrack"><i></i></div>
+              <span class="vtime">0:00</span>
+            </div>
+            <p class="filmnote">Watch — illusiaagency.com/salesforce-deck</p>
+          </div>
+          <div class="tilecap"><b>Joby — Manhattan vertiport</b><span>The first electric air taxi flight over Manhattan, covered live with press on the pad.</span></div>
+        </div>
+        <div>
+          <div class="player card sm" id="p29" style="aspect-ratio:9/16">
+            <a class="filmlink" href="https://illusiaagency.com/salesforce-deck#aviation-films" aria-label="Watch the film at illusiaagency.com"></a>
+            <video playsinline preload="none" poster="img/blade-aero-poster.jpg" src="img/blade-aero.mp4"></video>
+            <span class="vcap">BLADE × Aero</span>
+            <button class="vbig" aria-label="Play BLADE × Aero"><span></span></button>
+            <div class="vbar">
+              <button class="vbtn" data-play aria-label="Play or pause"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
+              <div class="vtrack"><i></i></div>
+              <span class="vtime">0:00</span>
+            </div>
+          </div>
+          <div class="tilecap"><b>BLADE × Aero</b><span>Relaunch film bringing the private jet operator back to market.</span></div>
+        </div>
+        <div>
+          <div class="player card sm" id="p30" style="aspect-ratio:9/16">
+            <a class="filmlink" href="https://illusiaagency.com/salesforce-deck#aviation-films" aria-label="Watch the film at illusiaagency.com"></a>
+            <video playsinline preload="none" poster="img/blade-usopen-poster.jpg" src="img/blade-usopen.mp4"></video>
+            <span class="vcap">BLADE · US Open</span>
+            <button class="vbig" aria-label="Play BLADE · US Open"><span></span></button>
+            <div class="vbar">
+              <button class="vbtn" data-play aria-label="Play or pause"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
+              <div class="vtrack"><i></i></div>
+              <span class="vtime">0:00</span>
+            </div>
+          </div>
+          <div class="tilecap"><b>US Open air experience</b><span>Partnership activation.</span></div>
+        </div>
+      </div>
+    </div>
+  </section></div>
+  <!-- ══════════ 09 — THE FULL SCOPE ══════════
+       The deck's load-bearing slide for the actual ask. Act I proves we can
+       shoot; Act II pitches four shows. Neither on its own says "we could run
+       all of your social content," which is the thing to leave them with — so
+       it gets said plainly, once, between the two halves. -->
+  <div class="frame" id="scope"><section class="slide lift">
+    <img class="watermark" src="logo/illusia-mark.svg" alt="">
+    <div class="pad">
+      <div class="slate"><span class="wm">Illusia</span><span class="tag">What we'd cover · <span class="folio">09</span></span></div>
+
+      <div style="margin-top:38px">
+        <p class="label" style="margin-bottom:20px">The full scope</p>
+        <h2 class="d2" style="max-width:17em">Not a one-off shoot.<br>A content operation.</h2>
+      </div>
+
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:1fr 1fr;gap:22px;margin-top:38px;flex:1">
+        <div class="glass step">
+          <p class="sn">01 — Events + launches</p>
+          <h3 style="font-size:25px">Everything you<br>already host.</h3>
+          <p>Dreamforce, World Tour, keynotes, product drops, Advertising Week. Multi-camera, edited on site.</p>
+        </div>
+        <div class="glass step">
+          <p class="sn">02 — Executive + leadership</p>
+          <h3 style="font-size:25px">The people behind<br>the platform.</h3>
+          <p>Keynote pull-outs, executive social, multi-cam podcast, talking-head series — shot to be clipped.</p>
+        </div>
+        <div class="glass step">
+          <p class="sn">03 — Original series</p>
+          <h3 style="font-size:25px">Moments that don't<br>exist yet.</h3>
+          <p>Repeatable formats built to be watched by choice. Four of them start on the next slide.</p>
+        </div>
+        <div class="glass step">
+          <p class="sn">04 — Always-on social</p>
+          <h3 style="font-size:25px">The weeks between<br>the moments.</h3>
+          <p>A steady drumbeat of vertical, captioned, platform-native cuts so the feed never goes quiet.</p>
+        </div>
+        <div class="glass step">
+          <p class="sn">05 — Rapid-turn editing</p>
+          <h3 style="font-size:25px">Cut while it's<br>still news.</h3>
+          <p>24-hour recaps, same-night cuts, on-site edit when the announcement can't wait for a post week.</p>
+        </div>
+        <div class="glass step">
+          <p class="sn">06 — Library + distribution</p>
+          <h3 style="font-size:25px">Where the footage<br>goes next.</h3>
+          <p>Organized, rights-cleared raw; approved clip sets; creator distribution through Clip.tech.</p>
+        </div>
+      </div>
+
+      <p class="note" style="padding-top:30px">
+        Every line above is work we already do — for Expedia Group, for Universal, for Blade,
+        and on your own Advertising Week floor.
+      </p>
+    </div>
+  </section></div>
+  <!-- ══════════ 10 — ACT II ══════════ -->
+  <div class="frame" id="act-two"><section class="slide lift">
+    <div class="pad">
+      <div class="slate"><span class="wm">Illusia</span><span class="tag">Act II · content concepts · <span class="folio">10</span></span></div>
+
+      <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:60px;margin-top:auto;margin-bottom:auto">
+        <div style="max-width:960px">
+          <p class="label" style="margin-bottom:26px">Act II — what we'd make next</p>
+          <h1 class="d1" style="text-wrap:normal">Content worth<br>following.</h1>
+          <p class="lede" style="margin-top:30px;max-width:30em">
+            Coverage is the floor, not the ceiling. Four formats built to be watched
+            by choice, clipped and shared — none of which need an activation built first.
+          </p>
+          <div class="rule" style="margin:36px 0 26px"></div>
+          <div class="pills">
+            <span class="pill">01 · Out of Office</span>
+            <span class="pill">02 · Future You Called</span>
+            <span class="pill">03 · Access Granted</span>
+            <span class="pill">04 · Hot Takes</span>
+          </div>
+        </div>
+        <span class="act" style="font-size:300px;flex:0 0 auto">II</span>
+      </div>
+
+      <p class="note">No activation buildout. Simple access. Bold ideas. Repeatable content.</p>
+    </div>
+  </section></div>
+
+  <!-- ══════════ 11 — THE OPPORTUNITY ══════════ -->
+  <div class="frame" id="opportunity"><section class="slide lift">
+    <img class="watermark" src="logo/illusia-mark.svg" alt="">
+    <div class="pad">
+      <div class="slate"><span class="wm">Illusia</span><span class="tag">The opportunity · <span class="folio">11</span></span></div>
+
+      <div style="margin-top:auto">
+        <p class="label" style="margin-bottom:20px">The opportunity</p>
+        <h2 class="d2" style="max-width:17em">A brand people know.<br>A brand people want to watch.</h2>
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:30px;margin-top:54px;margin-bottom:auto">
+        <div class="glass" style="padding:40px 42px">
+          <p class="label" style="margin-bottom:22px;color:rgba(255,255,255,.72)">Today</p>
+          <h3 class="d3">Credibility.<br>Scale. Innovation.</h3>
+          <p class="body" style="margin-top:20px;font-size:16px;max-width:24em">
+            The things an enterprise brand is already trusted for — and the things
+            a feed scrolls straight past.
+          </p>
+        </div>
+        <div class="glass" style="padding:40px 42px">
+          <p class="label" style="margin-bottom:22px;color:rgba(255,255,255,.72)">The next layer</p>
+          <h3 class="d3">Personality.<br>Participation. Culture.</h3>
+          <p class="body" style="margin-top:20px;font-size:16px;max-width:24em">
+            The things people follow, quote and send to someone else — and the
+            layer Salesforce has the talent to own.
+          </p>
+        </div>
+      </div>
+
+      <p class="note" style="padding-top:30px">
+        Make moments worth watching. Then help them travel beyond the brand feed.
+      </p>
+    </div>
+  </section></div>
+
+  <!-- ══════════ 12 — POINT OF VIEW ══════════ -->
+  <div class="frame" id="point-of-view"><section class="slide lift">
+    <img class="watermark" src="logo/illusia-mark.svg" alt="">
+    <div class="pad">
+      <div class="slate"><span class="wm">Illusia</span><span class="tag">Our point of view · <span class="folio">12</span></span></div>
+
+      <div style="margin-top:auto">
+        <p class="label" style="margin-bottom:20px">Our point of view</p>
+        <h2 class="d2" style="max-width:17em">Entertainment is the hook.<br>Salesforce is the payoff.</h2>
+      </div>
+
+      <div class="work" style="margin-top:54px;gap:30px;margin-bottom:auto">
+        <div class="glass step">
+          <p class="sn">01 — Enter</p>
+          <h3>Lead with something<br>irresistible.</h3>
+          <p>An unexpected question, a real person, or a scenario nobody opens a brand video expecting.</p>
+        </div>
+        <div class="glass step">
+          <p class="sn">02 — Show</p>
+          <h3>Let viewers see<br>something true.</h3>
+          <p>A real problem, an honest experiment, or a human moment — not a demo wearing a story.</p>
+        </div>
+        <div class="glass step">
+          <p class="sn">03 — Prove + spread</p>
+          <h3>Land the point,<br>then let it travel.</h3>
+          <p>A real Salesforce payoff, plus approved moments handed to creators to distribute.</p>
+        </div>
+      </div>
+
+      <p class="note" style="padding-top:30px">
+        Every concept can fuel Salesforce-owned content and a brief-led Clip.tech creator campaign.
+      </p>
+    </div>
+  </section></div>
+
+  <!-- ══════════ 13 — THE SHORTLIST ══════════ -->
+  <div class="frame" id="shortlist"><section class="slide lift">
+    <img class="watermark" src="logo/illusia-mark.svg" alt="">
+    <div class="pad">
+      <div class="slate"><span class="wm">Illusia</span><span class="tag">The shortlist · <span class="folio">13</span></span></div>
+
+      <div style="margin-top:auto">
+        <p class="label" style="margin-bottom:20px">The shortlist</p>
+        <h2 class="d2">Four ways in.</h2>
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:26px;margin-top:44px;height:424px;margin-bottom:auto">
+        <div class="glass" style="padding:34px 34px;display:flex;align-items:flex-start;gap:28px">
+          <span class="act" style="font-size:86px;flex:0 0 auto">01</span>
+          <div>
+            <h3 class="d3" style="font-size:33px">Erin, Out of Office</h3>
+            <p class="body" style="margin-top:9px;font-size:16px">Executive personality, out of the building — and clip-worthy moments all the way through.</p>
+          </div>
+        </div>
+        <div class="glass" style="padding:34px 34px;display:flex;align-items:flex-start;gap:28px">
+          <span class="act" style="font-size:86px;flex:0 0 auto">02</span>
+          <div>
+            <h3 class="d3" style="font-size:33px">Future You Called</h3>
+            <p class="body" style="margin-top:9px;font-size:16px">Scripted comedy with cuttable punchlines, banked a season at a time.</p>
+          </div>
+        </div>
+        <div class="glass" style="padding:34px 34px;display:flex;align-items:flex-start;gap:28px">
+          <span class="act" style="font-size:86px;flex:0 0 auto">03</span>
+          <div>
+            <h3 class="d3" style="font-size:33px">Access Granted</h3>
+            <p class="body" style="margin-top:9px;font-size:16px">A C-suite walk-and-talk that breaks into fifteen rapid-fire clips.</p>
+          </div>
+        </div>
+        <div class="glass" style="padding:34px 34px;display:flex;align-items:flex-start;gap:28px">
+          <span class="act" style="font-size:86px;flex:0 0 auto">04</span>
+          <div>
+            <h3 class="d3" style="font-size:33px">Hot Takes, No Slides</h3>
+            <p class="body" style="margin-top:9px;font-size:16px">One location, one POV series, creator-ready opinions by the dozen.</p>
+          </div>
+        </div>
+      </div>
+
+      <p class="note" style="padding-top:30px">
+        No activation buildout. Simple access. Bold ideas. Repeatable content.
+      </p>
+    </div>
+  </section></div>
+
+  <!-- ══════════ 14 — ERIN, OUT OF OFFICE ══════════
+       The concept slides take the project slides' exact band — 850px of media,
+       a panel beside it, a work band under it — so an idea and a finished film
+       are read in the same frame. What fills the band is the title card the
+       show would open on. -->
+  <div class="frame" id="out-of-office"><section class="slide lift">
+    <img class="watermark" src="logo/illusia-mark.svg" alt="">
+    <div class="pad">
+      <div class="slate"><span class="wm">Illusia</span><span class="tag">Idea 01 · executive-led × Clip · <span class="folio">14</span></span></div>
+
+      <div style="display:grid;grid-template-columns:850px 1fr;grid-template-rows:478px;gap:30px;margin-top:32px">
+        <div class="titlecard">
+          <p class="tcbrand">Salesforce / Originals</p>
+          <div class="tcmid">
+            <p class="tcquote">The CMO meets<br>the creator.</p>
+            <p class="tcsub">One real business problem. Zero conference-room energy.</p>
+          </div>
+          <div class="tcfoot">
+            <span><b>Episode 01</b> · Out of Office</span>
+            <span>8—12 min · owned shorts · clip set</span>
+          </div>
+        </div>
+
+        <div style="display:flex;flex-direction:column;gap:20px">
+          <div class="glass" style="padding:30px 32px;flex:1;display:flex;flex-direction:column">
+            <p class="label" style="margin-bottom:14px;color:rgba(255,255,255,.72)">Executive-led × Clip</p>
+            <h2 class="d3">Erin, Out of Office</h2>
+            <p class="tag" style="margin-top:8px">Original series · on location</p>
+            <p class="body" style="margin-top:18px;font-size:16px">
+              Take Salesforce leadership out of the corporate setting and into the places
+              where real business and culture actually happen.
+            </p>
+            <div class="spec" style="margin-top:auto;padding-top:20px">
+              <div><span>Format</span><b>Episodic documentary</b></div>
+              <div><span>Source film</span><b>8—12 min</b></div>
+              <div><span>Shoot</span><b>1 day per episode</b></div>
+              <div><span>Location</span><b>The guest's own turf</b></div>
+              <div><span>Cuts</span><b>Owned shorts + clip set</b></div>
+              <div><span>Lift</span><b>Low — nothing built</b></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="work" style="margin-top:auto">
+        <div>
+          <p class="label" style="margin-bottom:10px">The format</p>
+          <div class="mini">
+            <div>Erin visits a founder, artist or Salesforce customer</div>
+            <div>Candid questions drive an 8—12 minute encounter</div>
+            <div><b>The human tension delivers the hook</b></div>
+            <div>A real Salesforce story delivers the payoff</div>
+          </div>
+        </div>
+        <div>
+          <p class="label" style="margin-bottom:10px">Source + clip</p>
+          <div class="mini">
+            <div><b>8—12 min source film</b></div>
+            <div>Owned vertical shorts cut from the same day</div>
+            <div>Clip-ready highlights, multiple approved hooks</div>
+          </div>
+        </div>
+        <div>
+          <p class="label" style="margin-bottom:10px">The Salesforce story</p>
+          <div class="mini">
+            <div><b>A customer or product moment that makes the episode useful</b> — not just charismatic</div>
+            <div>Relevance agreed before the shoot, not found in the edit</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section></div>
+
+  <!-- ══════════ 15 — FUTURE YOU CALLED ══════════ -->
+  <div class="frame" id="future-you-called"><section class="slide lift">
+    <img class="watermark" src="logo/illusia-mark.svg" alt="">
+    <div class="pad">
+      <div class="slate"><span class="wm">Illusia</span><span class="tag">Idea 02 · scripted comedy × Clip · <span class="folio">15</span></span></div>
+
+      <div style="display:grid;grid-template-columns:850px 1fr;grid-template-rows:478px;gap:30px;margin-top:32px">
+        <div class="titlecard">
+          <p class="tcbrand">Salesforce / Originals</p>
+          <div class="tcmid">
+            <p class="tcquote">Wait. You still<br>do that?</p>
+            <p class="tcsub">Present You meets Future You. Neither is ready.</p>
+          </div>
+          <div class="tcfoot">
+            <span><b>EP 01</b> · Future You Called</span>
+            <span>30—60 sec · alternate hooks</span>
+          </div>
+        </div>
+
+        <div style="display:flex;flex-direction:column;gap:20px">
+          <div class="glass" style="padding:30px 32px;flex:1;display:flex;flex-direction:column">
+            <p class="label" style="margin-bottom:14px;color:rgba(255,255,255,.72)">Scripted comedy × Clip</p>
+            <h2 class="d3">Future You Called</h2>
+            <p class="tag" style="margin-top:8px">Short-form scripted · one location</p>
+            <p class="body" style="margin-top:18px;font-size:16px">
+              Scripted short-form comedy where your future self turns up at work —
+              and can't believe how you still do things.
+            </p>
+            <div class="spec" style="margin-top:auto;padding-top:20px">
+              <div><span>Format</span><b>Scripted comedy</b></div>
+              <div><span>Episode</span><b>30—60 sec</b></div>
+              <div><span>Shoot</span><b>1 day, multiple eps</b></div>
+              <div><span>Cast</span><b>2 actors</b></div>
+              <div><span>Cuts</span><b>Alternate hooks per ep</b></div>
+              <div><span>Lift</span><b>Low — one location</b></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="work" style="margin-top:auto">
+        <div>
+          <p class="label" style="margin-bottom:10px">Episode 01</p>
+          <div class="mini">
+            <div>An employee is buried in manual status updates</div>
+            <div>Their future self interrupts — <b>"Wait. You still do that?"</b></div>
+            <div>A quick, funny exchange reveals a smarter workflow</div>
+            <div>Grounded in a verified Salesforce capability</div>
+          </div>
+        </div>
+        <div>
+          <p class="label" style="margin-bottom:10px">Source + clip</p>
+          <div class="mini">
+            <div><b>30—60s episodes</b></div>
+            <div>Alternate hooks cut from the same scene</div>
+            <div>Creator-ready punchlines</div>
+            <div><b>A full season banked off one shoot day</b></div>
+          </div>
+        </div>
+        <div>
+          <p class="label" style="margin-bottom:10px">The Salesforce story</p>
+          <div class="mini">
+            <div><b>Make work frustrations entertaining</b></div>
+            <div>Then connect the payoff to Salesforce</div>
+            <div>The product is the punchline's answer, not the setup</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section></div>
+
+  <!-- ══════════ 16 — ACCESS GRANTED ══════════ -->
+  <div class="frame" id="access-granted"><section class="slide lift">
+    <img class="watermark" src="logo/illusia-mark.svg" alt="">
+    <div class="pad">
+      <div class="slate"><span class="wm">Illusia</span><span class="tag">Idea 03 · executive access × Clip · <span class="folio">16</span></span></div>
+
+      <div style="display:grid;grid-template-columns:850px 1fr;grid-template-rows:478px;gap:30px;margin-top:32px">
+        <div class="titlecard">
+          <p class="tcbrand">Salesforce / Originals</p>
+          <div class="tcmid">
+            <p class="tcquote">25 questions.<br>One walk.</p>
+            <p class="tcsub">Meet the people behind the platform.</p>
+          </div>
+          <div class="tcfoot">
+            <span><b>EP 01</b> · Access Granted</span>
+            <span>Ref: Vogue 73 Questions</span>
+          </div>
+        </div>
+
+        <div style="display:flex;flex-direction:column;gap:20px">
+          <div class="glass" style="padding:30px 32px;flex:1;display:flex;flex-direction:column">
+            <p class="label" style="margin-bottom:14px;color:rgba(255,255,255,.72)">Executive access × Clip</p>
+            <h2 class="d3">Access Granted</h2>
+            <p class="tag" style="margin-top:8px">Walk-and-talk · rapid fire</p>
+            <p class="body" style="margin-top:18px;font-size:16px">
+              An unfiltered, quick-fire walk through the world of Salesforce leadership —
+              one executive at a time.
+            </p>
+            <div class="spec" style="margin-top:auto;padding-top:20px">
+              <div><span>Format</span><b>Walk-and-talk</b></div>
+              <div><span>Hero cut</span><b>5—7 min</b></div>
+              <div><span>Questions</span><b>25 per episode</b></div>
+              <div><span>Shoot</span><b>Half a day, in office</b></div>
+              <div><span>Cuts</span><b>15+ standalone answers</b></div>
+              <div><span>Lift</span><b>Low — no set build</b></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="work" style="margin-top:auto">
+        <div>
+          <p class="label" style="margin-bottom:10px">The format</p>
+          <div class="mini">
+            <div>We follow a C-suite leader through their actual workday</div>
+            <div><b>25 unexpected questions</b>, asked on the move</div>
+            <div>Meeting the people, spaces and moments around them</div>
+            <div>Personality first, with sharp answers on where business is going</div>
+          </div>
+        </div>
+        <div>
+          <p class="label" style="margin-bottom:10px">Source + clip</p>
+          <div class="mini">
+            <div><b>5—7 min hero film</b></div>
+            <div><b>15+ standalone answers</b> — each one its own post</div>
+            <div>Creator-distributed clips</div>
+            <div>Reference: Vogue's 73 Questions</div>
+          </div>
+        </div>
+        <div>
+          <p class="label" style="margin-bottom:10px">The Salesforce story</p>
+          <div class="mini">
+            <div><b>Honest leadership and memorable opinions</b></div>
+            <div>Clear points of view on what Salesforce is building</div>
+            <div>The platform explained by the people building it</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section></div>
+
+  <!-- ══════════ 17 — HOT TAKES, NO SLIDES ══════════ -->
+  <div class="frame" id="hot-takes"><section class="slide lift">
+    <img class="watermark" src="logo/illusia-mark.svg" alt="">
+    <div class="pad">
+      <div class="slate"><span class="wm">Illusia</span><span class="tag">Idea 04 · culture + opinion × Clip · <span class="folio">17</span></span></div>
+
+      <div style="display:grid;grid-template-columns:850px 1fr;grid-template-rows:478px;gap:30px;margin-top:32px">
+        <div class="titlecard">
+          <p class="tcbrand">Salesforce / Originals</p>
+          <div class="tcmid">
+            <p class="tcquote">&ldquo;Meetings<br>are broken.&rdquo;</p>
+            <p class="tcsub">Agree? Disagree? Make your case.</p>
+          </div>
+          <div class="tcfoot">
+            <span><b>EP 01</b> · Hot Takes, No Slides</span>
+            <span>30 sec on the clock</span>
+          </div>
+        </div>
+
+        <div style="display:flex;flex-direction:column;gap:20px">
+          <div class="glass" style="padding:30px 32px;flex:1;display:flex;flex-direction:column">
+            <p class="label" style="margin-bottom:14px;color:rgba(255,255,255,.72)">Culture + opinion × Clip</p>
+            <h2 class="d3">Hot Takes, No Slides</h2>
+            <p class="tag" style="margin-top:8px">Studio series · one session</p>
+            <p class="body" style="margin-top:18px;font-size:16px">
+              A fast, personality-driven series where Salesforce people react to the
+              ideas shaping work, marketing and AI.
+            </p>
+            <div class="spec" style="margin-top:auto;padding-top:20px">
+              <div><span>Format</span><b>Opinion series</b></div>
+              <div><span>Season</span><b>6—10 episodes</b></div>
+              <div><span>Shoot</span><b>1 session, 1 location</b></div>
+              <div><span>Clock</span><b>30 sec per take</b></div>
+              <div><span>Cuts</span><b>Every take is a post</b></div>
+              <div><span>Lift</span><b>Lowest of the four</b></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="work" style="margin-top:auto">
+        <div>
+          <p class="label" style="margin-bottom:10px">Episode 01</p>
+          <div class="mini">
+            <div>A Salesforce leader draws three bold statements</div>
+            <div>On marketing, AI and workplace culture</div>
+            <div><b>30 seconds to agree, disagree or defend the take</b></div>
+            <div>No decks. No polished scripts. Just a point of view.</div>
+          </div>
+        </div>
+        <div>
+          <p class="label" style="margin-bottom:10px">Source + clip</p>
+          <div class="mini">
+            <div><b>One office or studio session</b></div>
+            <div><b>6—10 episodes</b> banked from it</div>
+            <div>Clip-ready takes — a strong opinion in every cut</div>
+          </div>
+        </div>
+        <div>
+          <p class="label" style="margin-bottom:10px">The Salesforce story</p>
+          <div class="mini">
+            <div><b>Show real expertise and real personality</b></div>
+            <div>Then link the key takes to Salesforce's point of view</div>
+            <div>The cheapest format to test, the fastest to scale</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section></div>
+
+  <!-- ══════════ 18 — OPENING HOOKS ══════════ -->
+  <div class="frame" id="hooks"><section class="slide lift">
+    <img class="watermark" src="logo/illusia-mark.svg" alt="">
+    <div class="pad">
+      <div class="slate"><span class="wm">Illusia</span><span class="tag">Example opening hooks · <span class="folio">18</span></span></div>
+
+      <div style="margin-top:auto">
+        <p class="label" style="margin-bottom:20px">Example opening hooks</p>
+        <h2 class="d2">Scroll-stoppers, not sound bites.</h2>
+      </div>
+
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-top:44px;height:318px;margin-bottom:auto">
+        <div class="glass quote">
+          <p class="qt">&ldquo;Can a CMO survive a day in my business?&rdquo;</p>
+          <p class="qs">Erin, Out of Office</p>
+        </div>
+        <div class="glass quote">
+          <p class="qt">&ldquo;Wait… you still do that manually?&rdquo;</p>
+          <p class="qs">Future You Called</p>
+        </div>
+        <div class="glass quote">
+          <p class="qt">&ldquo;What's one corporate phrase you'd ban forever?&rdquo;</p>
+          <p class="qs">Access Granted</p>
+        </div>
+        <div class="glass quote">
+          <p class="qt">&ldquo;The best marketing doesn't feel like marketing.&rdquo;</p>
+          <p class="qs">Hot Takes, No Slides</p>
+        </div>
+      </div>
+
+      <p class="note" style="padding-top:30px">
+        One strong original moment. Multiple approved hooks, cuts and creator perspectives via Clip.
+      </p>
+    </div>
+  </section></div>
+
+  <!-- ══════════ 19 — CLIP.TECH CAMPAIGN EXAMPLES ══════════
+       Four figures, no chart: the job here is magnitude per campaign, not a
+       comparison across a shared axis. The meter under each number is a single
+       monochrome series against the largest campaign, so the four can be read
+       against each other at a glance without pretending to be a plot. -->
+  <div class="frame" id="clip-examples"><section class="slide lift">
+    <img class="watermark" src="logo/illusia-mark.svg" alt="">
+    <div class="pad">
+      <div class="slate"><span class="wm">Illusia</span><span class="tag">Clip.tech · public campaign examples · <span class="folio">19</span></span></div>
+
+      <div style="margin-top:auto">
+        <p class="label" style="margin-bottom:20px">Clip.tech / public campaign examples</p>
+        <h2 class="d2" style="max-width:16em">Clip turns one moment<br>into many feeds.</h2>
+      </div>
+
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-top:44px;height:336px;margin-bottom:auto">
+        <div class="glass" style="padding:32px 30px;display:flex;flex-direction:column">
+          <p class="label" style="color:rgba(255,255,255,.72)">01 / Livestream</p>
+          <h3 class="d3" style="font-size:30px;margin-top:10px">Ramp</h3>
+          <p class="tag" style="margin-top:6px">NYC livestream</p>
+          <div style="margin-top:auto">
+            <div class="res"><div><b>28.76M</b><span>Total views</span></div></div>
+            <div class="meter" style="margin:14px 0 12px"><i style="width:100%"></i></div>
+            <p class="tag">809 clips posted</p>
+          </div>
+        </div>
+        <div class="glass" style="padding:32px 30px;display:flex;flex-direction:column">
+          <p class="label" style="color:rgba(255,255,255,.72)">02 / Live event</p>
+          <h3 class="d3" style="font-size:30px;margin-top:10px">FIFA</h3>
+          <p class="tag" style="margin-top:6px">David Guetta</p>
+          <div style="margin-top:auto">
+            <div class="res"><div><b>23.35M</b><span>Total views</span></div></div>
+            <div class="meter" style="margin:14px 0 12px"><i style="width:81.2%"></i></div>
+            <p class="tag">849 clips posted</p>
+          </div>
+        </div>
+        <div class="glass" style="padding:32px 30px;display:flex;flex-direction:column">
+          <p class="label" style="color:rgba(255,255,255,.72)">03 / Live activation</p>
+          <h3 class="d3" style="font-size:30px;margin-top:10px">Taco Bell</h3>
+          <p class="tag" style="margin-top:6px">Live Más Live</p>
+          <div style="margin-top:auto">
+            <div class="res"><div><b>16.98M</b><span>Total views</span></div></div>
+            <div class="meter" style="margin:14px 0 12px"><i style="width:59%"></i></div>
+            <p class="tag">453 clips posted</p>
+          </div>
+        </div>
+        <div class="glass" style="padding:32px 30px;display:flex;flex-direction:column">
+          <p class="label" style="color:rgba(255,255,255,.72)">04 / Podcast</p>
+          <h3 class="d3" style="font-size:30px;margin-top:10px">Alix Earle</h3>
+          <p class="tag" style="margin-top:6px">Hot Mess</p>
+          <div style="margin-top:auto">
+            <div class="res"><div><b>7.49M</b><span>Total views</span></div></div>
+            <div class="meter" style="margin:14px 0 12px"><i style="width:26%"></i></div>
+            <p class="tag">270 clips posted</p>
+          </div>
+        </div>
+      </div>
+
+      <p class="note" style="padding-top:30px">
+        Meters are each campaign's views against the largest of the four. Illustrative Clip.tech
+        case studies — not Illusia work, and not a Salesforce forecast. Source: clip.tech
+      </p>
+    </div>
+  </section></div>
+
+  <!-- ══════════ 20 — THE ENGINE ══════════ -->
+  <div class="frame" id="engine"><section class="slide lift">
+    <img class="watermark" src="logo/illusia-mark.svg" alt="">
+    <div class="pad">
+      <div class="slate"><span class="wm">Illusia</span><span class="tag">Production × distribution · <span class="folio">20</span></span></div>
+
+      <div style="margin-top:auto">
+        <p class="label" style="margin-bottom:20px">The production × distribution engine</p>
+        <h2 class="d2" style="max-width:16em">Illusia creates it.<br>Clip helps it travel.</h2>
+      </div>
+
+      <div class="work" style="margin-top:54px;gap:30px;margin-bottom:auto">
+        <div class="glass step">
+          <p class="sn">Illusia — make</p>
+          <h3>Salesforce-owned<br>content.</h3>
+          <p>Hero edits, executive social and vertical-first shorts, shot and cut by the team that already covers your events.</p>
+        </div>
+        <div class="glass step">
+          <p class="sn">Clip.tech — travel</p>
+          <h3>Creator<br>distribution.</h3>
+          <p>Approved source plus a brief goes to clippers, who make and post their own edits from your moments.</p>
+        </div>
+        <div class="glass step">
+          <p class="sn">Together — repeat</p>
+          <h3>Learn, optimize,<br>repeat.</h3>
+          <p>Verified views, audience response and the hooks that actually landed inform what gets shot next.</p>
+        </div>
+      </div>
+
+      <p class="note" style="padding-top:30px">
+        Illusia makes the source. Clip distributes approved moments through creator accounts.
+        Salesforce controls story, rights and approvals throughout.
+      </p>
+    </div>
+  </section></div>
+
+  <!-- ══════════ 21 — HOW WE'D START ══════════ -->
+  <div class="frame" id="how-we-start"><section class="slide lift">
+    <img class="watermark" src="logo/illusia-mark.svg" alt="">
+    <div class="pad">
+      <div class="slate"><span class="wm">Illusia</span><span class="tag">How we could start · <span class="folio">21</span></span></div>
+
+      <div style="margin-top:auto">
+        <p class="label" style="margin-bottom:20px">How we could start</p>
+        <h2 class="d2" style="max-width:16em">Launch one format.<br>Then let data steer.</h2>
+      </div>
+
+      <div class="work" style="margin-top:54px;gap:30px;margin-bottom:auto">
+        <div class="glass step">
+          <p class="sn">Phase 01</p>
+          <h3>Choose the show<br>and the story.</h3>
+          <p>Align audience, talent, the Salesforce proof point, rights and format — before anyone is on set.</p>
+        </div>
+        <div class="glass step">
+          <p class="sn">Phase 02</p>
+          <h3>Build a source<br>library.</h3>
+          <p>Shoot a flagship piece plus the long takes and extra moments cleared for clipping.</p>
+        </div>
+        <div class="glass step">
+          <p class="sn">Phase 03</p>
+          <h3>Activate Clip<br>and learn.</h3>
+          <p>Test approved creator posts, then compare hooks, verified views and brand outcomes.</p>
+        </div>
+      </div>
+
+      <p class="note" style="padding-top:30px">
+        Start with <b>Access Granted</b>, <b>Future You Called</b>
+        or <b>Hot Takes</b> — one location, a small cast, and plenty of approved
+        moments to clip.
+      </p>
+    </div>
+  </section></div>
+
+  <!-- ══════════ 22 — CLOSE ══════════ -->
+  <div class="frame" id="close"><section class="slide">
+    <div class="bleed push" style="opacity:.84"><img src="img/sf-cover.jpg" alt=""></div>
+    <div class="scrim even"></div>
+    <div class="scrim top"></div>
+    <div class="scrim bottom"></div>
+    <div class="pad">
+      <div class="slate">
+        <span class="wm">Illusia</span>
+        <span class="pill">Illusia Agency + Clip.tech</span>
+      </div>
+
+      <div style="margin-top:auto;display:flex;align-items:flex-end;justify-content:space-between;gap:56px">
+      <div class="glass dense" style="padding:52px 56px 48px;max-width:1060px">
+        <p class="label" style="margin-bottom:24px;color:rgba(255,255,255,.72)">Let's make something people look forward to</p>
+        <h1 class="d1" style="text-wrap:normal">Make it worth<br>watching. Then<br>make it travel.</h1>
+        <div class="rule" style="margin:36px 0 26px"></div>
+        <p class="lede" style="max-width:28em">
+          Where would you want to start — your next event, the first series, or a month
+          of always-on? And what does success look like for Salesforce?
+        </p>
+      </div>
+
+      <div style="text-align:right;flex:0 0 auto;padding-bottom:10px">
+        <p class="tag" style="margin-bottom:11px;color:rgba(255,255,255,.66)">Illusia Agency</p>
+        <p class="wm" style="font-size:19px">illusiaagency.com</p>
+      </div>
+      </div>
+    </div>
+  </section></div>
+
+</div>
+
+<div class="counter">Slide <b id="cur">01</b> / <b id="tot">04</b> <kbd>↑</kbd><kbd>↓</kbd></div>
+
+<script>
+(function(){
+  var frames = Array.prototype.slice.call(document.querySelectorAll('.frame'));
+  var railFill = document.getElementById('railFill');
+  var cur = document.getElementById('cur');
+  document.getElementById('tot').textContent = String(frames.length).padStart(2,'0');
+
+  // One scale factor drives the deck: the 1600×900 stage is authored at true
+  // size and scaled down to whatever the viewport allows.
+  function fit(){
+    var s = window.innerWidth < 820
+      ? Math.min((window.innerWidth - 16)/1600, (window.innerHeight - 72)/900)
+      : Math.min((window.innerWidth - 28)/1600, (window.innerHeight - 96)/900);
+    document.documentElement.style.setProperty('--s', Math.max(s, 0.12));
+  }
+  fit();
+  window.addEventListener('resize', fit);
+
+  function active(){
+    var mid = window.innerHeight/2, best = 0, bestD = Infinity;
+    frames.forEach(function(f,i){
+      var r = f.getBoundingClientRect();
+      var d = Math.abs(r.top + r.height/2 - mid);
+      if(d < bestD){ bestD = d; best = i; }
+    });
+    return best;
+  }
+
+  function sync(){
+    var i = active();
+    cur.textContent = String(i+1).padStart(2,'0');
+    railFill.style.width = ((i+1)/frames.length*100) + '%';
+  }
+  sync();
+
+  var ticking = false;
+  window.addEventListener('scroll', function(){
+    if(ticking) return;
+    ticking = true;
+    requestAnimationFrame(function(){ sync(); ticking = false; });
+  }, {passive:true});
+
+  // scrollIntoView is unreliable when the document lands in quirks mode (as it
+  // does when this file is opened straight off disk), so page by offset.
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function go(n){
+    n = Math.max(0, Math.min(frames.length-1, n));
+    var f = frames[n];
+    var top = f.offsetTop - Math.max(0, (window.innerHeight - f.offsetHeight)/2);
+    window.scrollTo({top: top, behavior: reduce ? 'auto' : 'smooth'});
+  }
+
+  function fromHash(){
+    if(!location.hash) return;
+    var el = document.querySelector(location.hash);
+    if(!el) return;
+    var i = frames.indexOf(el);
+    if(i > -1) setTimeout(function(){ go(i); }, 60);
+  }
+  fromHash();
+  window.addEventListener('hashchange', fromHash);
+
+  document.addEventListener('keydown', function(e){
+    if(e.metaKey || e.ctrlKey || e.altKey) return;
+    if(/^(INPUT|TEXTAREA)$/.test((e.target.tagName||''))) return;
+    var k = e.key;
+    if(k==='ArrowDown' || k==='ArrowRight' || k==='PageDown' || k===' '){ e.preventDefault(); go(active()+1); }
+    else if(k==='ArrowUp' || k==='ArrowLeft' || k==='PageUp'){ e.preventDefault(); go(active()-1); }
+    else if(k==='Home'){ e.preventDefault(); go(0); }
+    else if(k==='End'){ e.preventDefault(); go(frames.length-1); }
+  });
+})();
+</script>
+
+<script>
+/* ── Players ──
+   One behaviour shared by every .player on the deck: press anywhere on the
+   poster to start, scrub on the bar, and starting one stops the others so two
+   soundtracks can never run at once. */
+(function(){
+  var PLAY = 'M8 5v14l11-7z';
+  var PAUSE = 'M6 5h4v14H6zM14 5h4v14h-4z';
+  var all = Array.prototype.slice.call(document.querySelectorAll('.player'));
+
+  function fmt(t){
+    if(!isFinite(t)) return '0:00';
+    var m = Math.floor(t/60), s = Math.floor(t%60);
+    return m + ':' + (s<10?'0':'') + s;
+  }
+
+  all.forEach(function(wrap){
+    var v = wrap.querySelector('video');
+    var big = wrap.querySelector('.vbig');
+    var btn = wrap.querySelector('[data-play]');
+    var path = btn.querySelector('path');
+    var track = wrap.querySelector('.vtrack');
+    var fill = track.querySelector('i');
+    var time = wrap.querySelector('.vtime');
+
+    function toggle(){
+      if(v.paused){
+        all.forEach(function(o){ if(o !== wrap) o.querySelector('video').pause(); });
+        v.play();
+      } else {
+        v.pause();
+      }
+    }
+
+    big.addEventListener('click', toggle);
+    btn.addEventListener('click', toggle);
+
+    v.addEventListener('play', function(){
+      wrap.classList.add('playing');
+      path.setAttribute('d', PAUSE);
+    });
+    v.addEventListener('pause', function(){
+      path.setAttribute('d', PLAY);
+    });
+    v.addEventListener('ended', function(){
+      wrap.classList.remove('playing');
+      path.setAttribute('d', PLAY);
+      v.currentTime = 0;
+    });
+    v.addEventListener('timeupdate', function(){
+      var d = v.duration;
+      fill.style.width = (d ? (v.currentTime/d*100) : 0) + '%';
+      time.textContent = fmt(v.currentTime);
+    });
+
+    function seek(e){
+      var r = track.getBoundingClientRect();
+      var p = Math.min(Math.max((e.clientX - r.left)/r.width, 0), 1);
+      if(v.duration) v.currentTime = p * v.duration;
+    }
+    track.addEventListener('click', seek);
+  });
+})();
+</script>
+
+</body>
+</html>

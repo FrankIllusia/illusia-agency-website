@@ -9,6 +9,7 @@ const nextConfig: NextConfig = {
       { source: "/our-deck", destination: "/our-deck/index.html" },
       { source: "/experiential-examples", destination: "/experiential-examples/index.html" },
       { source: "/bms-examples", destination: "/bms-examples/index.html" },
+      { source: "/salesforce-deck", destination: "/salesforce-deck/index.html" },
     ];
   },
 };
