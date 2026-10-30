@@ -280,15 +280,34 @@ img{display:block;max-width:100%}
     radial-gradient(118% 84% at 50% -10%,rgba(255,255,255,.13) 0%,transparent 56%),
     linear-gradient(to bottom,#1c1d22 0%,#0a0b0d 74%);
   box-shadow:inset 0 1px 0 rgba(255,255,255,.10),0 20px 48px rgba(0,0,0,.5);
-  display:flex;flex-direction:column;padding:46px 50px;color:#fff;
+  display:flex;gap:34px;padding:46px 50px;color:#fff;
 }
+.tcbody{flex:1;min-width:0;display:flex;flex-direction:column}
+/* Thumbnails are pulled from YouTube once and stored in img/, so neither the
+   deck nor its PDF depends on img.youtube.com being reachable at open time. */
+.tcref{flex:0 0 236px;display:flex;flex-direction:column;justify-content:flex-end;
+  gap:11px;text-decoration:none}
+.tcreflabel{font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;
+  text-transform:uppercase;color:rgba(255,255,255,.46)}
+.tcrefthumb{position:relative;display:block;border-radius:12px;overflow:hidden;
+  border:1px solid rgba(255,255,255,.20);box-shadow:0 12px 28px rgba(0,0,0,.40)}
+.tcrefthumb img{display:block;width:100%;aspect-ratio:16/9;object-fit:cover}
+.tcrefthumb b{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
+  width:46px;height:46px;border-radius:50%;background:rgba(8,10,14,.62);
+  border:1px solid rgba(255,255,255,.50);
+  display:flex;align-items:center;justify-content:center;transition:background .2s}
+.tcrefthumb b::after{content:'';border-left:14px solid rgba(255,255,255,.96);
+  border-top:9px solid transparent;border-bottom:9px solid transparent;margin-left:4px}
+.tcref:hover .tcrefthumb b,.tcref:focus-visible .tcrefthumb b{background:rgba(8,10,14,.82)}
+.tcrefname{font-family:var(--mono);font-size:11px;letter-spacing:.08em;line-height:1.5;
+  color:rgba(255,255,255,.82)}
 /* Colours here are literal rather than tokens: the paper theme repoints
    --paper at near-black, and this card has to stay dark in both themes. */
 .titlecard .tcbrand{
   font-family:var(--mono);font-size:11.5px;letter-spacing:.2em;text-transform:uppercase;
   color:rgba(255,255,255,.52);padding-bottom:22px;border-bottom:1px solid rgba(255,255,255,.12)}
 .titlecard .tcmid{flex:1;display:flex;flex-direction:column;justify-content:center;gap:20px;padding-bottom:16px}
-.titlecard .tcquote{font-family:var(--display);font-weight:600;font-size:62px;line-height:1.02;
+.titlecard .tcquote{font-family:var(--display);font-weight:600;font-size:54px;line-height:1.02;
   letter-spacing:-.038em;color:#fff;text-wrap:balance}
 .titlecard .tcsub{font-size:19.5px;line-height:1.5;color:rgba(255,255,255,.60);max-width:24em}
 /* The opening hook, carried on the title card of the format it belongs to
@@ -533,6 +552,10 @@ html,body{background:#DEEBFA}
 .titlecard .tcbrand{color:rgba(170,203,255,.88);border-bottom:1px solid rgba(170,203,255,.28)}
 .titlecard .tcsub{color:rgba(216,230,254,.80)}
 .titlecard .tchook{border-top:1px solid rgba(170,203,255,.22);color:rgba(216,230,254,.72)}
+.titlecard .tcreflabel{color:rgba(170,203,255,.62)}
+.titlecard .tcrefname{color:rgba(216,230,254,.88)}
+.titlecard .tcrefthumb{border:1px solid rgba(27,150,255,.38);
+  box-shadow:0 12px 28px rgba(3,45,96,.34)}
 .titlecard .tchook b{color:rgba(170,203,255,.70)}
 .titlecard .tcfoot{color:rgba(170,203,255,.62)}
 .titlecard .tcfoot b{color:rgba(255,255,255,.94)}
@@ -1075,6 +1098,7 @@ html,body{background:#DEEBFA}
 
       <div style="display:grid;grid-template-columns:850px 1fr;grid-template-rows:478px;gap:30px;margin-top:32px">
         <div class="titlecard">
+          <div class="tcbody">
           <p class="tcbrand">Salesforce / Originals</p>
           <div class="tcmid">
             <p class="tcquote">The CMO meets<br>the creator.</p>
@@ -1083,8 +1107,14 @@ html,body{background:#DEEBFA}
           </div>
           <div class="tcfoot">
             <span><b>Episode 01</b> · Out of Office</span>
-            <span>8—12 min · owned shorts · clip set</span>
           </div>
+          </div>
+
+          <a class="tcref" href="https://www.youtube.com/watch?v=yZIDW9mT_HU" target="_blank" rel="noopener">
+            <span class="tcreflabel">Reference</span>
+            <span class="tcrefthumb"><img src="/salesforce-deck/img/ref-colinsamir.jpg" alt=""><b></b></span>
+            <span class="tcrefname">Colin &amp; Samir<br>The Spotify CEO interview &nearr;</span>
+          </a>
         </div>
 
         <div style="display:flex;flex-direction:column;gap:20px">
@@ -1103,7 +1133,6 @@ html,body{background:#DEEBFA}
               <div><span>Location</span><b>The guest's own turf</b></div>
               <div><span>Cuts</span><b>Owned shorts + clip set</b></div>
               <div><span>Lift</span><b>Low — nothing built</b></div>
-              <div><span>Reference</span><b><a href="https://www.youtube.com/watch?v=A2aSmJ-SXCo" target="_blank" rel="noopener">Hot Ones · First We Feast ↗</a></b></div>
             </div>
           </div>
         </div>
@@ -1146,6 +1175,7 @@ html,body{background:#DEEBFA}
 
       <div style="display:grid;grid-template-columns:850px 1fr;grid-template-rows:478px;gap:30px;margin-top:32px">
         <div class="titlecard">
+          <div class="tcbody">
           <p class="tcbrand">Salesforce / Originals</p>
           <div class="tcmid">
             <p class="tcquote">Wait. You still<br>do that?</p>
@@ -1154,8 +1184,14 @@ html,body{background:#DEEBFA}
           </div>
           <div class="tcfoot">
             <span><b>EP 01</b> · Future You Called</span>
-            <span>30—60 sec · alternate hooks</span>
           </div>
+          </div>
+
+          <a class="tcref" href="https://www.youtube.com/watch?v=B6zVzWU95Sw" target="_blank" rel="noopener">
+            <span class="tcreflabel">Reference</span>
+            <span class="tcrefthumb"><img src="/salesforce-deck/img/ref-slack.jpg" alt=""><b></b></span>
+            <span class="tcrefname">Slack<br>&ldquo;So Yeah, We Tried Slack&rdquo; &nearr;</span>
+          </a>
         </div>
 
         <div style="display:flex;flex-direction:column;gap:20px">
@@ -1174,7 +1210,6 @@ html,body{background:#DEEBFA}
               <div><span>Cast</span><b>2 actors</b></div>
               <div><span>Cuts</span><b>Alternate hooks per ep</b></div>
               <div><span>Lift</span><b>Low — one location</b></div>
-              <div><span>Reference</span><b><a href="https://www.youtube.com/watch?v=B6zVzWU95Sw" target="_blank" rel="noopener">Slack · We Tried Slack ↗</a></b></div>
             </div>
           </div>
         </div>
@@ -1219,6 +1254,7 @@ html,body{background:#DEEBFA}
 
       <div style="display:grid;grid-template-columns:850px 1fr;grid-template-rows:478px;gap:30px;margin-top:32px">
         <div class="titlecard">
+          <div class="tcbody">
           <p class="tcbrand">Salesforce / Originals</p>
           <div class="tcmid">
             <p class="tcquote">25 questions.<br>One walk.</p>
@@ -1227,8 +1263,14 @@ html,body{background:#DEEBFA}
           </div>
           <div class="tcfoot">
             <span><b>EP 01</b> · Access Granted</span>
-            <span>Ref: Vogue 73 Questions</span>
           </div>
+          </div>
+
+          <a class="tcref" href="https://www.youtube.com/watch?v=XnbCSboujF4" target="_blank" rel="noopener">
+            <span class="tcreflabel">Reference</span>
+            <span class="tcrefthumb"><img src="/salesforce-deck/img/ref-vogue.jpg" alt=""><b></b></span>
+            <span class="tcrefname">Vogue<br>73 Questions &nearr;</span>
+          </a>
         </div>
 
         <div style="display:flex;flex-direction:column;gap:20px">
@@ -1247,7 +1289,6 @@ html,body{background:#DEEBFA}
               <div><span>Shoot</span><b>Half a day, in office</b></div>
               <div><span>Cuts</span><b>15+ standalone answers</b></div>
               <div><span>Lift</span><b>Low — no set build</b></div>
-              <div><span>Reference</span><b><a href="https://www.youtube.com/watch?v=XnbCSboujF4" target="_blank" rel="noopener">Vogue · 73 Questions ↗</a></b></div>
             </div>
           </div>
         </div>
@@ -1269,7 +1310,6 @@ html,body{background:#DEEBFA}
             <div><b>5—7 min hero film</b></div>
             <div><b>15+ standalone answers</b> — each one its own post</div>
             <div>Creator-distributed clips</div>
-            <div>Reference: Vogue's 73 Questions</div>
           </div>
         </div>
         <div>
@@ -1292,6 +1332,7 @@ html,body{background:#DEEBFA}
 
       <div style="display:grid;grid-template-columns:850px 1fr;grid-template-rows:478px;gap:30px;margin-top:32px">
         <div class="titlecard">
+          <div class="tcbody">
           <p class="tcbrand">Salesforce / Originals</p>
           <div class="tcmid">
             <p class="tcquote">&ldquo;Meetings<br>are broken.&rdquo;</p>
@@ -1300,8 +1341,14 @@ html,body{background:#DEEBFA}
           </div>
           <div class="tcfoot">
             <span><b>EP 01</b> · Hot Takes, No Slides</span>
-            <span>30 sec on the clock</span>
           </div>
+          </div>
+
+          <a class="tcref" href="https://www.youtube.com/watch?v=Puo3VkPkNZ4" target="_blank" rel="noopener">
+            <span class="tcreflabel">Reference</span>
+            <span class="tcrefthumb"><img src="/salesforce-deck/img/ref-wired.jpg" alt=""><b></b></span>
+            <span class="tcrefname">WIRED<br>Tech Support &nearr;</span>
+          </a>
         </div>
 
         <div style="display:flex;flex-direction:column;gap:20px">
@@ -1320,7 +1367,6 @@ html,body{background:#DEEBFA}
               <div><span>Clock</span><b>30 sec per take</b></div>
               <div><span>Cuts</span><b>Every take is a post</b></div>
               <div><span>Lift</span><b>Lowest of the four</b></div>
-              <div><span>Reference</span><b><a href="https://www.youtube.com/watch?v=Puo3VkPkNZ4" target="_blank" rel="noopener">WIRED · Tech Support ↗</a></b></div>
             </div>
           </div>
         </div>
