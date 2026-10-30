@@ -216,6 +216,11 @@ img{display:block;max-width:100%}
 .party{padding:30px 32px;display:flex;flex-direction:column;gap:8px}
 .pname{font-family:var(--display);font-weight:600;font-size:34px;letter-spacing:-.03em;
   line-height:1.04;color:var(--paper)}
+/* Marks are sized by eye, not by a shared height: Clip and Salesforce carry a
+   wordmark beside their glyph, so they sit smaller than the Illusia mark to
+   land at the same optical weight. */
+.plogo{display:flex;align-items:flex-end;height:58px;margin:6px 0 2px}
+.plogo img{width:auto;max-width:100%}
 .party p:last-child{padding-top:14px;font-size:15px;line-height:1.56;color:var(--ash)}
 .px{display:flex;align-items:center;justify-content:center;
   font-family:var(--display);font-weight:600;font-size:26px;color:var(--faint)}
@@ -672,19 +677,19 @@ html,body{background:#DEEBFA}
       <div style="display:grid;grid-template-columns:1fr 50px 1fr 50px 1fr;align-items:stretch;margin-top:46px">
         <div class="glass party">
           <p class="label">Production</p>
-          <p class="pname">Illusia</p>
+          <span class="plogo"><img src="/salesforce-deck/logo/illusia-navy.svg" alt="Illusia" style="height:54px"></span>
           <p>We shoot it and we cut it — events and launches, executives, original series, always-on social.</p>
         </div>
         <span class="px">×</span>
         <div class="glass party">
           <p class="label">Distribution — and the introduction</p>
-          <p class="pname">Clip.tech</p>
+          <span class="plogo"><img src="/salesforce-deck/logo/clip.png" alt="Clip.tech" style="height:34px"></span>
           <p>Approved moments travel through creator accounts. Clip is also how this conversation started.</p>
         </div>
         <span class="px">×</span>
         <div class="glass party">
           <p class="label">The story</p>
-          <p class="pname">Salesforce</p>
+          <span class="plogo"><img src="/salesforce-deck/logo/salesforce-blue.png" alt="Salesforce" style="height:52px"></span>
           <p>You hold the narrative, the rights and every approval. Nothing travels that you have not cleared.</p>
         </div>
       </div>
@@ -1235,7 +1240,7 @@ html,body{background:#DEEBFA}
 
       <div class="pills" style="padding-top:28px">
         <span class="pill">01 · Erin, Out of Office</span>
-        <span class="pill">02 · Future You Called</span>
+        <span class="pill">02 · Elite Employee</span>
         <span class="pill">03 · Access Granted</span>
         <span class="pill">04 · Hot Takes, No Slides</span>
       </div>
@@ -1327,49 +1332,60 @@ html,body{background:#DEEBFA}
     </div>
   </section></div>
 
-  <!-- ══════════ 13 — FUTURE YOU CALLED ══════════ -->
-  <div class="frame" id="future-you-called"><section class="slide lift">
+  <!-- ══════════ 13 — ELITE EMPLOYEE ══════════
+       Built off the Sephora × Alysa Liu reel. Sephora cast a world-champion
+       figure skater as a fake SVP; the joke is an elite performer narrating
+       badge readers and labelled lunches in a totally flat register, with a
+       location card, caption-led beats and a "to be continued" that makes a
+       franchise out of one shoot day.
+
+       The adaptation inverts the casting. Salesforce does not need to hire a
+       champion — at that headcount the champion already works there, with a
+       real title and a real badge. That is cheaper, truer, and it is the one
+       version of this format a software company can do that a beauty brand
+       cannot. -->
+  <div class="frame" id="elite-employee"><section class="slide lift">
     <img class="watermark" src="/salesforce-deck/logo/illusia-mark.svg" alt="">
     <div class="pad">
-      <div class="slate"><span class="wm">Illusia</span><span class="tag">Idea 02 · scripted comedy × Clip · <span class="folio">13</span></span></div>
+      <div class="slate"><span class="wm">Illusia</span><span class="tag">Idea 02 · employee-led × Clip · <span class="folio">13</span></span></div>
 
       <div style="display:grid;grid-template-columns:850px 1fr;grid-template-rows:478px;gap:30px;margin-top:32px">
         <div class="titlecard">
           <div class="tcbody">
           <p class="tcbrand">Salesforce / Originals</p>
           <div class="tcmid">
-            <p class="tcquote">Wait. You still<br>do that?</p>
-            <p class="tcsub">Present You meets Future You. Neither is ready.</p>
-            <p class="tchook"><b>Opening hook</b>&ldquo;Wait… you still do that manually?&rdquo;</p>
+            <p class="tcquote">Elite athlete.<br>Or elite employee?</p>
+            <p class="tcsub">Same person. Same badge. Same sad desk lunch.</p>
+            <p class="tchook"><b>Opening hook</b>&ldquo;Hi, I'm Priya and I'm a Solutions Engineer.&rdquo;</p>
           </div>
           <div class="tcfoot">
-            <span><b>EP 01</b> · Future You Called</span>
+            <span><b>EP 01</b> · Elite Employee</span>
           </div>
           </div>
 
-          <a class="tcref" href="https://www.youtube.com/watch?v=B6zVzWU95Sw" target="_blank" rel="noopener">
+          <a class="tcref" href="https://www.instagram.com/reels/DdzhqL0yVVf/" target="_blank" rel="noopener">
             <span class="tcreflabel">Reference</span>
-            <span class="tcrefthumb"><img src="/salesforce-deck/img/ref-slack.jpg" alt=""><b></b></span>
-            <span class="tcrefname">Slack<br>&ldquo;So Yeah, We Tried Slack&rdquo; &nearr;</span>
+            <span class="tcrefthumb"><img src="/salesforce-deck/img/ref-sephora.jpg" alt=""><b></b></span>
+            <span class="tcrefname">Sephora × Alysa Liu<br>46.3K likes · 1.8K shares &nearr;</span>
           </a>
         </div>
 
         <div style="display:flex;flex-direction:column;gap:20px">
           <div class="glass" style="padding:30px 32px;flex:1;display:flex;flex-direction:column">
-            <p class="label" style="margin-bottom:14px;color:rgba(255,255,255,.72)">Scripted comedy × Clip</p>
-            <h2 class="d3">Future You Called</h2>
-            <p class="tag" style="margin-top:8px">Short-form scripted · one location</p>
+            <p class="label" style="margin-bottom:14px;color:rgba(255,255,255,.72)">Employee-led × Clip</p>
+            <h2 class="d3">Elite Employee</h2>
+            <p class="tag" style="margin-top:8px">Deadpan docu-comedy · real employees</p>
             <p class="body" style="margin-top:18px;font-size:16px">
-              Scripted short-form comedy where your future self turns up at work —
-              and can't believe how you still do things.
+              Find the Salesforce employee who is also nationally ranked at something.
+              Then keep a completely straight face.
             </p>
             <div class="spec" style="margin-top:auto;padding-top:20px">
-              <div><span>Format</span><b>Scripted comedy</b></div>
-              <div><span>Episode</span><b>30—60 sec</b></div>
-              <div><span>Shoot</span><b>1 day, multiple eps</b></div>
-              <div><span>Cast</span><b>2 actors</b></div>
-              <div><span>Cuts</span><b>Alternate hooks per ep</b></div>
-              <div><span>Lift</span><b>Low — one location</b></div>
+              <div><span>Format</span><b>Deadpan docu-comedy</b></div>
+              <div><span>Episode</span><b>45—90 sec</b></div>
+              <div><span>Shoot</span><b>Half a day each</b></div>
+              <div><span>Cast</span><b>Real employees, no actors</b></div>
+              <div><span>Set</span><b>Your own floors</b></div>
+              <div><span>Lift</span><b>Low — nothing built</b></div>
             </div>
           </div>
         </div>
@@ -1379,33 +1395,32 @@ html,body{background:#DEEBFA}
         <div>
           <p class="label" style="margin-bottom:10px">Episode 01</p>
           <div class="mini">
-            <div>An employee is buried in manual status updates</div>
-            <div>Their future self interrupts — <b>"Wait. You still do that?"</b></div>
-            <div>A quick, funny exchange reveals a smarter workflow</div>
-            <div>Grounded in a verified Salesforce capability</div>
+            <div>They introduce themselves to camera — <b>real name, real title</b></div>
+            <div>Location card: <b>Salesforce Tower</b></div>
+            <div>The ordinary day — badge reader, labelled lunch, dead thread</div>
+            <div><b>Then the reveal:</b> they also compete at national level</div>
           </div>
         </div>
         <div>
           <p class="label" style="margin-bottom:10px">Source + clip</p>
           <div class="mini">
-            <div><b>30—60s episodes</b></div>
-            <div>Alternate hooks cut from the same scene</div>
-            <div>Creator-ready punchlines</div>
-            <div><b>A full season banked off one shoot day</b></div>
+            <div><b>Vertical and captioned</b> — it has to play muted</div>
+            <div>Every beat is a standalone clip</div>
+            <div>One shoot day banks a whole employee</div>
+            <div><b>&ldquo;To be continued&rdquo; makes it a series</b>, not a post</div>
           </div>
         </div>
         <div>
           <p class="label" style="margin-bottom:10px">The Salesforce story</p>
           <div class="mini">
-            <div><b>Make work frustrations entertaining</b></div>
-            <div>Then connect the payoff to Salesforce</div>
-            <div>The product is the punchline's answer, not the setup</div>
+            <div><b>Sephora had to cast a champion. You already employ them.</b></div>
+            <div>Recruiting content and culture content in the same cut</div>
+            <div>The product appears the way it really does — on their screen</div>
           </div>
         </div>
       </div>
     </div>
   </section></div>
-
   <!-- ══════════ 14 — ACCESS GRANTED ══════════ -->
   <div class="frame" id="access-granted"><section class="slide lift">
     <img class="watermark" src="/salesforce-deck/logo/illusia-mark.svg" alt="">
@@ -1663,7 +1678,7 @@ html,body{background:#DEEBFA}
       </div>
 
       <p class="note" style="padding-top:30px">
-        Start with <b>Access Granted</b>, <b>Future You Called</b>
+        Start with <b>Access Granted</b>, <b>Elite Employee</b>
         or <b>Hot Takes</b> — one location, a small cast, and plenty of approved
         moments to clip.
       </p>
