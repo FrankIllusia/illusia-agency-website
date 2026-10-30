@@ -490,6 +490,28 @@ html,body{background:#DEEBFA}
 .scrim.bottom{background:linear-gradient(to bottom,transparent 34%,rgba(255,255,255,.58) 74%,rgba(255,255,255,.88) 100%)}
 .glass.dense{background-color:rgba(255,255,255,.74)}
 
+/* ── Ink slides: the cover and the close ──
+   Reversed out of Salesforce midnight. The theme's inline-eyebrow sweep below
+   repaints anything carrying inline white, so it is answered again here at
+   higher specificity or the eyebrows would come back Salesforce Blue on navy. */
+.slide.ink{background:
+  radial-gradient(118% 84% at 50% -10%,rgba(27,150,255,.34) 0%,transparent 58%),
+  linear-gradient(to bottom,#06407F 0%,#001639 82%)}
+.slide.ink .wm,.slide.ink .d1,.slide.ink .d2,.slide.ink .d3{color:#fff}
+.slide.ink .label{color:rgba(170,203,255,.90)}
+.slide.ink .tag{color:rgba(170,203,255,.62)}
+.slide.ink .lede,.slide.ink .body{color:rgba(216,230,254,.80)}
+.slide.ink .rule{background:rgba(170,203,255,.26)}
+.slide.ink .pill{background:rgba(255,255,255,.10);border:1px solid rgba(170,203,255,.36);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.18);color:rgba(255,255,255,.92)}
+.slide.ink .clientmark{filter:none;opacity:.96}
+.slide.ink [style*="rgba(255,255,255"]{color:rgba(170,203,255,.90)!important}
+
+/* Reference links — the real shows each format borrows from, live in the
+   spec panel where the eye is already reading format facts. */
+.spec a{color:var(--sf-blue);text-decoration:none;
+  border-bottom:1px solid rgba(1,118,211,.38);padding-bottom:1px}
+
 /* ── Act II components ──
    Title cards stay footage-side, but move from near-black to Salesforce
    midnight: on a white deck they are the one place their blue runs full-bleed,
@@ -512,8 +534,12 @@ html,body{background:#DEEBFA}
   html,body{background:#FFFFFF!important}
   .glass{background:rgba(242,247,255,.96)!important;
     box-shadow:inset 0 1px 0 rgba(255,255,255,1)!important}
-  .pill{background:#FFFFFF!important;
+  .slide:not(.ink) .pill{background:#FFFFFF!important;
     box-shadow:inset 0 1px 0 rgba(255,255,255,1)!important}
+  .slide.ink .pill{background:rgba(255,255,255,.13)!important;
+    border:1px solid rgba(170,203,255,.45)!important;
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.2)!important;
+    color:rgba(255,255,255,.94)!important}
   .card,.player{box-shadow:inset 0 1px 0 rgba(255,255,255,.5)!important}
   .titlecard{box-shadow:inset 0 1px 0 rgba(255,255,255,.17)!important}
 }
@@ -529,35 +555,36 @@ html,body{background:#DEEBFA}
        The cover photograph is Salesforce's own Advertising Week floor, shot by
        us. A film-activation still would have opened the deck on someone else's
        brand; this opens it on theirs. -->
-  <div class="frame"><section class="slide">
-    <div class="bleed push" style="opacity:.92"><img src="/salesforce-deck/img/sf-cover.jpg" alt=""></div>
-    <div class="scrim even"></div>
-    <div class="scrim top"></div>
-    <div class="scrim bottom"></div>
+  <div class="frame"><section class="slide ink">
     <div class="pad">
       <div class="slate">
         <span class="wm">Illusia</span>
         <span class="pill">Illusia Agency + Clip.tech</span>
       </div>
+      <div class="rule" style="margin-top:28px"></div>
 
-      <div style="margin-top:auto;display:flex;align-items:flex-end;justify-content:space-between;gap:56px">
-      <div class="glass dense" style="padding:52px 56px 48px;max-width:1060px">
-        <p class="label" style="margin-bottom:24px;color:rgba(255,255,255,.72)">Social content production for Salesforce — October 2026</p>
-        <h1 class="d1" style="text-wrap:normal">Every moment,<br>made social.</h1>
-        <div class="rule" style="margin:36px 0 26px"></div>
-        <div class="pills">
-          <span class="pill">Events + product launches</span>
-          <span class="pill">Executive + original series</span>
-          <span class="pill">Always-on social</span>
-          <span class="pill">Rapid-turn editing</span>
+      <div style="margin-top:auto;margin-bottom:auto;display:flex;align-items:flex-end;justify-content:space-between;gap:56px">
+        <div style="max-width:1060px">
+          <p class="label" style="margin-bottom:26px">Social content production for Salesforce — October 2026</p>
+          <h1 class="d1" style="text-wrap:normal">Every moment,<br>made social.</h1>
+          <div class="rule" style="margin:38px 0 28px"></div>
+          <div class="pills">
+            <span class="pill">Events + product launches</span>
+            <span class="pill">Executive + original series</span>
+            <span class="pill">Always-on social</span>
+            <span class="pill">Rapid-turn editing</span>
+          </div>
         </div>
+
       </div>
 
-      <div style="text-align:right;flex:0 0 auto;padding-bottom:10px">
-        <p class="tag" style="margin-bottom:13px;color:rgba(255,255,255,.66)">Prepared for</p>
-        <img class="clientmark" src="/salesforce-deck/logo/salesforce-blue.png" alt="Salesforce"
-             style="height:62px;width:auto;margin-left:auto">
-      </div>
+      <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:40px">
+        <span class="tag">Illusia Agency · NJ / NYC · Worldwide</span>
+        <div style="text-align:right;flex:0 0 auto">
+          <p class="tag" style="margin-bottom:12px">Prepared for</p>
+          <img class="clientmark" src="/salesforce-deck/logo/salesforce.png" alt="Salesforce"
+               style="height:52px;width:auto;margin-left:auto">
+        </div>
       </div>
     </div>
   </section></div>
@@ -1264,6 +1291,7 @@ html,body{background:#DEEBFA}
               <div><span>Location</span><b>The guest's own turf</b></div>
               <div><span>Cuts</span><b>Owned shorts + clip set</b></div>
               <div><span>Lift</span><b>Low — nothing built</b></div>
+              <div><span>Reference</span><b><a href="https://www.youtube.com/watch?v=A2aSmJ-SXCo" target="_blank" rel="noopener">Hot Ones · First We Feast ↗</a></b></div>
             </div>
           </div>
         </div>
@@ -1333,6 +1361,7 @@ html,body{background:#DEEBFA}
               <div><span>Cast</span><b>2 actors</b></div>
               <div><span>Cuts</span><b>Alternate hooks per ep</b></div>
               <div><span>Lift</span><b>Low — one location</b></div>
+              <div><span>Reference</span><b><a href="https://www.youtube.com/watch?v=B6zVzWU95Sw" target="_blank" rel="noopener">Slack · We Tried Slack ↗</a></b></div>
             </div>
           </div>
         </div>
@@ -1404,6 +1433,7 @@ html,body{background:#DEEBFA}
               <div><span>Shoot</span><b>Half a day, in office</b></div>
               <div><span>Cuts</span><b>15+ standalone answers</b></div>
               <div><span>Lift</span><b>Low — no set build</b></div>
+              <div><span>Reference</span><b><a href="https://www.youtube.com/watch?v=XnbCSboujF4" target="_blank" rel="noopener">Vogue · 73 Questions ↗</a></b></div>
             </div>
           </div>
         </div>
@@ -1475,6 +1505,7 @@ html,body{background:#DEEBFA}
               <div><span>Clock</span><b>30 sec per take</b></div>
               <div><span>Cuts</span><b>Every take is a post</b></div>
               <div><span>Lift</span><b>Lowest of the four</b></div>
+              <div><span>Reference</span><b><a href="https://www.youtube.com/watch?v=Puo3VkPkNZ4" target="_blank" rel="noopener">WIRED · Tech Support ↗</a></b></div>
             </div>
           </div>
         </div>
@@ -1685,32 +1716,30 @@ html,body{background:#DEEBFA}
   </section></div>
 
   <!-- ══════════ 22 — CLOSE ══════════ -->
-  <div class="frame" id="close"><section class="slide">
-    <div class="bleed push" style="opacity:.84"><img src="/salesforce-deck/img/sf-cover.jpg" alt=""></div>
-    <div class="scrim even"></div>
-    <div class="scrim top"></div>
-    <div class="scrim bottom"></div>
+  <div class="frame" id="close"><section class="slide ink">
     <div class="pad">
       <div class="slate">
         <span class="wm">Illusia</span>
         <span class="pill">Illusia Agency + Clip.tech</span>
       </div>
+      <div class="rule" style="margin-top:28px"></div>
 
-      <div style="margin-top:auto;display:flex;align-items:flex-end;justify-content:space-between;gap:56px">
-      <div class="glass dense" style="padding:52px 56px 48px;max-width:1060px">
-        <p class="label" style="margin-bottom:24px;color:rgba(255,255,255,.72)">Let's make something people look forward to</p>
-        <h1 class="d1" style="text-wrap:normal">Make it worth<br>watching. Then<br>make it travel.</h1>
-        <div class="rule" style="margin:36px 0 26px"></div>
-        <p class="lede" style="max-width:28em">
-          Where would you want to start — your next event, the first series, or a month
-          of always-on? And what does success look like for Salesforce?
-        </p>
+      <div style="margin-top:auto;margin-bottom:auto;display:flex;align-items:flex-end;justify-content:space-between;gap:56px">
+        <div style="max-width:1060px">
+          <p class="label" style="margin-bottom:26px">Let's make something people look forward to</p>
+          <h1 class="d1" style="text-wrap:normal">Make it worth<br>watching. Then<br>make it travel.</h1>
+          <div class="rule" style="margin:38px 0 28px"></div>
+          <p class="lede" style="max-width:30em">
+            Where would you want to start — your next event, the first series, or a month
+            of always-on? And what does success look like for Salesforce?
+          </p>
+        </div>
+
       </div>
 
-      <div style="text-align:right;flex:0 0 auto;padding-bottom:10px">
-        <p class="tag" style="margin-bottom:11px;color:rgba(255,255,255,.66)">Illusia Agency</p>
+      <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:40px">
+        <span class="tag">parker@illusiaagency.com</span>
         <p class="wm" style="font-size:19px">illusiaagency.com</p>
-      </div>
       </div>
     </div>
   </section></div>
