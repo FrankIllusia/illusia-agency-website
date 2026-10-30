@@ -1,6 +1,11 @@
 <!doctype html>
 <html lang="en">
 <head>
+<!-- DEPLOYED COPY — asset paths are root-relative (/salesforce-deck/...).
+     Next serves this at a URL with no trailing slash, so relative paths
+     would resolve against the site root and 404. The authoring copy at
+     ~/Downloads/salesforce-deck keeps relative paths for local viewing
+     and PDF export; re-run the path rewrite whenever you re-deploy. -->
 <meta charset="utf-8">
 <title>Illusia × Salesforce — Every Moment, Made Social</title>
 <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -525,7 +530,7 @@ html,body{background:#DEEBFA}
        us. A film-activation still would have opened the deck on someone else's
        brand; this opens it on theirs. -->
   <div class="frame"><section class="slide">
-    <div class="bleed push" style="opacity:.92"><img src="img/sf-cover.jpg" alt=""></div>
+    <div class="bleed push" style="opacity:.92"><img src="/salesforce-deck/img/sf-cover.jpg" alt=""></div>
     <div class="scrim even"></div>
     <div class="scrim top"></div>
     <div class="scrim bottom"></div>
@@ -550,7 +555,7 @@ html,body{background:#DEEBFA}
 
       <div style="text-align:right;flex:0 0 auto;padding-bottom:10px">
         <p class="tag" style="margin-bottom:13px;color:rgba(255,255,255,.66)">Prepared for</p>
-        <img class="clientmark" src="logo/salesforce-blue.png" alt="Salesforce"
+        <img class="clientmark" src="/salesforce-deck/logo/salesforce-blue.png" alt="Salesforce"
              style="height:62px;width:auto;margin-left:auto">
       </div>
       </div>
@@ -562,7 +567,7 @@ html,body{background:#DEEBFA}
        deliberately, so the split is stated before either half starts rather
        than discovered somewhere around slide eleven. -->
   <div class="frame" id="contents"><section class="slide lift">
-    <img class="watermark" src="logo/illusia-mark.svg" alt="">
+    <img class="watermark" src="/salesforce-deck/logo/illusia-mark.svg" alt="">
     <div class="pad">
       <div class="slate"><span class="wm">Illusia</span><span class="tag">This deck, in two halves · <span class="folio">02</span></span></div>
 
@@ -625,7 +630,7 @@ html,body{background:#DEEBFA}
        The band splits 269 + 24 + 557 to land on 850, the same width every
        other project slide gives its media. -->
   <div class="frame" id="expedia-group"><section class="slide lift">
-    <img class="watermark" src="logo/illusia-mark.svg" alt="">
+    <img class="watermark" src="/salesforce-deck/logo/illusia-mark.svg" alt="">
     <div class="pad">
       <div class="slate"><span class="wm">Illusia</span><span class="tag">Product launch · social-first · <span class="folio">03</span></span></div>
 
@@ -633,7 +638,7 @@ html,body{background:#DEEBFA}
         <div style="display:grid;grid-template-columns:269px 1fr;gap:24px">
           <div class="player card" id="p13">
             <a class="filmlink" href="https://illusiaagency.com/salesforce-deck#expedia-group" aria-label="Watch the film at illusiaagency.com"></a>
-            <video id="p13v" playsinline preload="none" poster="img/expedia-poster.jpg" src="img/expedia-recap.mp4"></video>
+            <video id="p13v" playsinline preload="none" poster="/salesforce-deck/img/expedia-poster.jpg" src="/salesforce-deck/img/expedia-recap.mp4"></video>
             <span class="vcap">Expedia Group · Recap</span>
             <button class="vbig" aria-label="Play the Expedia Group event recap"><span></span></button>
             <div class="vbar">
@@ -722,7 +727,7 @@ html,body{background:#DEEBFA}
        argument is range — a premiere, a factory floor and an airfield shot by
        the same eighteen people — not a catalogue. -->
   <div class="frame" id="experiential"><section class="slide lift">
-    <img class="watermark" src="logo/illusia-mark.svg" alt="">
+    <img class="watermark" src="/salesforce-deck/logo/illusia-mark.svg" alt="">
     <div class="pad">
       <div class="slate"><span class="wm">Illusia</span><span class="tag">Sector 01 · Movie experiential · <span class="folio">04</span></span></div>
 
@@ -749,7 +754,7 @@ html,body{background:#DEEBFA}
         <div>
           <div class="player card" id="p20" style="aspect-ratio:16/9">
             <a class="filmlink" href="https://illusiaagency.com/salesforce-deck#experiential" aria-label="Watch the film at illusiaagency.com"></a>
-            <video playsinline preload="none" poster="img/dwp2-poster.jpg" src="img/dwp2.mp4"></video>
+            <video playsinline preload="none" poster="/salesforce-deck/img/dwp2-poster.jpg" src="/salesforce-deck/img/dwp2.mp4"></video>
             <span class="vcap">The Devil Wears Prada 2 · Premiere</span>
             <button class="vbig" aria-label="Play The Devil Wears Prada 2 · Premiere"><span></span></button>
             <div class="vbar">
@@ -764,7 +769,7 @@ html,body{background:#DEEBFA}
         <div>
           <div class="player card" id="p21" style="aspect-ratio:16/9">
             <a class="filmlink" href="https://illusiaagency.com/salesforce-deck#experiential" aria-label="Watch the film at illusiaagency.com"></a>
-            <video playsinline preload="none" poster="img/odyssey-poster.jpg" src="img/odyssey.mp4"></video>
+            <video playsinline preload="none" poster="/salesforce-deck/img/odyssey-poster.jpg" src="/salesforce-deck/img/odyssey.mp4"></video>
             <span class="vcap">The Odyssey · Installation</span>
             <button class="vbig" aria-label="Play The Odyssey · Installation"><span></span></button>
             <div class="vbar">
@@ -784,14 +789,14 @@ html,body{background:#DEEBFA}
        Figures deliberately absent: the outcome here is a named studio
        relationship and a pitch reel, not a view count. -->
   <div class="frame" id="bts"><section class="slide lift">
-    <img class="watermark" src="logo/illusia-mark.svg" alt="">
+    <img class="watermark" src="/salesforce-deck/logo/illusia-mark.svg" alt="">
     <div class="pad">
       <div class="slate"><span class="wm">Illusia</span><span class="tag">BTS case study · <span class="folio">05</span></span></div>
 
       <div style="display:grid;grid-template-columns:850px 1fr;gap:30px;margin-top:32px;grid-template-rows:478px">
         <div class="player card" id="p22" style="aspect-ratio:16/9">
           <a class="filmlink" href="https://illusiaagency.com/salesforce-deck#bts" aria-label="Watch the film at illusiaagency.com"></a>
-          <video playsinline preload="none" poster="img/ron2-bts-poster.jpg" src="img/ron2-bts.mp4"></video>
+          <video playsinline preload="none" poster="/salesforce-deck/img/ron2-bts-poster.jpg" src="/salesforce-deck/img/ron2-bts.mp4"></video>
           <span class="vcap">Ready or Not 2 · The build</span>
           <button class="vbig" aria-label="Play Ready or Not 2 · The build"><span></span></button>
           <div class="vbar">
@@ -831,7 +836,7 @@ html,body{background:#DEEBFA}
        closest thing in the book to always-on social — vertical, shot on a
        working floor, on a standing programme rather than a one-off booking. -->
   <div class="frame" id="manufacturing"><section class="slide lift">
-    <img class="watermark" src="logo/illusia-mark.svg" alt="">
+    <img class="watermark" src="/salesforce-deck/logo/illusia-mark.svg" alt="">
     <div class="pad">
       <div class="slate"><span class="wm">Illusia</span><span class="tag">Sector 02 · Manufacturing at scale · <span class="folio">06</span></span></div>
 
@@ -856,7 +861,7 @@ html,body{background:#DEEBFA}
             <div>
               <div class="player card sm" id="p23" style="aspect-ratio:9/16">
                 <a class="filmlink" href="https://illusiaagency.com/salesforce-deck#manufacturing" aria-label="Watch the film at illusiaagency.com"></a>
-                <video playsinline preload="none" poster="img/hat-team-poster.jpg" src="img/hat-team.mp4"></video>
+                <video playsinline preload="none" poster="/salesforce-deck/img/hat-team-poster.jpg" src="/salesforce-deck/img/hat-team.mp4"></video>
                 <span class="vcap">The floor</span>
                 <button class="vbig" aria-label="Play Hatteras · The floor"><span></span></button>
                 <div class="vbar">
@@ -870,7 +875,7 @@ html,body{background:#DEEBFA}
             <div>
               <div class="player card sm" id="p24" style="aspect-ratio:9/16">
                 <a class="filmlink" href="https://illusiaagency.com/salesforce-deck#manufacturing" aria-label="Watch the film at illusiaagency.com"></a>
-                <video playsinline preload="none" poster="img/hat-speedmaster-poster.jpg" src="img/hat-speedmaster.mp4"></video>
+                <video playsinline preload="none" poster="/salesforce-deck/img/hat-speedmaster-poster.jpg" src="/salesforce-deck/img/hat-speedmaster.mp4"></video>
                 <span class="vcap">Press check</span>
                 <button class="vbig" aria-label="Play Hatteras · Press check"><span></span></button>
                 <div class="vbar">
@@ -884,7 +889,7 @@ html,body{background:#DEEBFA}
             <div>
               <div class="player card sm" id="p25" style="aspect-ratio:9/16">
                 <a class="filmlink" href="https://illusiaagency.com/salesforce-deck#manufacturing" aria-label="Watch the film at illusiaagency.com"></a>
-                <video playsinline preload="none" poster="img/hat-skit-poster.jpg" src="img/hat-skit.mp4"></video>
+                <video playsinline preload="none" poster="/salesforce-deck/img/hat-skit-poster.jpg" src="/salesforce-deck/img/hat-skit.mp4"></video>
                 <span class="vcap">Culture</span>
                 <button class="vbig" aria-label="Play Hatteras · Culture"><span></span></button>
                 <div class="vbar">
@@ -898,7 +903,7 @@ html,body{background:#DEEBFA}
             <div>
               <div class="player card sm" id="p26" style="aspect-ratio:9/16">
                 <a class="filmlink" href="https://illusiaagency.com/salesforce-deck#manufacturing" aria-label="Watch the film at illusiaagency.com"></a>
-                <video playsinline preload="none" poster="img/hat-hyper-poster.jpg" src="img/hat-hyper.mp4"></video>
+                <video playsinline preload="none" poster="/salesforce-deck/img/hat-hyper-poster.jpg" src="/salesforce-deck/img/hat-hyper.mp4"></video>
                 <span class="vcap">Craft</span>
                 <button class="vbig" aria-label="Play Hatteras · Craft"><span></span></button>
                 <div class="vbar">
@@ -922,14 +927,14 @@ html,body{background:#DEEBFA}
 
   <!-- ══════════ 07 — SECTOR 03 · ENTERPRISE AVIATION ══════════ -->
   <div class="frame" id="aviation"><section class="slide lift">
-    <img class="watermark" src="logo/illusia-mark.svg" alt="">
+    <img class="watermark" src="/salesforce-deck/logo/illusia-mark.svg" alt="">
     <div class="pad">
       <div class="slate"><span class="wm">Illusia</span><span class="tag">Sector 03 · Enterprise aviation · <span class="folio">07</span></span></div>
 
       <div style="display:grid;grid-template-columns:850px 1fr;gap:30px;margin-top:32px;grid-template-rows:478px">
         <div class="player card" id="p27" style="aspect-ratio:16/9">
           <a class="filmlink" href="https://illusiaagency.com/salesforce-deck#aviation" aria-label="Watch the film at illusiaagency.com"></a>
-          <video playsinline preload="none" poster="img/joby-texas-poster.jpg" src="img/joby-texas.mp4"></video>
+          <video playsinline preload="none" poster="/salesforce-deck/img/joby-texas-poster.jpg" src="/salesforce-deck/img/joby-texas.mp4"></video>
           <span class="vcap">Joby Aviation · Flight operations</span>
           <button class="vbig" aria-label="Play Joby Aviation · Flight operations"><span></span></button>
           <div class="vbar">
@@ -947,7 +952,7 @@ html,body{background:#DEEBFA}
             govern them, with executives and regulators in the room, and a brand relaunch
             riding on the footage.
           </p>
-          <img class="clientmark" src="logo/joby.png" alt="Joby Aviation"
+          <img class="clientmark" src="/salesforce-deck/logo/joby.png" alt="Joby Aviation"
                style="height:34px;width:auto;align-self:flex-start;margin-top:28px">
           <div class="mini" style="margin-top:auto">
             <div>Airside access and safety briefings</div>
@@ -968,7 +973,7 @@ html,body{background:#DEEBFA}
 
   <!-- ══════════ 08 — ENTERPRISE AVIATION · THE FILMS ══════════ -->
   <div class="frame" id="aviation-films"><section class="slide lift">
-    <img class="watermark" src="logo/illusia-mark.svg" alt="">
+    <img class="watermark" src="/salesforce-deck/logo/illusia-mark.svg" alt="">
     <div class="pad">
       <div class="slate"><span class="wm">Illusia</span><span class="tag">Enterprise aviation · the films · <span class="folio">08</span></span></div>
 
@@ -976,7 +981,7 @@ html,body{background:#DEEBFA}
         <div>
           <div class="player card" id="p28" style="aspect-ratio:16/9">
             <a class="filmlink" href="https://illusiaagency.com/salesforce-deck#aviation-films" aria-label="Watch the film at illusiaagency.com"></a>
-            <video playsinline preload="none" poster="img/joby-vertiport-poster.jpg" src="img/joby-vertiport.mp4"></video>
+            <video playsinline preload="none" poster="/salesforce-deck/img/joby-vertiport-poster.jpg" src="/salesforce-deck/img/joby-vertiport.mp4"></video>
             <span class="vcap">Joby · Manhattan vertiport</span>
             <button class="vbig" aria-label="Play Joby · Manhattan vertiport"><span></span></button>
             <div class="vbar">
@@ -991,7 +996,7 @@ html,body{background:#DEEBFA}
         <div>
           <div class="player card sm" id="p29" style="aspect-ratio:9/16">
             <a class="filmlink" href="https://illusiaagency.com/salesforce-deck#aviation-films" aria-label="Watch the film at illusiaagency.com"></a>
-            <video playsinline preload="none" poster="img/blade-aero-poster.jpg" src="img/blade-aero.mp4"></video>
+            <video playsinline preload="none" poster="/salesforce-deck/img/blade-aero-poster.jpg" src="/salesforce-deck/img/blade-aero.mp4"></video>
             <span class="vcap">BLADE × Aero</span>
             <button class="vbig" aria-label="Play BLADE × Aero"><span></span></button>
             <div class="vbar">
@@ -1005,7 +1010,7 @@ html,body{background:#DEEBFA}
         <div>
           <div class="player card sm" id="p30" style="aspect-ratio:9/16">
             <a class="filmlink" href="https://illusiaagency.com/salesforce-deck#aviation-films" aria-label="Watch the film at illusiaagency.com"></a>
-            <video playsinline preload="none" poster="img/blade-usopen-poster.jpg" src="img/blade-usopen.mp4"></video>
+            <video playsinline preload="none" poster="/salesforce-deck/img/blade-usopen-poster.jpg" src="/salesforce-deck/img/blade-usopen.mp4"></video>
             <span class="vcap">BLADE · US Open</span>
             <button class="vbig" aria-label="Play BLADE · US Open"><span></span></button>
             <div class="vbar">
@@ -1025,7 +1030,7 @@ html,body{background:#DEEBFA}
        all of your social content," which is the thing to leave them with — so
        it gets said plainly, once, between the two halves. -->
   <div class="frame" id="scope"><section class="slide lift">
-    <img class="watermark" src="logo/illusia-mark.svg" alt="">
+    <img class="watermark" src="/salesforce-deck/logo/illusia-mark.svg" alt="">
     <div class="pad">
       <div class="slate"><span class="wm">Illusia</span><span class="tag">What we'd cover · <span class="folio">09</span></span></div>
 
@@ -1103,7 +1108,7 @@ html,body{background:#DEEBFA}
 
   <!-- ══════════ 11 — THE OPPORTUNITY ══════════ -->
   <div class="frame" id="opportunity"><section class="slide lift">
-    <img class="watermark" src="logo/illusia-mark.svg" alt="">
+    <img class="watermark" src="/salesforce-deck/logo/illusia-mark.svg" alt="">
     <div class="pad">
       <div class="slate"><span class="wm">Illusia</span><span class="tag">The opportunity · <span class="folio">11</span></span></div>
 
@@ -1139,7 +1144,7 @@ html,body{background:#DEEBFA}
 
   <!-- ══════════ 12 — POINT OF VIEW ══════════ -->
   <div class="frame" id="point-of-view"><section class="slide lift">
-    <img class="watermark" src="logo/illusia-mark.svg" alt="">
+    <img class="watermark" src="/salesforce-deck/logo/illusia-mark.svg" alt="">
     <div class="pad">
       <div class="slate"><span class="wm">Illusia</span><span class="tag">Our point of view · <span class="folio">12</span></span></div>
 
@@ -1174,7 +1179,7 @@ html,body{background:#DEEBFA}
 
   <!-- ══════════ 13 — THE SHORTLIST ══════════ -->
   <div class="frame" id="shortlist"><section class="slide lift">
-    <img class="watermark" src="logo/illusia-mark.svg" alt="">
+    <img class="watermark" src="/salesforce-deck/logo/illusia-mark.svg" alt="">
     <div class="pad">
       <div class="slate"><span class="wm">Illusia</span><span class="tag">The shortlist · <span class="folio">13</span></span></div>
 
@@ -1226,7 +1231,7 @@ html,body{background:#DEEBFA}
        are read in the same frame. What fills the band is the title card the
        show would open on. -->
   <div class="frame" id="out-of-office"><section class="slide lift">
-    <img class="watermark" src="logo/illusia-mark.svg" alt="">
+    <img class="watermark" src="/salesforce-deck/logo/illusia-mark.svg" alt="">
     <div class="pad">
       <div class="slate"><span class="wm">Illusia</span><span class="tag">Idea 01 · executive-led × Clip · <span class="folio">14</span></span></div>
 
@@ -1295,7 +1300,7 @@ html,body{background:#DEEBFA}
 
   <!-- ══════════ 15 — FUTURE YOU CALLED ══════════ -->
   <div class="frame" id="future-you-called"><section class="slide lift">
-    <img class="watermark" src="logo/illusia-mark.svg" alt="">
+    <img class="watermark" src="/salesforce-deck/logo/illusia-mark.svg" alt="">
     <div class="pad">
       <div class="slate"><span class="wm">Illusia</span><span class="tag">Idea 02 · scripted comedy × Clip · <span class="folio">15</span></span></div>
 
@@ -1366,7 +1371,7 @@ html,body{background:#DEEBFA}
 
   <!-- ══════════ 16 — ACCESS GRANTED ══════════ -->
   <div class="frame" id="access-granted"><section class="slide lift">
-    <img class="watermark" src="logo/illusia-mark.svg" alt="">
+    <img class="watermark" src="/salesforce-deck/logo/illusia-mark.svg" alt="">
     <div class="pad">
       <div class="slate"><span class="wm">Illusia</span><span class="tag">Idea 03 · executive access × Clip · <span class="folio">16</span></span></div>
 
@@ -1437,7 +1442,7 @@ html,body{background:#DEEBFA}
 
   <!-- ══════════ 17 — HOT TAKES, NO SLIDES ══════════ -->
   <div class="frame" id="hot-takes"><section class="slide lift">
-    <img class="watermark" src="logo/illusia-mark.svg" alt="">
+    <img class="watermark" src="/salesforce-deck/logo/illusia-mark.svg" alt="">
     <div class="pad">
       <div class="slate"><span class="wm">Illusia</span><span class="tag">Idea 04 · culture + opinion × Clip · <span class="folio">17</span></span></div>
 
@@ -1507,7 +1512,7 @@ html,body{background:#DEEBFA}
 
   <!-- ══════════ 18 — OPENING HOOKS ══════════ -->
   <div class="frame" id="hooks"><section class="slide lift">
-    <img class="watermark" src="logo/illusia-mark.svg" alt="">
+    <img class="watermark" src="/salesforce-deck/logo/illusia-mark.svg" alt="">
     <div class="pad">
       <div class="slate"><span class="wm">Illusia</span><span class="tag">Example opening hooks · <span class="folio">18</span></span></div>
 
@@ -1547,7 +1552,7 @@ html,body{background:#DEEBFA}
        monochrome series against the largest campaign, so the four can be read
        against each other at a glance without pretending to be a plot. -->
   <div class="frame" id="clip-examples"><section class="slide lift">
-    <img class="watermark" src="logo/illusia-mark.svg" alt="">
+    <img class="watermark" src="/salesforce-deck/logo/illusia-mark.svg" alt="">
     <div class="pad">
       <div class="slate"><span class="wm">Illusia</span><span class="tag">Clip.tech · public campaign examples · <span class="folio">19</span></span></div>
 
@@ -1608,7 +1613,7 @@ html,body{background:#DEEBFA}
 
   <!-- ══════════ 20 — THE ENGINE ══════════ -->
   <div class="frame" id="engine"><section class="slide lift">
-    <img class="watermark" src="logo/illusia-mark.svg" alt="">
+    <img class="watermark" src="/salesforce-deck/logo/illusia-mark.svg" alt="">
     <div class="pad">
       <div class="slate"><span class="wm">Illusia</span><span class="tag">Production × distribution · <span class="folio">20</span></span></div>
 
@@ -1644,7 +1649,7 @@ html,body{background:#DEEBFA}
 
   <!-- ══════════ 21 — HOW WE'D START ══════════ -->
   <div class="frame" id="how-we-start"><section class="slide lift">
-    <img class="watermark" src="logo/illusia-mark.svg" alt="">
+    <img class="watermark" src="/salesforce-deck/logo/illusia-mark.svg" alt="">
     <div class="pad">
       <div class="slate"><span class="wm">Illusia</span><span class="tag">How we could start · <span class="folio">21</span></span></div>
 
@@ -1681,7 +1686,7 @@ html,body{background:#DEEBFA}
 
   <!-- ══════════ 22 — CLOSE ══════════ -->
   <div class="frame" id="close"><section class="slide">
-    <div class="bleed push" style="opacity:.84"><img src="img/sf-cover.jpg" alt=""></div>
+    <div class="bleed push" style="opacity:.84"><img src="/salesforce-deck/img/sf-cover.jpg" alt=""></div>
     <div class="scrim even"></div>
     <div class="scrim top"></div>
     <div class="scrim bottom"></div>
