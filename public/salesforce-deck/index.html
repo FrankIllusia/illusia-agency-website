@@ -287,10 +287,18 @@ img{display:block;max-width:100%}
 .titlecard .tcbrand{
   font-family:var(--mono);font-size:11.5px;letter-spacing:.2em;text-transform:uppercase;
   color:rgba(255,255,255,.52);padding-bottom:22px;border-bottom:1px solid rgba(255,255,255,.12)}
-.titlecard .tcmid{flex:1;display:flex;flex-direction:column;justify-content:center;gap:20px}
+.titlecard .tcmid{flex:1;display:flex;flex-direction:column;justify-content:center;gap:20px;padding-bottom:16px}
 .titlecard .tcquote{font-family:var(--display);font-weight:600;font-size:62px;line-height:1.02;
   letter-spacing:-.038em;color:#fff;text-wrap:balance}
 .titlecard .tcsub{font-size:19.5px;line-height:1.5;color:rgba(255,255,255,.60);max-width:24em}
+/* The opening hook, carried on the title card of the format it belongs to
+   rather than collected on a slide of its own. */
+.titlecard .tchook{margin-top:12px;padding-top:17px;max-width:26em;
+  border-top:1px solid rgba(255,255,255,.14);
+  font-size:17px;line-height:1.45;color:rgba(255,255,255,.58)}
+.titlecard .tchook b{display:block;margin-bottom:7px;font-weight:500;
+  font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;
+  color:rgba(255,255,255,.46)}
 .titlecard .tcfoot{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;
   font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;
   color:rgba(255,255,255,.42)}
@@ -524,6 +532,8 @@ html,body{background:#DEEBFA}
   box-shadow:inset 0 1px 0 rgba(255,255,255,.17),0 18px 44px rgba(3,45,96,.27)}
 .titlecard .tcbrand{color:rgba(170,203,255,.88);border-bottom:1px solid rgba(170,203,255,.28)}
 .titlecard .tcsub{color:rgba(216,230,254,.80)}
+.titlecard .tchook{border-top:1px solid rgba(170,203,255,.22);color:rgba(216,230,254,.72)}
+.titlecard .tchook b{color:rgba(170,203,255,.70)}
 .titlecard .tcfoot{color:rgba(170,203,255,.62)}
 .titlecard .tcfoot b{color:rgba(255,255,255,.94)}
 .quote .qs,.step .sn{color:var(--sf-blue)}
@@ -589,65 +599,7 @@ html,body{background:#DEEBFA}
     </div>
   </section></div>
 
-  <!-- ══════════ 02 — THE TWO HALVES ══════════
-       The contents page and the Act I opener in one frame. The deck is split
-       deliberately, so the split is stated before either half starts rather
-       than discovered somewhere around slide eleven. -->
-  <div class="frame" id="contents"><section class="slide lift">
-    <img class="watermark" src="/salesforce-deck/logo/illusia-mark.svg" alt="">
-    <div class="pad">
-      <div class="slate"><span class="wm">Illusia</span><span class="tag">This deck, in two halves · <span class="folio">02</span></span></div>
-
-      <div style="margin-top:46px">
-        <p class="label" style="margin-bottom:20px">How this is built</p>
-        <h2 class="d2" style="max-width:19em">Proof first.<br>Then the pitch.</h2>
-      </div>
-
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:30px;margin-top:auto">
-        <div class="glass" style="padding:36px 38px;display:flex;flex-direction:column">
-          <div style="display:flex;align-items:baseline;justify-content:space-between;gap:20px">
-            <p class="label" style="color:rgba(255,255,255,.72)">Act I · Slides 03—08</p>
-            <span class="act">I</span>
-          </div>
-          <h3 class="d3" style="margin-top:4px">The work, and<br>the scope.</h3>
-          <p class="body" style="margin-top:16px;font-size:16px;max-width:26em">
-            Expedia Group's product launch, then three sectors shot by the same team —
-            studio premieres, a working factory floor, and enterprise aviation.
-            Then everything we'd cover for you.
-          </p>
-          <div class="mini" style="margin-top:22px">
-            <div><b>Expedia Group, Universal, Joby, BLADE, Hatteras</b></div>
-            <div>Eighteen full-time — the same people plan the shoot and cut the film</div>
-            <div>Every film on these slides is playable</div>
-          </div>
-        </div>
-
-        <div class="glass" style="padding:36px 38px;display:flex;flex-direction:column">
-          <div style="display:flex;align-items:baseline;justify-content:space-between;gap:20px">
-            <p class="label" style="color:rgba(255,255,255,.72)">Act II · Slides 09—21</p>
-            <span class="act">II</span>
-          </div>
-          <h3 class="d3" style="margin-top:4px">The originals<br>on top of it.</h3>
-          <p class="body" style="margin-top:16px;font-size:16px;max-width:26em">
-            Coverage captures the moments you already have. These four formats make
-            moments that don't exist yet — low lift, no activation buildout — plus how
-            Clip.tech moves them past the brand feed.
-          </p>
-          <div class="mini" style="margin-top:22px">
-            <div><b>Erin, Out of Office · Future You Called</b></div>
-            <div><b>Access Granted · Hot Takes, No Slides</b></div>
-            <div>One location, a small cast, a season banked per shoot</div>
-          </div>
-        </div>
-      </div>
-
-      <p class="note" style="margin-top:auto;padding-top:30px">
-        The first half is evidence. The second half is a proposal. Nothing in Act II asks for
-        anything the first half has not already been done at scale.
-      </p>
-    </div>
-  </section></div>
-  <!-- ══════════ 03 — EXPEDIA GROUP ══════════
+  <!-- ══════════ 02 — EXPEDIA GROUP ══════════
        Act I opens here rather than on a film premiere: a corporate product
        launch, covered multi-camera and cut on site, is the nearest thing in
        the book to a Dreamforce keynote or a Salesforce product drop. The hero
@@ -659,7 +611,7 @@ html,body{background:#DEEBFA}
   <div class="frame" id="expedia-group"><section class="slide lift">
     <img class="watermark" src="/salesforce-deck/logo/illusia-mark.svg" alt="">
     <div class="pad">
-      <div class="slate"><span class="wm">Illusia</span><span class="tag">Product launch · social-first · <span class="folio">03</span></span></div>
+      <div class="slate"><span class="wm">Illusia</span><span class="tag">Product launch · social-first · <span class="folio">02</span></span></div>
 
       <div style="display:grid;grid-template-columns:850px 1fr;grid-template-rows:478px;gap:30px;margin-top:32px">
         <div style="display:grid;grid-template-columns:269px 1fr;gap:24px">
@@ -747,7 +699,7 @@ html,body{background:#DEEBFA}
       </div>
     </div>
   </section></div>
-  <!-- ══════════ 04 — SECTOR 01 · MOVIE EXPERIENTIAL ══════════
+  <!-- ══════════ 03 — SECTOR 01 · MOVIE EXPERIENTIAL ══════════
        The sector slides come across from the capabilities deck at
        illusiaagency.com/bms-examples. They group by sector rather than running
        one project per frame, which is the right shape for this ask: the
@@ -756,7 +708,7 @@ html,body{background:#DEEBFA}
   <div class="frame" id="experiential"><section class="slide lift">
     <img class="watermark" src="/salesforce-deck/logo/illusia-mark.svg" alt="">
     <div class="pad">
-      <div class="slate"><span class="wm">Illusia</span><span class="tag">Sector 01 · Movie experiential · <span class="folio">04</span></span></div>
+      <div class="slate"><span class="wm">Illusia</span><span class="tag">Sector 01 · Movie experiential · <span class="folio">03</span></span></div>
 
       <div style="display:grid;grid-template-columns:5fr 7fr;gap:56px;margin-top:34px;align-items:start">
         <div>
@@ -812,7 +764,7 @@ html,body{background:#DEEBFA}
     </div>
   </section></div>
 
-  <!-- ══════════ 05 — SECTOR 02 · MANUFACTURING ══════════
+  <!-- ══════════ 04 — SECTOR 02 · MANUFACTURING ══════════
        The intro and the films share one slide: the copy alone left half the
        frame empty, and the four cuts are the argument anyway. These are the
        closest thing in the book to always-on social — vertical, shot on a
@@ -820,7 +772,7 @@ html,body{background:#DEEBFA}
   <div class="frame" id="manufacturing"><section class="slide lift">
     <img class="watermark" src="/salesforce-deck/logo/illusia-mark.svg" alt="">
     <div class="pad">
-      <div class="slate"><span class="wm">Illusia</span><span class="tag">Sector 02 · Manufacturing at scale · <span class="folio">05</span></span></div>
+      <div class="slate"><span class="wm">Illusia</span><span class="tag">Sector 02 · Manufacturing at scale · <span class="folio">04</span></span></div>
 
       <div style="display:grid;grid-template-columns:3.5fr 8.5fr;gap:42px;margin-top:auto;margin-bottom:auto;align-items:start">
         <div>
@@ -907,11 +859,11 @@ html,body{background:#DEEBFA}
     </div>
   </section></div>
 
-  <!-- ══════════ 06 — SECTOR 03 · ENTERPRISE AVIATION ══════════ -->
+  <!-- ══════════ 05 — SECTOR 03 · ENTERPRISE AVIATION ══════════ -->
   <div class="frame" id="aviation"><section class="slide lift">
     <img class="watermark" src="/salesforce-deck/logo/illusia-mark.svg" alt="">
     <div class="pad">
-      <div class="slate"><span class="wm">Illusia</span><span class="tag">Sector 03 · Enterprise aviation · <span class="folio">06</span></span></div>
+      <div class="slate"><span class="wm">Illusia</span><span class="tag">Sector 03 · Enterprise aviation · <span class="folio">05</span></span></div>
 
       <div style="display:grid;grid-template-columns:850px 1fr;gap:30px;margin-top:32px;grid-template-rows:478px">
         <div class="player card" id="p27" style="aspect-ratio:16/9">
@@ -953,11 +905,11 @@ html,body{background:#DEEBFA}
     </div>
   </section></div>
 
-  <!-- ══════════ 07 — ENTERPRISE AVIATION · THE FILMS ══════════ -->
+  <!-- ══════════ 06 — ENTERPRISE AVIATION · THE FILMS ══════════ -->
   <div class="frame" id="aviation-films"><section class="slide lift">
     <img class="watermark" src="/salesforce-deck/logo/illusia-mark.svg" alt="">
     <div class="pad">
-      <div class="slate"><span class="wm">Illusia</span><span class="tag">Enterprise aviation · the films · <span class="folio">07</span></span></div>
+      <div class="slate"><span class="wm">Illusia</span><span class="tag">Enterprise aviation · the films · <span class="folio">06</span></span></div>
 
       <div style="display:grid;grid-template-columns:8fr 2.5fr 2.5fr;gap:24px;margin-top:auto;margin-bottom:auto;align-items:start">
         <div>
@@ -1006,7 +958,7 @@ html,body{background:#DEEBFA}
       </div>
     </div>
   </section></div>
-  <!-- ══════════ 08 — THE FULL SCOPE ══════════
+  <!-- ══════════ 07 — THE FULL SCOPE ══════════
        The deck's load-bearing slide for the actual ask. Act I proves we can
        shoot; Act II pitches four shows. Neither on its own says "we could run
        all of your social content," which is the thing to leave them with — so
@@ -1014,7 +966,7 @@ html,body{background:#DEEBFA}
   <div class="frame" id="scope"><section class="slide lift">
     <img class="watermark" src="/salesforce-deck/logo/illusia-mark.svg" alt="">
     <div class="pad">
-      <div class="slate"><span class="wm">Illusia</span><span class="tag">What we'd cover · <span class="folio">08</span></span></div>
+      <div class="slate"><span class="wm">Illusia</span><span class="tag">What we'd cover · <span class="folio">07</span></span></div>
 
       <div style="margin-top:38px">
         <p class="label" style="margin-bottom:20px">The full scope</p>
@@ -1035,7 +987,7 @@ html,body{background:#DEEBFA}
         <div class="glass step">
           <p class="sn">03 — Original series</p>
           <h3 style="font-size:25px">Moments that don't<br>exist yet.</h3>
-          <p>Repeatable formats built to be watched by choice. Four of them start on the next slide.</p>
+          <p>Repeatable formats built to be watched by choice. Four of them are in the second half of this deck.</p>
         </div>
         <div class="glass step">
           <p class="sn">04 — Always-on social</p>
@@ -1060,82 +1012,27 @@ html,body{background:#DEEBFA}
       </p>
     </div>
   </section></div>
-  <!-- ══════════ 09 — ACT II ══════════ -->
+  <!-- ══════════ 08 — ACT II OPENER ══════════
+       Was four slides: an act divider, the opportunity, the point of view and
+       a shortlist. All four were text, and they sat in a row between the films
+       and the ideas — the exact place a deck loses a room. The divider's job
+       is done by the headline, the opportunity by the lede, the shortlist by
+       the pills, and only the three-beat point of view needed real estate. -->
   <div class="frame" id="act-two"><section class="slide lift">
-    <div class="pad">
-      <div class="slate"><span class="wm">Illusia</span><span class="tag">Act II · content concepts · <span class="folio">09</span></span></div>
-
-      <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:60px;margin-top:auto;margin-bottom:auto">
-        <div style="max-width:960px">
-          <p class="label" style="margin-bottom:26px">Act II — what we'd make next</p>
-          <h1 class="d1" style="text-wrap:normal">Content worth<br>following.</h1>
-          <p class="lede" style="margin-top:30px;max-width:30em">
-            Coverage is the floor, not the ceiling. Four formats built to be watched
-            by choice, clipped and shared — none of which need an activation built first.
-          </p>
-          <div class="rule" style="margin:36px 0 26px"></div>
-          <div class="pills">
-            <span class="pill">01 · Out of Office</span>
-            <span class="pill">02 · Future You Called</span>
-            <span class="pill">03 · Access Granted</span>
-            <span class="pill">04 · Hot Takes</span>
-          </div>
-        </div>
-        <span class="act" style="font-size:300px;flex:0 0 auto">II</span>
-      </div>
-
-      <p class="note">No activation buildout. Simple access. Bold ideas. Repeatable content.</p>
-    </div>
-  </section></div>
-
-  <!-- ══════════ 10 — THE OPPORTUNITY ══════════ -->
-  <div class="frame" id="opportunity"><section class="slide lift">
     <img class="watermark" src="/salesforce-deck/logo/illusia-mark.svg" alt="">
     <div class="pad">
-      <div class="slate"><span class="wm">Illusia</span><span class="tag">The opportunity · <span class="folio">10</span></span></div>
+      <div class="slate"><span class="wm">Illusia</span><span class="tag">Act II · content concepts · <span class="folio">08</span></span></div>
 
-      <div style="margin-top:auto">
-        <p class="label" style="margin-bottom:20px">The opportunity</p>
-        <h2 class="d2" style="max-width:17em">A brand people know.<br>A brand people want to watch.</h2>
-      </div>
-
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:30px;margin-top:54px;margin-bottom:auto">
-        <div class="glass" style="padding:40px 42px">
-          <p class="label" style="margin-bottom:22px;color:rgba(255,255,255,.72)">Today</p>
-          <h3 class="d3">Credibility.<br>Scale. Innovation.</h3>
-          <p class="body" style="margin-top:20px;font-size:16px;max-width:24em">
-            The things an enterprise brand is already trusted for — and the things
-            a feed scrolls straight past.
-          </p>
-        </div>
-        <div class="glass" style="padding:40px 42px">
-          <p class="label" style="margin-bottom:22px;color:rgba(255,255,255,.72)">The next layer</p>
-          <h3 class="d3">Personality.<br>Participation. Culture.</h3>
-          <p class="body" style="margin-top:20px;font-size:16px;max-width:24em">
-            The things people follow, quote and send to someone else — and the
-            layer Salesforce has the talent to own.
-          </p>
-        </div>
-      </div>
-
-      <p class="note" style="padding-top:30px">
-        Make moments worth watching. Then help them travel beyond the brand feed.
-      </p>
-    </div>
-  </section></div>
-
-  <!-- ══════════ 11 — POINT OF VIEW ══════════ -->
-  <div class="frame" id="point-of-view"><section class="slide lift">
-    <img class="watermark" src="/salesforce-deck/logo/illusia-mark.svg" alt="">
-    <div class="pad">
-      <div class="slate"><span class="wm">Illusia</span><span class="tag">Our point of view · <span class="folio">11</span></span></div>
-
-      <div style="margin-top:auto">
-        <p class="label" style="margin-bottom:20px">Our point of view</p>
+      <div style="margin-top:38px">
+        <p class="label" style="margin-bottom:20px">Act II — what we'd make next</p>
         <h2 class="d2" style="max-width:17em">Entertainment is the hook.<br>Salesforce is the payoff.</h2>
+        <p class="lede" style="margin-top:24px;max-width:44em;font-size:21px">
+          A brand people already know, made into a brand people want to watch. Coverage is the
+          floor, not the ceiling — these four formats make the moments that don't exist yet.
+        </p>
       </div>
 
-      <div class="work" style="margin-top:54px;gap:30px;margin-bottom:auto">
+      <div class="work" style="margin-top:42px;gap:30px;flex:1">
         <div class="glass step">
           <p class="sn">01 — Enter</p>
           <h3>Lead with something<br>irresistible.</h3>
@@ -1153,61 +1050,20 @@ html,body{background:#DEEBFA}
         </div>
       </div>
 
-      <p class="note" style="padding-top:30px">
-        Every concept can fuel Salesforce-owned content and a brief-led Clip.tech creator campaign.
+      <div class="pills" style="padding-top:28px">
+        <span class="pill">01 · Erin, Out of Office</span>
+        <span class="pill">02 · Future You Called</span>
+        <span class="pill">03 · Access Granted</span>
+        <span class="pill">04 · Hot Takes, No Slides</span>
+      </div>
+
+      <p class="note" style="padding-top:22px">
+        One strong original moment per shoot. Multiple approved hooks, cuts and creator
+        perspectives out of it. No activation buildout — simple access, bold ideas, repeatable content.
       </p>
     </div>
   </section></div>
-
-  <!-- ══════════ 12 — THE SHORTLIST ══════════ -->
-  <div class="frame" id="shortlist"><section class="slide lift">
-    <img class="watermark" src="/salesforce-deck/logo/illusia-mark.svg" alt="">
-    <div class="pad">
-      <div class="slate"><span class="wm">Illusia</span><span class="tag">The shortlist · <span class="folio">12</span></span></div>
-
-      <div style="margin-top:auto">
-        <p class="label" style="margin-bottom:20px">The shortlist</p>
-        <h2 class="d2">Four ways in.</h2>
-      </div>
-
-      <div style="display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:26px;margin-top:44px;height:424px;margin-bottom:auto">
-        <div class="glass" style="padding:34px 34px;display:flex;align-items:flex-start;gap:28px">
-          <span class="act" style="font-size:86px;flex:0 0 auto">01</span>
-          <div>
-            <h3 class="d3" style="font-size:33px">Erin, Out of Office</h3>
-            <p class="body" style="margin-top:9px;font-size:16px">Executive personality, out of the building — and clip-worthy moments all the way through.</p>
-          </div>
-        </div>
-        <div class="glass" style="padding:34px 34px;display:flex;align-items:flex-start;gap:28px">
-          <span class="act" style="font-size:86px;flex:0 0 auto">02</span>
-          <div>
-            <h3 class="d3" style="font-size:33px">Future You Called</h3>
-            <p class="body" style="margin-top:9px;font-size:16px">Scripted comedy with cuttable punchlines, banked a season at a time.</p>
-          </div>
-        </div>
-        <div class="glass" style="padding:34px 34px;display:flex;align-items:flex-start;gap:28px">
-          <span class="act" style="font-size:86px;flex:0 0 auto">03</span>
-          <div>
-            <h3 class="d3" style="font-size:33px">Access Granted</h3>
-            <p class="body" style="margin-top:9px;font-size:16px">A C-suite walk-and-talk that breaks into fifteen rapid-fire clips.</p>
-          </div>
-        </div>
-        <div class="glass" style="padding:34px 34px;display:flex;align-items:flex-start;gap:28px">
-          <span class="act" style="font-size:86px;flex:0 0 auto">04</span>
-          <div>
-            <h3 class="d3" style="font-size:33px">Hot Takes, No Slides</h3>
-            <p class="body" style="margin-top:9px;font-size:16px">One location, one POV series, creator-ready opinions by the dozen.</p>
-          </div>
-        </div>
-      </div>
-
-      <p class="note" style="padding-top:30px">
-        No activation buildout. Simple access. Bold ideas. Repeatable content.
-      </p>
-    </div>
-  </section></div>
-
-  <!-- ══════════ 13 — ERIN, OUT OF OFFICE ══════════
+  <!-- ══════════ 09 — ERIN, OUT OF OFFICE ══════════
        The concept slides take the project slides' exact band — 850px of media,
        a panel beside it, a work band under it — so an idea and a finished film
        are read in the same frame. What fills the band is the title card the
@@ -1215,7 +1071,7 @@ html,body{background:#DEEBFA}
   <div class="frame" id="out-of-office"><section class="slide lift">
     <img class="watermark" src="/salesforce-deck/logo/illusia-mark.svg" alt="">
     <div class="pad">
-      <div class="slate"><span class="wm">Illusia</span><span class="tag">Idea 01 · executive-led × Clip · <span class="folio">13</span></span></div>
+      <div class="slate"><span class="wm">Illusia</span><span class="tag">Idea 01 · executive-led × Clip · <span class="folio">09</span></span></div>
 
       <div style="display:grid;grid-template-columns:850px 1fr;grid-template-rows:478px;gap:30px;margin-top:32px">
         <div class="titlecard">
@@ -1223,6 +1079,7 @@ html,body{background:#DEEBFA}
           <div class="tcmid">
             <p class="tcquote">The CMO meets<br>the creator.</p>
             <p class="tcsub">One real business problem. Zero conference-room energy.</p>
+            <p class="tchook"><b>Opening hook</b>&ldquo;Can a CMO survive a day in my business?&rdquo;</p>
           </div>
           <div class="tcfoot">
             <span><b>Episode 01</b> · Out of Office</span>
@@ -1281,11 +1138,11 @@ html,body{background:#DEEBFA}
     </div>
   </section></div>
 
-  <!-- ══════════ 14 — FUTURE YOU CALLED ══════════ -->
+  <!-- ══════════ 10 — FUTURE YOU CALLED ══════════ -->
   <div class="frame" id="future-you-called"><section class="slide lift">
     <img class="watermark" src="/salesforce-deck/logo/illusia-mark.svg" alt="">
     <div class="pad">
-      <div class="slate"><span class="wm">Illusia</span><span class="tag">Idea 02 · scripted comedy × Clip · <span class="folio">14</span></span></div>
+      <div class="slate"><span class="wm">Illusia</span><span class="tag">Idea 02 · scripted comedy × Clip · <span class="folio">10</span></span></div>
 
       <div style="display:grid;grid-template-columns:850px 1fr;grid-template-rows:478px;gap:30px;margin-top:32px">
         <div class="titlecard">
@@ -1293,6 +1150,7 @@ html,body{background:#DEEBFA}
           <div class="tcmid">
             <p class="tcquote">Wait. You still<br>do that?</p>
             <p class="tcsub">Present You meets Future You. Neither is ready.</p>
+            <p class="tchook"><b>Opening hook</b>&ldquo;Wait… you still do that manually?&rdquo;</p>
           </div>
           <div class="tcfoot">
             <span><b>EP 01</b> · Future You Called</span>
@@ -1353,11 +1211,11 @@ html,body{background:#DEEBFA}
     </div>
   </section></div>
 
-  <!-- ══════════ 15 — ACCESS GRANTED ══════════ -->
+  <!-- ══════════ 11 — ACCESS GRANTED ══════════ -->
   <div class="frame" id="access-granted"><section class="slide lift">
     <img class="watermark" src="/salesforce-deck/logo/illusia-mark.svg" alt="">
     <div class="pad">
-      <div class="slate"><span class="wm">Illusia</span><span class="tag">Idea 03 · executive access × Clip · <span class="folio">15</span></span></div>
+      <div class="slate"><span class="wm">Illusia</span><span class="tag">Idea 03 · executive access × Clip · <span class="folio">11</span></span></div>
 
       <div style="display:grid;grid-template-columns:850px 1fr;grid-template-rows:478px;gap:30px;margin-top:32px">
         <div class="titlecard">
@@ -1365,6 +1223,7 @@ html,body{background:#DEEBFA}
           <div class="tcmid">
             <p class="tcquote">25 questions.<br>One walk.</p>
             <p class="tcsub">Meet the people behind the platform.</p>
+            <p class="tchook"><b>Opening hook</b>&ldquo;What's one corporate phrase you'd ban forever?&rdquo;</p>
           </div>
           <div class="tcfoot">
             <span><b>EP 01</b> · Access Granted</span>
@@ -1425,11 +1284,11 @@ html,body{background:#DEEBFA}
     </div>
   </section></div>
 
-  <!-- ══════════ 16 — HOT TAKES, NO SLIDES ══════════ -->
+  <!-- ══════════ 12 — HOT TAKES, NO SLIDES ══════════ -->
   <div class="frame" id="hot-takes"><section class="slide lift">
     <img class="watermark" src="/salesforce-deck/logo/illusia-mark.svg" alt="">
     <div class="pad">
-      <div class="slate"><span class="wm">Illusia</span><span class="tag">Idea 04 · culture + opinion × Clip · <span class="folio">16</span></span></div>
+      <div class="slate"><span class="wm">Illusia</span><span class="tag">Idea 04 · culture + opinion × Clip · <span class="folio">12</span></span></div>
 
       <div style="display:grid;grid-template-columns:850px 1fr;grid-template-rows:478px;gap:30px;margin-top:32px">
         <div class="titlecard">
@@ -1437,6 +1296,7 @@ html,body{background:#DEEBFA}
           <div class="tcmid">
             <p class="tcquote">&ldquo;Meetings<br>are broken.&rdquo;</p>
             <p class="tcsub">Agree? Disagree? Make your case.</p>
+            <p class="tchook"><b>Opening hook</b>&ldquo;The best marketing doesn't feel like marketing.&rdquo;</p>
           </div>
           <div class="tcfoot">
             <span><b>EP 01</b> · Hot Takes, No Slides</span>
@@ -1496,119 +1356,26 @@ html,body{background:#DEEBFA}
     </div>
   </section></div>
 
-  <!-- ══════════ 17 — OPENING HOOKS ══════════ -->
-  <div class="frame" id="hooks"><section class="slide lift">
+  <!-- ══════════ 13 — CLIP ══════════
+       The engine slide and the campaign-figures slide were both about the same
+       thing — what happens to a film after we hand it over — so they are one
+       slide. The figures drop their cards and run as a data strip under the
+       three beats: four numbers do not need four panels.
+
+       No chart here on purpose: the job is magnitude per campaign, not a
+       comparison across a shared axis. The meter is a single monochrome series
+       against the largest of the four. -->
+  <div class="frame" id="clip"><section class="slide lift">
     <img class="watermark" src="/salesforce-deck/logo/illusia-mark.svg" alt="">
     <div class="pad">
-      <div class="slate"><span class="wm">Illusia</span><span class="tag">Example opening hooks · <span class="folio">17</span></span></div>
+      <div class="slate"><span class="wm">Illusia</span><span class="tag">Production × distribution · <span class="folio">13</span></span></div>
 
-      <div style="margin-top:auto">
-        <p class="label" style="margin-bottom:20px">Example opening hooks</p>
-        <h2 class="d2">Scroll-stoppers, not sound bites.</h2>
-      </div>
-
-      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-top:44px;height:318px;margin-bottom:auto">
-        <div class="glass quote">
-          <p class="qt">&ldquo;Can a CMO survive a day in my business?&rdquo;</p>
-          <p class="qs">Erin, Out of Office</p>
-        </div>
-        <div class="glass quote">
-          <p class="qt">&ldquo;Wait… you still do that manually?&rdquo;</p>
-          <p class="qs">Future You Called</p>
-        </div>
-        <div class="glass quote">
-          <p class="qt">&ldquo;What's one corporate phrase you'd ban forever?&rdquo;</p>
-          <p class="qs">Access Granted</p>
-        </div>
-        <div class="glass quote">
-          <p class="qt">&ldquo;The best marketing doesn't feel like marketing.&rdquo;</p>
-          <p class="qs">Hot Takes, No Slides</p>
-        </div>
-      </div>
-
-      <p class="note" style="padding-top:30px">
-        One strong original moment. Multiple approved hooks, cuts and creator perspectives via Clip.
-      </p>
-    </div>
-  </section></div>
-
-  <!-- ══════════ 18 — CLIP.TECH CAMPAIGN EXAMPLES ══════════
-       Four figures, no chart: the job here is magnitude per campaign, not a
-       comparison across a shared axis. The meter under each number is a single
-       monochrome series against the largest campaign, so the four can be read
-       against each other at a glance without pretending to be a plot. -->
-  <div class="frame" id="clip-examples"><section class="slide lift">
-    <img class="watermark" src="/salesforce-deck/logo/illusia-mark.svg" alt="">
-    <div class="pad">
-      <div class="slate"><span class="wm">Illusia</span><span class="tag">Clip.tech · public campaign examples · <span class="folio">18</span></span></div>
-
-      <div style="margin-top:auto">
-        <p class="label" style="margin-bottom:20px">Clip.tech / public campaign examples</p>
-        <h2 class="d2" style="max-width:16em">Clip turns one moment<br>into many feeds.</h2>
-      </div>
-
-      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-top:44px;height:336px;margin-bottom:auto">
-        <div class="glass" style="padding:32px 30px;display:flex;flex-direction:column">
-          <p class="label" style="color:rgba(255,255,255,.72)">01 / Livestream</p>
-          <h3 class="d3" style="font-size:30px;margin-top:10px">Ramp</h3>
-          <p class="tag" style="margin-top:6px">NYC livestream</p>
-          <div style="margin-top:auto">
-            <div class="res"><div><b>28.76M</b><span>Total views</span></div></div>
-            <div class="meter" style="margin:14px 0 12px"><i style="width:100%"></i></div>
-            <p class="tag">809 clips posted</p>
-          </div>
-        </div>
-        <div class="glass" style="padding:32px 30px;display:flex;flex-direction:column">
-          <p class="label" style="color:rgba(255,255,255,.72)">02 / Live event</p>
-          <h3 class="d3" style="font-size:30px;margin-top:10px">FIFA</h3>
-          <p class="tag" style="margin-top:6px">David Guetta</p>
-          <div style="margin-top:auto">
-            <div class="res"><div><b>23.35M</b><span>Total views</span></div></div>
-            <div class="meter" style="margin:14px 0 12px"><i style="width:81.2%"></i></div>
-            <p class="tag">849 clips posted</p>
-          </div>
-        </div>
-        <div class="glass" style="padding:32px 30px;display:flex;flex-direction:column">
-          <p class="label" style="color:rgba(255,255,255,.72)">03 / Live activation</p>
-          <h3 class="d3" style="font-size:30px;margin-top:10px">Taco Bell</h3>
-          <p class="tag" style="margin-top:6px">Live Más Live</p>
-          <div style="margin-top:auto">
-            <div class="res"><div><b>16.98M</b><span>Total views</span></div></div>
-            <div class="meter" style="margin:14px 0 12px"><i style="width:59%"></i></div>
-            <p class="tag">453 clips posted</p>
-          </div>
-        </div>
-        <div class="glass" style="padding:32px 30px;display:flex;flex-direction:column">
-          <p class="label" style="color:rgba(255,255,255,.72)">04 / Podcast</p>
-          <h3 class="d3" style="font-size:30px;margin-top:10px">Alix Earle</h3>
-          <p class="tag" style="margin-top:6px">Hot Mess</p>
-          <div style="margin-top:auto">
-            <div class="res"><div><b>7.49M</b><span>Total views</span></div></div>
-            <div class="meter" style="margin:14px 0 12px"><i style="width:26%"></i></div>
-            <p class="tag">270 clips posted</p>
-          </div>
-        </div>
-      </div>
-
-      <p class="note" style="padding-top:30px">
-        Meters are each campaign's views against the largest of the four. Illustrative Clip.tech
-        case studies — not Illusia work, and not a Salesforce forecast. Source: clip.tech
-      </p>
-    </div>
-  </section></div>
-
-  <!-- ══════════ 19 — THE ENGINE ══════════ -->
-  <div class="frame" id="engine"><section class="slide lift">
-    <img class="watermark" src="/salesforce-deck/logo/illusia-mark.svg" alt="">
-    <div class="pad">
-      <div class="slate"><span class="wm">Illusia</span><span class="tag">Production × distribution · <span class="folio">19</span></span></div>
-
-      <div style="margin-top:auto">
+      <div style="margin-top:38px">
         <p class="label" style="margin-bottom:20px">The production × distribution engine</p>
         <h2 class="d2" style="max-width:16em">Illusia creates it.<br>Clip helps it travel.</h2>
       </div>
 
-      <div class="work" style="margin-top:54px;gap:30px;margin-bottom:auto">
+      <div class="work" style="margin-top:38px;gap:30px;flex:1">
         <div class="glass step">
           <p class="sn">Illusia — make</p>
           <h3>Salesforce-owned<br>content.</h3>
@@ -1626,18 +1393,45 @@ html,body{background:#DEEBFA}
         </div>
       </div>
 
-      <p class="note" style="padding-top:30px">
-        Illusia makes the source. Clip distributes approved moments through creator accounts.
-        Salesforce controls story, rights and approvals throughout.
+      <div style="margin-top:30px;padding-top:24px;border-top:1px solid var(--hair)">
+        <p class="label" style="margin-bottom:18px">Clip.tech · public campaign examples</p>
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:30px">
+          <div>
+            <p class="tag">Ramp · NYC livestream</p>
+            <div class="res" style="margin-top:9px"><div><b>28.76M</b><span>Total views · 809 clips</span></div></div>
+            <div class="meter" style="margin-top:11px"><i style="width:100%"></i></div>
+          </div>
+          <div>
+            <p class="tag">FIFA · David Guetta</p>
+            <div class="res" style="margin-top:9px"><div><b>23.35M</b><span>Total views · 849 clips</span></div></div>
+            <div class="meter" style="margin-top:11px"><i style="width:81.2%"></i></div>
+          </div>
+          <div>
+            <p class="tag">Taco Bell · Live Más Live</p>
+            <div class="res" style="margin-top:9px"><div><b>16.98M</b><span>Total views · 453 clips</span></div></div>
+            <div class="meter" style="margin-top:11px"><i style="width:59%"></i></div>
+          </div>
+          <div>
+            <p class="tag">Alix Earle · Hot Mess</p>
+            <div class="res" style="margin-top:9px"><div><b>7.49M</b><span>Total views · 270 clips</span></div></div>
+            <div class="meter" style="margin-top:11px"><i style="width:26%"></i></div>
+          </div>
+        </div>
+      </div>
+
+      <p class="note" style="padding-top:22px">
+        Meters are each campaign's views against the largest of the four. Illustrative Clip.tech
+        case studies — not Illusia work, and not a Salesforce forecast. Source: clip.tech ·
+        Illusia makes the source, Clip distributes approved moments, Salesforce controls story,
+        rights and approvals throughout.
       </p>
     </div>
   </section></div>
-
-  <!-- ══════════ 20 — HOW WE'D START ══════════ -->
+  <!-- ══════════ 14 — HOW WE'D START ══════════ -->
   <div class="frame" id="how-we-start"><section class="slide lift">
     <img class="watermark" src="/salesforce-deck/logo/illusia-mark.svg" alt="">
     <div class="pad">
-      <div class="slate"><span class="wm">Illusia</span><span class="tag">How we could start · <span class="folio">20</span></span></div>
+      <div class="slate"><span class="wm">Illusia</span><span class="tag">How we could start · <span class="folio">14</span></span></div>
 
       <div style="margin-top:auto">
         <p class="label" style="margin-bottom:20px">How we could start</p>
@@ -1670,7 +1464,7 @@ html,body{background:#DEEBFA}
     </div>
   </section></div>
 
-  <!-- ══════════ 21 — CLOSE ══════════ -->
+  <!-- ══════════ 15 — CLOSE ══════════ -->
   <div class="frame" id="close"><section class="slide ink">
     <div class="pad">
       <div class="slate">
