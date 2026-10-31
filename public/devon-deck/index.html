@@ -1064,6 +1064,7 @@ html.t-white,.t-white body{background:#E8E8E6}
   .vcap{font-size:9.5px!important;padding:6px 9px!important}
   .player .vbar{opacity:1}
   .counter{display:none}
+  .rail{display:none!important}
   .slide.intro{min-height:100svh;display:flex}
   .slide.intro .pad{min-height:100svh;display:flex;flex-direction:column;padding-top:max(64px,calc(env(safe-area-inset-top) + 20px))!important;padding-bottom:40px!important}
   .wmlogo{height:32px}
@@ -1072,6 +1073,9 @@ html.t-white,.t-white body{background:#E8E8E6}
   .introbp{width:62%;flex:none;height:auto;aspect-ratio:1}
   .slate .pill{font-size:9px;padding:6px 10px;letter-spacing:.1em}
 }
+/* Never show iOS's own play overlay on the silent looping videos. */
+video[autoplay]::-webkit-media-controls-start-playback-button{display:none!important;-webkit-appearance:none}
+video[autoplay]::-webkit-media-controls{display:none!important}
 </style>
 <script>
 /* Phones: the stage isn't scaled, so make the base deck's fit() a no-op there. */
@@ -1080,11 +1084,16 @@ html.t-white,.t-white body{background:#E8E8E6}
   if (phone()) {
     document.documentElement.style.setProperty('--s', 1);
     document.addEventListener('DOMContentLoaded', function(){
-      var v = document.querySelector('.introbg');   // square cut frames the drawings better on a tall screen
-      if (v) { v.poster = '/devon-deck/img/merch/blueprints-loop.jpg'; v.src = '/devon-deck/img/merch/blueprints-loop.mp4'; v.play && v.play(); }
+      // Cover: an animated image, not a video. iOS Low Power Mode blocks every autoplaying
+      // video and shows a play button; images still animate.
+      var v = document.querySelector('video.introbg');
+      if (v) { var img = new Image(); img.className = 'introbg'; img.alt = ''; img.src = '/devon-deck/img/intro-parchment.webp'; v.replaceWith(img); }
     });
   }
   window.addEventListener('resize', function(){ if (phone()) document.documentElement.style.setProperty('--s', 1); });
+  // Silent loops: if the browser refused autoplay, start them on the first touch or scroll.
+  function kick(){ document.querySelectorAll('video[autoplay]').forEach(function(v){ v.muted = true; var p = v.play(); if (p && p.catch) p.catch(function(){}); }); }
+  ['touchstart','scroll','click'].forEach(function(e){ window.addEventListener(e, kick, {passive:true, once:true}); });
 })();
 </script>
 
