@@ -384,7 +384,27 @@ html,body{background:#E9E7DC}
 .scrim.bottom{background:linear-gradient(to bottom,transparent 34%,rgba(244,243,235,.58) 74%,rgba(244,243,235,.86) 100%)}
 .glass.dense{background-color:rgba(255,255,255,.6)}
 
+/* ═══ Stills open full size ═══
+   The stage is transform:scaled, and a transform makes a containing block for
+   fixed children, so the overlay cannot live inside a slide — the script hangs
+   it off body. Thumbnails are 600px; the frame behind them is 2000px and is
+   only fetched when someone actually opens one. */
+.zoom{cursor:zoom-in}
+.zoom:focus-visible{outline:2px solid rgba(11,12,14,.6);outline-offset:3px}
+#lightbox{position:fixed;inset:0;z-index:100;display:none;
+  align-items:center;justify-content:center;padding:44px 44px 64px;
+  background:rgba(18,18,16,.86);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);
+  cursor:zoom-out}
+#lightbox.on{display:flex}
+#lightbox img{max-width:100%;max-height:100%;width:auto;height:auto;
+  border-radius:12px;box-shadow:0 30px 90px rgba(0,0,0,.55)}
+#lightbox .lbcap{position:absolute;left:50%;bottom:26px;transform:translateX(-50%);
+  max-width:80%;text-align:center;
+  font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;
+  color:rgba(255,255,255,.7)}
+
 @media print{
+  #lightbox{display:none!important}
   html,body{background:#F4F3EB!important}
   .glass{background:rgba(255,255,255,.92)!important;
     box-shadow:inset 0 1px 0 rgba(255,255,255,1)!important}
@@ -883,10 +903,10 @@ html,body{background:#E9E7DC}
           </div>
 
           <div style="width:654px;align-self:center;display:grid;grid-template-columns:repeat(4,1fr);grid-template-rows:103px;gap:11px">
-            <div class="card"><img src="/experiential-examples/img/jurassic-still-1.jpg" alt="Talent and press at the Jurassic World Rebirth reveal"></div>
-            <div class="card"><img src="/experiential-examples/img/jurassic-still-2.jpg" alt="The finished plaza installation at Rockefeller Center"></div>
-            <div class="card"><img src="/experiential-examples/img/jurassic-still-3.jpg" alt="Low-angle view of the installation and the film's logo"></div>
-            <div class="card"><img src="/experiential-examples/img/jurassic-still-4.jpg" alt="The plaza build seen in full daylight"></div>
+            <div class="card"><img class="zoom" tabindex="0" role="button" data-full="/experiential-examples/img/jurassic-still-1-full.jpg" src="/experiential-examples/img/jurassic-still-1.jpg" alt="Talent and press at the Jurassic World Rebirth reveal"></div>
+            <div class="card"><img class="zoom" tabindex="0" role="button" data-full="/experiential-examples/img/jurassic-still-2-full.jpg" src="/experiential-examples/img/jurassic-still-2.jpg" alt="The finished plaza installation at Rockefeller Center"></div>
+            <div class="card"><img class="zoom" tabindex="0" role="button" data-full="/experiential-examples/img/jurassic-still-3-full.jpg" src="/experiential-examples/img/jurassic-still-3.jpg" alt="Low-angle view of the installation and the film's logo"></div>
+            <div class="card"><img class="zoom" tabindex="0" role="button" data-full="/experiential-examples/img/jurassic-still-4-full.jpg" src="/experiential-examples/img/jurassic-still-4.jpg" alt="The plaza build seen in full daylight"></div>
           </div>
         </div>
 
@@ -1231,6 +1251,58 @@ html,body{background:#E9E7DC}
     }
     track.addEventListener('click', seek);
   });
+})();
+</script>
+
+<script>
+/* ── Lightbox ──
+   Click or press a still to see the full frame. The overlay is appended to
+   body rather than written into the slide, because the slide is scaled and a
+   scaled ancestor would capture position:fixed. */
+(function(){
+  var shots = Array.prototype.slice.call(document.querySelectorAll('.zoom'));
+  if(!shots.length) return;
+
+  var box = document.createElement('div');
+  box.id = 'lightbox';
+  box.setAttribute('role','dialog');
+  box.setAttribute('aria-modal','true');
+  box.innerHTML = '<img alt=""><p class="lbcap"></p>';
+  document.body.appendChild(box);
+
+  var big = box.querySelector('img');
+  var cap = box.querySelector('.lbcap');
+  var opener = null;
+
+  function open(el){
+    opener = el;
+    big.src = el.getAttribute('data-full') || el.src;
+    big.alt = el.alt || '';
+    cap.textContent = el.alt || '';
+    box.classList.add('on');
+  }
+  function close(){
+    box.classList.remove('on');
+    /* Drop the source so a 2000px frame is not held per still. */
+    big.removeAttribute('src');
+    if(opener){ opener.focus(); opener = null; }
+  }
+
+  shots.forEach(function(el){
+    el.addEventListener('click', function(){ open(el); });
+    el.addEventListener('keydown', function(e){
+      if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); open(el); }
+    });
+  });
+
+  box.addEventListener('click', close);
+  document.addEventListener('keydown', function(e){
+    if(e.key === 'Escape' && box.classList.contains('on')){
+      /* Stop the deck's own key handler from paging behind the overlay. */
+      e.stopPropagation();
+      close();
+    }
+  }, true);
 })();
 </script>
 
