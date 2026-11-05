@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <title>Illusia — Experiential Work</title>
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="description" content="Seven experiential productions — a 20th Century Studios red-carpet premiere, a one-market premiere, an immersive launch activation, a Ryder Cup brand activation, a multi-day LA activation, a 36-hour overnight build at Rockefeller Center, and a custom 4D screening.">
+<meta name="description" content="Nine productions — a 20th Century Studios red-carpet premiere, a one-market premiere, an immersive launch activation, a Ryder Cup brand activation, a multi-day LA activation, a 36-hour overnight build at Rockefeller Center, and a custom 4D screening.">
 <!-- Unlisted: nothing on the site links here, and this keeps it out of search
      results for anyone who did not get the link directly. Deliberately not a
      robots.txt rule — that file is public, so a Disallow line would advertise
@@ -17,7 +17,7 @@
 <meta name="googlebot" content="noindex, nofollow">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700&family=Inter+Tight:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,400..900;1,62..125,400..900&family=Schibsted+Grotesk:wght@400;500;600;700&family=Inter+Tight:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
 
 <style>
 /* ═══════════════════════════════════════════════════════════════════════
@@ -309,7 +309,7 @@ img{display:block;max-width:100%}
   /* Blade's hero is the one 9:16 player in the deck — 269px wide, which the
      note cannot fit, so it wrapped to three lines and ran out of the tile.
      The poster is already the link there. */
-  #p4 .filmnote{display:none!important}
+  #p4 .filmnote,#p13 .filmnote{display:none!important}
   *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
 }
 </style>
@@ -332,26 +332,39 @@ img{display:block;max-width:100%}
    poster frame, not on the page.
    ═══════════════════════════════════════════════════════════════════════ */
 :root{
-  --ink:#F4F3EB;
-  --riser:#FBFAF6;
+  --ink:#FFFFFF;
+  --riser:#FFFFFF;
   --paper:#0b0c0e;
   --ash:rgba(11,12,14,.74);
   --dim:rgba(11,12,14,.56);
   --faint:rgba(11,12,14,.40);
   --hair:rgba(11,12,14,.14);
   --hair-hi:rgba(11,12,14,.26);
-  /* Frost: mostly white over the cream, so the blur reads as frost and not haze. */
-  --glass-fill:linear-gradient(145deg,rgba(255,255,255,.82) 0%,rgba(255,255,255,.54) 46%,rgba(255,255,255,.68) 100%);
-  --glass-edge:rgba(255,255,255,.92);
+  /* On white there is nothing for frost to do, so panels become the other
+     half of the brand: a flat near-white field inside a hairline. */
+  --glass-fill:linear-gradient(145deg,rgba(11,12,14,.030) 0%,rgba(11,12,14,.014) 46%,rgba(11,12,14,.022) 100%);
+  --glass-edge:rgba(11,12,14,.13);
   --glass-rim:inset 0 1px 0 rgba(255,255,255,1);
-  --glass-cast:0 18px 44px rgba(11,12,14,.12);
+  --glass-cast:0 14px 36px rgba(11,12,14,.07);
+
+  --display:'Archivo','Schibsted Grotesk','Helvetica Neue',Arial,sans-serif;
 }
 /* The page sits a half-step under the slide so the stack still reads as cards. */
-html,body{background:#E9E7DC}
+html,body{background:#E6E6E4}
 .slide{background:var(--ink)}
-.slide.lift{background:
-  radial-gradient(120% 78% at 50% -12%,rgba(255,255,255,.95) 0%,rgba(255,255,255,0) 58%),
-  linear-gradient(to bottom,var(--riser) 0%,var(--ink) 64%)}
+/* A white ground has no gradient to give: the slide is flat, and the hairlines
+   and black type do the work instead. */
+.slide.lift{background:var(--ink)}
+
+/* ── type ──
+   The headline is the mark of the house: heavy, condensed, italic, uppercase.
+   Project names keep the same family a step back from that — bold, barely
+   condensed, upright — so a title reads as a name rather than a slogan. */
+.d1{font-weight:800;font-style:italic;font-stretch:70%;text-transform:uppercase;
+  letter-spacing:-.005em;line-height:.93}
+.d2{font-weight:800;font-style:italic;font-stretch:74%;text-transform:uppercase;
+  letter-spacing:-.005em;line-height:.98}
+.d3{font-weight:700;font-stretch:88%;letter-spacing:-.022em}
 
 /* ── type ── */
 .spec div b,.mini b,.res b,.counter b{color:#0b0c0e}
@@ -364,25 +377,25 @@ html,body{background:#E9E7DC}
 .watermark{filter:blur(8px) invert(1);opacity:.028}
 
 /* ── chrome ── */
-.pill{background:rgba(255,255,255,.68);border:1px solid rgba(11,12,14,.14);
-  box-shadow:inset 0 1px 0 rgba(255,255,255,1);color:rgba(11,12,14,.84)}
+.pill{background:transparent;border:1px solid rgba(11,12,14,.72);border-radius:3px;
+  box-shadow:none;color:rgba(11,12,14,.9)}
 .rail{background:rgba(11,12,14,.08)}
 .rail i{background:rgba(11,12,14,.5)}
 .counter{background:rgba(255,255,255,.72);border:1px solid rgba(11,12,14,.14);
   box-shadow:inset 0 1px 0 rgba(255,255,255,1),0 10px 30px rgba(11,12,14,.14)}
 .counter kbd{border:1px solid rgba(11,12,14,.2);color:rgba(11,12,14,.7)}
 /* A dark hairline round the media, so film sits on the paper instead of floating. */
-.card,.player{background:#E4E2D6;border:1px solid rgba(11,12,14,.68);
-  box-shadow:0 16px 40px rgba(11,12,14,.15)}
+.card,.player{background:#F1F1EF;border:1px solid rgba(11,12,14,.78);
+  box-shadow:0 14px 34px rgba(11,12,14,.11)}
 .clientmark{filter:brightness(0);opacity:.84}
 
 /* ── the cover photograph ──
    The scrims were darkening the picture so white type could sit on it. Black
    type needs the opposite: veil it toward the paper. */
-.scrim.even{background:rgba(244,243,235,.34)}
-.scrim.top{background:linear-gradient(to bottom,rgba(244,243,235,.74) 0%,rgba(244,243,235,.3) 16%,transparent 30%)}
-.scrim.bottom{background:linear-gradient(to bottom,transparent 34%,rgba(244,243,235,.58) 74%,rgba(244,243,235,.86) 100%)}
-.glass.dense{background-color:rgba(255,255,255,.6)}
+.scrim.even{background:rgba(255,255,255,.36)}
+.scrim.top{background:linear-gradient(to bottom,rgba(255,255,255,.76) 0%,rgba(255,255,255,.32) 16%,transparent 30%)}
+.scrim.bottom{background:linear-gradient(to bottom,transparent 34%,rgba(255,255,255,.6) 74%,rgba(255,255,255,.88) 100%)}
+.glass.dense{background-color:rgba(255,255,255,.74)}
 
 /* ═══ Stills open full size ═══
    The stage is transform:scaled, and a transform makes a containing block for
@@ -405,7 +418,7 @@ html,body{background:#E9E7DC}
 
 @media print{
   #lightbox{display:none!important}
-  html,body{background:#F4F3EB!important}
+  html,body{background:#FFFFFF!important}
   .glass{background:rgba(255,255,255,.92)!important;
     box-shadow:inset 0 1px 0 rgba(255,255,255,1)!important}
   .pill{background:rgba(255,255,255,.88)!important;
@@ -445,7 +458,9 @@ html,body{background:#E9E7DC}
           <span class="pill">Play Dirty · Amazon</span>
           <span class="pill">Blade · Ryder Cup</span>
           <span class="pill">Hoppers · Los Angeles</span>
+          <span class="pill">Salesforce · AdWeek</span>
           <span class="pill">Jurassic World Rebirth</span>
+          <span class="pill">Expedia Group</span>
           <span class="pill">Ready or Not 2 · 4D Screening</span>
         </div>
       </div>
@@ -874,11 +889,83 @@ html,body{background:#E9E7DC}
     </div>
   </section></div>
 
-  <!-- ══════════ 07 — JURASSIC WORLD REBIRTH ══════════ -->
+  <!-- ══════════ 07 — SALESFORCE · ADWEEK ══════════ -->
+  <div class="frame" id="salesforce"><section class="slide lift">
+    <img class="watermark" src="/experiential-examples/logo/illusia-mark.svg" alt="">
+    <div class="pad">
+      <div class="slate"><span class="wm">Illusia</span><span class="tag">Live event coverage · <span class="folio">07</span></span></div>
+
+      <div style="display:grid;grid-template-columns:850px 1fr;grid-template-rows:478px;gap:30px;margin-top:32px">
+        <div class="player card" id="p12" style="aspect-ratio:16/9">
+          <a class="filmlink" href="https://illusiaagency.com/experiential-examples#salesforce" aria-label="Watch the film at illusiaagency.com"></a>
+          <video id="p12v" playsinline preload="none" poster="/experiential-examples/img/salesforce-poster.jpg" src="/experiential-examples/img/salesforce-adweek.mp4"></video>
+          <span class="vcap">Salesforce · AdWeek recap</span>
+          <button class="vbig" aria-label="Play the Salesforce AdWeek recap"><span></span></button>
+          <div class="vbar">
+            <button class="vbtn" data-play aria-label="Play or pause"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
+            <div class="vtrack"><i></i></div>
+            <span class="vtime">0:00</span>
+          </div>
+          <p class="filmnote">Watch the film — illusiaagency.com/experiential-examples</p>
+        </div>
+
+        <div style="display:flex;flex-direction:column;gap:20px">
+          <div class="glass" style="padding:30px 32px;flex:1;display:flex;flex-direction:column">
+            <p class="label" style="margin-bottom:14px;color:rgba(255,255,255,.72)">Advertising Week New York</p>
+            <h2 class="d3">Salesforce</h2>
+            <p class="tag" style="margin-top:8px">Enterprise · live event coverage</p>
+            <p class="body" style="margin-top:18px;font-size:16px">
+              Two ten-hour days at AdWeek with an editor on site, so clips went out while
+              the event was still running.
+            </p>
+            <div class="spec" style="margin-top:auto;padding-top:20px">
+              <div><span>Market</span><b>NYC, Advertising Week</b></div>
+              <div><span>Shoot days</span><b>2 × 10 hrs</b></div>
+              <div><span>Crew</span><b>3 videographers + editor</b></div>
+              <div><span>Films</span><b>Recap + live clips</b></div>
+              <div><span>Turnaround</span><b>24 hrs on the recap</b></div>
+              <div><span>Investment</span><b>$19,950</b></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="work" style="margin-top:auto">
+        <div>
+          <p class="label" style="margin-bottom:10px">On site</p>
+          <div class="mini">
+            <div>Keynotes, panels and stage content</div>
+            <div>Executive interviews captured on site</div>
+            <div>Activation, booth and floor coverage</div>
+            <div><b>An editor cutting beside the shoot</b>, both days</div>
+          </div>
+        </div>
+        <div>
+          <p class="label" style="margin-bottom:10px">Delivered</p>
+          <div class="mini">
+            <div><b>24-hour recap film</b></div>
+            <div><b>Live clips</b> — cut and handed over during the event</div>
+            <div><b>Media stringout</b></div>
+            <div>Organized raw footage handoff</div>
+          </div>
+        </div>
+        <div>
+          <p class="label" style="margin-bottom:10px">Turnaround</p>
+          <div class="mini">
+            <div><b>24 hours</b> on the recap</div>
+            <div><b>Same-day</b> on the clips — posted while it ran</div>
+            <div>Raw organized and labelled at handoff</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section></div>
+
+  <!-- ══════════ 08 — JURASSIC WORLD REBIRTH ══════════ -->
   <div class="frame" id="jurassic-world-rebirth"><section class="slide lift">
     <img class="watermark" src="/experiential-examples/logo/illusia-mark.svg" alt="">
     <div class="pad">
-      <div class="slate"><span class="wm">Illusia</span><span class="tag">Overnight build + reveal · <span class="folio">07</span></span></div>
+      <div class="slate"><span class="wm">Illusia</span><span class="tag">Overnight build + reveal · <span class="folio">08</span></span></div>
 
       <div style="display:grid;grid-template-columns:850px 1fr;grid-template-rows:485px;gap:30px;margin-top:32px">
         <!-- Film and gallery share the band, so the band is taller than the
@@ -963,11 +1050,99 @@ html,body{background:#E9E7DC}
     </div>
   </section></div>
 
-  <!-- ══════════ 08 — READY OR NOT 2 ══════════ -->
+  <!-- ══════════ 09 — EXPEDIA GROUP ══════════
+       The recap is 9:16, so the band splits the way Blade's does: the film at
+       its true ratio on the left, and the deliverables — six of them, more than
+       a work-band column can hold — in a panel beside it. -->
+  <div class="frame" id="expedia-group"><section class="slide lift">
+    <img class="watermark" src="/experiential-examples/logo/illusia-mark.svg" alt="">
+    <div class="pad">
+      <div class="slate"><span class="wm">Illusia</span><span class="tag">Product launch · <span class="folio">09</span></span></div>
+
+      <div style="display:grid;grid-template-columns:850px 1fr;grid-template-rows:478px;gap:30px;margin-top:32px">
+        <div style="display:grid;grid-template-columns:269px 1fr;gap:20px">
+          <div class="player card" id="p13">
+            <a class="filmlink" href="https://illusiaagency.com/experiential-examples#expedia-group" aria-label="Watch the film at illusiaagency.com"></a>
+            <video id="p13v" playsinline preload="none" poster="/experiential-examples/img/expedia-poster.jpg" src="/experiential-examples/img/expedia-recap.mp4"></video>
+            <span class="vcap">Expedia · Hosted recap</span>
+            <button class="vbig" aria-label="Play the Expedia Group event recap"><span></span></button>
+            <div class="vbar">
+            <button class="vbtn" data-play aria-label="Play or pause"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
+            <div class="vtrack"><i></i></div>
+            <span class="vtime">0:00</span>
+          </div>
+            <p class="filmnote">Watch the film — illusiaagency.com/experiential-examples</p>
+          </div>
+
+          <div class="glass" style="padding:28px 30px;display:flex;flex-direction:column;justify-content:center">
+            <p class="label" style="margin-bottom:16px">Final deliverables</p>
+            <div class="mini" style="font-size:14px">
+              <div><b>Hosted recap reel</b> — 45–60s, scripted, product demos and highlights</div>
+              <div><b>Instagram Stories</b> — vertical, cut and posted through the event</div>
+              <div><b>Product demo B-roll</b> — Expedia, Hotels.com and Vrbo, 16:9 and 9:16</div>
+              <div><b>Event B-roll stringout</b> — organized for later cutting</div>
+              <div><b>Keynote multi-cam</b> — footage handoff, no finished edit</div>
+              <div><b>Raw footage</b> — to Expedia's SSD by the end of the event</div>
+            </div>
+          </div>
+        </div>
+
+        <div style="display:flex;flex-direction:column;gap:20px">
+          <div class="glass" style="padding:30px 32px;flex:1;display:flex;flex-direction:column">
+            <p class="label" style="margin-bottom:14px;color:rgba(255,255,255,.72)">New York City · Fall Product Event</p>
+            <h2 class="d3">Expedia Group</h2>
+            <p class="tag" style="margin-top:8px">Enterprise · product launch</p>
+            <p class="body" style="margin-top:18px;font-size:16px">
+              A product launch covered social-first for three brands at once — hosted recap,
+              stories in real time, demo B-roll in both ratios.
+            </p>
+            <div class="spec" style="margin-top:auto;padding-top:20px">
+              <div><span>Market</span><b>NYC, Fall Product Event</b></div>
+              <div><span>Shoot days</span><b>1</b></div>
+              <div><span>Crew</span><b>4 videographers</b></div>
+              <div><span>Films</span><b>Hosted recap + stories</b></div>
+              <div><span>Turnaround</span><b>Fast-turn recap</b></div>
+              <div><span>Investment</span><b>$27,950</b></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="work" style="margin-top:auto">
+        <div>
+          <p class="label" style="margin-bottom:10px">On site</p>
+          <div class="mini">
+            <div>Keynote stage and product reveals</div>
+            <div>Multi-camera across the full event</div>
+            <div>Demo stations for all three brands</div>
+            <div>Floor, atmosphere and attendees</div>
+          </div>
+        </div>
+        <div>
+          <p class="label" style="margin-bottom:10px">Shot in parallel</p>
+          <div class="mini">
+            <div><b>16:9 and 9:16 captured together</b>, not cropped after</div>
+            <div>Stories cut vertical on the day</div>
+            <div>Recap built for social, not broadcast</div>
+          </div>
+        </div>
+        <div>
+          <p class="label" style="margin-bottom:10px">Handoff</p>
+          <div class="mini">
+            <div><b>All raw to Expedia's SSD</b> before wrap</div>
+            <div>Stringout organized for later cutting</div>
+            <div>Keynote handed over as footage, not an edit</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section></div>
+
+  <!-- ══════════ 10 — READY OR NOT 2 ══════════ -->
   <div class="frame" id="ready-or-not-2"><section class="slide lift">
     <img class="watermark" src="/experiential-examples/logo/illusia-mark.svg" alt="">
     <div class="pad">
-      <div class="slate"><span class="wm">Illusia</span><span class="tag">Custom 4D screening · <span class="folio">08</span></span></div>
+      <div class="slate"><span class="wm">Illusia</span><span class="tag">Custom 4D screening · <span class="folio">10</span></span></div>
 
       <div style="display:grid;grid-template-columns:850px 1fr;grid-template-rows:478px;gap:30px;margin-top:32px">
         <div class="player card" id="p2" style="aspect-ratio:16/9">
@@ -1037,14 +1212,14 @@ html,body{background:#E9E7DC}
     </div>
   </section></div>
 
-  <!-- ══════════ 09 — READY OR NOT 2 · THE BUILD FILM ══════════
+  <!-- ══════════ 11 — READY OR NOT 2 · THE BUILD FILM ══════════
        The BTS ran onto the Ready or Not 2 scope at no change in price, and it is
        now the film the client pitches with — so it earns its own frame rather
        than a line in the deliverables list. -->
   <div class="frame" id="ready-or-not-2-bts"><section class="slide lift">
     <img class="watermark" src="/experiential-examples/logo/illusia-mark.svg" alt="">
     <div class="pad">
-      <div class="slate"><span class="wm">Illusia</span><span class="tag">Ready or Not 2 · continued · <span class="folio">09</span></span></div>
+      <div class="slate"><span class="wm">Illusia</span><span class="tag">Ready or Not 2 · continued · <span class="folio">11</span></span></div>
 
       <div style="display:grid;grid-template-columns:850px 1fr;grid-template-rows:478px;gap:30px;margin-top:32px">
         <div class="player card" id="p8" style="aspect-ratio:16/9">
@@ -1062,7 +1237,7 @@ html,body{background:#E9E7DC}
 
         <div style="display:flex;flex-direction:column;gap:20px">
           <div class="glass" style="padding:30px 32px;flex:1;display:flex;flex-direction:column">
-            <p class="label" style="margin-bottom:14px;color:rgba(255,255,255,.72)">Same project as slide 08</p>
+            <p class="label" style="margin-bottom:14px;color:rgba(255,255,255,.72)">Same project as slide 10</p>
             <h2 class="d3">Ready or Not 2 — BTS</h2>
             <p class="tag" style="margin-top:8px">Inside the $37,450 · not quoted separately</p>
             <p class="body" style="margin-top:18px;font-size:16px">
