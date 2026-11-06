@@ -403,14 +403,39 @@ html,body{background:#E6E6E4}
    it off body. Thumbnails are 600px; the frame behind them is 2000px and is
    only fetched when someone actually opens one. */
 .zoom{cursor:zoom-in}
+/* The affordance. Nothing about a still frame says it opens, so both the films
+   and the photographs carry the same glyph, surfacing on hover the way the
+   transport bar does. On a player it is a real control, because the poster
+   itself is already bound to play; on a photograph the whole tile is the
+   target, so the glyph is a hint and takes no pointer. */
+.vexp{position:absolute;right:14px;top:14px;z-index:3;
+  width:34px;height:34px;padding:0;border-radius:11px;cursor:zoom-in;
+  display:flex;align-items:center;justify-content:center;
+  background:rgba(10,10,12,.6);-webkit-backdrop-filter:blur(26px) saturate(150%);
+  backdrop-filter:blur(26px) saturate(150%);
+  border:1px solid rgba(255,255,255,.16);box-shadow:inset 0 1px 0 rgba(255,255,255,.2);
+  opacity:0;transition:opacity .22s,background .22s}
+.vexp svg{width:15px;height:15px;fill:none;stroke:rgba(255,255,255,.94);
+  stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.vexp-hint{pointer-events:none}
+.player:hover .vexp,.player:focus-within .vexp,.card:hover .vexp{opacity:1}
+.vexp:hover,.vexp:focus-visible{background:rgba(10,10,12,.78)}
+.player.playing .vexp{opacity:0}
+.player.playing:hover .vexp{opacity:1}
+.player.sm .vexp{width:26px;height:26px;right:9px;top:9px;border-radius:9px}
+.player.sm .vexp svg{width:12px;height:12px}
 .zoom:focus-visible{outline:2px solid rgba(11,12,14,.6);outline-offset:3px}
 #lightbox{position:fixed;inset:0;z-index:100;display:none;
   align-items:center;justify-content:center;padding:44px 44px 64px;
   background:rgba(18,18,16,.86);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);
   cursor:zoom-out}
 #lightbox.on{display:flex}
-#lightbox img{max-width:100%;max-height:100%;width:auto;height:auto;
-  border-radius:12px;box-shadow:0 30px 90px rgba(0,0,0,.55)}
+#lightbox img,#lightbox video{max-width:100%;max-height:100%;width:auto;height:auto;
+  border-radius:12px;box-shadow:0 30px 90px rgba(0,0,0,.55);background:#000}
+#lightbox .lbclose{position:absolute;right:26px;top:26px;width:40px;height:40px;padding:0;
+  display:flex;align-items:center;justify-content:center;cursor:pointer;
+  border-radius:12px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.22)}
+#lightbox .lbclose svg{width:16px;height:16px;fill:none;stroke:#fff;stroke-width:2;stroke-linecap:round}
 #lightbox .lbcap{position:absolute;left:50%;bottom:26px;transform:translateX(-50%);
   max-width:80%;text-align:center;
   font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;
@@ -492,6 +517,7 @@ html,body{background:#E6E6E4}
           <video id="p1v" playsinline preload="none" poster="/experiential-examples/img/odyssey-poster.jpg" src="/experiential-examples/img/odyssey-sizzle.mp4"></video>
           <span class="vcap">The Odyssey · Overall sizzle</span>
           <button class="vbig" aria-label="Play the recap film"><span></span></button>
+            <button class="vexp" aria-label="Expand this film"><svg viewBox="0 0 24 24"><path d="M9 4H4v5M15 4h5v5M9 20H4v-5M15 20h5v-5"/></svg></button>
           <div class="vbar">
             <button class="vbtn" data-play aria-label="Play or pause"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
             <div class="vtrack"><i></i></div>
@@ -572,6 +598,7 @@ html,body{background:#E6E6E4}
           <video id="p11v" playsinline preload="none" poster="/experiential-examples/img/predator-poster.jpg" src="/experiential-examples/img/predator-recap.mp4"></video>
           <span class="vcap">Predator: Badlands · Premiere recap</span>
           <button class="vbig" aria-label="Play the premiere recap film"><span></span></button>
+            <button class="vexp" aria-label="Expand this film"><svg viewBox="0 0 24 24"><path d="M9 4H4v5M15 4h5v5M9 20H4v-5M15 20h5v-5"/></svg></button>
           <div class="vbar">
             <button class="vbtn" data-play aria-label="Play or pause"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
             <div class="vtrack"><i></i></div>
@@ -643,6 +670,7 @@ html,body{background:#E6E6E4}
           <video id="p10v" playsinline preload="none" poster="/experiential-examples/img/playdirty-poster.jpg" src="/experiential-examples/img/playdirty-sizzle.mp4"></video>
           <span class="vcap">Play Dirty · Activation sizzle</span>
           <button class="vbig" aria-label="Play the Play Dirty activation sizzle"><span></span></button>
+            <button class="vexp" aria-label="Expand this film"><svg viewBox="0 0 24 24"><path d="M9 4H4v5M15 4h5v5M9 20H4v-5M15 20h5v-5"/></svg></button>
           <div class="vbar">
             <button class="vbtn" data-play aria-label="Play or pause"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
             <div class="vtrack"><i></i></div>
@@ -719,6 +747,7 @@ html,body{background:#E6E6E4}
             <video id="p4v" playsinline preload="none" poster="/experiential-examples/img/blade-poster.jpg" src="/experiential-examples/img/blade-recap.mp4"></video>
             <span class="vcap">Blade · Hero recap</span>
             <button class="vbig" aria-label="Play the Ryder Cup recap film"><span></span></button>
+            <button class="vexp" aria-label="Expand this film"><svg viewBox="0 0 24 24"><path d="M9 4H4v5M15 4h5v5M9 20H4v-5M15 20h5v-5"/></svg></button>
             <div class="vbar">
             <button class="vbtn" data-play aria-label="Play or pause"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
             <div class="vtrack"><i></i></div>
@@ -733,6 +762,7 @@ html,body{background:#E6E6E4}
               <video id="p5v" playsinline preload="none" poster="/experiential-examples/img/blade-ugc-poster.jpg" src="/experiential-examples/img/blade-ugc.mp4"></video>
               <span class="vcap">UGC · POV</span>
               <button class="vbig" aria-label="Play the POV social cut"><span></span></button>
+            <button class="vexp" aria-label="Expand this film"><svg viewBox="0 0 24 24"><path d="M9 4H4v5M15 4h5v5M9 20H4v-5M15 20h5v-5"/></svg></button>
               <div class="vbar">
                 <button class="vbtn" data-play aria-label="Play or pause"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
                 <div class="vtrack"><i></i></div>
@@ -744,6 +774,7 @@ html,body{background:#E6E6E4}
               <video id="p6v" playsinline preload="none" poster="/experiential-examples/img/blade-micd-poster.jpg" src="/experiential-examples/img/blade-micd.mp4"></video>
               <span class="vcap">Mic'd up</span>
               <button class="vbig" aria-label="Play the mic'd-up guest film"><span></span></button>
+            <button class="vexp" aria-label="Expand this film"><svg viewBox="0 0 24 24"><path d="M9 4H4v5M15 4h5v5M9 20H4v-5M15 20h5v-5"/></svg></button>
               <div class="vbar">
                 <button class="vbtn" data-play aria-label="Play or pause"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
                 <div class="vtrack"><i></i></div>
@@ -755,6 +786,7 @@ html,body{background:#E6E6E4}
               <video id="p7v" playsinline preload="none" poster="/experiential-examples/img/blade-testimonial-poster.jpg" src="/experiential-examples/img/blade-testimonial.mp4"></video>
               <span class="vcap">Testimonial</span>
               <button class="vbig" aria-label="Play the testimonial film"><span></span></button>
+            <button class="vexp" aria-label="Expand this film"><svg viewBox="0 0 24 24"><path d="M9 4H4v5M15 4h5v5M9 20H4v-5M15 20h5v-5"/></svg></button>
               <div class="vbar">
                 <button class="vbtn" data-play aria-label="Play or pause"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
                 <div class="vtrack"><i></i></div>
@@ -829,6 +861,7 @@ html,body{background:#E6E6E4}
           <video id="p3v" playsinline preload="none" poster="/experiential-examples/img/hoppers-poster.jpg" src="/experiential-examples/img/hoppers-sizzle.mp4"></video>
           <span class="vcap">Hoppers · Shark Sedan activation</span>
           <button class="vbig" aria-label="Play the Shark Sedan sizzle"><span></span></button>
+            <button class="vexp" aria-label="Expand this film"><svg viewBox="0 0 24 24"><path d="M9 4H4v5M15 4h5v5M9 20H4v-5M15 20h5v-5"/></svg></button>
           <div class="vbar">
             <button class="vbtn" data-play aria-label="Play or pause"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
             <div class="vtrack"><i></i></div>
@@ -901,6 +934,7 @@ html,body{background:#E6E6E4}
           <video id="p12v" playsinline preload="none" poster="/experiential-examples/img/salesforce-poster.jpg" src="/experiential-examples/img/salesforce-adweek.mp4"></video>
           <span class="vcap">Salesforce · AdWeek recap</span>
           <button class="vbig" aria-label="Play the Salesforce AdWeek recap"><span></span></button>
+            <button class="vexp" aria-label="Expand this film"><svg viewBox="0 0 24 24"><path d="M9 4H4v5M15 4h5v5M9 20H4v-5M15 20h5v-5"/></svg></button>
           <div class="vbar">
             <button class="vbtn" data-play aria-label="Play or pause"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
             <div class="vtrack"><i></i></div>
@@ -981,6 +1015,7 @@ html,body{background:#E6E6E4}
             <video id="p9v" playsinline preload="none" poster="/experiential-examples/img/jurassic-poster.jpg" src="/experiential-examples/img/jurassic-recap.mp4"></video>
             <span class="vcap">Jurassic World Rebirth · Recap</span>
             <button class="vbig" aria-label="Play the Jurassic World Rebirth recap"><span></span></button>
+            <button class="vexp" aria-label="Expand this film"><svg viewBox="0 0 24 24"><path d="M9 4H4v5M15 4h5v5M9 20H4v-5M15 20h5v-5"/></svg></button>
             <div class="vbar">
               <button class="vbtn" data-play aria-label="Play or pause"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
               <div class="vtrack"><i></i></div>
@@ -990,10 +1025,10 @@ html,body{background:#E6E6E4}
           </div>
 
           <div style="width:654px;align-self:center;display:grid;grid-template-columns:repeat(4,1fr);grid-template-rows:103px;gap:11px">
-            <div class="card"><img class="zoom" tabindex="0" role="button" data-full="/experiential-examples/img/jurassic-still-1-full.jpg" src="/experiential-examples/img/jurassic-still-1.jpg" alt="Talent and press at the Jurassic World Rebirth reveal"></div>
-            <div class="card"><img class="zoom" tabindex="0" role="button" data-full="/experiential-examples/img/jurassic-still-2-full.jpg" src="/experiential-examples/img/jurassic-still-2.jpg" alt="The finished plaza installation at Rockefeller Center"></div>
-            <div class="card"><img class="zoom" tabindex="0" role="button" data-full="/experiential-examples/img/jurassic-still-3-full.jpg" src="/experiential-examples/img/jurassic-still-3.jpg" alt="Low-angle view of the installation and the film's logo"></div>
-            <div class="card"><img class="zoom" tabindex="0" role="button" data-full="/experiential-examples/img/jurassic-still-4-full.jpg" src="/experiential-examples/img/jurassic-still-4.jpg" alt="The plaza build seen in full daylight"></div>
+            <div class="card"><span class="vexp vexp-hint" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M9 4H4v5M15 4h5v5M9 20H4v-5M15 20h5v-5"/></svg></span><img class="zoom" tabindex="0" role="button" data-full="/experiential-examples/img/jurassic-still-1-full.jpg" src="/experiential-examples/img/jurassic-still-1.jpg" alt="Talent and press at the Jurassic World Rebirth reveal"></div>
+            <div class="card"><span class="vexp vexp-hint" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M9 4H4v5M15 4h5v5M9 20H4v-5M15 20h5v-5"/></svg></span><img class="zoom" tabindex="0" role="button" data-full="/experiential-examples/img/jurassic-still-2-full.jpg" src="/experiential-examples/img/jurassic-still-2.jpg" alt="The finished plaza installation at Rockefeller Center"></div>
+            <div class="card"><span class="vexp vexp-hint" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M9 4H4v5M15 4h5v5M9 20H4v-5M15 20h5v-5"/></svg></span><img class="zoom" tabindex="0" role="button" data-full="/experiential-examples/img/jurassic-still-3-full.jpg" src="/experiential-examples/img/jurassic-still-3.jpg" alt="Low-angle view of the installation and the film's logo"></div>
+            <div class="card"><span class="vexp vexp-hint" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M9 4H4v5M15 4h5v5M9 20H4v-5M15 20h5v-5"/></svg></span><img class="zoom" tabindex="0" role="button" data-full="/experiential-examples/img/jurassic-still-4-full.jpg" src="/experiential-examples/img/jurassic-still-4.jpg" alt="The plaza build seen in full daylight"></div>
           </div>
         </div>
 
@@ -1066,6 +1101,7 @@ html,body{background:#E6E6E4}
             <video id="p13v" playsinline preload="none" poster="/experiential-examples/img/expedia-poster.jpg" src="/experiential-examples/img/expedia-recap.mp4"></video>
             <span class="vcap">Expedia · Hosted recap</span>
             <button class="vbig" aria-label="Play the Expedia Group event recap"><span></span></button>
+            <button class="vexp" aria-label="Expand this film"><svg viewBox="0 0 24 24"><path d="M9 4H4v5M15 4h5v5M9 20H4v-5M15 20h5v-5"/></svg></button>
             <div class="vbar">
             <button class="vbtn" data-play aria-label="Play or pause"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
             <div class="vtrack"><i></i></div>
@@ -1150,6 +1186,7 @@ html,body{background:#E6E6E4}
           <video id="p2v" playsinline preload="none" poster="/experiential-examples/img/ron2-poster.jpg" src="/experiential-examples/img/ron2-sizzle.mp4"></video>
           <span class="vcap">Ready or Not 2 · Hero sizzle</span>
           <button class="vbig" aria-label="Play the hero sizzle"><span></span></button>
+            <button class="vexp" aria-label="Expand this film"><svg viewBox="0 0 24 24"><path d="M9 4H4v5M15 4h5v5M9 20H4v-5M15 20h5v-5"/></svg></button>
           <div class="vbar">
             <button class="vbtn" data-play aria-label="Play or pause"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
             <div class="vtrack"><i></i></div>
@@ -1227,6 +1264,7 @@ html,body{background:#E6E6E4}
           <video id="p8v" playsinline preload="none" poster="/experiential-examples/img/ron2-bts-poster.jpg" src="/experiential-examples/img/ron2-bts.mp4"></video>
           <span class="vcap">Ready or Not 2 · The build film</span>
           <button class="vbig" aria-label="Play the behind-the-build film"><span></span></button>
+            <button class="vexp" aria-label="Expand this film"><svg viewBox="0 0 24 24"><path d="M9 4H4v5M15 4h5v5M9 20H4v-5M15 20h5v-5"/></svg></button>
           <div class="vbar">
             <button class="vbtn" data-play aria-label="Play or pause"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
             <div class="vtrack"><i></i></div>
@@ -1436,41 +1474,80 @@ html,body{background:#E6E6E4}
    scaled ancestor would capture position:fixed. */
 (function(){
   var shots = Array.prototype.slice.call(document.querySelectorAll('.zoom'));
-  if(!shots.length) return;
 
   var box = document.createElement('div');
   box.id = 'lightbox';
   box.setAttribute('role','dialog');
   box.setAttribute('aria-modal','true');
-  box.innerHTML = '<img alt=""><p class="lbcap"></p>';
+  box.innerHTML = '<img alt="" hidden><video controls playsinline hidden></video>' +
+                  '<button class="lbclose" aria-label="Close"><svg viewBox="0 0 24 24">' +
+                  '<path d="M6 6l12 12M18 6L6 18"/></svg></button><p class="lbcap"></p>';
   document.body.appendChild(box);
 
   var big = box.querySelector('img');
+  var film = box.querySelector('video');
   var cap = box.querySelector('.lbcap');
   var opener = null;
 
-  function open(el){
+  function openShot(el){
     opener = el;
+    film.pause();
+    film.hidden = true;
+    big.hidden = false;
     big.src = el.getAttribute('data-full') || el.src;
     big.alt = el.alt || '';
     cap.textContent = el.alt || '';
     box.classList.add('on');
   }
+
+  /* A film opens where it was left, and the inline copy stops so two
+     soundtracks cannot run at once. */
+  function openFilm(player){
+    var v = player.querySelector('video');
+    opener = player.querySelector('.vexp') || player;
+    v.pause();
+    big.hidden = true;
+    big.removeAttribute('src');
+    film.hidden = false;
+    film.poster = v.poster || '';
+    film.src = v.currentSrc || v.src;
+    film.currentTime = v.currentTime || 0;
+    var label = player.querySelector('.vcap');
+    cap.textContent = label ? label.textContent : '';
+    box.classList.add('on');
+    film.play().catch(function(){});
+  }
+
   function close(){
     box.classList.remove('on');
-    /* Drop the source so a 2000px frame is not held per still. */
+    /* Drop both sources so neither a 2000px frame nor a film is held open. */
+    film.pause();
+    film.removeAttribute('src');
+    film.load();
     big.removeAttribute('src');
     if(opener){ opener.focus(); opener = null; }
   }
 
   shots.forEach(function(el){
-    el.addEventListener('click', function(){ open(el); });
+    el.addEventListener('click', function(){ openShot(el); });
     el.addEventListener('keydown', function(e){
-      if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); open(el); }
+      if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); openShot(el); }
     });
   });
 
-  box.addEventListener('click', close);
+  Array.prototype.forEach.call(document.querySelectorAll('.player .vexp'), function(btn){
+    btn.addEventListener('click', function(e){
+      /* The poster underneath is bound to play; this button is not that. */
+      e.stopPropagation();
+      openFilm(btn.closest('.player'));
+    });
+  });
+
+  /* The backdrop closes. The film does not — its controls live inside it. */
+  box.addEventListener('click', function(e){
+    if(e.target === film) return;
+    close();
+  });
   document.addEventListener('keydown', function(e){
     if(e.key === 'Escape' && box.classList.contains('on')){
       /* Stop the deck's own key handler from paging behind the overlay. */
