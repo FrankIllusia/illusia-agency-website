@@ -129,14 +129,9 @@ img{display:block;max-width:100%}
 .film .shot .play:focus-visible{outline:2px solid #fff;outline-offset:3px}
 @media (prefers-reduced-motion:reduce){.film .shot .play{transition:none}}
 
-/* ═══ Cover: type on the left, the work on the right ═══ */
+/* ═══ Cover: type only; column held at its original width so the measure stays put ═══ */
 .coverbody{display:flex;gap:60px;align-items:flex-start;margin-top:34px}
-.coverbody > div:first-child{flex:1 1 auto;min-width:0}
-.coverstills{flex:0 0 auto;display:flex;gap:24px;padding-top:4px}
-.coverstills figure{width:250px;height:444px;border-radius:14px;overflow:hidden;background:#111;
-  border:1px solid rgba(11,12,14,.68);box-shadow:0 16px 40px rgba(11,12,14,.15)}
-.coverstills figure.drop{margin-top:74px}
-.coverstills img{width:250px;height:444px;object-fit:cover;display:block}
+.coverbody > div:first-child{flex:1 1 auto;min-width:0;max-width:832px}
 
 /* ═══ Two-sided slide: what we did, and what it would be here ═══ */
 .split{display:flex;gap:64px;margin-top:38px;align-items:stretch}
@@ -206,10 +201,8 @@ html,body{background:#E9E7DC}
 <div class="deck">
 
 <!-- ══════════ 01 — COVER ══════════
-     The headline alone was a wall of type on an empty field. Two frames from the
-     work do the arguing instead: an establishing shot and a student on camera —
-     the two things the deck goes on to prove we can make. Both run at 720x1280
-     native and sit at 250px, so they downscale rather than stretch. -->
+     Type only. The two cover stills were removed; the text column keeps its
+     old 832px width so the headline, rule and lede read the same as before. -->
 <div class="frame"><section class="slide lift" id="cover">
   <img class="watermark" src="/sjv/logo/illusia-mark.svg" alt="">
   <div class="pad">
@@ -235,11 +228,6 @@ html,body{background:#E9E7DC}
           <span class="pill">Athletics</span>
           <span class="pill">Advancement</span>
         </div>
-      </div>
-
-      <div class="coverstills">
-        <figure><img src="/sjv/img/cov_campus.jpg" alt="St. Rose campus in winter sun"></figure>
-        <figure class="drop"><img src="/sjv/img/cov_student.jpg" alt="A St. Rose student on camera"></figure>
       </div>
     </div>
 
