@@ -421,6 +421,18 @@ html,body{background:#E7E4DE}
 .mini div::before{filter:invert(1)}
 .watermark{filter:blur(8px) invert(1);opacity:.028}
 
+/* ── panel body size ──
+   Instrument Sans sets wider than the Inter Tight this deck was authored
+   against, which costs roughly one line per panel. The panels sit in a fixed
+   478px band with the spec block pinned to their floor, so an extra line
+   pushes the whole panel down over the work-band labels beneath it — on the
+   Ready or Not 2 slide it was hiding the "Delivered" heading entirely.
+
+   15px puts that panel back to two lines and changes the line count of no
+   other slide in the deck (measured, not assumed). !important because the
+   size is inline on every panel body in the markup. */
+.glass .body{font-size:15px !important}
+
 /* ── chrome ── */
 .pill{background:transparent;border:1px solid rgba(26,26,27,.72);border-radius:999px;
   box-shadow:none;color:rgba(26,26,27,.9)}
@@ -1553,16 +1565,16 @@ html,body{background:#E7E4DE}
             <h2 class="d3">Hatteras</h2>
             <p class="tag" style="margin-top:8px">Monthly retainer · 12-month agreement</p>
             <p class="body" style="margin-top:18px;font-size:16px">
-              A standing shoot day every month, and the content pipeline that runs
-              off it — reels, stills and the channels they go out on.
+              A standing six-hour shoot day every month, and the pipeline it feeds —
+              reels, stills and the channels they go out on.
             </p>
             <div class="spec" style="margin-top:auto;padding-top:20px">
               <div><span>Term</span><b>12 months</b></div>
-              <div><span>Shoot days</span><b>1 per month</b></div>
+              <div><span>Shoot days</span><b>1 &times; 6 hrs, monthly</b></div>
               <div><span>Reels</span><b>5–7 per month</b></div>
               <div><span>Also monthly</span><b>Photo gallery + social</b></div>
               <div><span>Strategy</span><b>Quarterly sessions</b></div>
-              <div><span>Retainer</span><b>$7,450 <i>/ month</i></b></div>
+              <div><span>Retainer</span><b>$8,450 <i>/ month</i></b></div>
             </div>
           </div>
         </div>
@@ -1572,7 +1584,7 @@ html,body{background:#E7E4DE}
         <div>
           <p class="label" style="margin-bottom:10px">Every month</p>
           <div class="mini">
-            <div><b>One shoot day</b> on site</div>
+            <div><b>One 6-hour shoot day</b> on site</div>
             <div><b>5–7 reels</b>, captioned and cut for feed</div>
             <div><b>Edited photo gallery</b></div>
             <div>Social channels managed day to day</div>
@@ -1589,16 +1601,16 @@ html,body{background:#E7E4DE}
           <p class="label" style="margin-bottom:10px">How it is booked</p>
           <div class="mini">
             <div>One agreement, not twelve bookings</div>
-            <div>A shoot day held monthly, not chased</div>
+            <div>A 6-hour shoot day held monthly, not chased</div>
             <div>The same crew across the year</div>
           </div>
         </div>
         <div>
           <p class="label" style="margin-bottom:10px">What the year adds up to</p>
           <div class="res">
-            <div><b>$89,400</b><span>Annual contract value</span></div>
+            <div><b>$101,400</b><span>Annual contract value</span></div>
             <div><b>60–84</b><span>Reels across the year</span></div>
-            <div><b>12</b><span>Shoot days</span></div>
+            <div><b>12</b><span>Six-hour shoot days</span></div>
           </div>
         </div>
       </div>
