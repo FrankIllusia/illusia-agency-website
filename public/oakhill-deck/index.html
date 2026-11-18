@@ -308,6 +308,12 @@ img,svg{display:block;max-width:100%}
   border:1px solid rgba(255,255,255,.14);box-shadow:inset 0 1px 0 rgba(255,255,255,.2);
   font-size:10.5px;font-weight:600;letter-spacing:.13em;text-transform:uppercase;
   color:rgba(255,255,255,.82)}
+.credit{border-top:2px solid rgba(26,26,27,.84);padding-top:13px;margin-top:18px}
+.credit .for{display:block;font-size:9.5px;font-weight:600;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--faint);margin-bottom:7px}
+.credit .house{display:block;font-size:16px;font-weight:600;letter-spacing:.125em;
+  text-transform:uppercase;color:#1a1a1b;line-height:1.25}
+
 .filmlink{display:none}
 .filmnote{display:none}
 .filmposter{display:none}
@@ -750,98 +756,92 @@ img,svg{display:block;max-width:100%}
   </section></div>
 
   <!-- ══════════ 04 — SELECTED WORK ══════════
-       Not a capabilities reel. Each film is here because it is the same job
-       Franco is being asked to buy, already delivered for someone else: the
-       ongoing brand content, the single event day, and the production ceiling.
-       The mapping line under each is the point of the slide.
+       Studio credits, set as an end-credit plate above each title. The
+       attributions are the ones Illusia's own decks already carry: The Odyssey
+       for Universal (bms-examples, devon-deck, salesforce-deck) and Ready or
+       Not 2 for Searchlight (bms-examples). Hoppers has no studio named in any
+       deck in this repo — the credit below is the one to check before sending.
 
-       SHARED MEDIA: the films are read from the folders that already hold them
-       rather than copied in beside this file — same arrangement /devon-deck has
-       with /salesforce-deck, and the reason this deck is still 84K. -->
+       SHARED MEDIA: films read from /experiential-examples/ rather than copied
+       in, same arrangement the other decks use. -->
   <div class="frame" id="work"><section class="slide">
     <img class="watermark" src="/experiential-examples/logo/illusia-mark.svg" alt="">
     <div class="pad">
       <div class="slate"><span class="wm">Illusia</span><span class="tag">Selected work · <span class="folio">04</span></span></div>
 
       <div style="margin-top:26px;display:flex;align-items:baseline;gap:20px">
-        <h2 class="d3">We've shot every piece of this before.</h2>
-        <p class="tag">Three delivered jobs, one for each part of what is proposed here</p>
+        <h2 class="d3">The crew the studios book.</h2>
+        <p class="tag">Three recent jobs — and the part of your campaign each one proves</p>
       </div>
 
-      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:26px;margin-top:26px;flex:1">
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:26px;margin-top:24px;flex:1">
 
         <div style="display:flex;flex-direction:column">
           <div class="player" id="w1" style="aspect-ratio:16/9">
             <a class="filmlink" href="https://illusiaagency.com/oakhill-deck#work" aria-label="Watch the film at illusiaagency.com"></a>
-            <img class="filmposter" src="/mediaradar-pricing-deck/img/hatteras-team-poster.jpg" alt="">
-            <video id="w1v" playsinline preload="none" poster="/mediaradar-pricing-deck/img/hatteras-team-poster.jpg" src="/mediaradar-pricing-deck/img/hatteras-team.mp4"></video>
-            <span class="vcap">Hatteras · Team film</span>
-            <button class="vbig" aria-label="Play the Hatteras team film"><span></span></button>
+            <img class="filmposter" src="/experiential-examples/img/odyssey-poster.jpg" alt="">
+            <video id="w1v" playsinline preload="none" poster="/experiential-examples/img/odyssey-poster.jpg" src="/experiential-examples/img/odyssey-sizzle.mp4"></video>
+            <span class="vcap">The Odyssey · Overall sizzle</span>
+            <button class="vbig" aria-label="Play the The Odyssey film"><span></span></button>
             <div class="vbar">
               <button class="vbtn" data-play aria-label="Play or pause"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
               <div class="vtrack"><i></i></div><span class="vtime">0:00</span>
             </div>
             <p class="filmnote">Watch — illusiaagency.com/oakhill-deck</p>
           </div>
-          <p class="label" style="margin-top:16px;margin-bottom:8px">The people, on camera</p>
-          <h3 class="d3" style="font-size:22px">Hatteras</h3>
-          <p class="body" style="margin-top:10px;font-size:15px">
-            A family business, filmed monthly — the team, the floor, the personality. The closest
-            thing here to <b style="color:#1a1a1b;font-weight:600">filming your family and the farm</b>.
-          </p>
+          <div class="credit"><span class="for">Produced for</span><span class="house">Universal Pictures</span></div>
+          <h3 class="d3" style="font-size:23px;margin-top:14px">The Odyssey</h3>
+          <p class="tag" style="margin-top:9px">Experiential premiere · New York City</p>
+          <p class="body" style="margin-top:13px;font-size:15px">One night covered end to end — load-in to the last arrival — and cut while it was still news. This is <b style="color:#1a1a1b;font-weight:600">opening day</b>, start to close.</p>
           <div class="spec" style="margin-top:auto;padding-top:16px">
-            <div><span>Scope</span><b>Monthly brand content</b></div>
-            <div><span>Output</span><b>5–7 reels + stills / mo</b></div>
+            <div><span>Shoot days</span><b>1</b></div>
+            <div><span>Turnaround</span><b>Rushed recap cut</b></div>
           </div>
         </div>
 
         <div style="display:flex;flex-direction:column">
           <div class="player" id="w2" style="aspect-ratio:16/9">
             <a class="filmlink" href="https://illusiaagency.com/oakhill-deck#work" aria-label="Watch the film at illusiaagency.com"></a>
-            <img class="filmposter" src="/mediaradar-pricing-deck/img/trunorth-poster.jpg" alt="">
-            <video id="w2v" playsinline preload="none" poster="/mediaradar-pricing-deck/img/trunorth-poster.jpg" src="/mediaradar-pricing-deck/img/trunorth-recap.mp4"></video>
-            <span class="vcap">TruNorth · Hero recap</span>
-            <button class="vbig" aria-label="Play the TruNorth recap film"><span></span></button>
+            <img class="filmposter" src="/experiential-examples/img/hoppers-poster.jpg" alt="">
+            <video id="w2v" playsinline preload="none" poster="/experiential-examples/img/hoppers-poster.jpg" src="/experiential-examples/img/hoppers-sizzle.mp4"></video>
+            <span class="vcap">Hoppers · Shark Sedan activation</span>
+            <button class="vbig" aria-label="Play the Hoppers film"><span></span></button>
             <div class="vbar">
               <button class="vbtn" data-play aria-label="Play or pause"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
               <div class="vtrack"><i></i></div><span class="vtime">0:00</span>
             </div>
             <p class="filmnote">Watch — illusiaagency.com/oakhill-deck</p>
           </div>
-          <p class="label" style="margin-top:16px;margin-bottom:8px">One day, one film</p>
-          <h3 class="d3" style="font-size:22px">TruNorth</h3>
-          <p class="body" style="margin-top:10px;font-size:15px">
-            A full event day covered for film and stills, cut to a 60-second hero recap in 48 hours.
-            This is <b style="color:#1a1a1b;font-weight:600">opening day</b>, start to close.
-          </p>
+          <div class="credit"><span class="for">Produced for</span><span class="house">Pixar Animation Studios</span></div>
+          <h3 class="d3" style="font-size:23px;margin-top:14px">Hoppers</h3>
+          <p class="tag" style="margin-top:9px">Public activation + premiere · Los Angeles</p>
+          <p class="body" style="margin-top:13px;font-size:15px">Three days across three parts of LA, each cut and delivered inside 24 hours. A <b style="color:#1a1a1b;font-weight:600">campaign that kept posting</b> while it was still running.</p>
           <div class="spec" style="margin-top:auto;padding-top:16px">
-            <div><span>Scope</span><b>Full event day</b></div>
-            <div><span>Turnaround</span><b>48 hrs on the recap</b></div>
+            <div><span>Shoot days</span><b>3</b></div>
+            <div><span>Turnaround</span><b>24 hrs per sizzle</b></div>
           </div>
         </div>
 
         <div style="display:flex;flex-direction:column">
           <div class="player" id="w3" style="aspect-ratio:16/9">
             <a class="filmlink" href="https://illusiaagency.com/oakhill-deck#work" aria-label="Watch the film at illusiaagency.com"></a>
-            <img class="filmposter" src="/experiential-examples/img/jurassic-poster.jpg" alt="">
-            <video id="w3v" playsinline preload="none" poster="/experiential-examples/img/jurassic-poster.jpg" src="/experiential-examples/img/jurassic-recap.mp4"></video>
-            <span class="vcap">Jurassic World Rebirth</span>
-            <button class="vbig" aria-label="Play the Jurassic World Rebirth recap film"><span></span></button>
+            <img class="filmposter" src="/experiential-examples/img/ron2-bts-poster.jpg" alt="">
+            <video id="w3v" playsinline preload="none" poster="/experiential-examples/img/ron2-bts-poster.jpg" src="/experiential-examples/img/ron2-bts.mp4"></video>
+            <span class="vcap">Ready or Not 2 · The build film</span>
+            <button class="vbig" aria-label="Play the Ready or Not 2 film"><span></span></button>
             <div class="vbar">
               <button class="vbtn" data-play aria-label="Play or pause"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
               <div class="vtrack"><i></i></div><span class="vtime">0:00</span>
             </div>
             <p class="filmnote">Watch — illusiaagency.com/oakhill-deck</p>
           </div>
-          <p class="label" style="margin-top:16px;margin-bottom:8px">The ceiling</p>
-          <h3 class="d3" style="font-size:22px">Jurassic World Rebirth</h3>
-          <p class="body" style="margin-top:10px;font-size:15px">
-            A studio premiere, same crew and the same cameras that come to Holmdel.
-            <b style="color:#1a1a1b;font-weight:600">Nothing is scaled down</b> for a local job.
-          </p>
+          <div class="credit"><span class="for">Produced for</span><span class="house">Searchlight Pictures</span></div>
+          <h3 class="d3" style="font-size:23px;margin-top:14px">Ready or Not 2</h3>
+          <p class="tag" style="margin-top:9px">The build film · behind the scenes</p>
+          <p class="body" style="margin-top:13px;font-size:15px">The build documented from the inside — load-in, rig, rehearsal, show night. The <b style="color:#1a1a1b;font-weight:600">story behind the thing</b>, not just the thing itself.</p>
           <div class="spec" style="margin-top:auto;padding-top:16px">
-            <div><span>Scope</span><b>Studio premiere</b></div>
-            <div><span>Market</span><b>New York City</b></div>
+            <div><span>Covers</span><b>Load-in → show night</b></div>
+            <div><span>Scope</span><b>Same crew, same job</b></div>
           </div>
         </div>
 
