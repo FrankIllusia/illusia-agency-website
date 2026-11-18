@@ -12,6 +12,7 @@ const nextConfig: NextConfig = {
       { source: "/salesforce-deck", destination: "/salesforce-deck/index.html" },
       { source: "/sjv", destination: "/sjv/index.html" },
       { source: "/mediaradar-pricing-deck", destination: "/mediaradar-pricing-deck/index.html" },
+      { source: "/oakhill-deck", destination: "/oakhill-deck/index.html" },
     ];
   },
 };
