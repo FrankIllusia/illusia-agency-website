@@ -301,6 +301,28 @@ html,body{background:#E9E7DC}
     box-shadow:inset 0 1px 0 rgba(255,255,255,1)!important}
 }
 </style>
+
+<style id="printposters">
+/* ═══════════════════════════════════════════════════════════════════════
+   PRINT POSTERS
+
+   Chrome's print path does not rasterise a <video poster>: every film frame
+   in this deck came out SOLID BLACK in the PDF. Verified by printing a served
+   copy with and without the fallback below, not assumed.
+
+   So each player carries a hidden <img> pointing at the same poster URL — the
+   browser fetches it once — and in print the video is made invisible while the
+   image paints in its place. visibility rather than display, so the video
+   still occupies its box and a container that takes its height from the video
+   does not collapse.
+   ═══════════════════════════════════════════════════════════════════════ */
+.filmposter{display:none}
+@media print{
+  video[poster]{visibility:hidden!important}
+  .filmposter{display:block!important;position:absolute;inset:0;z-index:0;
+    width:100%;height:100%;object-fit:cover}
+}
+</style>
 </head>
 <body>
 <div class="deck">
@@ -496,7 +518,7 @@ html,body{background:#E9E7DC}
 
     <div class="films">
       <article class="film">
-        <div class="shot" data-v="/sjv/vid/DbqNzlmOpRk.mp4"><video preload="none" playsinline poster="/sjv/img/srhs_DbqNzlmOpRk.jpg" aria-label="Student speaking to camera in a St. Rose classroom"></video><button class="play" type="button" aria-label="Play film"><svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true"><path fill="currentColor" d="M8 5v14l11-7z"/></svg></button><div class="bar"><i></i></div></div>
+        <div class="shot" data-v="/sjv/vid/DbqNzlmOpRk.mp4"><img class="filmposter" src="/sjv/img/srhs_DbqNzlmOpRk.jpg" alt="" aria-hidden="true"><video preload="none" playsinline poster="/sjv/img/srhs_DbqNzlmOpRk.jpg" aria-label="Student speaking to camera in a St. Rose classroom"></video><button class="play" type="button" aria-label="Play film"><svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true"><path fill="currentColor" d="M8 5v14l11-7z"/></svg></button><div class="bar"><i></i></div></div>
         <div class="meta">
           <h3>Something bigger<br>than yourself</h3>
           <p class="what">A student talks straight to camera about what it means that his siblings walked the same halls. Legacy families are St. Rose's strongest recruiting argument, so we let a student make it instead of the school.</p>
@@ -510,7 +532,7 @@ html,body{background:#E9E7DC}
       </article>
 
       <article class="film">
-        <div class="shot" data-v="/sjv/vid/DUZGkVMDvjS.mp4"><video preload="none" playsinline poster="/sjv/img/srhs_DUZGkVMDvjS.jpg" aria-label="Student speaking to camera in the St. Rose cafeteria"></video><button class="play" type="button" aria-label="Play film"><svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true"><path fill="currentColor" d="M8 5v14l11-7z"/></svg></button><div class="bar"><i></i></div></div>
+        <div class="shot" data-v="/sjv/vid/DUZGkVMDvjS.mp4"><img class="filmposter" src="/sjv/img/srhs_DUZGkVMDvjS.jpg" alt="" aria-hidden="true"><video preload="none" playsinline poster="/sjv/img/srhs_DUZGkVMDvjS.jpg" aria-label="Student speaking to camera in the St. Rose cafeteria"></video><button class="play" type="button" aria-label="Play film"><svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true"><path fill="currentColor" d="M8 5v14l11-7z"/></svg></button><div class="bar"><i></i></div></div>
         <div class="meta">
           <h3>The best part<br>of the day</h3>
           <p class="what">Lunch. A deliberately small subject, shot on a fast lens so the room falls away behind him. Prospective families do not picture the assembly, they picture the ordinary Tuesday.</p>
@@ -538,7 +560,7 @@ html,body{background:#E9E7DC}
 
     <div class="films">
       <article class="film">
-        <div class="shot" data-v="/sjv/vid/DTdohguiUfV.mp4"><video preload="none" playsinline poster="/sjv/img/srhs_DTdohguiUfV.jpg" aria-label="St. Rose campus exterior in winter sun"></video><button class="play" type="button" aria-label="Play film"><svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true"><path fill="currentColor" d="M8 5v14l11-7z"/></svg></button><div class="bar"><i></i></div></div>
+        <div class="shot" data-v="/sjv/vid/DTdohguiUfV.mp4"><img class="filmposter" src="/sjv/img/srhs_DTdohguiUfV.jpg" alt="" aria-hidden="true"><video preload="none" playsinline poster="/sjv/img/srhs_DTdohguiUfV.jpg" aria-label="St. Rose campus exterior in winter sun"></video><button class="play" type="button" aria-label="Play film"><svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true"><path fill="currentColor" d="M8 5v14l11-7z"/></svg></button><div class="bar"><i></i></div></div>
         <div class="meta">
           <h3>First bell to<br>final activity</h3>
           <p class="what">A full day compressed into forty seconds, opening on the building in hard winter light. This is the film that answers "what is it actually like there" for a family two towns away.</p>
@@ -552,7 +574,7 @@ html,body{background:#E9E7DC}
       </article>
 
       <article class="film">
-        <div class="shot" data-v="/sjv/vid/Db8npiTiqFn.mp4"><video preload="none" playsinline poster="/sjv/img/srhs_Db8npiTiqFn.jpg" aria-label="St. Rose students in blazers at Mass"></video><button class="play" type="button" aria-label="Play film"><svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true"><path fill="currentColor" d="M8 5v14l11-7z"/></svg></button><div class="bar"><i></i></div></div>
+        <div class="shot" data-v="/sjv/vid/Db8npiTiqFn.mp4"><img class="filmposter" src="/sjv/img/srhs_Db8npiTiqFn.jpg" alt="" aria-hidden="true"><video preload="none" playsinline poster="/sjv/img/srhs_Db8npiTiqFn.jpg" aria-label="St. Rose students in blazers at Mass"></video><button class="play" type="button" aria-label="Play film"><svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true"><path fill="currentColor" d="M8 5v14l11-7z"/></svg></button><div class="bar"><i></i></div></div>
         <div class="meta">
           <h3>The Class of 2026,<br>on their way out</h3>
           <p class="what">Seniors at Mass, shot warm and quiet. Faith is the thing Catholic schools find hardest to put on social without it feeling staged. Filmed properly, it carries on its own.</p>
@@ -580,7 +602,7 @@ html,body{background:#E9E7DC}
 
     <div class="films">
       <article class="film solo">
-        <div class="shot" data-v="/sjv/vid/DbYJu60xOs2.mp4"><video preload="none" playsinline poster="/sjv/img/srhs_DbYJu60xOs2.jpg" aria-label="St. Rose students carrying surfboards at sunrise"></video><button class="play" type="button" aria-label="Play film"><svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true"><path fill="currentColor" d="M8 5v14l11-7z"/></svg></button><div class="bar"><i></i></div></div>
+        <div class="shot" data-v="/sjv/vid/DbYJu60xOs2.mp4"><img class="filmposter" src="/sjv/img/srhs_DbYJu60xOs2.jpg" alt="" aria-hidden="true"><video preload="none" playsinline poster="/sjv/img/srhs_DbYJu60xOs2.jpg" aria-label="St. Rose students carrying surfboards at sunrise"></video><button class="play" type="button" aria-label="Play film"><svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true"><path fill="currentColor" d="M8 5v14l11-7z"/></svg></button><div class="bar"><i></i></div></div>
         <div class="meta">
           <h3>Every opportunity<br>they can take</h3>
           <p class="what">Students heading to the water at golden hour with boards under their arms. No other high school in the state can run this shot, which is exactly the point of running it.</p>

@@ -545,6 +545,28 @@ html.t-white,.t-white body{background:#E8E8E6}
 </style>
 <script>if(/[?&]theme=white/.test(location.search))document.documentElement.classList.add('t-white');</script>
 
+
+<style id="printposters">
+/* ═══════════════════════════════════════════════════════════════════════
+   PRINT POSTERS
+
+   Chrome's print path does not rasterise a <video poster>: every film frame
+   in this deck came out SOLID BLACK in the PDF. Verified by printing a served
+   copy with and without the fallback below, not assumed.
+
+   So each player carries a hidden <img> pointing at the same poster URL — the
+   browser fetches it once — and in print the video is made invisible while the
+   image paints in its place. visibility rather than display, so the video
+   still occupies its box and a container that takes its height from the video
+   does not collapse.
+   ═══════════════════════════════════════════════════════════════════════ */
+.filmposter{display:none}
+@media print{
+  video[poster]{visibility:hidden!important}
+  .filmposter{display:block!important;position:absolute;inset:0;z-index:0;
+    width:100%;height:100%;object-fit:cover}
+}
+</style>
 </head>
 <body>
 
@@ -553,7 +575,7 @@ html.t-white,.t-white body{background:#E8E8E6}
 <div class="deck" id="deck">
 
   <div class="frame" id="intro"><section class="slide intro">
-    <video class="introbg" autoplay muted loop playsinline poster="/devon-deck/img/intro-parchment.jpg" src="/devon-deck/img/intro-parchment.mp4"></video>
+    <img class="filmposter" src="/devon-deck/img/intro-parchment.jpg" alt="" aria-hidden="true"><video class="introbg" autoplay muted loop playsinline poster="/devon-deck/img/intro-parchment.jpg" src="/devon-deck/img/intro-parchment.mp4"></video>
     <div class="introscrim"></div>
     <div class="pad">
       <div class="slate"><img class="wmlogo" src="/devon-deck/logo/illusia-logo.png" alt="Illusia"><span class="pill">Prepared for Devon Lévesque</span></div>
@@ -616,7 +638,7 @@ html.t-white,.t-white body{background:#E8E8E6}
         <div>
           <div class="player card" style="width:596px;height:335px">
             <a class="filmlink" href="https://illusiaagency.com/devon-deck#work" aria-label="Watch at illusiaagency.com"></a>
-            <video playsinline preload="none" poster="/devon-deck/img/oneal-poster.jpg" src="/devon-deck/img/oneal.mp4"></video>
+            <img class="filmposter" src="/devon-deck/img/oneal-poster.jpg" alt="" aria-hidden="true"><video playsinline preload="none" poster="/devon-deck/img/oneal-poster.jpg" src="/devon-deck/img/oneal.mp4"></video>
             <span class="vcap">O'Neal</span>
             <button class="vbig" aria-label="Play O'Neal"><span></span></button>
             <div class="vbar">
@@ -631,7 +653,7 @@ html.t-white,.t-white body{background:#E8E8E6}
         <div>
           <div class="player card sm" style="width:188px;height:335px">
             <a class="filmlink" href="https://illusiaagency.com/devon-deck#work" aria-label="Watch at illusiaagency.com"></a>
-            <video playsinline preload="none" poster="/salesforce-deck/img/blade-f1-poster.jpg" src="/salesforce-deck/img/blade-f1.mp4"></video>
+            <img class="filmposter" src="/salesforce-deck/img/blade-f1-poster.jpg" alt="" aria-hidden="true"><video playsinline preload="none" poster="/salesforce-deck/img/blade-f1-poster.jpg" src="/salesforce-deck/img/blade-f1.mp4"></video>
             <span class="vcap">BLADE · F1</span>
             <button class="vbig" aria-label="Play BLADE · F1"><span></span></button>
             <div class="vbar">
@@ -646,7 +668,7 @@ html.t-white,.t-white body{background:#E8E8E6}
         <div>
           <div class="player card" style="width:596px;height:335px">
             <a class="filmlink" href="https://illusiaagency.com/devon-deck#work" aria-label="Watch at illusiaagency.com"></a>
-            <video playsinline preload="none" poster="/images/work/odyssey-thumb.jpg" src="/images/work/odyssey-web.mp4"></video>
+            <img class="filmposter" src="/images/work/odyssey-thumb.jpg" alt="" aria-hidden="true"><video playsinline preload="none" poster="/images/work/odyssey-thumb.jpg" src="/images/work/odyssey-web.mp4"></video>
             <span class="vcap">The Odyssey</span>
             <button class="vbig" aria-label="Play The Odyssey"><span></span></button>
             <div class="vbar">
@@ -723,7 +745,7 @@ html.t-white,.t-white body{background:#E8E8E6}
         <div><p class="label" style="margin:0 0 8px;font-size:11px">Editing + style reference</p>
           <div style="display:grid;grid-template-columns:124px 470px 1fr 124px 212px;gap:12px;height:212px">
             <div class="player card sm v" style="width:100%;height:100%">
-          <video playsinline preload="none" poster="/devon-deck/img/ref/ref-beats.jpg" src="/devon-deck/img/ref/ref-beats.mp4"></video>
+          <img class="filmposter" src="/devon-deck/img/ref/ref-beats.jpg" alt="" aria-hidden="true"><video playsinline preload="none" poster="/devon-deck/img/ref/ref-beats.jpg" src="/devon-deck/img/ref/ref-beats.mp4"></video>
           <span class="vcap">Beats</span>
           <button class="vbig" aria-label="Play reference: Beats"><span></span></button>
           <div class="vbar">
@@ -733,7 +755,7 @@ html.t-white,.t-white body{background:#E8E8E6}
           </div>
         </div>
             <div class="player card sm" style="width:100%;height:100%">
-          <video playsinline preload="none" poster="/devon-deck/img/ref/ref-athletic.jpg" src="/devon-deck/img/ref/ref-athletic.mp4"></video>
+          <img class="filmposter" src="/devon-deck/img/ref/ref-athletic.jpg" alt="" aria-hidden="true"><video playsinline preload="none" poster="/devon-deck/img/ref/ref-athletic.jpg" src="/devon-deck/img/ref/ref-athletic.mp4"></video>
           <span class="vcap">Ref · Silhouette film</span>
           <button class="vbig" aria-label="Play reference: Silhouette film"><span></span></button>
           <div class="vbar">
@@ -743,7 +765,7 @@ html.t-white,.t-white body{background:#E8E8E6}
           </div>
         </div>
             <div class="player card sm" style="width:100%;height:100%">
-          <video playsinline preload="none" poster="/devon-deck/img/ref/ref-casa.jpg" src="/devon-deck/img/ref/ref-casa.mp4"></video>
+          <img class="filmposter" src="/devon-deck/img/ref/ref-casa.jpg" alt="" aria-hidden="true"><video playsinline preload="none" poster="/devon-deck/img/ref/ref-casa.jpg" src="/devon-deck/img/ref/ref-casa.mp4"></video>
           <span class="vcap">Ref · Casa Brutus</span>
           <button class="vbig" aria-label="Play reference: Casa Brutus"><span></span></button>
           <div class="vbar">
@@ -753,7 +775,7 @@ html.t-white,.t-white body{background:#E8E8E6}
           </div>
         </div>
             <div class="player card sm v" style="width:100%;height:100%">
-          <video playsinline preload="none" poster="/devon-deck/img/ref/ref-represent.jpg" src="/devon-deck/img/ref/ref-represent.mp4"></video>
+          <img class="filmposter" src="/devon-deck/img/ref/ref-represent.jpg" alt="" aria-hidden="true"><video playsinline preload="none" poster="/devon-deck/img/ref/ref-represent.jpg" src="/devon-deck/img/ref/ref-represent.mp4"></video>
           <span class="vcap">Represent</span>
           <button class="vbig" aria-label="Play reference: Represent"><span></span></button>
           <div class="vbar">
@@ -768,7 +790,7 @@ html.t-white,.t-white body{background:#E8E8E6}
         <div><p class="label" style="margin:0 0 8px;font-size:11px">Visual reference</p>
           <div style="display:grid;grid-template-columns:124px 124px 1fr 470px 212px;gap:12px;height:212px">
             <div class="player card sm v" style="width:100%;height:100%">
-          <video playsinline preload="none" poster="/devon-deck/img/ref/ref-farm-mood.jpg" src="/devon-deck/img/ref/ref-farm-mood.mp4"></video>
+          <img class="filmposter" src="/devon-deck/img/ref/ref-farm-mood.jpg" alt="" aria-hidden="true"><video playsinline preload="none" poster="/devon-deck/img/ref/ref-farm-mood.jpg" src="/devon-deck/img/ref/ref-farm-mood.mp4"></video>
           <span class="vcap">Nature</span>
           <button class="vbig" aria-label="Play reference: Nature"><span></span></button>
           <div class="vbar">
@@ -778,7 +800,7 @@ html.t-white,.t-white body{background:#E8E8E6}
           </div>
         </div>
             <div class="player card sm v" style="width:100%;height:100%">
-          <video playsinline preload="none" poster="/devon-deck/img/ref/ref-sunfade.jpg" src="/devon-deck/img/ref/ref-sunfade.mp4"></video>
+          <img class="filmposter" src="/devon-deck/img/ref/ref-sunfade.jpg" alt="" aria-hidden="true"><video playsinline preload="none" poster="/devon-deck/img/ref/ref-sunfade.jpg" src="/devon-deck/img/ref/ref-sunfade.mp4"></video>
           <span class="vcap">Sunfade</span>
           <button class="vbig" aria-label="Play reference: Sunfade"><span></span></button>
           <div class="vbar">
@@ -788,7 +810,7 @@ html.t-white,.t-white body{background:#E8E8E6}
           </div>
         </div>
             <div class="player card sm" style="width:100%;height:100%">
-          <video playsinline preload="none" poster="/devon-deck/img/ref/ref-sphere.jpg" src="/devon-deck/img/ref/ref-sphere.mp4"></video>
+          <img class="filmposter" src="/devon-deck/img/ref/ref-sphere.jpg" alt="" aria-hidden="true"><video playsinline preload="none" poster="/devon-deck/img/ref/ref-sphere.jpg" src="/devon-deck/img/ref/ref-sphere.mp4"></video>
           <span class="vcap">Ref · Sphere</span>
           <button class="vbig" aria-label="Play reference: Sphere"><span></span></button>
           <div class="vbar">
@@ -798,7 +820,7 @@ html.t-white,.t-white body{background:#E8E8E6}
           </div>
         </div>
             <div class="player card sm" style="width:100%;height:100%">
-          <video playsinline preload="none" poster="/devon-deck/img/ai-reference-poster.jpg" src="/devon-deck/img/ai-reference.mp4"></video>
+          <img class="filmposter" src="/devon-deck/img/ai-reference-poster.jpg" alt="" aria-hidden="true"><video playsinline preload="none" poster="/devon-deck/img/ai-reference-poster.jpg" src="/devon-deck/img/ai-reference.mp4"></video>
           <span class="vcap">AI reference · our cut</span>
           <button class="vbig" aria-label="Play the AI reference cut"><span></span></button>
           <div class="vbar">
@@ -807,7 +829,7 @@ html.t-white,.t-white body{background:#E8E8E6}
             <span class="vtime">0:00</span>
           </div>
         </div>
-            <div class="card" style="position:relative"><video autoplay muted loop playsinline poster="/devon-deck/img/merch/blueprints-loop.jpg" src="/devon-deck/img/merch/blueprints-loop.mp4" style="width:100%;height:100%;object-fit:cover"></video><span class="vcap" style="left:10px;top:10px;padding:7px 11px;font-size:10px">Blueprints</span></div>
+            <div class="card" style="position:relative"><img class="filmposter" src="/devon-deck/img/merch/blueprints-loop.jpg" alt="" aria-hidden="true"><video autoplay muted loop playsinline poster="/devon-deck/img/merch/blueprints-loop.jpg" src="/devon-deck/img/merch/blueprints-loop.mp4" style="width:100%;height:100%;object-fit:cover"></video><span class="vcap" style="left:10px;top:10px;padding:7px 11px;font-size:10px">Blueprints</span></div>
           </div>
         </div>
       </div>

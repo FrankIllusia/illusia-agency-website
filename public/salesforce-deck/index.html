@@ -604,6 +604,28 @@ html,body{background:#DEEBFA}
   .titlecard{box-shadow:inset 0 1px 0 rgba(255,255,255,.17)!important}
 }
 </style>
+
+<style id="printposters">
+/* ═══════════════════════════════════════════════════════════════════════
+   PRINT POSTERS
+
+   Chrome's print path does not rasterise a <video poster>: every film frame
+   in this deck came out SOLID BLACK in the PDF. Verified by printing a served
+   copy with and without the fallback below, not assumed.
+
+   So each player carries a hidden <img> pointing at the same poster URL — the
+   browser fetches it once — and in print the video is made invisible while the
+   image paints in its place. visibility rather than display, so the video
+   still occupies its box and a container that takes its height from the video
+   does not collapse.
+   ═══════════════════════════════════════════════════════════════════════ */
+.filmposter{display:none}
+@media print{
+  video[poster]{visibility:hidden!important}
+  .filmposter{display:block!important;position:absolute;inset:0;z-index:0;
+    width:100%;height:100%;object-fit:cover}
+}
+</style>
 </head>
 <body>
 
@@ -798,7 +820,7 @@ html,body{background:#DEEBFA}
       <div style="display:grid;grid-template-columns:371px 1fr;grid-template-rows:660px;gap:36px;margin-top:30px">
         <div class="player card" id="p13">
           <a class="filmlink" href="https://illusiaagency.com/salesforce-deck#expedia-group" aria-label="Watch the film at illusiaagency.com"></a>
-          <video id="p13v" playsinline preload="none" poster="/salesforce-deck/img/expedia-poster.jpg" src="/salesforce-deck/img/expedia-recap.mp4"></video>
+          <img class="filmposter" src="/salesforce-deck/img/expedia-poster.jpg" alt="" aria-hidden="true"><video id="p13v" playsinline preload="none" poster="/salesforce-deck/img/expedia-poster.jpg" src="/salesforce-deck/img/expedia-recap.mp4"></video>
           <span class="vcap">Expedia Group · Recap</span>
           <button class="vbig" aria-label="Play the Expedia Group event recap"><span></span></button>
           <div class="vbar">
@@ -890,7 +912,7 @@ html,body{background:#DEEBFA}
         <div>
           <div class="player card" id="p20" style="aspect-ratio:16/9">
             <a class="filmlink" href="https://illusiaagency.com/salesforce-deck#experiential" aria-label="Watch the film at illusiaagency.com"></a>
-            <video playsinline preload="none" poster="/salesforce-deck/img/dwp2-poster.jpg" src="/salesforce-deck/img/dwp2.mp4"></video>
+            <img class="filmposter" src="/salesforce-deck/img/dwp2-poster.jpg" alt="" aria-hidden="true"><video playsinline preload="none" poster="/salesforce-deck/img/dwp2-poster.jpg" src="/salesforce-deck/img/dwp2.mp4"></video>
             <span class="vcap">The Devil Wears Prada 2 · Premiere</span>
             <button class="vbig" aria-label="Play The Devil Wears Prada 2 · Premiere"><span></span></button>
             <div class="vbar">
@@ -905,7 +927,7 @@ html,body{background:#DEEBFA}
         <div>
           <div class="player card" id="p21" style="aspect-ratio:16/9">
             <a class="filmlink" href="https://illusiaagency.com/salesforce-deck#experiential" aria-label="Watch the film at illusiaagency.com"></a>
-            <video playsinline preload="none" poster="/salesforce-deck/img/odyssey-poster.jpg" src="/salesforce-deck/img/odyssey.mp4"></video>
+            <img class="filmposter" src="/salesforce-deck/img/odyssey-poster.jpg" alt="" aria-hidden="true"><video playsinline preload="none" poster="/salesforce-deck/img/odyssey-poster.jpg" src="/salesforce-deck/img/odyssey.mp4"></video>
             <span class="vcap">The Odyssey · Installation</span>
             <button class="vbig" aria-label="Play The Odyssey · Installation"><span></span></button>
             <div class="vbar">
@@ -953,7 +975,7 @@ html,body{background:#DEEBFA}
         <div>
           <div class="player card sm" id="p23" style="aspect-ratio:9/16">
             <a class="filmlink" href="https://illusiaagency.com/salesforce-deck#skits" aria-label="Watch the film at illusiaagency.com"></a>
-            <video playsinline preload="none" poster="/salesforce-deck/img/blade-confessional-poster.jpg" src="/salesforce-deck/img/blade-confessional.mp4"></video>
+            <img class="filmposter" src="/salesforce-deck/img/blade-confessional-poster.jpg" alt="" aria-hidden="true"><video playsinline preload="none" poster="/salesforce-deck/img/blade-confessional-poster.jpg" src="/salesforce-deck/img/blade-confessional.mp4"></video>
             <span class="vcap">The confessional</span>
             <button class="vbig" aria-label="Play The Confessional"><span></span></button>
             <div class="vbar">
@@ -967,7 +989,7 @@ html,body{background:#DEEBFA}
         <div>
           <div class="player card sm" id="p25" style="aspect-ratio:9/16">
             <a class="filmlink" href="https://illusiaagency.com/salesforce-deck#skits" aria-label="Watch the film at illusiaagency.com"></a>
-            <video playsinline preload="none" poster="/salesforce-deck/img/hat-office-poster.jpg" src="/salesforce-deck/img/hat-office.mp4"></video>
+            <img class="filmposter" src="/salesforce-deck/img/hat-office-poster.jpg" alt="" aria-hidden="true"><video playsinline preload="none" poster="/salesforce-deck/img/hat-office-poster.jpg" src="/salesforce-deck/img/hat-office.mp4"></video>
             <span class="vcap">The rush job</span>
             <button class="vbig" aria-label="Play The Rush Job"><span></span></button>
             <div class="vbar">
@@ -981,7 +1003,7 @@ html,body{background:#DEEBFA}
         <div>
           <div class="player card sm" id="p26" style="aspect-ratio:9/16">
             <a class="filmlink" href="https://illusiaagency.com/salesforce-deck#skits" aria-label="Watch the film at illusiaagency.com"></a>
-            <video playsinline preload="none" poster="/salesforce-deck/img/hat-skit-poster.jpg" src="/salesforce-deck/img/hat-skit.mp4"></video>
+            <img class="filmposter" src="/salesforce-deck/img/hat-skit-poster.jpg" alt="" aria-hidden="true"><video playsinline preload="none" poster="/salesforce-deck/img/hat-skit-poster.jpg" src="/salesforce-deck/img/hat-skit.mp4"></video>
             <span class="vcap">New vs Old</span>
             <button class="vbig" aria-label="Play New vs Old"><span></span></button>
             <div class="vbar">
@@ -995,7 +1017,7 @@ html,body{background:#DEEBFA}
         <div>
           <div class="player card" id="p27" style="aspect-ratio:16/9">
             <a class="filmlink" href="https://illusiaagency.com/salesforce-deck#skits" aria-label="Watch the film at illusiaagency.com"></a>
-            <video playsinline preload="none" poster="/salesforce-deck/img/garmany-skit-poster.jpg" src="/salesforce-deck/img/garmany-skit.mp4"></video>
+            <img class="filmposter" src="/salesforce-deck/img/garmany-skit-poster.jpg" alt="" aria-hidden="true"><video playsinline preload="none" poster="/salesforce-deck/img/garmany-skit-poster.jpg" src="/salesforce-deck/img/garmany-skit.mp4"></video>
             <span class="vcap">Garmany</span>
             <button class="vbig" aria-label="Play the Garmany skit"><span></span></button>
             <div class="vbar">
@@ -1019,7 +1041,7 @@ html,body{background:#DEEBFA}
       <div style="display:grid;grid-template-columns:850px 1fr;gap:30px;margin-top:32px;grid-template-rows:478px">
         <div class="player card" id="p27" style="aspect-ratio:16/9">
           <a class="filmlink" href="https://illusiaagency.com/salesforce-deck#aviation" aria-label="Watch the film at illusiaagency.com"></a>
-          <video playsinline preload="none" poster="/salesforce-deck/img/joby-texas-poster.jpg" src="/salesforce-deck/img/joby-texas.mp4"></video>
+          <img class="filmposter" src="/salesforce-deck/img/joby-texas-poster.jpg" alt="" aria-hidden="true"><video playsinline preload="none" poster="/salesforce-deck/img/joby-texas-poster.jpg" src="/salesforce-deck/img/joby-texas.mp4"></video>
           <span class="vcap">Joby Aviation · Flight operations</span>
           <button class="vbig" aria-label="Play Joby Aviation · Flight operations"><span></span></button>
           <div class="vbar">
@@ -1066,7 +1088,7 @@ html,body{background:#DEEBFA}
         <div>
           <div class="player card" id="p28" style="aspect-ratio:16/9">
             <a class="filmlink" href="https://illusiaagency.com/salesforce-deck#aviation-films" aria-label="Watch the film at illusiaagency.com"></a>
-            <video playsinline preload="none" poster="/salesforce-deck/img/joby-vertiport-poster.jpg" src="/salesforce-deck/img/joby-vertiport.mp4"></video>
+            <img class="filmposter" src="/salesforce-deck/img/joby-vertiport-poster.jpg" alt="" aria-hidden="true"><video playsinline preload="none" poster="/salesforce-deck/img/joby-vertiport-poster.jpg" src="/salesforce-deck/img/joby-vertiport.mp4"></video>
             <span class="vcap">Joby · Manhattan vertiport</span>
             <button class="vbig" aria-label="Play Joby · Manhattan vertiport"><span></span></button>
             <div class="vbar">
@@ -1081,7 +1103,7 @@ html,body{background:#DEEBFA}
         <div>
           <div class="player card sm" id="p29" style="aspect-ratio:9/16">
             <a class="filmlink" href="https://illusiaagency.com/salesforce-deck#aviation-films" aria-label="Watch the film at illusiaagency.com"></a>
-            <video playsinline preload="none" poster="/salesforce-deck/img/blade-aero-poster.jpg" src="/salesforce-deck/img/blade-aero.mp4"></video>
+            <img class="filmposter" src="/salesforce-deck/img/blade-aero-poster.jpg" alt="" aria-hidden="true"><video playsinline preload="none" poster="/salesforce-deck/img/blade-aero-poster.jpg" src="/salesforce-deck/img/blade-aero.mp4"></video>
             <span class="vcap">BLADE × Aero</span>
             <button class="vbig" aria-label="Play BLADE × Aero"><span></span></button>
             <div class="vbar">
@@ -1095,7 +1117,7 @@ html,body{background:#DEEBFA}
         <div>
           <div class="player card sm" id="p30" style="aspect-ratio:9/16">
             <a class="filmlink" href="https://illusiaagency.com/salesforce-deck#aviation-films" aria-label="Watch the film at illusiaagency.com"></a>
-            <video playsinline preload="none" poster="/salesforce-deck/img/blade-f1-poster.jpg" src="/salesforce-deck/img/blade-f1.mp4"></video>
+            <img class="filmposter" src="/salesforce-deck/img/blade-f1-poster.jpg" alt="" aria-hidden="true"><video playsinline preload="none" poster="/salesforce-deck/img/blade-f1-poster.jpg" src="/salesforce-deck/img/blade-f1.mp4"></video>
             <span class="vcap">BLADE · Austin F1</span>
             <button class="vbig" aria-label="Play BLADE · Austin F1 race weekend"><span></span></button>
             <div class="vbar">

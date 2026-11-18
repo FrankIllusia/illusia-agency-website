@@ -316,7 +316,6 @@ img,svg{display:block;max-width:100%}
 
 .filmlink{display:none}
 .filmnote{display:none}
-.filmposter{display:none}
 
 /* ═══════════════════════════════════════════════════════════════════════
    THE RUNWAY
@@ -441,13 +440,6 @@ img,svg{display:block;max-width:100%}
      underneath says so, because a play button alone on a page is decoration. */
   .vbar{display:none!important}
   .player{box-shadow:none!important}
-  /* Measured against a served copy, not guessed: with only the <video poster>
-     attribute these three frames print SOLID BLACK — Chrome's print path does
-     not rasterise a poster. A real <img>, hidden on screen, does print. It
-     points at the same URL the poster does, so the browser fetches it once. */
-  .player video{display:none!important}
-  .filmposter{display:block!important;position:absolute;inset:0;z-index:0;
-    width:100%;height:100%;object-fit:cover}
   .filmlink{display:block!important;position:absolute;inset:0;z-index:3}
   .filmnote{display:block!important;position:absolute;left:13px;bottom:13px;z-index:4;
     padding:8px 13px;border-radius:10px;
@@ -459,6 +451,28 @@ img,svg{display:block;max-width:100%}
   .sheet .px.on{background:linear-gradient(168deg,#EFE7D6 0%,#DED3BC 62%,#CFC2A6 100%)!important}
   .fmt{background:rgba(26,26,27,.86)!important;color:#F4F2EE!important}
   *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+}
+</style>
+
+<style id="printposters">
+/* ═══════════════════════════════════════════════════════════════════════
+   PRINT POSTERS
+
+   Chrome's print path does not rasterise a <video poster>: every film frame
+   in this deck came out SOLID BLACK in the PDF. Verified by printing a served
+   copy with and without the fallback below, not assumed.
+
+   So each player carries a hidden <img> pointing at the same poster URL — the
+   browser fetches it once — and in print the video is made invisible while the
+   image paints in its place. visibility rather than display, so the video
+   still occupies its box and a container that takes its height from the video
+   does not collapse.
+   ═══════════════════════════════════════════════════════════════════════ */
+.filmposter{display:none}
+@media print{
+  video[poster]{visibility:hidden!important}
+  .filmposter{display:block!important;position:absolute;inset:0;z-index:0;
+    width:100%;height:100%;object-fit:cover}
 }
 </style>
 </head>
@@ -779,8 +793,7 @@ img,svg{display:block;max-width:100%}
         <div style="display:flex;flex-direction:column">
           <div class="player" id="w1" style="aspect-ratio:16/9">
             <a class="filmlink" href="https://illusiaagency.com/oakhill-deck#work" aria-label="Watch the film at illusiaagency.com"></a>
-            <img class="filmposter" src="/experiential-examples/img/odyssey-poster.jpg" alt="">
-            <video id="w1v" playsinline preload="none" poster="/experiential-examples/img/odyssey-poster.jpg" src="/experiential-examples/img/odyssey-sizzle.mp4"></video>
+            <img class="filmposter" src="/experiential-examples/img/odyssey-poster.jpg" alt="" aria-hidden="true"><video id="w1v" playsinline preload="none" poster="/experiential-examples/img/odyssey-poster.jpg" src="/experiential-examples/img/odyssey-sizzle.mp4"></video>
             <span class="vcap">The Odyssey · Overall sizzle</span>
             <button class="vbig" aria-label="Play the The Odyssey film"><span></span></button>
             <div class="vbar">
@@ -802,8 +815,7 @@ img,svg{display:block;max-width:100%}
         <div style="display:flex;flex-direction:column">
           <div class="player" id="w2" style="aspect-ratio:16/9">
             <a class="filmlink" href="https://illusiaagency.com/oakhill-deck#work" aria-label="Watch the film at illusiaagency.com"></a>
-            <img class="filmposter" src="/experiential-examples/img/hoppers-poster.jpg" alt="">
-            <video id="w2v" playsinline preload="none" poster="/experiential-examples/img/hoppers-poster.jpg" src="/experiential-examples/img/hoppers-sizzle.mp4"></video>
+            <img class="filmposter" src="/experiential-examples/img/hoppers-poster.jpg" alt="" aria-hidden="true"><video id="w2v" playsinline preload="none" poster="/experiential-examples/img/hoppers-poster.jpg" src="/experiential-examples/img/hoppers-sizzle.mp4"></video>
             <span class="vcap">Hoppers · Shark Sedan activation</span>
             <button class="vbig" aria-label="Play the Hoppers film"><span></span></button>
             <div class="vbar">
@@ -825,8 +837,7 @@ img,svg{display:block;max-width:100%}
         <div style="display:flex;flex-direction:column">
           <div class="player" id="w3" style="aspect-ratio:16/9">
             <a class="filmlink" href="https://illusiaagency.com/oakhill-deck#work" aria-label="Watch the film at illusiaagency.com"></a>
-            <img class="filmposter" src="/experiential-examples/img/ron2-bts-poster.jpg" alt="">
-            <video id="w3v" playsinline preload="none" poster="/experiential-examples/img/ron2-bts-poster.jpg" src="/experiential-examples/img/ron2-bts.mp4"></video>
+            <img class="filmposter" src="/experiential-examples/img/ron2-bts-poster.jpg" alt="" aria-hidden="true"><video id="w3v" playsinline preload="none" poster="/experiential-examples/img/ron2-bts-poster.jpg" src="/experiential-examples/img/ron2-bts.mp4"></video>
             <span class="vcap">Ready or Not 2 · The build film</span>
             <button class="vbig" aria-label="Play the Ready or Not 2 film"><span></span></button>
             <div class="vbar">

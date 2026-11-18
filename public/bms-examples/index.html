@@ -269,6 +269,28 @@ img{display:block;max-width:100%}
   *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
 }
 </style>
+
+<style id="printposters">
+/* ═══════════════════════════════════════════════════════════════════════
+   PRINT POSTERS
+
+   Chrome's print path does not rasterise a <video poster>: every film frame
+   in this deck came out SOLID BLACK in the PDF. Verified by printing a served
+   copy with and without the fallback below, not assumed.
+
+   So each player carries a hidden <img> pointing at the same poster URL — the
+   browser fetches it once — and in print the video is made invisible while the
+   image paints in its place. visibility rather than display, so the video
+   still occupies its box and a container that takes its height from the video
+   does not collapse.
+   ═══════════════════════════════════════════════════════════════════════ */
+.filmposter{display:none}
+@media print{
+  video[poster]{visibility:hidden!important}
+  .filmposter{display:block!important;position:absolute;inset:0;z-index:0;
+    width:100%;height:100%;object-fit:cover}
+}
+</style>
 </head>
 <body>
 
@@ -439,7 +461,7 @@ img{display:block;max-width:100%}
         <div>
           <div class="player card" id="p1" style="aspect-ratio:16/9">
             <a class="filmlink" href="https://illusiaagency.com/bms-examples#experiential" aria-label="Watch the film at illusiaagency.com"></a>
-            <video playsinline preload="none" poster="/bms-examples/img/dwp2-poster.jpg" src="/bms-examples/img/dwp2.mp4"></video>
+            <img class="filmposter" src="/bms-examples/img/dwp2-poster.jpg" alt="" aria-hidden="true"><video playsinline preload="none" poster="/bms-examples/img/dwp2-poster.jpg" src="/bms-examples/img/dwp2.mp4"></video>
             <span class="vcap">The Devil Wears Prada 2 · Premiere</span>
             <button class="vbig sm" aria-label="Play The Devil Wears Prada 2 · Premiere"><span></span></button>
             <div class="vbar">
@@ -454,7 +476,7 @@ img{display:block;max-width:100%}
         <div>
           <div class="player card" id="p2" style="aspect-ratio:16/9">
             <a class="filmlink" href="https://illusiaagency.com/bms-examples#experiential" aria-label="Watch the film at illusiaagency.com"></a>
-            <video playsinline preload="none" poster="/bms-examples/img/odyssey-poster.jpg" src="/bms-examples/img/odyssey.mp4"></video>
+            <img class="filmposter" src="/bms-examples/img/odyssey-poster.jpg" alt="" aria-hidden="true"><video playsinline preload="none" poster="/bms-examples/img/odyssey-poster.jpg" src="/bms-examples/img/odyssey.mp4"></video>
             <span class="vcap">The Odyssey · Installation</span>
             <button class="vbig sm" aria-label="Play The Odyssey · Installation"><span></span></button>
             <div class="vbar">
@@ -481,7 +503,7 @@ img{display:block;max-width:100%}
       <div style="display:grid;grid-template-columns:900px 1fr;gap:30px;margin-top:34px;grid-template-rows:506px">
         <div class="player card" id="p3" style="aspect-ratio:16/9">
             <a class="filmlink" href="https://illusiaagency.com/bms-examples#bts" aria-label="Watch the film at illusiaagency.com"></a>
-            <video playsinline preload="none" poster="/bms-examples/img/ron2-bts-poster.jpg" src="/bms-examples/img/ron2-bts.mp4"></video>
+            <img class="filmposter" src="/bms-examples/img/ron2-bts-poster.jpg" alt="" aria-hidden="true"><video playsinline preload="none" poster="/bms-examples/img/ron2-bts-poster.jpg" src="/bms-examples/img/ron2-bts.mp4"></video>
             <span class="vcap">Ready or Not 2 · The build</span>
             <button class="vbig" aria-label="Play Ready or Not 2 · The build"><span></span></button>
             <div class="vbar">
@@ -544,7 +566,7 @@ img{display:block;max-width:100%}
         <div>
           <div class="player card" id="p4" style="aspect-ratio:9/16">
             <a class="filmlink" href="https://illusiaagency.com/bms-examples#manufacturing" aria-label="Watch the film at illusiaagency.com"></a>
-            <video playsinline preload="none" poster="/bms-examples/img/hat-team-poster.jpg" src="/bms-examples/img/hat-team.mp4"></video>
+            <img class="filmposter" src="/bms-examples/img/hat-team-poster.jpg" alt="" aria-hidden="true"><video playsinline preload="none" poster="/bms-examples/img/hat-team-poster.jpg" src="/bms-examples/img/hat-team.mp4"></video>
             <span class="vcap">The floor</span>
             <button class="vbig sm" aria-label="Play Hatteras · The floor"><span></span></button>
             <div class="vbar">
@@ -559,7 +581,7 @@ img{display:block;max-width:100%}
         <div>
           <div class="player card" id="p5" style="aspect-ratio:9/16">
             <a class="filmlink" href="https://illusiaagency.com/bms-examples#manufacturing" aria-label="Watch the film at illusiaagency.com"></a>
-            <video playsinline preload="none" poster="/bms-examples/img/hat-speedmaster-poster.jpg" src="/bms-examples/img/hat-speedmaster.mp4"></video>
+            <img class="filmposter" src="/bms-examples/img/hat-speedmaster-poster.jpg" alt="" aria-hidden="true"><video playsinline preload="none" poster="/bms-examples/img/hat-speedmaster-poster.jpg" src="/bms-examples/img/hat-speedmaster.mp4"></video>
             <span class="vcap">Press check</span>
             <button class="vbig sm" aria-label="Play Hatteras · Press check"><span></span></button>
             <div class="vbar">
@@ -574,7 +596,7 @@ img{display:block;max-width:100%}
         <div>
           <div class="player card" id="p6" style="aspect-ratio:9/16">
             <a class="filmlink" href="https://illusiaagency.com/bms-examples#manufacturing" aria-label="Watch the film at illusiaagency.com"></a>
-            <video playsinline preload="none" poster="/bms-examples/img/hat-skit-poster.jpg" src="/bms-examples/img/hat-skit.mp4"></video>
+            <img class="filmposter" src="/bms-examples/img/hat-skit-poster.jpg" alt="" aria-hidden="true"><video playsinline preload="none" poster="/bms-examples/img/hat-skit-poster.jpg" src="/bms-examples/img/hat-skit.mp4"></video>
             <span class="vcap">Culture</span>
             <button class="vbig sm" aria-label="Play Hatteras · Culture"><span></span></button>
             <div class="vbar">
@@ -589,7 +611,7 @@ img{display:block;max-width:100%}
         <div>
           <div class="player card" id="p7" style="aspect-ratio:9/16">
             <a class="filmlink" href="https://illusiaagency.com/bms-examples#manufacturing" aria-label="Watch the film at illusiaagency.com"></a>
-            <video playsinline preload="none" poster="/bms-examples/img/hat-hyper-poster.jpg" src="/bms-examples/img/hat-hyper.mp4"></video>
+            <img class="filmposter" src="/bms-examples/img/hat-hyper-poster.jpg" alt="" aria-hidden="true"><video playsinline preload="none" poster="/bms-examples/img/hat-hyper-poster.jpg" src="/bms-examples/img/hat-hyper.mp4"></video>
             <span class="vcap">Craft</span>
             <button class="vbig sm" aria-label="Play Hatteras · Craft"><span></span></button>
             <div class="vbar">
@@ -619,7 +641,7 @@ img{display:block;max-width:100%}
       <div style="display:grid;grid-template-columns:980px 1fr;gap:30px;margin-top:34px;grid-template-rows:551px">
         <div class="player card" id="p8" style="aspect-ratio:16/9">
           <a class="filmlink" href="https://illusiaagency.com/bms-examples#aviation" aria-label="Watch the film at illusiaagency.com"></a>
-          <video playsinline preload="none" poster="/bms-examples/img/joby-texas-poster.jpg" src="/bms-examples/img/joby-texas.mp4"></video>
+          <img class="filmposter" src="/bms-examples/img/joby-texas-poster.jpg" alt="" aria-hidden="true"><video playsinline preload="none" poster="/bms-examples/img/joby-texas-poster.jpg" src="/bms-examples/img/joby-texas.mp4"></video>
           <span class="vcap">Joby Aviation · Flight operations</span>
           <button class="vbig sm" aria-label="Play Joby Aviation · Flight operations"><span></span></button>
           <div class="vbar">
@@ -665,7 +687,7 @@ img{display:block;max-width:100%}
         <div>
           <div class="player card" id="p9" style="aspect-ratio:16/9">
           <a class="filmlink" href="https://illusiaagency.com/bms-examples#aviation" aria-label="Watch the film at illusiaagency.com"></a>
-          <video playsinline preload="none" poster="/bms-examples/img/joby-vertiport-poster.jpg" src="/bms-examples/img/joby-vertiport.mp4"></video>
+          <img class="filmposter" src="/bms-examples/img/joby-vertiport-poster.jpg" alt="" aria-hidden="true"><video playsinline preload="none" poster="/bms-examples/img/joby-vertiport-poster.jpg" src="/bms-examples/img/joby-vertiport.mp4"></video>
           <span class="vcap">Joby · Manhattan vertiport</span>
           <button class="vbig sm" aria-label="Play Joby · Manhattan vertiport"><span></span></button>
           <div class="vbar">
@@ -680,7 +702,7 @@ img{display:block;max-width:100%}
         <div>
           <div class="player card" id="p10" style="aspect-ratio:9/16">
           <a class="filmlink" href="https://illusiaagency.com/bms-examples#aviation" aria-label="Watch the film at illusiaagency.com"></a>
-          <video playsinline preload="none" poster="/bms-examples/img/blade-aero-poster.jpg" src="/bms-examples/img/blade-aero.mp4"></video>
+          <img class="filmposter" src="/bms-examples/img/blade-aero-poster.jpg" alt="" aria-hidden="true"><video playsinline preload="none" poster="/bms-examples/img/blade-aero-poster.jpg" src="/bms-examples/img/blade-aero.mp4"></video>
           <span class="vcap">BLADE × Aero</span>
           <button class="vbig sm" aria-label="Play BLADE × Aero"><span></span></button>
           <div class="vbar">
@@ -695,7 +717,7 @@ img{display:block;max-width:100%}
         <div>
           <div class="player card" id="p11" style="aspect-ratio:9/16">
           <a class="filmlink" href="https://illusiaagency.com/bms-examples#aviation" aria-label="Watch the film at illusiaagency.com"></a>
-          <video playsinline preload="none" poster="/bms-examples/img/blade-usopen-poster.jpg" src="/bms-examples/img/blade-usopen.mp4"></video>
+          <img class="filmposter" src="/bms-examples/img/blade-usopen-poster.jpg" alt="" aria-hidden="true"><video playsinline preload="none" poster="/bms-examples/img/blade-usopen-poster.jpg" src="/bms-examples/img/blade-usopen.mp4"></video>
           <span class="vcap">BLADE · US Open</span>
           <button class="vbig sm" aria-label="Play BLADE · US Open"><span></span></button>
           <div class="vbar">
@@ -722,7 +744,7 @@ img{display:block;max-width:100%}
       <div style="display:grid;grid-template-columns:900px 1fr;gap:30px;margin-top:34px;grid-template-rows:506px">
         <div class="player card" id="p12" style="aspect-ratio:16/9">
           <a class="filmlink" href="https://illusiaagency.com/bms-examples#events" aria-label="Watch the film at illusiaagency.com"></a>
-          <video playsinline preload="none" poster="/bms-examples/img/salesforce-adweek-poster.jpg" src="/bms-examples/img/salesforce-adweek.mp4"></video>
+          <img class="filmposter" src="/bms-examples/img/salesforce-adweek-poster.jpg" alt="" aria-hidden="true"><video playsinline preload="none" poster="/bms-examples/img/salesforce-adweek-poster.jpg" src="/bms-examples/img/salesforce-adweek.mp4"></video>
           <span class="vcap">Salesforce · Advertising Week New York</span>
           <button class="vbig" aria-label="Play the Salesforce Advertising Week recap"><span></span></button>
           <div class="vbar">

@@ -13,6 +13,7 @@ const nextConfig: NextConfig = {
       { source: "/sjv", destination: "/sjv/index.html" },
       { source: "/mediaradar-pricing-deck", destination: "/mediaradar-pricing-deck/index.html" },
       { source: "/oakhill-deck", destination: "/oakhill-deck/index.html" },
+      { source: "/devon-deck", destination: "/devon-deck/index.html" },
     ];
   },
 };

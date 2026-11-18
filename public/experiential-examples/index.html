@@ -454,6 +454,28 @@ html,body{background:#E6E6E4}
   .card,.player{box-shadow:inset 0 1px 0 rgba(255,255,255,.5)!important}
 }
 </style>
+
+<style id="printposters">
+/* ═══════════════════════════════════════════════════════════════════════
+   PRINT POSTERS
+
+   Chrome's print path does not rasterise a <video poster>: every film frame
+   in this deck came out SOLID BLACK in the PDF. Verified by printing a served
+   copy with and without the fallback below, not assumed.
+
+   So each player carries a hidden <img> pointing at the same poster URL — the
+   browser fetches it once — and in print the video is made invisible while the
+   image paints in its place. visibility rather than display, so the video
+   still occupies its box and a container that takes its height from the video
+   does not collapse.
+   ═══════════════════════════════════════════════════════════════════════ */
+.filmposter{display:none}
+@media print{
+  video[poster]{visibility:hidden!important}
+  .filmposter{display:block!important;position:absolute;inset:0;z-index:0;
+    width:100%;height:100%;object-fit:cover}
+}
+</style>
 </head>
 <body>
 
@@ -517,7 +539,7 @@ html,body{background:#E6E6E4}
       <div style="display:grid;grid-template-columns:850px 1fr;grid-template-rows:478px;gap:30px;margin-top:32px">
         <div class="player card" id="p1" style="aspect-ratio:16/9">
           <a class="filmlink" href="https://illusiaagency.com/experiential-examples#odyssey" aria-label="Watch the film at illusiaagency.com"></a>
-          <video id="p1v" playsinline preload="none" poster="/experiential-examples/img/odyssey-poster.jpg" src="/experiential-examples/img/odyssey-sizzle.mp4"></video>
+          <img class="filmposter" src="/experiential-examples/img/odyssey-poster.jpg" alt="" aria-hidden="true"><video id="p1v" playsinline preload="none" poster="/experiential-examples/img/odyssey-poster.jpg" src="/experiential-examples/img/odyssey-sizzle.mp4"></video>
           <span class="vcap">The Odyssey · Overall sizzle</span>
           <button class="vbig" aria-label="Play the recap film"><span></span></button>
             <button class="vexp" aria-label="Expand this film"><svg viewBox="0 0 24 24"><path d="M9 4H4v5M15 4h5v5M9 20H4v-5M15 20h5v-5"/></svg></button>
@@ -598,7 +620,7 @@ html,body{background:#E6E6E4}
       <div style="display:grid;grid-template-columns:850px 1fr;grid-template-rows:478px;gap:30px;margin-top:32px">
         <div class="player card" id="p11" style="aspect-ratio:16/9">
           <a class="filmlink" href="https://illusiaagency.com/experiential-examples#predator-badlands" aria-label="Watch the film at illusiaagency.com"></a>
-          <video id="p11v" playsinline preload="none" poster="/experiential-examples/img/predator-poster.jpg" src="/experiential-examples/img/predator-recap.mp4"></video>
+          <img class="filmposter" src="/experiential-examples/img/predator-poster.jpg" alt="" aria-hidden="true"><video id="p11v" playsinline preload="none" poster="/experiential-examples/img/predator-poster.jpg" src="/experiential-examples/img/predator-recap.mp4"></video>
           <span class="vcap">Predator: Badlands · Premiere recap</span>
           <button class="vbig" aria-label="Play the premiere recap film"><span></span></button>
             <button class="vexp" aria-label="Expand this film"><svg viewBox="0 0 24 24"><path d="M9 4H4v5M15 4h5v5M9 20H4v-5M15 20h5v-5"/></svg></button>
@@ -670,7 +692,7 @@ html,body{background:#E6E6E4}
       <div style="display:grid;grid-template-columns:850px 1fr;grid-template-rows:478px;gap:30px;margin-top:32px">
         <div class="player card" id="p10" style="aspect-ratio:16/9">
           <a class="filmlink" href="https://illusiaagency.com/experiential-examples#play-dirty" aria-label="Watch the film at illusiaagency.com"></a>
-          <video id="p10v" playsinline preload="none" poster="/experiential-examples/img/playdirty-poster.jpg" src="/experiential-examples/img/playdirty-sizzle.mp4"></video>
+          <img class="filmposter" src="/experiential-examples/img/playdirty-poster.jpg" alt="" aria-hidden="true"><video id="p10v" playsinline preload="none" poster="/experiential-examples/img/playdirty-poster.jpg" src="/experiential-examples/img/playdirty-sizzle.mp4"></video>
           <span class="vcap">Play Dirty · Activation sizzle</span>
           <button class="vbig" aria-label="Play the Play Dirty activation sizzle"><span></span></button>
             <button class="vexp" aria-label="Expand this film"><svg viewBox="0 0 24 24"><path d="M9 4H4v5M15 4h5v5M9 20H4v-5M15 20h5v-5"/></svg></button>
@@ -747,7 +769,7 @@ html,body{background:#E6E6E4}
         <div style="display:grid;grid-template-columns:269px 1fr;gap:20px">
           <div class="player card" id="p4">
             <a class="filmlink" href="https://illusiaagency.com/experiential-examples#blade" aria-label="Watch the film at illusiaagency.com"></a>
-            <video id="p4v" playsinline preload="none" poster="/experiential-examples/img/blade-poster.jpg" src="/experiential-examples/img/blade-recap.mp4"></video>
+            <img class="filmposter" src="/experiential-examples/img/blade-poster.jpg" alt="" aria-hidden="true"><video id="p4v" playsinline preload="none" poster="/experiential-examples/img/blade-poster.jpg" src="/experiential-examples/img/blade-recap.mp4"></video>
             <span class="vcap">Blade · Hero recap</span>
             <button class="vbig" aria-label="Play the Ryder Cup recap film"><span></span></button>
             <button class="vexp" aria-label="Expand this film"><svg viewBox="0 0 24 24"><path d="M9 4H4v5M15 4h5v5M9 20H4v-5M15 20h5v-5"/></svg></button>
@@ -762,7 +784,7 @@ html,body{background:#E6E6E4}
           <div style="display:grid;align-content:center">
             <div style="display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:315px;gap:15px">
               <div class="player card sm" id="p5">
-              <video id="p5v" playsinline preload="none" poster="/experiential-examples/img/blade-ugc-poster.jpg" src="/experiential-examples/img/blade-ugc.mp4"></video>
+              <img class="filmposter" src="/experiential-examples/img/blade-ugc-poster.jpg" alt="" aria-hidden="true"><video id="p5v" playsinline preload="none" poster="/experiential-examples/img/blade-ugc-poster.jpg" src="/experiential-examples/img/blade-ugc.mp4"></video>
               <span class="vcap">UGC · POV</span>
               <button class="vbig" aria-label="Play the POV social cut"><span></span></button>
             <button class="vexp" aria-label="Expand this film"><svg viewBox="0 0 24 24"><path d="M9 4H4v5M15 4h5v5M9 20H4v-5M15 20h5v-5"/></svg></button>
@@ -774,7 +796,7 @@ html,body{background:#E6E6E4}
             </div>
 
               <div class="player card sm" id="p6">
-              <video id="p6v" playsinline preload="none" poster="/experiential-examples/img/blade-micd-poster.jpg" src="/experiential-examples/img/blade-micd.mp4"></video>
+              <img class="filmposter" src="/experiential-examples/img/blade-micd-poster.jpg" alt="" aria-hidden="true"><video id="p6v" playsinline preload="none" poster="/experiential-examples/img/blade-micd-poster.jpg" src="/experiential-examples/img/blade-micd.mp4"></video>
               <span class="vcap">Mic'd up</span>
               <button class="vbig" aria-label="Play the mic'd-up guest film"><span></span></button>
             <button class="vexp" aria-label="Expand this film"><svg viewBox="0 0 24 24"><path d="M9 4H4v5M15 4h5v5M9 20H4v-5M15 20h5v-5"/></svg></button>
@@ -786,7 +808,7 @@ html,body{background:#E6E6E4}
             </div>
 
               <div class="player card sm" id="p7">
-              <video id="p7v" playsinline preload="none" poster="/experiential-examples/img/blade-testimonial-poster.jpg" src="/experiential-examples/img/blade-testimonial.mp4"></video>
+              <img class="filmposter" src="/experiential-examples/img/blade-testimonial-poster.jpg" alt="" aria-hidden="true"><video id="p7v" playsinline preload="none" poster="/experiential-examples/img/blade-testimonial-poster.jpg" src="/experiential-examples/img/blade-testimonial.mp4"></video>
               <span class="vcap">Testimonial</span>
               <button class="vbig" aria-label="Play the testimonial film"><span></span></button>
             <button class="vexp" aria-label="Expand this film"><svg viewBox="0 0 24 24"><path d="M9 4H4v5M15 4h5v5M9 20H4v-5M15 20h5v-5"/></svg></button>
@@ -861,7 +883,7 @@ html,body{background:#E6E6E4}
       <div style="display:grid;grid-template-columns:850px 1fr;grid-template-rows:478px;gap:30px;margin-top:32px">
         <div class="player card" id="p3" style="aspect-ratio:16/9">
           <a class="filmlink" href="https://illusiaagency.com/experiential-examples#hoppers" aria-label="Watch the film at illusiaagency.com"></a>
-          <video id="p3v" playsinline preload="none" poster="/experiential-examples/img/hoppers-poster.jpg" src="/experiential-examples/img/hoppers-sizzle.mp4"></video>
+          <img class="filmposter" src="/experiential-examples/img/hoppers-poster.jpg" alt="" aria-hidden="true"><video id="p3v" playsinline preload="none" poster="/experiential-examples/img/hoppers-poster.jpg" src="/experiential-examples/img/hoppers-sizzle.mp4"></video>
           <span class="vcap">Hoppers · Shark Sedan activation</span>
           <button class="vbig" aria-label="Play the Shark Sedan sizzle"><span></span></button>
             <button class="vexp" aria-label="Expand this film"><svg viewBox="0 0 24 24"><path d="M9 4H4v5M15 4h5v5M9 20H4v-5M15 20h5v-5"/></svg></button>
@@ -934,7 +956,7 @@ html,body{background:#E6E6E4}
       <div style="display:grid;grid-template-columns:850px 1fr;grid-template-rows:478px;gap:30px;margin-top:32px">
         <div class="player card" id="p12" style="aspect-ratio:16/9">
           <a class="filmlink" href="https://illusiaagency.com/experiential-examples#salesforce" aria-label="Watch the film at illusiaagency.com"></a>
-          <video id="p12v" playsinline preload="none" poster="/experiential-examples/img/salesforce-poster.jpg" src="/experiential-examples/img/salesforce-adweek.mp4"></video>
+          <img class="filmposter" src="/experiential-examples/img/salesforce-poster.jpg" alt="" aria-hidden="true"><video id="p12v" playsinline preload="none" poster="/experiential-examples/img/salesforce-poster.jpg" src="/experiential-examples/img/salesforce-adweek.mp4"></video>
           <span class="vcap">Salesforce · AdWeek recap</span>
           <button class="vbig" aria-label="Play the Salesforce AdWeek recap"><span></span></button>
             <button class="vexp" aria-label="Expand this film"><svg viewBox="0 0 24 24"><path d="M9 4H4v5M15 4h5v5M9 20H4v-5M15 20h5v-5"/></svg></button>
@@ -1015,7 +1037,7 @@ html,body{background:#E6E6E4}
         <div style="display:flex;flex-direction:column;gap:14px">
           <div class="player card" id="p9" style="width:654px;height:368px;align-self:center">
             <a class="filmlink" href="https://illusiaagency.com/experiential-examples#jurassic-world-rebirth" aria-label="Watch the film at illusiaagency.com"></a>
-            <video id="p9v" playsinline preload="none" poster="/experiential-examples/img/jurassic-poster.jpg" src="/experiential-examples/img/jurassic-recap.mp4"></video>
+            <img class="filmposter" src="/experiential-examples/img/jurassic-poster.jpg" alt="" aria-hidden="true"><video id="p9v" playsinline preload="none" poster="/experiential-examples/img/jurassic-poster.jpg" src="/experiential-examples/img/jurassic-recap.mp4"></video>
             <span class="vcap">Jurassic World Rebirth · Recap</span>
             <button class="vbig" aria-label="Play the Jurassic World Rebirth recap"><span></span></button>
             <button class="vexp" aria-label="Expand this film"><svg viewBox="0 0 24 24"><path d="M9 4H4v5M15 4h5v5M9 20H4v-5M15 20h5v-5"/></svg></button>
@@ -1101,7 +1123,7 @@ html,body{background:#E6E6E4}
         <div style="display:grid;grid-template-columns:269px 1fr;gap:20px">
           <div class="player card" id="p13">
             <a class="filmlink" href="https://illusiaagency.com/experiential-examples#expedia-group" aria-label="Watch the film at illusiaagency.com"></a>
-            <video id="p13v" playsinline preload="none" poster="/experiential-examples/img/expedia-poster.jpg" src="/experiential-examples/img/expedia-recap.mp4"></video>
+            <img class="filmposter" src="/experiential-examples/img/expedia-poster.jpg" alt="" aria-hidden="true"><video id="p13v" playsinline preload="none" poster="/experiential-examples/img/expedia-poster.jpg" src="/experiential-examples/img/expedia-recap.mp4"></video>
             <span class="vcap">Expedia · Hosted recap</span>
             <button class="vbig" aria-label="Play the Expedia Group event recap"><span></span></button>
             <button class="vexp" aria-label="Expand this film"><svg viewBox="0 0 24 24"><path d="M9 4H4v5M15 4h5v5M9 20H4v-5M15 20h5v-5"/></svg></button>
@@ -1186,7 +1208,7 @@ html,body{background:#E6E6E4}
       <div style="display:grid;grid-template-columns:850px 1fr;grid-template-rows:478px;gap:30px;margin-top:32px">
         <div class="player card" id="p2" style="aspect-ratio:16/9">
           <a class="filmlink" href="https://illusiaagency.com/experiential-examples#ready-or-not-2" aria-label="Watch the film at illusiaagency.com"></a>
-          <video id="p2v" playsinline preload="none" poster="/experiential-examples/img/ron2-poster.jpg" src="/experiential-examples/img/ron2-sizzle.mp4"></video>
+          <img class="filmposter" src="/experiential-examples/img/ron2-poster.jpg" alt="" aria-hidden="true"><video id="p2v" playsinline preload="none" poster="/experiential-examples/img/ron2-poster.jpg" src="/experiential-examples/img/ron2-sizzle.mp4"></video>
           <span class="vcap">Ready or Not 2 · Hero sizzle</span>
           <button class="vbig" aria-label="Play the hero sizzle"><span></span></button>
             <button class="vexp" aria-label="Expand this film"><svg viewBox="0 0 24 24"><path d="M9 4H4v5M15 4h5v5M9 20H4v-5M15 20h5v-5"/></svg></button>
@@ -1264,7 +1286,7 @@ html,body{background:#E6E6E4}
       <div style="display:grid;grid-template-columns:850px 1fr;grid-template-rows:478px;gap:30px;margin-top:32px">
         <div class="player card" id="p8" style="aspect-ratio:16/9">
           <a class="filmlink" href="https://illusiaagency.com/experiential-examples#ready-or-not-2-bts" aria-label="Watch the film at illusiaagency.com"></a>
-          <video id="p8v" playsinline preload="none" poster="/experiential-examples/img/ron2-bts-poster.jpg" src="/experiential-examples/img/ron2-bts.mp4"></video>
+          <img class="filmposter" src="/experiential-examples/img/ron2-bts-poster.jpg" alt="" aria-hidden="true"><video id="p8v" playsinline preload="none" poster="/experiential-examples/img/ron2-bts-poster.jpg" src="/experiential-examples/img/ron2-bts.mp4"></video>
           <span class="vcap">Ready or Not 2 · The build film</span>
           <button class="vbig" aria-label="Play the behind-the-build film"><span></span></button>
             <button class="vexp" aria-label="Expand this film"><svg viewBox="0 0 24 24"><path d="M9 4H4v5M15 4h5v5M9 20H4v-5M15 20h5v-5"/></svg></button>
