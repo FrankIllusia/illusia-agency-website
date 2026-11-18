@@ -269,26 +269,32 @@ img,svg{display:block;max-width:100%}
 
    Reel counts turned into weeks of posting, which is the unit a client
    actually feels. Pure arithmetic off the deliverables at a stated cadence —
-   6, 10 and 16 reels at two a week — so the chart makes a claim that can be
-   checked rather than forecast.
+   5, 8 and 12 reels at two a week — so the chart makes a claim that can be
+   checked rather than forecast. Five does not divide into whole weeks, so
+   Option A ends on a half cell rather than being rounded up to flatter it.
    ═══════════════════════════════════════════════════════════════════════ */
 .runway{display:grid;grid-template-columns:212px 1fr 272px;gap:30px;align-items:center}
-.rw-track{display:grid;grid-template-columns:repeat(8,1fr);gap:9px}
+.rw-track{display:grid;grid-template-columns:repeat(6,1fr);gap:9px}
 .rw-track i{display:block;height:50px;border-radius:9px;
   border:1px solid var(--hair-hi);background:transparent}
 .rw-track i.on{background:rgba(26,26,27,.84);border-color:rgba(26,26,27,.84)}
 .rw-track i.hon{background:var(--accent);border-color:rgba(26,26,27,.34)}
-.rw-head{display:grid;grid-template-columns:repeat(8,1fr);gap:9px}
+/* Half a week, drawn rather than rounded. A solid child, not a gradient fill —
+   gradients do not survive the print path on this deck. */
+.rw-track i.half{position:relative;overflow:hidden}
+.rw-track i.half::before{content:'';position:absolute;left:-1px;top:-1px;bottom:-1px;width:50%;
+  background:rgba(26,26,27,.84)}
+.rw-head{display:grid;grid-template-columns:repeat(6,1fr);gap:9px}
 .rw-head span{font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:.12em;
   text-transform:uppercase;color:var(--faint);text-align:center}
 /* The week the whole thing is pointed at. */
 .rw-head span.open{color:#1a1a1b;background:var(--accent);border-radius:999px;padding:5px 0}
 /* The guide runs from under the Opening pill to the floor of the last bar.
    Measured against the fixed 1600px stage: the track starts at 212+30=242 and
-   runs 872 wide, so eight columns with 9px gaps are 101.1 each and the centre
-   of the fourth lands at 242 + 3*110.1 + 50.6 = 623. */
+   runs 872 wide, so six columns with 9px gaps are 137.8 each and the centre of
+   the third lands at 242 + 2*146.8 + 68.9 = 605. */
 .rw-wrap{position:relative}
-.rw-wrap::before{content:'';position:absolute;left:623px;top:26px;bottom:6px;width:0;
+.rw-wrap::before{content:'';position:absolute;left:605px;top:26px;bottom:6px;width:0;
   border-left:1px dashed rgba(26,26,27,.3);pointer-events:none}
 .rw-name{font-family:var(--display);font-weight:600;font-size:21px;letter-spacing:-.02em;color:#1a1a1b}
 .rw-name small{display:block;font-family:var(--mono);font-size:10.5px;font-weight:600;letter-spacing:.13em;
@@ -707,8 +713,8 @@ img,svg{display:block;max-width:100%}
           <p class="label" style="margin-bottom:18px">Included</p>
           <div class="mini">
             <div><b>One cinematic brand or opening film</b>, 60–90 seconds</div>
-            <div><b>Six social-first Reels / TikToks</b></div>
-            <div><b>25–35 edited photographs</b></div>
+            <div><b>Five social-first Reels / TikToks</b></div>
+            <div><b>20–25 edited photographs</b></div>
             <div>Shot list and light pre-production</div>
             <div>Two consolidated revision rounds</div>
           </div>
@@ -720,7 +726,7 @@ img,svg{display:block;max-width:100%}
           <div style="margin-top:28px;display:flex;align-items:flex-end;justify-content:space-between;gap:20px">
             <div>
               <p class="tag" style="margin-bottom:10px">Investment</p>
-              <span class="price">$6,950</span>
+              <span class="price">$4,950</span>
             </div>
             <span class="pill sm">Single day</span>
           </div>
@@ -732,8 +738,8 @@ img,svg{display:block;max-width:100%}
         <div style="display:grid;grid-template-columns:auto 1fr;gap:72px;align-items:end">
           <div class="counts">
             <div><b>1</b><span>Cinematic film<br>60–90 sec</span></div>
-            <div><b>6</b><span>Social-first reels<br>Vertical</span></div>
-            <div><b>25–35</b><span>Edited<br>photographs</span></div>
+            <div><b>5</b><span>Social-first reels<br>Vertical</span></div>
+            <div><b>20–25</b><span>Edited<br>photographs</span></div>
           </div>
           <p class="body" style="max-width:42em">
             <b style="color:#1a1a1b;font-weight:600">Best if</b> the priority is one strong film and a tight set of
@@ -757,7 +763,7 @@ img,svg{display:block;max-width:100%}
       </div>
 
       <div style="margin-top:30px;display:flex;align-items:baseline;gap:20px">
-        <h2 class="d3">One film. Six reels. One day.</h2>
+        <h2 class="d3">One film. Five reels. One day.</h2>
         <p class="tag">Frames are the shots we're proposing, at delivery aspect</p>
       </div>
 
@@ -790,19 +796,18 @@ img,svg{display:block;max-width:100%}
 
       <div style="display:flex;gap:28px;margin-top:22px">
         <div>
-          <p class="label" style="margin-bottom:12px">Six social-first reels — vertical, 15–30 sec, ready to post</p>
+          <p class="label" style="margin-bottom:12px">Five social-first reels — vertical, 15–30 sec, ready to post</p>
           <div class="reels">
             <div class="shot sm reel" style="width:115px"><svg class="art"><use href="#m-land"/></svg><span class="cap">The land</span></div>
             <div class="shot sm reel" style="width:115px"><svg class="art"><use href="#m-chicken"/></svg><span class="cap">The animals</span></div>
             <div class="shot sm reel" style="width:115px"><svg class="art"><use href="#m-shelf"/></svg><span class="cap">The market</span></div>
             <div class="shot sm reel" style="width:115px"><svg class="art"><use href="#m-coffee"/></svg><span class="cap">Coffee bar</span></div>
-            <div class="shot sm reel" style="width:115px"><svg class="art"><use href="#m-honey"/></svg><span class="cap">The goods</span></div>
             <div class="shot sm reel" style="width:115px"><svg class="art"><use href="#m-people"/></svg><span class="cap">Come visit</span></div>
           </div>
         </div>
 
         <div style="flex:1">
-          <p class="label" style="margin-bottom:12px">25–35 edited photographs</p>
+          <p class="label" style="margin-bottom:12px">20–25 edited photographs</p>
           <div class="sheet" style="grid-template-columns:repeat(7,1fr)">
             <i class="px on"></i><i class="px"></i><i class="px on"></i><i class="px"></i><i class="px"></i><i class="px on"></i><i class="px"></i>
             <i class="px"></i><i class="px on"></i><i class="px"></i><i class="px"></i><i class="px on"></i><i class="px"></i><i class="px on"></i>
@@ -849,10 +854,10 @@ img,svg{display:block;max-width:100%}
         <div class="glass" style="padding:34px 36px">
           <p class="label" style="margin-bottom:18px">Included</p>
           <div class="mini">
-            <div><b>One cinematic hero brand film</b>, 2–3 minutes</div>
+            <div><b>One cinematic hero brand film</b>, 90 seconds – 2 minutes</div>
             <div><b>One opening-day recap sizzle</b>, 30–60 seconds</div>
-            <div><b>Ten social-first Reels / TikToks</b> — anticipation and opening</div>
-            <div><b>50 edited photographs</b></div>
+            <div><b>Eight social-first Reels / TikToks</b> — anticipation and opening</div>
+            <div><b>40 edited photographs</b></div>
             <div>Pre-production, shot list and a short planning call</div>
             <div>Two consolidated revision rounds</div>
           </div>
@@ -863,7 +868,7 @@ img,svg{display:block;max-width:100%}
           <div style="margin-top:24px;display:flex;align-items:flex-end;justify-content:space-between;gap:20px">
             <div>
               <p class="tag" style="margin-bottom:10px">Investment</p>
-              <span class="price">$12,950</span>
+              <span class="price">$8,950</span>
             </div>
             <span class="pill sm">Two days</span>
           </div>
@@ -875,8 +880,8 @@ img,svg{display:block;max-width:100%}
         <div style="display:grid;grid-template-columns:auto 1fr;gap:72px;align-items:end">
           <div class="counts">
             <div><b>2</b><span>Films — hero<br>and sizzle</span></div>
-            <div><b>10</b><span>Social-first reels<br>Vertical</span></div>
-            <div><b>50</b><span>Edited<br>photographs</span></div>
+            <div><b>8</b><span>Social-first reels<br>Vertical</span></div>
+            <div><b>40</b><span>Edited<br>photographs</span></div>
           </div>
           <p class="body" style="max-width:42em">
             <b style="color:#1a1a1b;font-weight:600">This is the version built around the conversation we had</b> — a longer
@@ -898,7 +903,7 @@ img,svg{display:block;max-width:100%}
       </div>
 
       <div style="margin-top:30px;display:flex;align-items:baseline;gap:20px">
-        <h2 class="d3">Two films. Ten reels. Two days.</h2>
+        <h2 class="d3">Two films. Eight reels. Two days.</h2>
         <p class="tag">The hero carries the story. The sizzle carries the day.</p>
       </div>
 
@@ -906,7 +911,7 @@ img,svg{display:block;max-width:100%}
         <div class="shot lg" style="width:468px;height:263px">
           <svg class="art"><use href="#m-barn"/></svg>
           <span class="play"></span>
-          <span class="fmt">2–3 min · 16:9</span>
+          <span class="fmt">90s–2 min · 16:9</span>
           <span class="cap">Hero brand film — the farm and the vision</span>
         </div>
         <div class="shot lg" style="width:468px;height:263px">
@@ -916,7 +921,7 @@ img,svg{display:block;max-width:100%}
           <span class="cap">Opening-day recap sizzle</span>
         </div>
         <div style="flex:1">
-          <p class="label" style="margin-bottom:11px">50 edited photographs</p>
+          <p class="label" style="margin-bottom:11px">40 edited photographs</p>
           <div class="sheet" style="grid-template-columns:repeat(6,1fr)">
             <i class="px on"></i><i class="px"></i><i class="px on"></i><i class="px"></i><i class="px"></i><i class="px on"></i>
             <i class="px"></i><i class="px on"></i><i class="px"></i><i class="px on"></i><i class="px"></i><i class="px"></i>
@@ -927,17 +932,15 @@ img,svg{display:block;max-width:100%}
       </div>
 
       <div style="margin-top:22px">
-        <p class="label" style="margin-bottom:12px">Ten social-first reels — six from the brand day, four from the opening</p>
+        <p class="label" style="margin-bottom:12px">Eight social-first reels — five from the brand day, three from the opening</p>
         <div class="reels">
           <div class="shot sm reel" style="width:104px"><svg class="art"><use href="#m-land"/></svg><span class="cap">The land</span></div>
           <div class="shot sm reel" style="width:104px"><svg class="art"><use href="#m-chicken"/></svg><span class="cap">Animals</span></div>
           <div class="shot sm reel" style="width:104px"><svg class="art"><use href="#m-shelf"/></svg><span class="cap">Market</span></div>
           <div class="shot sm reel" style="width:104px"><svg class="art"><use href="#m-coffee"/></svg><span class="cap">Coffee bar</span></div>
-          <div class="shot sm reel" style="width:104px"><svg class="art"><use href="#m-honey"/></svg><span class="cap">The goods</span></div>
           <div class="shot sm reel" style="width:104px"><svg class="art"><use href="#m-people"/></svg><span class="cap">The family</span></div>
           <div class="shot sm reel" style="width:104px"><svg class="art"><use href="#m-gate"/></svg><span class="cap">Doors open</span></div>
           <div class="shot sm reel" style="width:104px"><svg class="art"><use href="#m-basket"/></svg><span class="cap">Opening day</span></div>
-          <div class="shot sm reel" style="width:104px"><svg class="art"><use href="#m-tractor"/></svg><span class="cap">On the farm</span></div>
           <div class="shot sm reel" style="width:104px"><svg class="art"><use href="#m-sunrise"/></svg><span class="cap">Come visit</span></div>
           <div style="flex:1;display:flex;align-items:flex-end;padding-left:16px">
             <p class="note">Vertical, 15–30 seconds, captioned and ready to post.<br>Anticipation cuts go out before the doors open.</p>
@@ -984,8 +987,8 @@ img,svg{display:block;max-width:100%}
           <div class="mini">
             <div><b>One cinematic hero brand film</b>, 2–3 minutes</div>
             <div><b>One opening-day recap sizzle</b>, 30–60 seconds, plus cutdowns from the hero</div>
-            <div><b>Sixteen social-first Reels / TikToks</b> across anticipation, farm life and opening</div>
-            <div><b>75 edited photographs</b></div>
+            <div><b>Twelve social-first Reels / TikToks</b> across anticipation, farm life and opening</div>
+            <div><b>60 edited photographs</b></div>
             <div><b>Caption drafts</b> for delivered video</div>
             <div>Pre-production, shot list and planning calls</div>
             <div>Two consolidated revision rounds</div>
@@ -996,7 +999,7 @@ img,svg{display:block;max-width:100%}
           <div style="margin-top:22px;display:flex;align-items:flex-end;justify-content:space-between;gap:20px">
             <div>
               <p class="tag" style="margin-bottom:10px">Investment</p>
-              <span class="price">$19,950</span>
+              <span class="price">$13,950</span>
             </div>
             <span class="pill sm">Three days</span>
           </div>
@@ -1008,8 +1011,8 @@ img,svg{display:block;max-width:100%}
         <div style="display:grid;grid-template-columns:auto 1fr;gap:72px;align-items:end">
           <div class="counts">
             <div><b>2+</b><span>Films, plus<br>cutdowns</span></div>
-            <div><b>16</b><span>Social-first reels<br>Vertical</span></div>
-            <div><b>75</b><span>Edited<br>photographs</span></div>
+            <div><b>12</b><span>Social-first reels<br>Vertical</span></div>
+            <div><b>60</b><span>Edited<br>photographs</span></div>
           </div>
           <p class="body" style="max-width:42em">
             <b style="color:#1a1a1b;font-weight:600">Best if</b> you want a fuller run of content through the season —
@@ -1021,7 +1024,7 @@ img,svg{display:block;max-width:100%}
   </section></div>
 
   <!-- ══════════ 08 — OPTION C, DRAWN ══════════
-       Sixteen reels is the number that is hard to picture, so they run as one
+       Twelve reels is the number that is hard to picture, so they run as one
        unbroken row, grouped under the three buckets they are commissioned in.
        The row itself is the argument. -->
   <div class="frame" id="option-c-visual"><section class="slide">
@@ -1034,7 +1037,7 @@ img,svg{display:block;max-width:100%}
       </div>
 
       <div style="margin-top:30px;display:flex;align-items:baseline;gap:20px">
-        <h2 class="d3">Sixteen reels across the season.</h2>
+        <h2 class="d3">Twelve reels across the season.</h2>
         <p class="tag">Enough to post through the wait, the opening and the week after</p>
       </div>
 
@@ -1052,7 +1055,7 @@ img,svg{display:block;max-width:100%}
           <span class="cap">Opening / Christmas-season sizzle</span>
         </div>
         <div style="flex:1">
-          <p class="label" style="margin-bottom:11px">75 edited photographs</p>
+          <p class="label" style="margin-bottom:11px">60 edited photographs</p>
           <div class="sheet" style="grid-template-columns:repeat(7,1fr);gap:6px">
             <i class="px on"></i><i class="px"></i><i class="px on"></i><i class="px"></i><i class="px"></i><i class="px on"></i><i class="px"></i>
             <i class="px"></i><i class="px on"></i><i class="px"></i><i class="px on"></i><i class="px"></i><i class="px"></i><i class="px on"></i>
@@ -1063,40 +1066,36 @@ img,svg{display:block;max-width:100%}
         </div>
       </div>
 
-      <div style="display:flex;gap:40px;margin-top:24px">
+      <div style="display:flex;gap:46px;margin-top:20px">
         <div>
-          <p class="label" style="margin-bottom:11px">Anticipation · 6</p>
+          <p class="label" style="margin-bottom:11px">Anticipation · 4</p>
           <div class="reels" style="gap:7px">
-            <div class="shot sm reel" style="width:76px"><svg class="art"><use href="#m-land"/></svg></div>
-            <div class="shot sm reel" style="width:76px"><svg class="art"><use href="#m-barn"/></svg></div>
-            <div class="shot sm reel" style="width:76px"><svg class="art"><use href="#m-tree"/></svg></div>
-            <div class="shot sm reel" style="width:76px"><svg class="art"><use href="#m-sunrise"/></svg></div>
-            <div class="shot sm reel" style="width:76px"><svg class="art"><use href="#m-tractor"/></svg></div>
-            <div class="shot sm reel" style="width:76px"><svg class="art"><use href="#m-camera"/></svg></div>
+            <div class="shot sm reel" style="width:92px"><svg class="art"><use href="#m-land"/></svg></div>
+            <div class="shot sm reel" style="width:92px"><svg class="art"><use href="#m-barn"/></svg></div>
+            <div class="shot sm reel" style="width:92px"><svg class="art"><use href="#m-sunrise"/></svg></div>
+            <div class="shot sm reel" style="width:92px"><svg class="art"><use href="#m-tractor"/></svg></div>
           </div>
-          <p class="note" style="margin-top:13px;max-width:30em">Posted through late November<br>to build the wait.</p>
+          <p class="note" style="margin-top:11px;max-width:30em">Posted through late November<br>to build the wait.</p>
         </div>
         <div>
-          <p class="label" style="margin-bottom:11px">Farm life · 5</p>
+          <p class="label" style="margin-bottom:11px">Farm life · 4</p>
           <div class="reels" style="gap:7px">
-            <div class="shot sm reel" style="width:76px"><svg class="art"><use href="#m-chicken"/></svg></div>
-            <div class="shot sm reel" style="width:76px"><svg class="art"><use href="#m-shelf"/></svg></div>
-            <div class="shot sm reel" style="width:76px"><svg class="art"><use href="#m-coffee"/></svg></div>
-            <div class="shot sm reel" style="width:76px"><svg class="art"><use href="#m-honey"/></svg></div>
-            <div class="shot sm reel" style="width:76px"><svg class="art"><use href="#m-flower"/></svg></div>
+            <div class="shot sm reel" style="width:92px"><svg class="art"><use href="#m-chicken"/></svg></div>
+            <div class="shot sm reel" style="width:92px"><svg class="art"><use href="#m-shelf"/></svg></div>
+            <div class="shot sm reel" style="width:92px"><svg class="art"><use href="#m-coffee"/></svg></div>
+            <div class="shot sm reel" style="width:92px"><svg class="art"><use href="#m-flower"/></svg></div>
           </div>
-          <p class="note" style="margin-top:13px;max-width:26em">The market, the animals<br>and the people, in season.</p>
+          <p class="note" style="margin-top:11px;max-width:26em">The market, the animals<br>and the people, in season.</p>
         </div>
         <div>
-          <p class="label" style="margin-bottom:11px">Opening &amp; season · 5</p>
+          <p class="label" style="margin-bottom:11px">Opening &amp; season · 4</p>
           <div class="reels" style="gap:7px">
-            <div class="shot sm reel" style="width:76px"><svg class="art"><use href="#m-gate"/></svg></div>
-            <div class="shot sm reel" style="width:76px"><svg class="art"><use href="#m-people"/></svg></div>
-            <div class="shot sm reel" style="width:76px"><svg class="art"><use href="#m-basket"/></svg></div>
-            <div class="shot sm reel" style="width:76px"><svg class="art"><use href="#m-wreath"/></svg></div>
-            <div class="shot sm reel" style="width:76px"><svg class="art"><use href="#m-snow"/></svg></div>
+            <div class="shot sm reel" style="width:92px"><svg class="art"><use href="#m-gate"/></svg></div>
+            <div class="shot sm reel" style="width:92px"><svg class="art"><use href="#m-people"/></svg></div>
+            <div class="shot sm reel" style="width:92px"><svg class="art"><use href="#m-wreath"/></svg></div>
+            <div class="shot sm reel" style="width:92px"><svg class="art"><use href="#m-snow"/></svg></div>
           </div>
-          <p class="note" style="margin-top:13px;max-width:26em">Cut while the day<br>is still news.</p>
+          <p class="note" style="margin-top:11px;max-width:26em">Cut while the day<br>is still news.</p>
         </div>
       </div>
 
@@ -1131,13 +1130,13 @@ img,svg{display:block;max-width:100%}
         </thead>
         <tbody>
           <tr><th>Production days</th><td><b>1</b></td><td class="rec"><b>2</b></td><td><b>3</b></td></tr>
-          <tr><th>Hero film</th><td>60–90 sec</td><td class="rec"><b>2–3 min</b></td><td><b>2–3 min</b> + cutdowns</td></tr>
+          <tr><th>Hero film</th><td>60–90 sec</td><td class="rec"><b>90s–2 min</b></td><td><b>2–3 min</b> + cutdowns</td></tr>
           <tr><th>Opening sizzle</th><td>—</td><td class="rec"><b>30–60 sec</b></td><td><b>30–60 sec</b></td></tr>
-          <tr><th>Social-first reels</th><td><b>6</b></td><td class="rec"><b>10</b></td><td><b>16</b></td></tr>
-          <tr><th>Edited photographs</th><td><b>25–35</b></td><td class="rec"><b>50</b></td><td><b>75</b></td></tr>
+          <tr><th>Social-first reels</th><td><b>5</b></td><td class="rec"><b>8</b></td><td><b>12</b></td></tr>
+          <tr><th>Edited photographs</th><td><b>20–25</b></td><td class="rec"><b>40</b></td><td><b>60</b></td></tr>
           <tr><th>Caption drafts</th><td>—</td><td class="rec">—</td><td><b>Included</b></td></tr>
           <tr><th>Pre-production</th><td>Shot list, light</td><td class="rec">Shot list + planning call</td><td>Shot list + planning calls</td></tr>
-          <tr><th>Investment</th><td><b>$6,950</b></td><td class="rec"><b>$12,950</b></td><td><b>$19,950</b></td></tr>
+          <tr><th>Investment</th><td><b>$4,950</b></td><td class="rec"><b>$8,950</b></td><td><b>$13,950</b></td></tr>
         </tbody>
       </table>
 
@@ -1149,7 +1148,7 @@ img,svg{display:block;max-width:100%}
   </section></div>
 
   <!-- ══════════ THE RUNWAY ══════════
-       The comparison table says 6 / 10 / 16 reels. Nobody feels the difference
+       The comparison table says 5 / 8 / 12 reels. Nobody feels the difference
        between those three numbers. Divided by a posting cadence they turn into
        weeks on the calendar, which is the thing a client can picture — and the
        reason the middle option is the floor rather than the upsell. -->
@@ -1158,43 +1157,43 @@ img,svg{display:block;max-width:100%}
     <div class="pad">
       <div class="slate"><span class="wm">Illusia</span><span class="tag">How far each option carries you · <span class="folio">11</span></span></div>
 
-      <div style="margin-top:28px;display:flex;align-items:baseline;gap:20px">
-        <h2 class="d3">Six reels is three weeks. Sixteen is the season.</h2>
-        <p class="tag">At a steady two reels a week</p>
+      <div style="margin-top:28px">
+        <h2 class="d3" style="max-width:19em">Five reels runs out the week you open. Twelve carries the season.</h2>
+        <p class="tag" style="margin-top:14px">At a steady two reels a week</p>
       </div>
 
-      <div class="rw-wrap" style="margin-top:72px">
+      <div class="rw-wrap" style="margin-top:54px">
         <div class="runway" style="margin-bottom:22px">
           <div></div>
           <div class="rw-head">
-            <span>Wk 1</span><span>Wk 2</span><span>Wk 3</span><span class="open">Opening</span>
-            <span>Wk 5</span><span>Wk 6</span><span>Wk 7</span><span>Wk 8</span>
+            <span>Wk 1</span><span>Wk 2</span><span class="open">Opening</span>
+            <span>Wk 4</span><span>Wk 5</span><span>Wk 6</span>
           </div>
           <div></div>
         </div>
 
         <div class="runway" style="margin-bottom:38px">
-          <div class="rw-name">Option A<small>6 reels · 1 day</small></div>
+          <div class="rw-name">Option A<small>5 reels · 1 day</small></div>
           <div class="rw-track">
-            <i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i><i></i><i></i><i></i>
+            <i class="on"></i><i class="on"></i><i class="half"></i><i></i><i></i><i></i>
           </div>
-          <p class="rw-note"><b>Three weeks.</b> One shoot day means choosing: the build-up, or the day itself. Not both.</p>
+          <p class="rw-note"><b>Two and a half weeks.</b> One shoot day means choosing: the build-up, or the day itself. Not both.</p>
         </div>
 
         <div class="runway" style="margin-bottom:38px">
-          <div class="rw-name">Option B<small>10 reels · 2 days</small></div>
+          <div class="rw-name">Option B<small>8 reels · 2 days</small></div>
           <div class="rw-track">
-            <i class="hon"></i><i class="hon"></i><i class="hon"></i><i class="hon"></i><i class="hon"></i><i></i><i></i><i></i>
+            <i class="hon"></i><i class="hon"></i><i class="hon"></i><i class="hon"></i><i></i><i></i>
           </div>
-          <p class="rw-note"><b>Five weeks.</b> The build-up, the opening, and the week after it — while people are still looking.</p>
+          <p class="rw-note"><b>Four weeks.</b> The build-up, the opening, and the week after it — while people are still looking.</p>
         </div>
 
         <div class="runway">
-          <div class="rw-name">Option C<small>16 reels · 3 days</small></div>
+          <div class="rw-name">Option C<small>12 reels · 3 days</small></div>
           <div class="rw-track">
-            <i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i>
+            <i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i>
           </div>
-          <p class="rw-note"><b>Eight weeks.</b> First teaser through the season, without the feed ever going quiet.</p>
+          <p class="rw-note"><b>Six weeks.</b> First teaser through the season, without the feed ever going quiet.</p>
         </div>
 
         <p class="note" style="margin-top:26px;padding-left:242px">
@@ -1206,9 +1205,9 @@ img,svg{display:block;max-width:100%}
         <div class="rule" style="margin-bottom:26px"></div>
         <div style="display:grid;grid-template-columns:auto 1fr;gap:72px;align-items:end">
           <div class="counts">
-            <div><b>25–35</b><span>Stills, Option A</span></div>
-            <div><b>50</b><span>Stills, Option B</span></div>
-            <div><b>75</b><span>Stills, Option C</span></div>
+            <div><b>20–25</b><span>Stills, Option A</span></div>
+            <div><b>40</b><span>Stills, Option B</span></div>
+            <div><b>60</b><span>Stills, Option C</span></div>
           </div>
           <p class="body" style="max-width:44em">
             Photographs post in between and stretch every one of these further — the weeks above count
