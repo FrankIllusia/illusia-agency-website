@@ -14,6 +14,7 @@ const nextConfig: NextConfig = {
       { source: "/mediaradar-pricing-deck", destination: "/mediaradar-pricing-deck/index.html" },
       { source: "/oakhill-deck", destination: "/oakhill-deck/index.html" },
       { source: "/devon-deck", destination: "/devon-deck/index.html" },
+      { source: "/oakhill-campaign-deck", destination: "/oakhill-campaign-deck/index.html" },
     ];
   },
 };
