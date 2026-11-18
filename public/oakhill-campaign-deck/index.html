@@ -303,6 +303,47 @@ img,svg{display:block;max-width:100%}
 .rw-note{font-size:14.5px;line-height:1.5;color:var(--ash)}
 .rw-note b{color:#1a1a1b;font-weight:600}
 
+/* ═══════════════════════════════════════════════════════════════════════
+   THE PLAN
+
+   The schedule was ten table rows, which is a log of events rather than a
+   plan: it told you what happens without ever showing the shape of it. Two
+   bands on one time axis do that instead — what we are on site for along the
+   top, what lands in the farm's hands underneath — so the answer to "when do
+   we get the film" is a position on a line rather than a row to find.
+
+   Ink is Illusia's work, honey is the farm's. That is the same split the rest
+   of the deck uses, so the two colours need no key.
+   ═══════════════════════════════════════════════════════════════════════ */
+.plan{display:grid;grid-template-columns:116px repeat(7,1fr);column-gap:10px;align-items:stretch}
+.plan + .plan{margin-top:18px}
+.plan-lbl{display:flex;align-items:center;
+  font-family:var(--mono);font-size:10.5px;font-weight:600;letter-spacing:.15em;
+  text-transform:uppercase;color:var(--dim)}
+.plan-ax{font-family:var(--mono);font-size:10.5px;font-weight:600;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--faint);text-align:center;padding-bottom:10px;line-height:1.4}
+.plan-ax.now{color:#1a1a1b;background:var(--accent);border-radius:999px;padding:6px 0;align-self:center}
+/* Opening day as one band through every row. Measured against the fixed
+   stage: the rows are 116px + seven columns with 10px gaps inside 1416, so a
+   column is 175.7 wide and the fourth starts at 116+10+3*185.7 = 683. */
+.plan-wrap{position:relative}
+.plan-now{position:absolute;left:683px;width:176px;top:42px;bottom:-6px;z-index:0;
+  background:rgba(240,206,107,.2);border-radius:12px}
+.plan-wrap .plan{position:relative;z-index:1}
+.pcard{border-radius:10px;padding:16px 16px;min-height:108px;display:flex;flex-direction:column;justify-content:center}
+.pcard b{display:block;font-family:var(--display);font-weight:600;font-size:17px;letter-spacing:-.01em;line-height:1.15}
+.pcard span{display:block;font-family:var(--mono);font-size:9.5px;font-weight:600;letter-spacing:.11em;
+  text-transform:uppercase;margin-top:6px;line-height:1.4}
+.pcard.shoot{background:rgba(26,26,27,.86);color:#F4F2EE}
+.pcard.shoot span{color:rgba(244,242,238,.66)}
+.pcard.give{background:var(--accent);color:#1a1a1b;border:1px solid rgba(26,26,27,.3)}
+.pcard.give span{color:rgba(26,26,27,.62)}
+.plan-bar{grid-column:2 / -1;border-radius:10px;padding:15px 20px;min-height:76px;
+  display:flex;align-items:center;justify-content:space-between;gap:20px;
+  border:1px dashed rgba(26,26,27,.42);background:rgba(26,26,27,.035)}
+.plan-bar b{font-family:var(--display);font-weight:600;font-size:17px;letter-spacing:-.01em}
+.plan-bar span{font-size:14px;color:var(--ash)}
+
 /* ═══ Comparison table ═══ */
 .cmp{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums}
 .cmp th,.cmp td{text-align:left;padding:14px 20px;border-top:1px solid var(--hair);vertical-align:middle}
@@ -690,46 +731,76 @@ img,svg{display:block;max-width:100%}
     </div>
   </section></div>
 
-  <!-- ══════════ 04 — THE SCHEDULE ══════════
-       Everything hangs off the opening date, so the schedule is written
-       relative to it rather than against calendar dates that do not exist yet.
-       The three honey rows are the moments that do the work. -->
+  <!-- ══════════ 04 — THE PLAN ══════════
+       Two bands on one axis: what Illusia is on site for, and what the farm
+       gets. Ten table rows told the same story and showed none of it. -->
   <div class="frame" id="schedule"><section class="slide">
-    <style>
-      /* Ten rows only clear the slide at a tighter rhythm than the comparison
-         tables this component was built for. */
-      #schedule .cmp th,#schedule .cmp td{padding:10px 20px}
-      #schedule .cmp tbody tr:first-child th,#schedule .cmp tbody tr:first-child td{border-top:0}
-    </style>
     <img class="watermark" src="/experiential-examples/logo/illusia-mark.svg" alt="">
     <div class="pad">
-      <div class="slate"><span class="wm">Illusia</span><span class="tag">The schedule · <span class="folio">04</span></span></div>
+      <div class="slate"><span class="wm">Illusia</span><span class="tag">The plan · <span class="folio">04</span></span></div>
 
-      <div style="margin-top:24px">
-        <h2 class="d3" style="max-width:22em">The hero film lands four days before you open.</h2>
-        <p class="tag" style="margin-top:12px">Counted from opening day, whenever that date is set</p>
+      <div style="margin-top:24px;display:flex;align-items:baseline;gap:20px">
+        <h2 class="d3">Four visits. Three deliveries.</h2>
+        <p class="tag">Counted from opening day, whenever that date is set</p>
       </div>
 
-      <table class="cmp" style="margin-top:24px">
-        <tbody>
-          <tr><th>3 weeks before</th><td><b>Day 1 on site</b></td><td>Anticipation. The farm before it opens.</td></tr>
-          <tr><th>18 days before</th><td><b>First reels posting</b></td><td>Anticipation cuts start going out.</td></tr>
-          <tr><th>2 weeks before</th><td><b>Day 2 on site</b></td><td>Farm life, the family, the vision.</td></tr>
-          <tr><th>9 days before</th><td><b>Hero film, first cut</b></td><td>2–3 minutes, sent for notes.</td></tr>
-          <tr><th>6 days before</th><td><b>Notes back</b></td><td>One consolidated round.</td></tr>
-          <tr><th class="rec">4 days before</th><td class="rec"><b>Hero film final</b></td><td class="rec">Posts, and carries the week into opening.</td></tr>
-          <tr><th class="rec">Opening day</th><td class="rec"><b>Day 3 on site</b></td><td class="rec">Opening day. Two-person crew.</td></tr>
-          <tr><th class="rec">2 days after</th><td class="rec"><b>Opening sizzle delivered</b></td><td class="rec">30–60 seconds, cut while it is still news.</td></tr>
-          <tr><th>10 days after</th><td><b>Day 4 on site</b></td><td>The farm in its first weeks open.</td></tr>
-          <tr><th>3 weeks after</th><td><b>Everything else delivered</b></td><td>Cutdowns, remaining reels, the full 75-photo gallery.</td></tr>
-        </tbody>
-      </table>
+      <div class="plan-wrap" style="margin-top:46px">
+        <div class="plan-now" aria-hidden="true"></div>
+      <div class="plan">
+        <div></div>
+        <div class="plan-ax">3 weeks<br>before</div>
+        <div class="plan-ax">2 weeks<br>before</div>
+        <div class="plan-ax">4 days<br>before</div>
+        <div class="plan-ax now">Opening day</div>
+        <div class="plan-ax">2 days<br>after</div>
+        <div class="plan-ax">10 days<br>after</div>
+        <div class="plan-ax">3 weeks<br>after</div>
+      </div>
+      <div class="plan">
+        <div class="plan-lbl">We&nbsp;shoot</div>
+        <div class="pcard shoot"><b>Day 1</b><span>Anticipation</span></div>
+        <div class="pcard shoot"><b>Day 2</b><span>Farm life</span></div>
+        <div></div>
+        <div class="pcard shoot"><b>Day 3</b><span>Opening · 2 cameras</span></div>
+        <div></div>
+        <div class="pcard shoot"><b>Day 4</b><span>After opening</span></div>
+        <div></div>
+      </div>
+      <div class="plan">
+        <div class="plan-lbl">You&nbsp;get</div>
+        <div></div>
+        <div></div>
+        <div class="pcard give"><b>Hero film</b><span>2–3 minutes</span></div>
+        <div></div>
+        <div class="pcard give"><b>Opening sizzle</b><span>30–60 seconds</span></div>
+        <div></div>
+        <div class="pcard give"><b>Everything else</b><span>Cutdowns · reels · 75 photos</span></div>
+      </div>
+      <div class="plan" style="margin-top:18px">
+        <div class="plan-lbl">You&nbsp;post</div>
+        <div class="plan-bar">
+          <b>16 reels, going out the whole way through</b>
+          <span>Anticipation cuts before you open, farm life and opening coverage after</span>
+        </div>
+      </div>
+      </div>
 
-      <p class="body" style="margin-top:auto;max-width:72em">
-        <b style="color:#1a1a1b;font-weight:600">The brand film is built from days one and two</b>, which is why both sit
-        before the opening. Delivered four days ahead it is the thing that fills the parking lot. Delivered after,
-        it is a nice asset that missed its moment.
-      </p>
+      <div style="margin-top:auto">
+        <div class="rule" style="margin-bottom:26px"></div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:56px">
+          <p class="body">
+            <b style="color:#1a1a1b;font-weight:600">The brand film arrives four days before you open.</b>
+            It is built from the first two visits, which is why both sit ahead of opening day. Four days
+            out it is the thing that fills the parking lot. Delivered afterwards it is a nice film that
+            missed its moment.
+          </p>
+          <p class="body">
+            <b style="color:#1a1a1b;font-weight:600">The opening sizzle arrives two days after.</b>
+            Fast enough that people who came are still talking about it, and people who did not can
+            still see what they missed.
+          </p>
+        </div>
+      </div>
     </div>
   </section></div>
 
