@@ -1,0 +1,1421 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Illusia × Oak Hill Farm — Content Campaign</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="A content campaign for Oak Hill Farm in Holmdel — three options, each with the films, reels and photography it delivers, drawn out slide by slide.">
+<!-- Unlisted, same arrangement as /mediaradar-pricing-deck: nothing on the site
+     links here, and this keeps it out of search for anyone who did not get the
+     link directly. Deliberately not a robots.txt rule — that file is public, so
+     a Disallow line would advertise the very path it is meant to keep quiet. -->
+<meta name="robots" content="noindex, nofollow">
+<meta name="googlebot" content="noindex, nofollow">
+<!-- HOSTED COPY: asset paths are absolute because this page is served at
+     /oakhill-deck with no trailing slash, so relative paths would resolve
+     against the site root. The Illusia mark is read from
+     /experiential-examples/logo/ rather than copied in beside this file —
+     same sharing the MediaRadar deck has with that folder. -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400..700;1,400..700&family=Instrument+Serif:ital@0;1&display=swap">
+
+<style>
+/* ═══════════════════════════════════════════════════════════════════════
+   TOKENS
+
+   The paper system off the MediaRadar deck, carried over intact: the same
+   #F4F2EE ground, the same #1a1a1b ink, the same Instrument Sans / Instrument
+   Serif pairing, the same type scale, panels, pills and spec rows. Three
+   decks reading as one studio is the point.
+
+   The one swap is the accent. MediaRadar spends a single bright token — their
+   lime — on the figures that matter, and that mechanism only works with a
+   LIGHT colour, because it is painted as a highlighter swipe behind black
+   type. Barn red and field green are both too dark to sit under ink. Honey is
+   the farm's own (they jar and sell it), it is light enough to highlight
+   through, and it carries the warmth the lime never had to.
+
+   Barn and field are the supporting marks: hairlines, motif art and the
+   option spine. They are never asked to carry type.
+   ═══════════════════════════════════════════════════════════════════════ */
+:root{
+  --ink:#F4F2EE;
+  --riser:#F4F2EE;
+  --paper:#1a1a1b;
+  --ash:rgba(26,26,27,.74);
+  --dim:rgba(26,26,27,.56);
+  --faint:rgba(26,26,27,.40);
+  --hair:rgba(26,26,27,.14);
+  --hair-hi:rgba(26,26,27,.26);
+
+  --accent:#F0CE6B;        /* honey — the one bright token */
+  --barn:#9C4A33;
+  --field:#53664A;
+  --sand:#E9E3D6;
+
+  --glass-fill:linear-gradient(145deg,rgba(26,26,27,.030) 0%,rgba(26,26,27,.014) 46%,rgba(26,26,27,.022) 100%);
+  --glass-edge:rgba(26,26,27,.13);
+  --glass-rim:inset 0 1px 0 rgba(255,255,255,.9);
+  --glass-cast:0 14px 36px rgba(26,26,27,.07);
+
+  --display:'Instrument Sans','Helvetica Neue',Arial,sans-serif;
+  --body:'Instrument Sans','Helvetica Neue',Arial,sans-serif;
+  /* MediaRadar has no monospace in its system and neither does this deck —
+     label, tag and spec type is tracked uppercase Instrument Sans, which has
+     tabular figures, so the spec and stat rules still get their alignment. */
+  --mono:'Instrument Sans','Helvetica Neue',Arial,sans-serif;
+}
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{background:#E7E4DE}
+html,body{scroll-snap-type:y proximity}
+body{
+  background:#E7E4DE;color:var(--paper);
+  font-family:var(--body);
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;
+}
+img,svg{display:block;max-width:100%}
+
+/* ═══ Stage — authored at true 1600×900, scaled to the viewport ═══ */
+.deck{display:flex;flex-direction:column;align-items:center;gap:14px;padding:14px 0 72px}
+.frame{
+  width:calc(1600px * var(--s,.5));
+  height:calc(900px * var(--s,.5));
+  scroll-snap-align:center;flex:0 0 auto;position:relative;
+}
+.slide{
+  width:1600px;height:900px;transform:scale(var(--s,.5));transform-origin:0 0;
+  position:relative;overflow:hidden;background:var(--ink);
+  font-size:19px;line-height:1.6;
+}
+.pad{position:absolute;inset:0;padding:74px 92px;display:flex;flex-direction:column;z-index:2}
+
+.watermark{position:absolute;z-index:1;pointer-events:none;
+  width:923px;max-width:none;height:auto;opacity:.028;
+  right:-184px;bottom:-74px;filter:blur(8px) invert(1)}
+
+/* ═══ Type scale ═══ */
+.d1{font-family:var(--display);font-weight:400;font-size:100px;line-height:1.0;letter-spacing:-.032em;text-wrap:balance}
+.d2{font-family:var(--display);font-weight:400;font-size:66px;line-height:1.04;letter-spacing:-.03em;text-wrap:balance}
+.d3{font-family:var(--display);font-weight:600;font-size:42px;line-height:1.1;letter-spacing:-.025em;text-wrap:balance}
+/* Instrument Serif has one weight and is drawn light, so at headline size it
+   wants a touch more size than the sans beside it to hold the same line. */
+.serif{font-family:'Instrument Serif',Georgia,'Times New Roman',serif;
+  font-style:italic;font-weight:400;letter-spacing:-.012em;font-size:1.06em}
+.lede{font-size:22.5px;line-height:1.54;color:var(--ash);max-width:25em}
+.body{font-size:17px;line-height:1.62;color:var(--ash)}
+.label{font-family:var(--mono);font-size:13px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:var(--dim)}
+.tag{font-family:var(--mono);font-size:12px;font-weight:500;letter-spacing:.13em;text-transform:uppercase;color:var(--faint)}
+
+/* ═══ Panels ═══
+   On a cream ground there is nothing for frost to do, so a panel is a flat
+   near-white field inside a hairline. */
+.glass{
+  position:relative;
+  background:var(--glass-fill);
+  background-color:rgba(255,255,255,.5);
+  border:1px solid var(--glass-edge);
+  border-radius:24px;
+  box-shadow:var(--glass-rim),var(--glass-cast);
+}
+.glass > *{position:relative;z-index:1}
+
+.pill{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:9px 17px;border-radius:999px;
+  background:transparent;border:1px solid rgba(26,26,27,.72);
+  font-family:var(--mono);font-size:12px;font-weight:500;letter-spacing:.13em;text-transform:uppercase;
+  color:rgba(26,26,27,.9);white-space:nowrap;
+}
+/* The one filled button. At most one per slide. */
+.pill.honey{background:var(--accent);border-color:var(--accent);color:#1a1a1b}
+.pill.sm{padding:7px 14px;font-size:11px;letter-spacing:.11em}
+.pills{display:flex;gap:10px;flex-wrap:wrap}
+
+.rule{height:1px;background:var(--hair);width:100%;flex:0 0 1px}
+.note{font-family:var(--mono);font-size:11.5px;font-weight:500;line-height:1.72;letter-spacing:.04em;color:var(--faint)}
+:focus-visible{outline:2px solid rgba(26,26,27,.6);outline-offset:3px}
+
+/* ═══ Slate marks ═══ */
+.slate{position:relative;display:flex;justify-content:space-between;align-items:center;flex:0 0 auto}
+.wm{font-family:var(--display);font-weight:600;font-size:16px;letter-spacing:.3em;text-transform:uppercase;color:var(--paper)}
+.folio{font-variant-numeric:tabular-nums;color:var(--paper);opacity:.85}
+
+/* ═══ Spec rows — label left, value right, hairline between ═══ */
+.spec{display:flex;flex-direction:column}
+.spec div{border-top:1px solid var(--hair);padding:8px 0;display:flex;justify-content:space-between;gap:16px;
+  font-family:var(--mono);font-size:12.5px;font-weight:500;letter-spacing:.07em;text-transform:uppercase;color:var(--dim);
+  font-variant-numeric:tabular-nums}
+.spec div b{font-family:var(--mono);font-size:12.5px;font-weight:600;letter-spacing:.07em;color:#1a1a1b;text-align:right}
+
+/* ═══ Checked lines ═══ */
+.work{display:grid;grid-template-columns:repeat(3,1fr);gap:36px}
+.mini{display:flex;flex-direction:column}
+.mini div{position:relative;padding:6px 0 6px 27px;font-size:15px;line-height:1.45;color:var(--ash)}
+.mini div::before{content:'';position:absolute;left:0;top:11px;width:14px;height:14px;
+  background:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%231a1a1b' stroke-opacity='0.62' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><circle cx='12' cy='12' r='9'/><path d='M8 12.4l2.7 2.7L16.2 9.5'/></svg>") no-repeat center/contain}
+.mini b{color:#1a1a1b;font-weight:600}
+
+/* ═══ Figures ═══ */
+.res{display:flex;flex-direction:column;gap:13px}
+.res div{display:flex;flex-direction:column;gap:4px}
+.res b{font-family:var(--display);font-weight:600;font-size:27px;letter-spacing:-.035em;
+  line-height:1;color:#1a1a1b;align-self:flex-start;padding:0 .14em;
+  /* The band is lifted off the box floor: with line-height:1 the digits sit
+     above the bottom of their own box, so a swipe anchored at 0 lands under
+     the glyphs and reads as a rule. 12%–54% overlaps their lower third, which
+     is what makes it read as a highlighter instead. */
+  background:linear-gradient(to top,transparent 12%,var(--accent) 12%,var(--accent) 54%,transparent 54%)}
+/* The proof column on the Why now slide, where the figures carry the slide
+   rather than annotate a project. */
+.res.big b{font-size:42px;letter-spacing:-.04em}
+.res.big span{font-size:10.5px}
+.res span{font-family:var(--mono);font-size:10px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--dim);line-height:1.45}
+
+/* The investment figure. Same highlighter, at headline size. */
+.price{font-family:var(--display);font-weight:600;font-size:56px;letter-spacing:-.04em;line-height:1;
+  font-variant-numeric:tabular-nums;color:#1a1a1b;align-self:flex-start;padding:0 .1em;
+  background:linear-gradient(to top,transparent 9%,var(--accent) 9%,var(--accent) 46%,transparent 46%)}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   STORYBOARD TILES
+
+   The deliverables, drawn. Every package slide is followed by a slide of
+   these: a frame at the true aspect ratio of the thing being sold — 16:9 for
+   a film, 9:16 for a reel, 3:2 for a photograph — carrying line art of the
+   subject and a caption naming the shot.
+
+   Line art rather than stock photography on purpose. Nothing here has been
+   filmed yet, and a borrowed photograph would be quietly claiming otherwise.
+   A drawn frame says "this is the shot we are proposing" and cannot be
+   mistaken for footage.
+   ═══════════════════════════════════════════════════════════════════════ */
+.shot{position:relative;overflow:hidden;border-radius:13px;
+  border:1px solid rgba(26,26,27,.78);
+  background:linear-gradient(168deg,#F7F3EA 0%,var(--sand) 58%,#E3DBCA 100%);
+  box-shadow:0 10px 26px rgba(26,26,27,.09);
+  display:flex;align-items:center;justify-content:center;flex:0 0 auto}
+/* A soft horizon so a frame reads as a picture, not a swatch. */
+.shot::after{content:'';position:absolute;left:0;right:0;bottom:0;height:34%;
+  background:linear-gradient(to top,rgba(83,102,74,.14),transparent);pointer-events:none}
+.shot .art{width:52%;height:52%;color:rgba(26,26,27,.62);position:relative;z-index:1}
+.shot.lg .art{width:40%;height:46%}
+.shot .cap{position:absolute;left:9px;right:9px;bottom:9px;z-index:2;
+  padding:6px 9px;border-radius:8px;
+  background:rgba(244,242,238,.9);border:1px solid rgba(26,26,27,.16);
+  font-family:var(--mono);font-size:9.5px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;
+  color:rgba(26,26,27,.82);line-height:1.3}
+.shot.lg .cap{left:14px;right:auto;bottom:14px;padding:9px 14px;border-radius:11px;font-size:11.5px;letter-spacing:.13em}
+/* Duration / format, top-right, so a frame declares what it is. */
+.shot .fmt{position:absolute;right:9px;top:9px;z-index:2;
+  padding:5px 8px;border-radius:7px;
+  background:rgba(26,26,27,.86);
+  font-family:var(--mono);font-size:9px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;
+  color:#F4F2EE}
+.shot.lg .fmt{right:14px;top:14px;padding:7px 12px;border-radius:9px;font-size:11px;letter-spacing:.12em}
+/* The hero film frame carries a play mark, the way the work decks do — on the
+   page it reads as "this is a film" rather than a picture. */
+.shot .play{position:absolute;right:16px;bottom:16px;z-index:2;
+  width:62px;height:62px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+  background:rgba(244,242,238,.82);border:1px solid rgba(26,26,27,.3);
+  box-shadow:0 10px 28px rgba(26,26,27,.16)}
+.shot .play::after{content:'';border-left:19px solid rgba(26,26,27,.82);
+  border-top:11px solid transparent;border-bottom:11px solid transparent;margin-left:5px}
+.shot.sm .play{width:40px;height:40px}
+.shot.sm .play::after{border-left:13px solid rgba(26,26,27,.82);
+  border-top:8px solid transparent;border-bottom:8px solid transparent;margin-left:4px}
+
+.reels{display:flex;gap:14px}
+.reel{width:124px;aspect-ratio:9/16}
+.reel.xs{width:92px}
+
+/* The photography count, shown as a contact sheet rather than a number. */
+.sheet{display:grid;gap:7px;align-content:start}
+.sheet .px{aspect-ratio:3/2;border-radius:4px;
+  background:linear-gradient(168deg,#F7F3EA 0%,var(--sand) 60%,#E0D7C4 100%);
+  border:1px solid rgba(26,26,27,.3)}
+/* Every fourth frame carries a trace of the subject, so the sheet reads as
+   photographs rather than as a grid of empty cells. */
+.sheet .px.on{background:linear-gradient(168deg,#EFE7D6 0%,#DED3BC 62%,#CFC2A6 100%)}
+
+/* ═══ Day / season timeline ═══ */
+.tl{position:relative;display:flex;align-items:stretch;gap:0;width:100%}
+.tl .seg{flex:1;position:relative;padding:15px 18px 0;border-top:2px solid rgba(26,26,27,.78)}
+.tl .seg::before{content:'';position:absolute;left:0;top:-6px;width:10px;height:10px;border-radius:50%;
+  background:var(--accent);border:1.5px solid rgba(26,26,27,.78)}
+.tl .seg.off{border-top-color:var(--hair-hi)}
+.tl .seg.off::before{background:var(--ink)}
+.tl .seg b{display:block;font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.14em;
+  text-transform:uppercase;color:#1a1a1b;margin-bottom:5px}
+.tl .seg span{display:block;font-size:14px;line-height:1.45;color:var(--ash)}
+
+.counts{display:flex;gap:46px}
+.counts div{display:flex;flex-direction:column;gap:8px}
+.counts b{font-family:var(--display);font-weight:600;font-size:46px;letter-spacing:-.04em;line-height:1;
+  color:#1a1a1b;font-variant-numeric:tabular-nums}
+.counts span{font-family:var(--mono);font-size:10.5px;font-weight:600;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--dim);line-height:1.5}
+
+/* ═══ The option spine — which of the three a slide belongs to ═══ */
+.spine{display:flex;align-items:center;gap:9px}
+.spine i{width:22px;height:4px;border-radius:2px;background:var(--hair-hi);display:block}
+.spine i.on{background:#1a1a1b}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   THE RUNWAY
+
+   Reel counts turned into weeks of posting, which is the unit a client
+   actually feels. Pure arithmetic off the deliverables at a stated cadence —
+   6, 10 and 16 reels at two a week — so the chart makes a claim that can be
+   checked rather than forecast.
+   ═══════════════════════════════════════════════════════════════════════ */
+.runway{display:grid;grid-template-columns:212px 1fr 272px;gap:30px;align-items:center}
+.rw-track{display:grid;grid-template-columns:repeat(8,1fr);gap:9px}
+.rw-track i{display:block;height:50px;border-radius:9px;
+  border:1px solid var(--hair-hi);background:transparent}
+.rw-track i.on{background:rgba(26,26,27,.84);border-color:rgba(26,26,27,.84)}
+.rw-track i.hon{background:var(--accent);border-color:rgba(26,26,27,.34)}
+.rw-head{display:grid;grid-template-columns:repeat(8,1fr);gap:9px}
+.rw-head span{font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--faint);text-align:center}
+/* The week the whole thing is pointed at. */
+.rw-head span.open{color:#1a1a1b;background:var(--accent);border-radius:999px;padding:5px 0}
+/* The guide runs from under the Opening pill to the floor of the last bar.
+   Measured against the fixed 1600px stage: the track starts at 212+30=242 and
+   runs 872 wide, so eight columns with 9px gaps are 101.1 each and the centre
+   of the fourth lands at 242 + 3*110.1 + 50.6 = 623. */
+.rw-wrap{position:relative}
+.rw-wrap::before{content:'';position:absolute;left:623px;top:26px;bottom:6px;width:0;
+  border-left:1px dashed rgba(26,26,27,.3);pointer-events:none}
+.rw-name{font-family:var(--display);font-weight:600;font-size:21px;letter-spacing:-.02em;color:#1a1a1b}
+.rw-name small{display:block;font-family:var(--mono);font-size:10.5px;font-weight:600;letter-spacing:.13em;
+  text-transform:uppercase;color:var(--dim);margin-top:6px}
+.rw-note{font-size:14.5px;line-height:1.5;color:var(--ash)}
+.rw-note b{color:#1a1a1b;font-weight:600}
+
+/* ═══ Comparison table ═══ */
+.cmp{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums}
+.cmp th,.cmp td{text-align:left;padding:14px 20px;border-top:1px solid var(--hair);vertical-align:middle}
+.cmp thead th{border-top:0;padding-bottom:18px}
+.cmp tbody th{font-family:var(--mono);font-size:12px;font-weight:500;letter-spacing:.13em;text-transform:uppercase;
+  color:var(--dim);width:270px}
+.cmp td{font-size:17px;color:var(--ash)}
+.cmp td b{color:#1a1a1b;font-weight:600}
+/* The recommended column, lifted off the page. */
+.cmp .rec{background:rgba(240,206,107,.17)}
+.cmp thead .rec{border-radius:16px 16px 0 0}
+.cmp tbody tr:last-child .rec{border-radius:0 0 16px 16px}
+.cmp .hd{font-family:var(--display);font-size:26px;font-weight:600;letter-spacing:-.02em;color:#1a1a1b}
+.cmp .hd small{display:block;font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--dim);margin-top:6px}
+
+/* ═══ Chrome ═══ */
+.rail{position:fixed;top:0;left:0;right:0;height:2px;background:rgba(26,26,27,.08);z-index:50}
+.rail i{display:block;height:100%;width:0;background:#1a1a1b;transition:width .18s linear}
+.counter{
+  position:fixed;bottom:20px;left:50%;transform:translateX(-50%);z-index:50;
+  display:flex;align-items:center;gap:13px;
+  background:rgba(244,242,238,.82);
+  -webkit-backdrop-filter:blur(26px) saturate(170%);
+  backdrop-filter:blur(26px) saturate(170%);
+  border:1px solid rgba(26,26,27,.14);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.9),0 10px 30px rgba(26,26,27,.14);
+  border-radius:999px;padding:9px 18px;
+  font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:.14em;color:var(--dim)}
+.counter b{color:#1a1a1b;font-weight:600;font-variant-numeric:tabular-nums}
+.counter kbd{font-family:var(--mono);font-size:10px;border:1px solid rgba(26,26,27,.2);
+  border-radius:5px;padding:2px 6px;color:rgba(26,26,27,.7)}
+@media (prefers-reduced-motion:reduce){ .rail i{transition:none} }
+
+@media (max-width:820px){
+  .deck{gap:8px;padding:8px 0 56px}
+  .counter{padding:8px 14px;font-size:10px;gap:9px}
+  .counter kbd{display:none}
+}
+
+/* ═══ Print — 13.333in × 7.5in is the standard 16:9 slide page; the 1600px
+   stage scales to 1280×720 to land on it exactly. ═══ */
+@media print{
+  @page{size:13.333in 7.5in;margin:0}
+  html,body{background:#F4F2EE;scroll-snap-type:none}
+  .rail,.counter{display:none}
+  .deck{display:block;gap:0;padding:0}
+  .frame{width:1280px;height:720px;overflow:hidden;page-break-after:always;break-after:page}
+  .frame:last-child{page-break-after:auto;break-after:auto}
+  .slide{transform:scale(.8)!important;transform-origin:0 0}
+  /* A large blurred box-shadow rasterizes into its own layer, whose bounding
+     box shows as a faint rectangle on the page. Rim and border stay. */
+  .glass{background:rgba(255,255,255,.62)!important;
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.9)!important}
+  .shot{box-shadow:none!important}
+  .pill{background:rgba(244,242,238,.9)!important}
+  /* ── The honey has to survive the page ──
+     Measured, not assumed: the pill printed and every other honey mark did
+     not. Chrome drops the gradient backgrounds on the highlighter spans, the
+     recommended column and the timeline dots unless each is restated here
+     with !important, even with print-color-adjust set globally. The price is
+     the figure the slide exists to land, so losing its swipe in the PDF —
+     which is how this deck gets emailed — is not a cosmetic loss. */
+  .pill.honey{background:var(--accent)!important}
+  /* The swipe is a gradient, and the print rasterizer drops gradients on these
+     spans no matter how hard the rule is restated — the solid pill beside it
+     prints fine, which is what narrows it to gradients. So on paper the mark
+     becomes a solid field behind the figure: a different treatment, but the
+     figure still carries the brand colour, which is the job. */
+  .price{background:var(--accent)!important;padding:4px 12px 6px;border-radius:6px}
+  .res b{background:var(--accent)!important;padding:3px 9px 5px;border-radius:5px}
+  .cmp .rec{background:rgba(240,206,107,.22)!important}
+  .tl .seg::before{background:var(--accent)!important}
+  .tl .seg.off::before{background:var(--ink)!important}
+  .shot{background:linear-gradient(168deg,#F7F3EA 0%,var(--sand) 58%,#E3DBCA 100%)!important}
+  /* The frame's horizon wash is a gradient on a pseudo-element, and the print
+     rasterizer tiles it into a hard grey block behind the play mark instead of
+     a wash. Same failure the MediaRadar deck's .glass::before has on paper, and
+     the same answer: the frame keeps its own gradient, the overlay goes. */
+  .shot::after{display:none!important}
+  .sheet .px{background:linear-gradient(168deg,#F7F3EA 0%,var(--sand) 60%,#E0D7C4 100%)!important}
+  .sheet .px.on{background:linear-gradient(168deg,#EFE7D6 0%,#DED3BC 62%,#CFC2A6 100%)!important}
+  .fmt{background:rgba(26,26,27,.86)!important;color:#F4F2EE!important}
+  *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+}
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════════════════════════
+     MOTIF SHEET — the line art every storyboard frame draws from. Defined
+     once as symbols and pulled in with <use>, so a slide costs a line of
+     markup rather than a drawing. stroke:currentColor, so a frame tints its
+     own art by setting a colour.
+     ═══════════════════════════════════════════════════════════════════════ -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+<defs>
+<g id="g-base" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></g>
+</defs>
+<symbol id="m-barn" viewBox="0 0 48 48"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+<path d="M4 23 24 9l20 14"/><path d="M8 23v18h32V23"/><path d="M18 41V28h12v13"/><path d="M24 28v13M18 34h12"/><path d="M22 16h4v4h-4z"/></g></symbol>
+
+<symbol id="m-tractor" viewBox="0 0 48 48"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+<circle cx="16" cy="32" r="9"/><circle cx="37" cy="35" r="6"/><circle cx="16" cy="32" r="3"/>
+<path d="M8 27v-7h8l2-6h9v13h14"/><path d="M25 27h12"/></g></symbol>
+
+<symbol id="m-chicken" viewBox="0 0 48 48"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+<ellipse cx="23" cy="31" rx="11.5" ry="9"/><path d="M30 24c1-4 2.5-7 5-8"/><circle cx="36" cy="14" r="4.5"/>
+<path d="M32.8 11.2l1.3-2.1 1.2 2.1 1.3-2.1 1.2 2.1"/><path d="M40.5 14.5l4 1.3-4 1.4"/><path d="M36 19v2.5"/>
+<path d="M12.5 26c-3.5-2.5-5-8-5-8s6.5 1 9.5 4.5"/><path d="M19 29c3-2 7-1.5 9 1.5"/>
+<path d="M20 40v3.5M28 40v3.5"/><path d="M17.5 43.5h4M25.5 43.5h4"/></g></symbol>
+
+<symbol id="m-flower" viewBox="0 0 48 48"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+<circle cx="24" cy="15" r="4.5"/>
+<path d="M24 10.5c0-4 1.8-6 1.8-6s1.8 2 1.8 6M24 10.5c0-4-1.8-6-1.8-6s-1.8 2-1.8 6"/>
+<path d="M28.5 15c4 0 6 1.8 6 1.8s-2 1.8-6 1.8M19.5 15c-4 0-6 1.8-6 1.8s2 1.8 6 1.8"/>
+<path d="M24 19.5v23"/><path d="M24 31c-5 0-8-3-8-6.5 4.5 0 8 2.5 8 6.5M24 27c5 0 8-3 8-6.5-4.5 0-8 2.5-8 6.5"/></g></symbol>
+
+<symbol id="m-fence" viewBox="0 0 48 48"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+<circle cx="37" cy="12" r="6"/><path d="M4 42h40"/><path d="M9 42V24M21 42V24M33 42V24M45 42V26"/><path d="M4 29h44M4 36h44"/></g></symbol>
+
+<symbol id="m-tree" viewBox="0 0 48 48"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+<path d="M24 42V24"/><path d="M24 5c8.5 0 14 6 14 12.5S32 30 24 30 10 24 10 17.5 15.5 5 24 5z"/>
+<path d="M24 29l-6-6M24 24l6-6"/><path d="M15 42h18"/></g></symbol>
+
+<symbol id="m-coffee" viewBox="0 0 48 48"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+<path d="M11 20h21v9a9 9 0 0 1-9 9h-3a9 9 0 0 1-9-9z"/><path d="M32 23h3a4.5 4.5 0 0 1 0 9h-3"/>
+<path d="M8 42h30"/><path d="M18 15c0-2.5 2.5-3 2.5-6M26 14c0-2.5 2.5-3 2.5-6"/></g></symbol>
+
+<symbol id="m-honey" viewBox="0 0 48 48"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+<path d="M13 18h20v19a4 4 0 0 1-4 4H17a4 4 0 0 1-4-4z"/><path d="M11 11h24v7H11z"/>
+<path d="M18 26h12M18 31h8"/><path d="M39 8v11"/><circle cx="39" cy="22" r="3"/></g></symbol>
+
+<symbol id="m-shelf" viewBox="0 0 48 48"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+<path d="M6 8h36v34H6z"/><path d="M6 20h36M6 31h36"/>
+<path d="M11 14h5v6h-5zM20 15h5v5h-5zM29 12h7v8h-7z"/><path d="M11 25h5v6h-5zM20 24h7v7h-7z"/><path d="M31 26h5v5h-5z"/></g></symbol>
+
+<symbol id="m-land" viewBox="0 0 48 48"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+<circle cx="37" cy="11" r="5"/><path d="M3 31c7-9 14-9 20-4 6 5 13 5 22-4"/><path d="M3 39c8-6 15-5 22-2 7 3 15 2 20-3"/>
+<path d="M3 44h42"/><path d="M12 39v5M24 37v7M35 38v6"/></g></symbol>
+
+<symbol id="m-people" viewBox="0 0 48 48"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+<circle cx="17" cy="13" r="5.5"/><path d="M8 42v-9a9 9 0 0 1 18 0v9"/>
+<circle cx="34" cy="21" r="4.5"/><path d="M27 42v-7a7 7 0 0 1 14 0v7"/></g></symbol>
+
+<symbol id="m-wreath" viewBox="0 0 48 48"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+<path d="M24 8 15 21h5l-8 11h7l-8 10h26l-8-10h7l-8-11h5z"/><path d="M21 42v-3h6v3"/>
+<path d="M24 3v3M21 5.5l1.5 2M27 5.5l-1.5 2"/></g></symbol>
+
+<symbol id="m-camera" viewBox="0 0 48 48"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+<path d="M5 16h10l4-5h10l4 5h10v23H5z"/><circle cx="24" cy="27" r="8"/><circle cx="24" cy="27" r="3.5"/>
+<circle cx="38" cy="21" r="1.4"/></g></symbol>
+
+<symbol id="m-gate" viewBox="0 0 48 48"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+<path d="M9 11h30l5 9H4z"/><path d="M4 20l4 4 4-4 4 4 4-4 4 4 4-4 4 4 4-4 4 4 4-4"/>
+<path d="M8 24v18h32V24"/><path d="M18 42V30h12v12"/><path d="M24 30v12"/></g></symbol>
+
+<symbol id="m-basket" viewBox="0 0 48 48"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+<path d="M8 21h32l-4 19H12z"/><path d="M16 21a8 8 0 0 1 16 0"/><path d="M11 28h26M13 34h22"/>
+<path d="M20 21v19M28 21v19"/></g></symbol>
+
+<symbol id="m-drone" viewBox="0 0 48 48"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+<path d="M18 19h12v10H18z"/><path d="M18 19 10 11M30 19l8-8M18 29l-8 8M30 29l8 8"/>
+<circle cx="9" cy="10" r="4.5"/><circle cx="39" cy="10" r="4.5"/><circle cx="9" cy="38" r="4.5"/><circle cx="39" cy="38" r="4.5"/></g></symbol>
+
+<symbol id="m-sunrise" viewBox="0 0 48 48"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+<path d="M12 32a12 12 0 0 1 24 0"/><path d="M3 32h42"/><path d="M24 11V5M9 17l-4-4M39 17l4-4M3 24h5M40 24h5"/>
+<path d="M7 39h12M25 39h16"/></g></symbol>
+
+<symbol id="m-snow" viewBox="0 0 48 48"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+<path d="M24 5v38M8 15l32 18M40 15L8 33"/>
+<path d="M24 13l-5-5M24 13l5-5M24 35l-5 5M24 35l5 5"/>
+<path d="M14 18l-7 1M14 18l1-7M34 30l7-1M34 30l-1 7"/></g></symbol>
+</svg>
+
+<div class="rail"><i id="railFill"></i></div>
+
+<div class="deck" id="deck">
+
+  <!-- ══════════ 01 — COVER ══════════
+       No photograph: nothing has been shot at the farm yet, and a stock field
+       on the cover of a proposal about their field would be the wrong first
+       impression. A drawn horizon instead, sitting low and light so the type
+       owns the page. -->
+  <div class="frame"><section class="slide">
+    <!-- The horizon sits high and right, clear of the lockup below it, and a
+         vertical veil takes it down to paper before the type starts. -->
+    <svg viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true"
+         style="position:absolute;inset:0;width:100%;height:100%;z-index:0">
+      <defs>
+        <linearGradient id="cvfade" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0" stop-color="#fff" stop-opacity="0"/>
+          <stop offset=".34" stop-color="#fff" stop-opacity="1"/>
+        </linearGradient>
+        <mask id="cvmask"><rect width="1600" height="900" fill="url(#cvfade)"/></mask>
+      </defs>
+      <g fill="none" stroke="#1a1a1b" stroke-linecap="round" stroke-linejoin="round" mask="url(#cvmask)">
+        <circle cx="1298" cy="196" r="96" stroke-width="2.2" opacity=".18"/>
+        <g opacity=".22" stroke-width="2">
+          <path d="M120 470c180-26 340-62 484-52s206-40 322-16 174 30 274 24"/>
+          <path d="M60 546c220-30 404-42 632-36s222-18 308-34"/>
+        </g>
+        <g opacity=".30" stroke-width="2.3" transform="translate(1108,296) scale(4.3)">
+          <path d="M4 23 24 9l20 14"/><path d="M8 23v18h32V23"/><path d="M18 41V28h12v13"/>
+          <path d="M24 28v13M18 34h12"/><path d="M22 16h4v4h-4z"/>
+        </g>
+        <g opacity=".24" stroke-width="2.2" transform="translate(880,326) scale(3.1)">
+          <path d="M24 42V24"/><path d="M24 5c8.5 0 14 6 14 12.5S32 30 24 30 10 24 10 17.5 15.5 5 24 5z"/>
+          <path d="M24 29l-6-6M24 24l6-6"/>
+        </g>
+        <g opacity=".20" stroke-width="2" transform="translate(1416,368) scale(2.5)">
+          <path d="M24 42V24"/><path d="M24 5c8.5 0 14 6 14 12.5S32 30 24 30 10 24 10 17.5 15.5 5 24 5z"/>
+        </g>
+        <g opacity=".22" stroke-width="2">
+          <path d="M300 584h1300M340 584v-52M462 584v-52M584 584v-52M706 584v-52M828 584v-52M950 584v-52M1072 584v-52M1194 584v-52M1316 584v-52M1438 584v-52M1560 584v-52"/>
+          <path d="M300 540h1300M300 566h1300"/>
+        </g>
+      </g>
+    </svg>
+    <div style="position:absolute;inset:0;z-index:1;
+      background:linear-gradient(to bottom,rgba(244,242,238,0) 0%,rgba(244,242,238,.08) 38%,rgba(244,242,238,.86) 58%,var(--ink) 70%)"></div>
+
+    <div class="pad">
+      <div class="slate">
+        <span class="wm">Illusia</span>
+        <span class="pill honey">Monmouth County · Local crew</span>
+      </div>
+
+      <div style="margin-top:auto;display:flex;align-items:flex-end;justify-content:space-between;gap:56px">
+        <div style="max-width:1010px">
+          <p class="label" style="margin-bottom:24px">Content campaign — November 2026</p>
+          <h1 class="d1" style="text-wrap:normal">A farm people already<br>love. <span class="serif">Filmed like it.</span></h1>
+          <div class="rule" style="margin:36px 0 26px"></div>
+          <div class="pills">
+            <span class="pill">Option A · Opening Story</span>
+            <span class="pill">Option B · Brand Film + Opening</span>
+            <span class="pill">Option C · Season Campaign</span>
+          </div>
+        </div>
+
+        <!-- Prepared-for mark. Set as type until their file lands — dropping
+             logo/oak-hill.png in and swapping this block for an <img class="clientmark">
+             is the only change needed. -->
+        <div style="text-align:right;flex:0 0 auto;padding-bottom:10px">
+          <p class="tag" style="margin-bottom:11px">Prepared for</p>
+          <span class="d3" style="display:block;font-size:40px;letter-spacing:-.03em">Franco Rauseo</span>
+          <span class="serif" style="display:block;font-size:34px;margin-top:4px;color:var(--ash)">Oak Hill Farm</span>
+          <p class="tag" style="margin-top:14px">177 Stillwell Rd · Holmdel, NJ</p>
+        </div>
+      </div>
+    </div>
+  </section></div>
+
+  <!-- ══════════ 02 — THE STORY ══════════
+       The four subjects carry the bottom of this slide as pictures with their
+       descriptions underneath, rather than as a third column of prose. It is
+       the same information, and it is the first thing on the deck that shows
+       rather than tells. -->
+  <div class="frame" id="story"><section class="slide">
+    <img class="watermark" src="/experiential-examples/logo/illusia-mark.svg" alt="">
+    <div class="pad">
+      <div class="slate"><span class="wm">Illusia</span><span class="tag">The story · <span class="folio">02</span></span></div>
+
+      <div style="display:grid;grid-template-columns:1fr 470px;gap:52px;margin-top:26px;align-items:start">
+        <div>
+          <p class="label" style="margin-bottom:18px">Following our conversation on November 4</p>
+          <h2 class="d2">The story is already there.<br><span class="serif">It just hasn't been filmed.</span></h2>
+          <p class="lede" style="margin-top:24px;max-width:31em">
+            Oak Hill Farm is a gathering place for Holmdel — a farm market, a coffee bar, and the
+            animals families come to visit, with a vision rooted in preservation, hospitality and
+            time spent outdoors together.
+          </p>
+          <div class="pills" style="margin-top:24px">
+            <span class="pill sm">Build anticipation</span>
+            <span class="pill sm">Capture opening day</span>
+            <span class="pill sm">Ready-to-post assets</span>
+          </div>
+        </div>
+
+        <div class="glass" style="padding:30px 32px">
+          <p class="label" style="margin-bottom:16px">At a glance</p>
+          <div class="spec">
+            <div><span>Location</span><b>177 Stillwell Rd, Holmdel</b></div>
+            <div><span>Travel</span><b>Included — we are local</b></div>
+            <div><span>Each shoot day</span><b>Up to 6 hours on site</b></div>
+            <div><span>Delivery</span><b>Dropbox</b></div>
+            <div><span>Revisions</span><b>2 consolidated rounds</b></div>
+            <div><span>Content rights</span><b>Oak Hill Farm owns it</b></div>
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top:auto;padding-top:26px">
+        <p class="label" style="margin-bottom:16px">The four things we film</p>
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:22px">
+          <div>
+            <div class="shot" style="aspect-ratio:2/1"><svg class="art"><use href="#m-land"/></svg></div>
+            <p class="body" style="margin-top:13px;font-size:15px"><b style="color:#1a1a1b;font-weight:600">The land</b> — the barn, the fields, the drive in</p>
+          </div>
+          <div>
+            <div class="shot" style="aspect-ratio:2/1"><svg class="art"><use href="#m-chicken"/></svg></div>
+            <p class="body" style="margin-top:13px;font-size:15px"><b style="color:#1a1a1b;font-weight:600">The animals</b> — and the families who come for them</p>
+          </div>
+          <div>
+            <div class="shot" style="aspect-ratio:2/1"><svg class="art"><use href="#m-shelf"/></svg></div>
+            <p class="body" style="margin-top:13px;font-size:15px"><b style="color:#1a1a1b;font-weight:600">The market</b> — shelves, the coffee bar, the goods</p>
+          </div>
+          <div>
+            <div class="shot" style="aspect-ratio:2/1"><svg class="art"><use href="#m-people"/></svg></div>
+            <p class="body" style="margin-top:13px;font-size:15px"><b style="color:#1a1a1b;font-weight:600">The family</b> — the vision behind the whole place</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section></div>
+
+  <!-- ══════════ 03 — WHY NOW ══════════
+       The slide that has to make him want it. Deliberately built out of facts
+       that can be checked rather than a projection: their own follower count,
+       Illusia's published track record, and one thing about an opening that is
+       true by definition. A forecast of views nobody can stand behind would be
+       the easiest slide here to write and the easiest for him to discount. -->
+  <div class="frame" id="why-now"><section class="slide">
+    <img class="watermark" src="/experiential-examples/logo/illusia-mark.svg" alt="">
+    <div class="pad">
+      <div class="slate"><span class="wm">Illusia</span><span class="tag">Why now · <span class="folio">03</span></span></div>
+
+      <div style="display:grid;grid-template-columns:1fr 430px;gap:52px;margin-top:28px;align-items:start">
+        <div>
+          <p class="label" style="margin-bottom:18px">The audience is not the problem</p>
+          <h2 class="d2">15,000+ people already follow<br>a farm that <span class="serif">isn't open yet.</span></h2>
+          <p class="lede" style="margin-top:24px;max-width:30em">
+            Oak Hill Farm built that following with the doors closed. What it doesn't have yet is
+            the footage to meet those people with — and the week most worth filming is the one
+            that only happens once.
+          </p>
+        </div>
+
+        <div class="glass" style="padding:30px 32px">
+          <p class="label" style="margin-bottom:16px">Oak Hill Farm today</p>
+          <div class="spec">
+            <div><span>Instagram</span><b>@oakhillfarm.nj</b></div>
+            <div><span>Followers</span><b>15.2K</b></div>
+            <div><span>Posts</span><b>141</b></div>
+            <div><span>Status</span><b>Temporarily closed</b></div>
+            <div><span>Opening</span><b>December — date to confirm</b></div>
+          </div>
+          <p class="note" style="margin-top:18px">As of November 2026.</p>
+        </div>
+      </div>
+
+      <div style="margin-top:auto">
+        <div class="rule" style="margin-bottom:34px"></div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start">
+          <div>
+            <p class="label" style="margin-bottom:18px">You can film the farm again next year</p>
+            <h3 class="d3" style="font-size:34px">You can't film it opening.</h3>
+            <p class="body" style="margin-top:16px;max-width:30em">
+              The first crowd through the gate, the first coffee poured, the first Christmas on the
+              property — whatever is filmed that week is the only footage of it that will ever exist.
+              Every other shoot on this proposal can be run again. That one can't.
+            </p>
+          </div>
+          <div>
+            <p class="label" style="margin-bottom:18px">What Illusia brings to it</p>
+            <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:30px">
+              <div class="res big"><div><b>900M+</b><span>Organic views generated for clients</span></div></div>
+              <div class="res big"><div><b>323K+</b><span>Views on one recent single-shoot recap</span></div></div>
+              <div class="res big"><div><b>1,700+</b><span>New followers it brought that client</span></div></div>
+            </div>
+            <p class="note" style="margin-top:20px">
+              Figures from Illusia's own delivered work. Nothing here is a projection of what
+              Oak Hill Farm will do — that depends on the farm, the season and the posting.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section></div>
+
+  <!-- ══════════ OPTION A ══════════ -->
+  <div class="frame" id="option-a"><section class="slide">
+    <img class="watermark" src="/experiential-examples/logo/illusia-mark.svg" alt="">
+    <div class="pad">
+      <div class="slate">
+        <span class="wm">Illusia</span>
+        <span class="tag" style="display:flex;align-items:center;gap:16px">
+          <span class="spine"><i class="on"></i><i></i><i></i></span>Option A · <span class="folio">04</span></span>
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr 560px;gap:48px;margin-top:36px;align-items:start">
+        <div>
+          <p class="label" style="margin-bottom:18px">One production day at the farm</p>
+          <h2 class="d2">Opening Story</h2>
+          <p class="lede" style="margin-top:20px;max-width:21em">
+            One strong film and a tight set of social assets, <span class="serif">from a single day on site.</span>
+          </p>
+          <div class="rule" style="margin:30px 0 26px"></div>
+          <p class="label" style="margin-bottom:12px">The day, roughly</p>
+          <div class="mini" style="max-width:26em">
+            <div><b>Morning light</b> on the barn, the land and the drive in</div>
+            <div><b>The market and coffee bar</b> — shelves, hands, detail</div>
+            <div><b>The animals</b>, and the families who come for them</div>
+            <div><b>Golden hour</b> wide shots to close the film</div>
+          </div>
+        </div>
+
+        <div class="glass" style="padding:34px 36px">
+          <p class="label" style="margin-bottom:18px">Included</p>
+          <div class="mini">
+            <div><b>One cinematic brand or opening film</b>, 60–90 seconds</div>
+            <div><b>Six social-first Reels / TikToks</b></div>
+            <div><b>25–35 edited photographs</b></div>
+            <div>Shot list and light pre-production</div>
+            <div>Two consolidated revision rounds</div>
+          </div>
+          <div class="spec" style="margin-top:26px">
+            <div><span>Production days</span><b>1</b></div>
+            <div><span>Time on site</span><b>Up to 6 hours</b></div>
+            <div><span>Crew</span><b>Professional photo / video team</b></div>
+          </div>
+          <div style="margin-top:28px;display:flex;align-items:flex-end;justify-content:space-between;gap:20px">
+            <div>
+              <p class="tag" style="margin-bottom:10px">Investment</p>
+              <span class="price">$6,950</span>
+            </div>
+            <span class="pill sm">Single day</span>
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top:auto">
+        <div class="rule" style="margin-bottom:30px"></div>
+        <div style="display:grid;grid-template-columns:auto 1fr;gap:72px;align-items:end">
+          <div class="counts">
+            <div><b>1</b><span>Cinematic film<br>60–90 sec</span></div>
+            <div><b>6</b><span>Social-first reels<br>Vertical</span></div>
+            <div><b>25–35</b><span>Edited<br>photographs</span></div>
+          </div>
+          <p class="body" style="max-width:42em">
+            <b style="color:#1a1a1b;font-weight:600">Best if</b> the priority is one strong film and a tight set of
+            social assets from one day on site — enough to launch with, without committing the whole season.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section></div>
+
+  <!-- ══════════ 04 — OPTION A, DRAWN ══════════
+       The package slide says what is included; this one shows it at the size
+       and shape it actually arrives in. -->
+  <div class="frame" id="option-a-visual"><section class="slide">
+    <img class="watermark" src="/experiential-examples/logo/illusia-mark.svg" alt="">
+    <div class="pad">
+      <div class="slate">
+        <span class="wm">Illusia</span>
+        <span class="tag" style="display:flex;align-items:center;gap:16px">
+          <span class="spine"><i class="on"></i><i></i><i></i></span>Option A · what it looks like · <span class="folio">05</span></span>
+      </div>
+
+      <div style="margin-top:30px;display:flex;align-items:baseline;gap:20px">
+        <h2 class="d3">One film. Six reels. One day.</h2>
+        <p class="tag">Frames are the shots we're proposing, at delivery aspect</p>
+      </div>
+
+      <div style="display:flex;gap:28px;margin-top:24px">
+        <div class="shot lg" style="width:630px;height:354px">
+          <svg class="art"><use href="#m-barn"/></svg>
+          <span class="play"></span>
+          <span class="fmt">60–90 sec · 16:9</span>
+          <span class="cap">Brand film — the land, the market, the animals</span>
+        </div>
+
+        <div class="glass" style="flex:1;padding:28px 30px;display:flex;flex-direction:column">
+          <p class="label" style="margin-bottom:22px">One day on site, up to six hours</p>
+          <div class="tl" style="margin-bottom:auto">
+            <div class="seg"><b>Morning</b><span>Barn, land, the drive in — the quiet hour before anyone arrives</span></div>
+            <div class="seg"><b>Midday</b><span>Market shelves, the coffee bar, hands and detail</span></div>
+            <div class="seg"><b>Afternoon</b><span>The animals, and the families who come for them</span></div>
+            <div class="seg"><b>Golden hour</b><span>Wides that close the film</span></div>
+          </div>
+          <div class="spec" style="margin-top:26px">
+            <div><span>On site</span><b>Professional photo / video team</b></div>
+            <div><span>Coverage</span><b>Cinematic, handheld and aerial</b></div>
+            <div><span>Before the day</span><b>Shot list and a short kickoff</b></div>
+          </div>
+          <p class="note" style="margin-top:18px">
+            Nothing is filmed that you'd rather we didn't — agreed before we arrive.
+          </p>
+        </div>
+      </div>
+
+      <div style="display:flex;gap:28px;margin-top:22px">
+        <div>
+          <p class="label" style="margin-bottom:12px">Six social-first reels — vertical, 15–30 sec, ready to post</p>
+          <div class="reels">
+            <div class="shot sm reel" style="width:115px"><svg class="art"><use href="#m-land"/></svg><span class="cap">The land</span></div>
+            <div class="shot sm reel" style="width:115px"><svg class="art"><use href="#m-chicken"/></svg><span class="cap">The animals</span></div>
+            <div class="shot sm reel" style="width:115px"><svg class="art"><use href="#m-shelf"/></svg><span class="cap">The market</span></div>
+            <div class="shot sm reel" style="width:115px"><svg class="art"><use href="#m-coffee"/></svg><span class="cap">Coffee bar</span></div>
+            <div class="shot sm reel" style="width:115px"><svg class="art"><use href="#m-honey"/></svg><span class="cap">The goods</span></div>
+            <div class="shot sm reel" style="width:115px"><svg class="art"><use href="#m-people"/></svg><span class="cap">Come visit</span></div>
+          </div>
+        </div>
+
+        <div style="flex:1">
+          <p class="label" style="margin-bottom:12px">25–35 edited photographs</p>
+          <div class="sheet" style="grid-template-columns:repeat(7,1fr)">
+            <i class="px on"></i><i class="px"></i><i class="px on"></i><i class="px"></i><i class="px"></i><i class="px on"></i><i class="px"></i>
+            <i class="px"></i><i class="px on"></i><i class="px"></i><i class="px"></i><i class="px on"></i><i class="px"></i><i class="px on"></i>
+            <i class="px on"></i><i class="px"></i><i class="px"></i><i class="px on"></i><i class="px"></i><i class="px"></i><i class="px on"></i>
+          </div>
+          <p class="note" style="margin-top:12px">Colour-graded, web-sized and print-sized, delivered as one Dropbox gallery.</p>
+        </div>
+      </div>
+    </div>
+  </section></div>
+
+  <!-- ══════════ 05 — OPTION B ══════════
+       The honey appears twice here and only here: once on the Recommended pill
+       and once under the figure. The price swipe has to look identical on all
+       three option slides or the three stop being comparable, so the pill is
+       the extra mark — on the one slide the deck wants you to land on. -->
+  <div class="frame" id="option-b"><section class="slide">
+    <img class="watermark" src="/experiential-examples/logo/illusia-mark.svg" alt="">
+    <div class="pad">
+      <div class="slate">
+        <span class="wm">Illusia</span>
+        <span class="tag" style="display:flex;align-items:center;gap:16px">
+          <span class="spine"><i></i><i class="on"></i><i></i></span>Option B · <span class="folio">06</span></span>
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr 560px;gap:48px;margin-top:36px;align-items:start">
+        <div>
+          <div style="display:flex;align-items:center;gap:16px;margin-bottom:18px">
+            <p class="label">Two production days</p>
+            <span class="pill honey sm">Recommended</span>
+          </div>
+          <h2 class="d2">Brand Film + Opening</h2>
+          <p class="lede" style="margin-top:20px;max-width:21em">
+            A longer brand story, <span class="serif">plus the opening itself.</span>
+          </p>
+          <div class="rule" style="margin:30px 0 26px"></div>
+          <p class="label" style="margin-bottom:12px">The two days</p>
+          <div class="mini" style="max-width:26em">
+            <div><b>Day one — the brand story.</b> The land, the market, the animals, the family and the vision</div>
+            <div><b>Day two — opening day</b>, or the Christmas-season event, whenever that date lands</div>
+          </div>
+        </div>
+
+        <div class="glass" style="padding:34px 36px">
+          <p class="label" style="margin-bottom:18px">Included</p>
+          <div class="mini">
+            <div><b>One cinematic hero brand film</b>, 2–3 minutes</div>
+            <div><b>One opening-day recap sizzle</b>, 30–60 seconds</div>
+            <div><b>Ten social-first Reels / TikToks</b> — anticipation and opening</div>
+            <div><b>50 edited photographs</b></div>
+            <div>Pre-production, shot list and a short planning call</div>
+            <div>Two consolidated revision rounds</div>
+          </div>
+          <div class="spec" style="margin-top:22px">
+            <div><span>Production days</span><b>2</b></div>
+            <div><span>Time on site</span><b>Up to 6 hours each</b></div>
+          </div>
+          <div style="margin-top:24px;display:flex;align-items:flex-end;justify-content:space-between;gap:20px">
+            <div>
+              <p class="tag" style="margin-bottom:10px">Investment</p>
+              <span class="price">$12,950</span>
+            </div>
+            <span class="pill sm">Two days</span>
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top:auto">
+        <div class="rule" style="margin-bottom:30px"></div>
+        <div style="display:grid;grid-template-columns:auto 1fr;gap:72px;align-items:end">
+          <div class="counts">
+            <div><b>2</b><span>Films — hero<br>and sizzle</span></div>
+            <div><b>10</b><span>Social-first reels<br>Vertical</span></div>
+            <div><b>50</b><span>Edited<br>photographs</span></div>
+          </div>
+          <p class="body" style="max-width:42em">
+            <b style="color:#1a1a1b;font-weight:600">This is the version built around the conversation we had</b> — a longer
+            brand story, plus social content and event coverage for the opening itself.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section></div>
+
+  <!-- ══════════ 06 — OPTION B, DRAWN ══════════ -->
+  <div class="frame" id="option-b-visual"><section class="slide">
+    <img class="watermark" src="/experiential-examples/logo/illusia-mark.svg" alt="">
+    <div class="pad">
+      <div class="slate">
+        <span class="wm">Illusia</span>
+        <span class="tag" style="display:flex;align-items:center;gap:16px">
+          <span class="spine"><i></i><i class="on"></i><i></i></span>Option B · what it looks like · <span class="folio">07</span></span>
+      </div>
+
+      <div style="margin-top:30px;display:flex;align-items:baseline;gap:20px">
+        <h2 class="d3">Two films. Ten reels. Two days.</h2>
+        <p class="tag">The hero carries the story. The sizzle carries the day.</p>
+      </div>
+
+      <div style="display:flex;gap:24px;margin-top:22px">
+        <div class="shot lg" style="width:468px;height:263px">
+          <svg class="art"><use href="#m-barn"/></svg>
+          <span class="play"></span>
+          <span class="fmt">2–3 min · 16:9</span>
+          <span class="cap">Hero brand film — the farm and the vision</span>
+        </div>
+        <div class="shot lg" style="width:468px;height:263px">
+          <svg class="art"><use href="#m-gate"/></svg>
+          <span class="play"></span>
+          <span class="fmt">30–60 sec · 16:9</span>
+          <span class="cap">Opening-day recap sizzle</span>
+        </div>
+        <div style="flex:1">
+          <p class="label" style="margin-bottom:11px">50 edited photographs</p>
+          <div class="sheet" style="grid-template-columns:repeat(6,1fr)">
+            <i class="px on"></i><i class="px"></i><i class="px on"></i><i class="px"></i><i class="px"></i><i class="px on"></i>
+            <i class="px"></i><i class="px on"></i><i class="px"></i><i class="px on"></i><i class="px"></i><i class="px"></i>
+            <i class="px on"></i><i class="px"></i><i class="px"></i><i class="px on"></i><i class="px on"></i><i class="px"></i>
+            <i class="px"></i><i class="px on"></i><i class="px"></i><i class="px"></i><i class="px"></i><i class="px on"></i>
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top:22px">
+        <p class="label" style="margin-bottom:12px">Ten social-first reels — six from the brand day, four from the opening</p>
+        <div class="reels">
+          <div class="shot sm reel" style="width:104px"><svg class="art"><use href="#m-land"/></svg><span class="cap">The land</span></div>
+          <div class="shot sm reel" style="width:104px"><svg class="art"><use href="#m-chicken"/></svg><span class="cap">Animals</span></div>
+          <div class="shot sm reel" style="width:104px"><svg class="art"><use href="#m-shelf"/></svg><span class="cap">Market</span></div>
+          <div class="shot sm reel" style="width:104px"><svg class="art"><use href="#m-coffee"/></svg><span class="cap">Coffee bar</span></div>
+          <div class="shot sm reel" style="width:104px"><svg class="art"><use href="#m-honey"/></svg><span class="cap">The goods</span></div>
+          <div class="shot sm reel" style="width:104px"><svg class="art"><use href="#m-people"/></svg><span class="cap">The family</span></div>
+          <div class="shot sm reel" style="width:104px"><svg class="art"><use href="#m-gate"/></svg><span class="cap">Doors open</span></div>
+          <div class="shot sm reel" style="width:104px"><svg class="art"><use href="#m-basket"/></svg><span class="cap">Opening day</span></div>
+          <div class="shot sm reel" style="width:104px"><svg class="art"><use href="#m-tractor"/></svg><span class="cap">On the farm</span></div>
+          <div class="shot sm reel" style="width:104px"><svg class="art"><use href="#m-sunrise"/></svg><span class="cap">Come visit</span></div>
+          <div style="flex:1;display:flex;align-items:flex-end;padding-left:16px">
+            <p class="note">Vertical, 15–30 seconds, captioned and ready to post.<br>Anticipation cuts go out before the doors open.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl" style="margin-top:auto">
+        <div class="seg"><b>Day one · the brand story</b><span>A full day on the land, in the market and with the animals — the footage the hero film is built from</span></div>
+        <div class="seg"><b>Day two · opening day</b><span>Doors open, the first crowd, the Christmas-season event if that is the date — cut as a sizzle while it is still news</span></div>
+      </div>
+    </div>
+  </section></div>
+
+  <!-- ══════════ 07 — OPTION C ══════════ -->
+  <div class="frame" id="option-c"><section class="slide">
+    <img class="watermark" src="/experiential-examples/logo/illusia-mark.svg" alt="">
+    <div class="pad">
+      <div class="slate">
+        <span class="wm">Illusia</span>
+        <span class="tag" style="display:flex;align-items:center;gap:16px">
+          <span class="spine"><i></i><i></i><i class="on"></i></span>Option C · <span class="folio">08</span></span>
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr 560px;gap:48px;margin-top:36px;align-items:start">
+        <div>
+          <p class="label" style="margin-bottom:18px">Three production days, late November into December</p>
+          <h2 class="d2">Season Campaign</h2>
+          <p class="lede" style="margin-top:20px;max-width:21em">
+            A full run of content through the season, <span class="serif">not only a launch set.</span>
+          </p>
+          <div class="rule" style="margin:30px 0 26px"></div>
+          <p class="label" style="margin-bottom:12px">The three days</p>
+          <div class="mini" style="max-width:26em">
+            <div><b>Anticipation</b> — the farm before it opens, cut to build the wait</div>
+            <div><b>Farm life</b> — the market, the animals, the people, in season</div>
+            <div><b>Opening</b> — the day itself, or the Christmas-season event</div>
+          </div>
+          <p class="note" style="margin-top:22px">Exact dates set together at kickoff.</p>
+        </div>
+
+        <div class="glass" style="padding:34px 36px">
+          <p class="label" style="margin-bottom:18px">Included</p>
+          <div class="mini">
+            <div><b>One cinematic hero brand film</b>, 2–3 minutes</div>
+            <div><b>One opening-day recap sizzle</b>, 30–60 seconds, plus cutdowns from the hero</div>
+            <div><b>Sixteen social-first Reels / TikToks</b> across anticipation, farm life and opening</div>
+            <div><b>75 edited photographs</b></div>
+            <div><b>Caption drafts</b> for delivered video</div>
+            <div>Pre-production, shot list and planning calls</div>
+            <div>Two consolidated revision rounds</div>
+          </div>
+          <div class="spec" style="margin-top:20px">
+            <div><span>Production days</span><b>3</b></div>
+          </div>
+          <div style="margin-top:22px;display:flex;align-items:flex-end;justify-content:space-between;gap:20px">
+            <div>
+              <p class="tag" style="margin-bottom:10px">Investment</p>
+              <span class="price">$19,950</span>
+            </div>
+            <span class="pill sm">Three days</span>
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top:auto">
+        <div class="rule" style="margin-bottom:30px"></div>
+        <div style="display:grid;grid-template-columns:auto 1fr;gap:72px;align-items:end">
+          <div class="counts">
+            <div><b>2+</b><span>Films, plus<br>cutdowns</span></div>
+            <div><b>16</b><span>Social-first reels<br>Vertical</span></div>
+            <div><b>75</b><span>Edited<br>photographs</span></div>
+          </div>
+          <p class="body" style="max-width:42em">
+            <b style="color:#1a1a1b;font-weight:600">Best if</b> you want a fuller run of content through the season —
+            enough to post consistently from the first teaser to the week after the doors open.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section></div>
+
+  <!-- ══════════ 08 — OPTION C, DRAWN ══════════
+       Sixteen reels is the number that is hard to picture, so they run as one
+       unbroken row, grouped under the three buckets they are commissioned in.
+       The row itself is the argument. -->
+  <div class="frame" id="option-c-visual"><section class="slide">
+    <img class="watermark" src="/experiential-examples/logo/illusia-mark.svg" alt="">
+    <div class="pad">
+      <div class="slate">
+        <span class="wm">Illusia</span>
+        <span class="tag" style="display:flex;align-items:center;gap:16px">
+          <span class="spine"><i></i><i></i><i class="on"></i></span>Option C · what it looks like · <span class="folio">09</span></span>
+      </div>
+
+      <div style="margin-top:30px;display:flex;align-items:baseline;gap:20px">
+        <h2 class="d3">Sixteen reels across the season.</h2>
+        <p class="tag">Enough to post through the wait, the opening and the week after</p>
+      </div>
+
+      <div style="display:flex;gap:24px;margin-top:22px">
+        <div class="shot lg" style="width:430px;height:242px">
+          <svg class="art"><use href="#m-barn"/></svg>
+          <span class="play"></span>
+          <span class="fmt">2–3 min</span>
+          <span class="cap">Hero brand film</span>
+        </div>
+        <div class="shot lg" style="width:430px;height:242px">
+          <svg class="art"><use href="#m-wreath"/></svg>
+          <span class="play"></span>
+          <span class="fmt">30–60 sec</span>
+          <span class="cap">Opening / Christmas-season sizzle</span>
+        </div>
+        <div style="flex:1">
+          <p class="label" style="margin-bottom:11px">75 edited photographs</p>
+          <div class="sheet" style="grid-template-columns:repeat(7,1fr);gap:6px">
+            <i class="px on"></i><i class="px"></i><i class="px on"></i><i class="px"></i><i class="px"></i><i class="px on"></i><i class="px"></i>
+            <i class="px"></i><i class="px on"></i><i class="px"></i><i class="px on"></i><i class="px"></i><i class="px"></i><i class="px on"></i>
+            <i class="px on"></i><i class="px"></i><i class="px"></i><i class="px on"></i><i class="px on"></i><i class="px"></i><i class="px"></i>
+            <i class="px"></i><i class="px on"></i><i class="px"></i><i class="px"></i><i class="px on"></i><i class="px"></i><i class="px on"></i>
+          </div>
+          <p class="note" style="margin-top:10px">Plus caption drafts for every delivered video.</p>
+        </div>
+      </div>
+
+      <div style="display:flex;gap:40px;margin-top:24px">
+        <div>
+          <p class="label" style="margin-bottom:11px">Anticipation · 6</p>
+          <div class="reels" style="gap:7px">
+            <div class="shot sm reel" style="width:76px"><svg class="art"><use href="#m-land"/></svg></div>
+            <div class="shot sm reel" style="width:76px"><svg class="art"><use href="#m-barn"/></svg></div>
+            <div class="shot sm reel" style="width:76px"><svg class="art"><use href="#m-tree"/></svg></div>
+            <div class="shot sm reel" style="width:76px"><svg class="art"><use href="#m-sunrise"/></svg></div>
+            <div class="shot sm reel" style="width:76px"><svg class="art"><use href="#m-tractor"/></svg></div>
+            <div class="shot sm reel" style="width:76px"><svg class="art"><use href="#m-camera"/></svg></div>
+          </div>
+          <p class="note" style="margin-top:13px;max-width:30em">Posted through late November<br>to build the wait.</p>
+        </div>
+        <div>
+          <p class="label" style="margin-bottom:11px">Farm life · 5</p>
+          <div class="reels" style="gap:7px">
+            <div class="shot sm reel" style="width:76px"><svg class="art"><use href="#m-chicken"/></svg></div>
+            <div class="shot sm reel" style="width:76px"><svg class="art"><use href="#m-shelf"/></svg></div>
+            <div class="shot sm reel" style="width:76px"><svg class="art"><use href="#m-coffee"/></svg></div>
+            <div class="shot sm reel" style="width:76px"><svg class="art"><use href="#m-honey"/></svg></div>
+            <div class="shot sm reel" style="width:76px"><svg class="art"><use href="#m-flower"/></svg></div>
+          </div>
+          <p class="note" style="margin-top:13px;max-width:26em">The market, the animals<br>and the people, in season.</p>
+        </div>
+        <div>
+          <p class="label" style="margin-bottom:11px">Opening &amp; season · 5</p>
+          <div class="reels" style="gap:7px">
+            <div class="shot sm reel" style="width:76px"><svg class="art"><use href="#m-gate"/></svg></div>
+            <div class="shot sm reel" style="width:76px"><svg class="art"><use href="#m-people"/></svg></div>
+            <div class="shot sm reel" style="width:76px"><svg class="art"><use href="#m-basket"/></svg></div>
+            <div class="shot sm reel" style="width:76px"><svg class="art"><use href="#m-wreath"/></svg></div>
+            <div class="shot sm reel" style="width:76px"><svg class="art"><use href="#m-snow"/></svg></div>
+          </div>
+          <p class="note" style="margin-top:13px;max-width:26em">Cut while the day<br>is still news.</p>
+        </div>
+      </div>
+
+      <div class="tl" style="margin-top:auto">
+        <div class="seg"><b>Late November</b><span>Day one — the farm before it opens</span></div>
+        <div class="seg"><b>Early December</b><span>Day two — farm life, in season</span></div>
+        <div class="seg"><b>Opening / Christmas</b><span>Day three — the day itself</span></div>
+        <div class="seg off"><b>After</b><span>Hero film, sizzle, cutdowns, stills and captions delivered</span></div>
+      </div>
+    </div>
+  </section></div>
+
+  <!-- ══════════ 09 — THE THREE, SIDE BY SIDE ══════════ -->
+  <div class="frame" id="compare"><section class="slide">
+    <img class="watermark" src="/experiential-examples/logo/illusia-mark.svg" alt="">
+    <div class="pad">
+      <div class="slate"><span class="wm">Illusia</span><span class="tag">The three, side by side · <span class="folio">10</span></span></div>
+
+      <div style="margin-top:28px;display:flex;align-items:baseline;gap:20px">
+        <h2 class="d3">What changes between them.</h2>
+        <p class="tag">Everything else — crew, care, ownership, revisions — is the same in all three</p>
+      </div>
+
+      <table class="cmp" style="margin-top:26px">
+        <thead>
+          <tr>
+            <th></th>
+            <th><span class="hd">Option A<small>Opening Story</small></span></th>
+            <th class="rec"><span class="hd">Option B<small>Brand Film + Opening · Recommended</small></span></th>
+            <th><span class="hd">Option C<small>Season Campaign</small></span></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><th>Production days</th><td><b>1</b></td><td class="rec"><b>2</b></td><td><b>3</b></td></tr>
+          <tr><th>Hero film</th><td>60–90 sec</td><td class="rec"><b>2–3 min</b></td><td><b>2–3 min</b> + cutdowns</td></tr>
+          <tr><th>Opening sizzle</th><td>—</td><td class="rec"><b>30–60 sec</b></td><td><b>30–60 sec</b></td></tr>
+          <tr><th>Social-first reels</th><td><b>6</b></td><td class="rec"><b>10</b></td><td><b>16</b></td></tr>
+          <tr><th>Edited photographs</th><td><b>25–35</b></td><td class="rec"><b>50</b></td><td><b>75</b></td></tr>
+          <tr><th>Caption drafts</th><td>—</td><td class="rec">—</td><td><b>Included</b></td></tr>
+          <tr><th>Pre-production</th><td>Shot list, light</td><td class="rec">Shot list + planning call</td><td>Shot list + planning calls</td></tr>
+          <tr><th>Investment</th><td><b>$6,950</b></td><td class="rec"><b>$12,950</b></td><td><b>$19,950</b></td></tr>
+        </tbody>
+      </table>
+
+      <p class="note" style="margin-top:auto">
+        All three include two consolidated revision rounds, delivery via Dropbox, travel, and full ownership of the
+        delivered content for Oak Hill Farm's channels, website and organic social.
+      </p>
+    </div>
+  </section></div>
+
+  <!-- ══════════ THE RUNWAY ══════════
+       The comparison table says 6 / 10 / 16 reels. Nobody feels the difference
+       between those three numbers. Divided by a posting cadence they turn into
+       weeks on the calendar, which is the thing a client can picture — and the
+       reason the middle option is the floor rather than the upsell. -->
+  <div class="frame" id="runway"><section class="slide">
+    <img class="watermark" src="/experiential-examples/logo/illusia-mark.svg" alt="">
+    <div class="pad">
+      <div class="slate"><span class="wm">Illusia</span><span class="tag">How far each option carries you · <span class="folio">11</span></span></div>
+
+      <div style="margin-top:28px;display:flex;align-items:baseline;gap:20px">
+        <h2 class="d3">Six reels is three weeks. Sixteen is the season.</h2>
+        <p class="tag">At a steady two reels a week</p>
+      </div>
+
+      <div class="rw-wrap" style="margin-top:72px">
+        <div class="runway" style="margin-bottom:22px">
+          <div></div>
+          <div class="rw-head">
+            <span>Wk 1</span><span>Wk 2</span><span>Wk 3</span><span class="open">Opening</span>
+            <span>Wk 5</span><span>Wk 6</span><span>Wk 7</span><span>Wk 8</span>
+          </div>
+          <div></div>
+        </div>
+
+        <div class="runway" style="margin-bottom:38px">
+          <div class="rw-name">Option A<small>6 reels · 1 day</small></div>
+          <div class="rw-track">
+            <i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i><i></i><i></i><i></i>
+          </div>
+          <p class="rw-note"><b>Three weeks.</b> One shoot day means choosing: the build-up, or the day itself. Not both.</p>
+        </div>
+
+        <div class="runway" style="margin-bottom:38px">
+          <div class="rw-name">Option B<small>10 reels · 2 days</small></div>
+          <div class="rw-track">
+            <i class="hon"></i><i class="hon"></i><i class="hon"></i><i class="hon"></i><i class="hon"></i><i></i><i></i><i></i>
+          </div>
+          <p class="rw-note"><b>Five weeks.</b> The build-up, the opening, and the week after it — while people are still looking.</p>
+        </div>
+
+        <div class="runway">
+          <div class="rw-name">Option C<small>16 reels · 3 days</small></div>
+          <div class="rw-track">
+            <i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i>
+          </div>
+          <p class="rw-note"><b>Eight weeks.</b> First teaser through the season, without the feed ever going quiet.</p>
+        </div>
+
+        <p class="note" style="margin-top:26px;padding-left:242px">
+          Posting weeks, not calendar weeks — they start when the first cut lands.
+        </p>
+      </div>
+
+      <div style="margin-top:auto">
+        <div class="rule" style="margin-bottom:26px"></div>
+        <div style="display:grid;grid-template-columns:auto 1fr;gap:72px;align-items:end">
+          <div class="counts">
+            <div><b>25–35</b><span>Stills, Option A</span></div>
+            <div><b>50</b><span>Stills, Option B</span></div>
+            <div><b>75</b><span>Stills, Option C</span></div>
+          </div>
+          <p class="body" style="max-width:44em">
+            Photographs post in between and stretch every one of these further — the weeks above count
+            video only. Cadence is an assumption for planning, not a promise: two reels a week is what
+            we would hold to, and it is what the counts are divided by here.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section></div>
+
+  <!-- ══════════ HOW IT WORKS ══════════ -->
+  <div class="frame" id="how"><section class="slide">
+    <img class="watermark" src="/experiential-examples/logo/illusia-mark.svg" alt="">
+    <div class="pad">
+      <div class="slate"><span class="wm">Illusia</span><span class="tag">How it works · <span class="folio">12</span></span></div>
+
+      <div style="margin-top:28px;display:flex;align-items:baseline;gap:20px">
+        <h2 class="d3">Five steps, whichever option you pick.</h2>
+        <p class="tag">Nothing starts until the date and the people on camera are confirmed</p>
+      </div>
+
+      <div class="tl" style="margin-top:44px">
+        <div class="seg"><b>01 · Kickoff</b><span>A short call to confirm the opening date, the story beats, who appears on camera, and anything that should or should not be filmed</span></div>
+        <div class="seg"><b>02 · Shot list</b><span>Illusia brings a shot list and a simple plan for each production day, sent before we arrive</span></div>
+        <div class="seg"><b>03 · Production</b><span>Capture at the farm in Holmdel — up to six hours on site with a professional photo and video team</span></div>
+        <div class="seg"><b>04 · Edit</b><span>Selects and edits delivered via Dropbox, with two consolidated revision rounds included</span></div>
+        <div class="seg"><b>05 · It's yours</b><span>Oak Hill Farm owns all final delivered content, for its channels, website and organic social</span></div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:52px;margin-top:66px">
+        <div class="glass" style="padding:34px 38px">
+          <p class="label" style="margin-bottom:16px">All we need from Oak Hill Farm</p>
+          <div class="mini">
+            <div>The <b>opening or event date</b>, once it is set</div>
+            <div><b>Who is comfortable on camera</b> — family, staff, anyone you'd like in the film</div>
+            <div>Anything that <b>should not be filmed</b>, so it never ends up in a cut</div>
+            <div>A rough sense of the <b>moments that matter most</b> to you on the day</div>
+          </div>
+        </div>
+        <div class="glass" style="padding:34px 38px">
+          <p class="label" style="margin-bottom:16px">What you have at the end</p>
+          <div class="mini">
+            <div>Films <b>cut for the channels you already use</b> — not one long edit to carve up later</div>
+            <div>Stills <b>graded and sized</b> for web and print in a single gallery</div>
+            <div>Everything <b>yours to keep and re-post</b>, with no licence window</div>
+            <div>The <b>raw organised and archived</b> on our side, if you ever want more cut from it</div>
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top:auto;display:grid;grid-template-columns:auto 1fr;gap:72px;align-items:end">
+        <div class="counts">
+          <div><b>6 hrs</b><span>On site, each<br>production day</span></div>
+          <div><b>2</b><span>Consolidated<br>revision rounds</span></div>
+          <div><b>100%</b><span>Content ownership,<br>Oak Hill Farm</span></div>
+        </div>
+        <p class="body" style="max-width:40em">
+          Travel is included — Illusia is a Monmouth County studio and production at the farm is local.
+        </p>
+      </div>
+    </div>
+  </section></div>
+
+  <!-- ══════════ 11 — CLOSE ══════════
+       The cover's horizon brought back, so the deck closes on the picture it
+       opened on. -->
+  <div class="frame" id="close"><section class="slide">
+    <svg viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true"
+         style="position:absolute;inset:0;width:100%;height:100%;z-index:0">
+      <defs>
+        <linearGradient id="clfade" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0" stop-color="#fff" stop-opacity="0"/>
+          <stop offset=".34" stop-color="#fff" stop-opacity="1"/>
+        </linearGradient>
+        <mask id="clmask"><rect width="1600" height="900" fill="url(#clfade)"/></mask>
+      </defs>
+      <g fill="none" stroke="#1a1a1b" stroke-linecap="round" stroke-linejoin="round" mask="url(#clmask)">
+        <circle cx="1298" cy="206" r="96" stroke-width="2.2" opacity=".16"/>
+        <g opacity=".18" stroke-width="2">
+          <path d="M120 470c180-26 340-62 484-52s206-40 322-16 174 30 274 24"/>
+          <path d="M60 546c220-30 404-42 632-36s222-18 308-34"/>
+        </g>
+        <g opacity=".24" stroke-width="2.3" transform="translate(1108,296) scale(4.3)">
+          <path d="M4 23 24 9l20 14"/><path d="M8 23v18h32V23"/><path d="M18 41V28h12v13"/>
+          <path d="M24 28v13M18 34h12"/><path d="M22 16h4v4h-4z"/>
+        </g>
+        <g opacity=".20" stroke-width="2.2" transform="translate(880,326) scale(3.1)">
+          <path d="M24 42V24"/><path d="M24 5c8.5 0 14 6 14 12.5S32 30 24 30 10 24 10 17.5 15.5 5 24 5z"/>
+          <path d="M24 29l-6-6M24 24l6-6"/>
+        </g>
+        <g opacity=".18" stroke-width="2">
+          <path d="M300 584h1300M340 584v-52M462 584v-52M584 584v-52M706 584v-52M828 584v-52M950 584v-52M1072 584v-52M1194 584v-52M1316 584v-52M1438 584v-52M1560 584v-52"/>
+          <path d="M300 540h1300M300 566h1300"/>
+        </g>
+      </g>
+    </svg>
+    <div style="position:absolute;inset:0;z-index:1;
+      background:linear-gradient(to bottom,rgba(244,242,238,0) 0%,rgba(244,242,238,.08) 36%,rgba(244,242,238,.88) 56%,var(--ink) 68%)"></div>
+
+    <div class="pad">
+      <div class="slate"><span class="wm">Illusia</span><span class="tag">Next step · <span class="folio">13</span></span></div>
+
+      <div style="margin-top:auto;display:flex;align-items:flex-end;justify-content:space-between;gap:56px">
+        <div style="max-width:960px">
+          <p class="label" style="margin-bottom:24px">Oak Hill Farm × Illusia</p>
+          <h2 class="d1" style="font-size:86px">We'd be glad to help<br><span class="serif">tell this story.</span></h2>
+          <p class="lede" style="margin-top:28px;max-width:30em">
+            Pick an option and we'll set the kickoff call — the opening date and who appears on camera
+            are the only two things we need to start.
+          </p>
+          <div class="pills" style="margin-top:30px">
+            <span class="pill honey">Option B · Recommended</span>
+            <span class="pill">Dates confirmed together</span>
+            <span class="pill">Travel included</span>
+          </div>
+        </div>
+
+        <div style="text-align:right;flex:0 0 auto;padding-bottom:10px">
+          <p class="tag" style="margin-bottom:12px">Illusia Agency</p>
+          <span class="d3" style="display:block;font-size:30px;letter-spacing:-.02em">illusiaagency.com</span>
+          <p class="tag" style="margin-top:14px">Monmouth County, NJ</p>
+        </div>
+      </div>
+    </div>
+  </section></div>
+
+</div>
+
+<div class="counter">Slide <b id="cur">01</b> / <b id="tot">13</b> <kbd>↑</kbd><kbd>↓</kbd></div>
+
+<script>
+/* ── Paging ──
+   One scale factor drives the deck: the 1600×900 stage is authored at true
+   size and scaled down to whatever the viewport allows. Lifted from the
+   MediaRadar deck unchanged, minus the video and lightbox handlers — nothing
+   on this deck is footage yet. */
+(function(){
+  var frames = Array.prototype.slice.call(document.querySelectorAll('.frame'));
+  var railFill = document.getElementById('railFill');
+  var cur = document.getElementById('cur');
+  document.getElementById('tot').textContent = String(frames.length).padStart(2,'0');
+
+  function fit(){
+    var s = window.innerWidth < 820
+      ? Math.min((window.innerWidth - 16)/1600, (window.innerHeight - 72)/900)
+      : Math.min((window.innerWidth - 28)/1600, (window.innerHeight - 96)/900);
+    document.documentElement.style.setProperty('--s', Math.max(s, 0.12));
+  }
+  fit();
+  window.addEventListener('resize', fit);
+
+  function active(){
+    var mid = window.innerHeight/2, best = 0, bestD = Infinity;
+    frames.forEach(function(f,i){
+      var r = f.getBoundingClientRect();
+      var d = Math.abs(r.top + r.height/2 - mid);
+      if(d < bestD){ bestD = d; best = i; }
+    });
+    return best;
+  }
+
+  function sync(){
+    var i = active();
+    cur.textContent = String(i+1).padStart(2,'0');
+    railFill.style.width = ((i+1)/frames.length*100) + '%';
+  }
+  sync();
+
+  var ticking = false;
+  window.addEventListener('scroll', function(){
+    if(ticking) return;
+    ticking = true;
+    requestAnimationFrame(function(){ sync(); ticking = false; });
+  }, {passive:true});
+
+  /* scrollIntoView is unreliable when the document lands in quirks mode (as it
+     does when this file is opened straight off disk), so page by offset. */
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function go(n){
+    n = Math.max(0, Math.min(frames.length-1, n));
+    var f = frames[n];
+    var top = f.offsetTop - Math.max(0, (window.innerHeight - f.offsetHeight)/2);
+    window.scrollTo({top: top, behavior: reduce ? 'auto' : 'smooth'});
+  }
+
+  function fromHash(){
+    if(!location.hash) return;
+    var el = document.querySelector(location.hash);
+    if(!el) return;
+    var i = frames.indexOf(el);
+    if(i > -1) setTimeout(function(){ go(i); }, 60);
+  }
+  fromHash();
+  window.addEventListener('hashchange', fromHash);
+
+  document.addEventListener('keydown', function(e){
+    if(e.metaKey || e.ctrlKey || e.altKey) return;
+    if(/^(INPUT|TEXTAREA)$/.test((e.target.tagName||''))) return;
+    var k = e.key;
+    if(k==='ArrowDown' || k==='ArrowRight' || k==='PageDown' || k===' '){ e.preventDefault(); go(active()+1); }
+    else if(k==='ArrowUp' || k==='ArrowLeft' || k==='PageUp'){ e.preventDefault(); go(active()-1); }
+    else if(k==='Home'){ e.preventDefault(); go(0); }
+    else if(k==='End'){ e.preventDefault(); go(frames.length-1); }
+  });
+})();
+</script>
+
+</body>
+</html>
