@@ -162,6 +162,10 @@ ul.no li:before{content:"×";background:none;top:0;width:auto;font-size:13px;col
 #lb video{max-height:92vh;max-width:92vw}
 @media print{body{background:#fff}.deck{padding:0;gap:0}.frame{width:1600px;box-shadow:none;page-break-after:always}}
 @page{size:1600px 900px;margin:0}
+.js-rv .rv{opacity:0;transform:translateY(22px);transition:opacity .9s cubic-bezier(.2,.7,.2,1),transform .9s cubic-bezier(.2,.7,.2,1);transition-delay:var(--d,0ms)}
+.js-rv .slide.in .rv{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.js-rv .rv{opacity:1;transform:none;transition:none}}
+@media print{.js-rv .rv{opacity:1!important;transform:none!important}}
 </style></head>
 <body><div class="deck">
 <section class="slide cover" id="s1">
@@ -306,5 +310,17 @@ document.querySelectorAll('.ref[data-src]').forEach(f=>{
 });
 lb.addEventListener('click',e=>{if(e.target===lb){lb.firstChild.pause();lb.style.display='none'}});
 addEventListener('keydown',e=>{if(e.key==='Escape'){lb.firstChild.pause();lb.style.display='none'}});
+
+// subtle scroll reveal: each slide's pieces fade + rise in, staggered, once
+(()=>{const SEL='h1,h2,h3,h4,.eyebrow,p,.card,.ref,.toc li,table,ul,ol:not(.toc),.top,.brand';
+document.documentElement.classList.add('js-rv');
+document.querySelectorAll('.slide').forEach(sl=>{
+  const set=new Set();[...sl.querySelectorAll(SEL)].forEach(el=>{let a=el.parentElement,inside=false;while(a&&a!==sl){if(set.has(a)){inside=true;break}a=a.parentElement}if(!inside)set.add(el)});
+  [...set].forEach((el,i)=>{el.classList.add('rv');el.style.setProperty('--d',Math.min(i*70,900)+'ms')});
+});
+let pend=[...document.querySelectorAll('.frame')],tick=false;
+function check(){tick=false;const vh=innerHeight;pend=pend.filter(f=>{const r=f.getBoundingClientRect();if(r.top<vh*.85&&r.bottom>vh*.1){f.firstChild.classList.add('in');return false}return true});if(!pend.length)removeEventListener('scroll',onS)}
+function onS(){if(!tick){tick=true;setTimeout(check,40)}}
+addEventListener('scroll',onS,{passive:true});addEventListener('resize',onS);check();})();
 </script>
 </body></html>
