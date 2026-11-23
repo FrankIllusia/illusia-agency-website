@@ -2,7 +2,7 @@
 <html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="robots" content="noindex,nofollow">
-<title>Anne Klein SS27 · Mood Board &amp; Shot Plan · Illusia</title>
+<title>Anne Klein SS27 · Mood Board · Illusia</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
@@ -153,6 +153,11 @@ ul.no li:before{content:"×";background:none;top:0;width:auto;font-size:13px;col
 .pri2 .pri{grid-template-columns:1fr;gap:12px}.pri2 .pri .card{min-height:0;padding:18px 22px}.pri2 .pri .card p{font-size:14px;line-height:1.45}.pri2 .pri h4{margin-bottom:6px}
 .dlw .dl{font-size:15px}.dlw .dl th,.dlw .dl td{padding:9px 10px}
 .ref figcaption.bare{padding:18px 10px 8px;background:linear-gradient(transparent,rgba(0,0,0,.55))}.ref figcaption.bare a{margin-top:0}
+.ref{cursor:pointer}
+.ref .fs{position:absolute;bottom:8px;right:8px;z-index:3;width:28px;height:28px;border:0;border-radius:50%;background:rgba(255,255,255,.9);color:#111;font-size:15px;line-height:28px;cursor:zoom-in}
+.ref .snd{position:absolute;top:8px;left:50%;transform:translateX(-50%);z-index:3;font-size:13px;background:rgba(0,0,0,.45);border-radius:12px;padding:2px 7px;opacity:.85}
+.ref.on{outline:2px solid #e9d9a8;outline-offset:-2px}
+.ref.on .snd{background:#e9d9a8;opacity:1}
 #lb{position:fixed;inset:0;background:rgba(0,0,0,.92);display:none;align-items:center;justify-content:center;z-index:99;cursor:zoom-out}
 #lb video{max-height:92vh;max-width:92vw}
 @media print{body{background:#fff}.deck{padding:0;gap:0}.frame{width:1600px;box-shadow:none;page-break-after:always}}
@@ -285,7 +290,21 @@ addEventListener('resize',fit);fit();
 const io=new IntersectionObserver(es=>es.forEach(e=>{const v=e.target;if(e.isIntersecting){v.preload='auto';v.play().catch(()=>{})}else v.pause()}),{threshold:.35});
 document.querySelectorAll('.ref video').forEach(v=>io.observe(v));
 const lb=document.createElement('div');lb.id='lb';lb.innerHTML='<video controls playsinline></video>';document.body.appendChild(lb);
-document.querySelectorAll('.ref[data-src]').forEach(f=>f.addEventListener('click',e=>{if(e.target.tagName==='A')return;const v=lb.firstChild;v.src=f.dataset.src;v.muted=false;lb.style.display='flex';v.play()}));
+// tap a tile = play it with sound in place (others go muted); ⤢ = fullscreen with sound
+let live=null;
+function mute(f){if(!f)return;const v=f.querySelector('video');v.muted=true;f.classList.remove('on')}
+document.querySelectorAll('.ref[data-src]').forEach(f=>{
+  const v=f.querySelector('video');
+  const b=document.createElement('button');b.className='fs';b.title='Fullscreen';b.textContent='⤢';f.appendChild(b);
+  const s=document.createElement('span');s.className='snd';s.textContent='🔇';f.appendChild(s);
+  b.addEventListener('click',e=>{e.stopPropagation();mute(live);live=null;const L=lb.firstChild;L.src=f.dataset.src;L.muted=false;lb.style.display='flex';L.play()});
+  f.addEventListener('click',e=>{
+    if(e.target.tagName==='A')return;
+    if(live===f){mute(f);live=null;s.textContent='🔇';return}
+    if(live){mute(live);live.querySelector('.snd').textContent='🔇'}
+    live=f;v.muted=false;v.currentTime=0;v.play().catch(()=>{});f.classList.add('on');s.textContent='🔊';
+  });
+});
 lb.addEventListener('click',e=>{if(e.target===lb){lb.firstChild.pause();lb.style.display='none'}});
 addEventListener('keydown',e=>{if(e.key==='Escape'){lb.firstChild.pause();lb.style.display='none'}});
 </script>
