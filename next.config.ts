@@ -16,6 +16,7 @@ const nextConfig: NextConfig = {
       { source: "/devon-deck", destination: "/devon-deck/index.html" },
       { source: "/oakhill-campaign-deck", destination: "/oakhill-campaign-deck/index.html" },
       { source: "/illusia-capabilities", destination: "/illusia-capabilities/index.html" },
+      { source: "/anne-klein-ss27", destination: "/anne-klein-ss27/index.html" },
     ];
   },
 };
