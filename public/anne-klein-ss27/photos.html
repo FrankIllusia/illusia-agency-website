@@ -27,14 +27,14 @@ section{border-top:1px solid #111;padding:26px 0 44px}.h{display:grid;grid-templ
 let stars=new Set(JSON.parse(localStorage.getItem(KEY)||'[]')),dirty=false,tm=0;
 const tiles=[...document.querySelectorAll('.t[data-id]')],cnt=document.getElementById('cnt'),who=document.getElementById('who'),toast=document.getElementById('toast');
 function msg(t){toast.textContent=t;toast.classList.add('show');clearTimeout(msg.t);msg.t=setTimeout(()=>toast.classList.remove('show'),2200)}
-function name(ask){let n=localStorage.getItem(NK);if(!n&&ask){n=(prompt('Your name, so Frank knows whose picks these are:')||'').trim().slice(0,60);if(n)localStorage.setItem(NK,n)}return n}
+function name(){let n=localStorage.getItem(NK);if(!n||!/^Viewer [A-Z0-9]{4}$/.test(n)){const a='ABCDEFGHJKLMNPQRSTUVWXYZ23456789';n='Viewer '+Array.from({length:4},()=>a[Math.floor(Math.random()*a.length)]).join('');localStorage.setItem(NK,n)}return n}
 function render(){tiles.forEach(t=>{const on=stars.has(t.dataset.id);t.classList.toggle('on',on);t.querySelector('.st').textContent=on?'★':'☆'});cnt.textContent=stars.size;
-  const n=name(false);who.innerHTML=n?'Starring as <b></b> · <a id="chg">change</a>':'';if(n){who.querySelector('b').textContent=n;who.querySelector('#chg').onclick=()=>{localStorage.removeItem(NK);if(name(true)){dirty=true;send()}render()}}}
-function send(){if(!dirty)return;const n=name(false);if(!n)return;dirty=false;
+}
+function send(){if(!dirty)return;const n=name();dirty=false;
   const picks=tiles.filter(t=>stars.has(t.dataset.id)).map(t=>({id:t.dataset.id,pin:t.dataset.pin}));
   fetch(API,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({name:n,picks}),keepalive:true}).then(r=>{if(r.ok)msg('Your picks were sent to Frank')}).catch(()=>{dirty=true})}
 function later(){dirty=true;clearTimeout(tm);tm=setTimeout(send,12000)}
-tiles.forEach(t=>t.querySelector('.st').addEventListener('click',e=>{e.preventDefault();e.stopPropagation();if(!name(true))return;
+tiles.forEach(t=>t.querySelector('.st').addEventListener('click',e=>{e.preventDefault();e.stopPropagation();
   const id=t.dataset.id;stars.has(id)?stars.delete(id):stars.add(id);localStorage.setItem(KEY,JSON.stringify([...stars]));render();later()}));
 document.getElementById('only').onclick=e=>{document.body.classList.toggle('only');e.target.classList.toggle('on')};
 addEventListener('pagehide',send);document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='hidden')send()});
