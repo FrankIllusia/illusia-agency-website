@@ -201,15 +201,14 @@ ul.no li:before{content:"×";background:none;top:0;width:auto;font-size:13px;col
 .zr .ref{width:auto;height:100%;aspect-ratio:auto}
 .lp .k,.lp p,.zfoot,.zr .ref figcaption,.zr .ref .whp,.zr .ref .fs{opacity:var(--zd,0);transition:none}
 .lp p{opacity:calc(var(--zd,0)*.85)}
-.sl{display:flex;flex-direction:column;height:calc(100% - 60px)}
-.sl-g{display:grid;grid-template-columns:repeat(5,1fr);gap:16px;margin-top:10px}
-.sl-c{margin:0;display:flex;flex-direction:column;gap:14px}
-.sl-im{aspect-ratio:3/4;overflow:hidden;background:#d9d3c4}
-.sl-im img{width:100%;height:100%;object-fit:cover;object-position:center 70%;display:block;transition:transform 1s cubic-bezier(.16,1,.3,1)}
-.sl-c:hover .sl-im img{transform:scale(1.03)}
-.sl-c span{font-size:11px;letter-spacing:.2em;color:var(--mut)}
-.sl-c h4{font-size:24px;font-weight:400;letter-spacing:-.02em;margin:4px 0 6px}.sl-c p{font-size:13.5px;line-height:1.45;color:#3b3934}
-.sl-fn{margin-top:auto;font-size:11px;color:var(--mut)}
+.sv-w{display:grid;grid-template-columns:1fr 1fr 300px;gap:18px;flex:1;min-height:0;margin-top:4px}
+.sv-col{background:var(--cream);padding:14px 14px 16px;display:flex;flex-direction:column;min-height:0}
+.sv-h{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:12px}.sv-h span{font-size:11px;letter-spacing:.22em;text-transform:uppercase}.sv-h b{font-size:34px;font-weight:400;letter-spacing:-.03em}
+.sv-g{display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:1fr 1fr;gap:8px;flex:1;min-height:0}
+.sv-ph{position:relative;overflow:hidden;background:#d9d3c4;min-height:0}.sv-ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 1s cubic-bezier(.16,1,.3,1)}
+.sv:hover .sv-ph img{transform:scale(1.04)}
+.sv-t{border-collapse:collapse;font-size:14px;align-self:start;width:100%}.sv-t th{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--mut);font-weight:400;text-align:right;padding:0 0 10px}
+.sv-t td{padding:9px 0;border-top:1px solid var(--line);text-align:right}.sv-t td:first-child{text-align:left}
 .tbd{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;margin-top:40px}
 .tb{background:var(--cream);padding:30px 26px 40px;height:560px;display:flex;flex-direction:column}
 .tb .k{font-size:11px;letter-spacing:.24em;color:var(--mut)}
@@ -277,7 +276,7 @@ ul.no li:before{content:"×";background:none;top:0;width:auto;font-size:13px;col
   .pr-g{grid-template-columns:repeat(3,1fr)!important;gap:8px}.pr-c{padding:4px 4px 0}.pr-im{grid-template-rows:auto auto}.pr-ph{aspect-ratio:3/4}
   .pr-l span,.pr-l b{font-size:8.5px;letter-spacing:.12em}.pr-cta{font-size:14px;padding:14px 16px;flex-wrap:wrap;gap:6px}
   /* to confirm */
-  .sl{height:auto}.sl-g{grid-template-columns:1fr 1fr!important;gap:12px!important}.sl-c h4{font-size:19px}.sl-fn{margin-top:18px}
+  .sv-w{grid-template-columns:1fr!important}.sv-g{grid-template-rows:auto}.sv-ph{aspect-ratio:9/16}
   .tb{height:auto!important;padding:22px 20px 26px}.tb h4{margin:22px 0 10px!important;font-size:30px}
 }
 
@@ -316,7 +315,7 @@ ul.no li:before{content:"×";background:none;top:0;width:auto;font-size:13px;col
     <li><a href="#s13"><span>—</span>Behind the scenes</a></li>
     <li><a href="#s14"><span>—</span>Photo references</a></li>
     <li><a href="#s15"><span>—</span>To confirm</a></li>
-    <li><a href="#s16"><span>—</span>Studio looks</a></li>
+    <li><a href="#s16"><span>—</span>Studio vs location</a></li>
   </ol>
 </div></section>
 <section class="slide " id="s2"><div class="top"><div class="brand">ANNE KLEIN <i>×</i> ILLUSIA</div><div class="sec">CAPTURE PRIORITIES <b>02</b></div></div>
@@ -440,13 +439,13 @@ ul.no li:before{content:"×";background:none;top:0;width:auto;font-size:13px;col
   <div class="tb q"><div class="k">04 · TO FIND OUT</div><h4>The pieces</h4><p>What do all the pieces look like? We need to see them to pair backdrops and props with each set.</p></div>
   <div class="tb q"><div class="k">05 · TO FIND OUT</div><h4>Color schemes</h4><p>What color schemes do we want to abide by?</p></div>
 </div></section>
-<section class="slide " id="s16"><div class="top"><div class="brand">ANNE KLEIN <i>×</i> ILLUSIA</div><div class="sec">STUDIO LOOKS <b>16</b></div></div>
-<div id="studio" class="sl">
-<div class="strat-h"><div><div class="eyebrow">OUR STUDIO · SOCIAL-FIRST CAPTURE</div><h2>Studio looks.</h2></div>
-<p class="lede">Sets we can build in our own studio for the social-first capture.</p></div>
-<div class="sl-g"><figure class="sl-c"><div class="sl-im"><img src="/anne-klein-ss27/studio/w_drape3_model.jpg" alt="" loading="lazy"></div><figcaption><span>01</span><h4>Ivory drape</h4><p>Linen drape, bentwood chair, soft daylight. Light and airy for spring/summer.</p></figcaption></figure><figure class="sl-c"><div class="sl-im"><img src="/anne-klein-ss27/studio/w_shot_rack_wide.jpg" alt="" loading="lazy"></div><figcaption><span>02</span><h4>Window lounge</h4><p>Sheer-lit living room: cognac leather, burl wood and a rack of the looks.</p></figcaption></figure><figure class="sl-c"><div class="sl-im"><img src="/anne-klein-ss27/studio/tight_paint_wide.jpg" alt="" loading="lazy"></div><figcaption><span>03</span><h4>Sage corner</h4><p>Sage walls, cream boucle, walnut and jute in warm afternoon light.</p></figcaption></figure><figure class="sl-c"><div class="sl-im"><img src="/anne-klein-ss27/studio/studio_1445.jpg" alt="" loading="lazy"></div><figcaption><span>04</span><h4>20×20 white wall</h4><p>A full 20×20 white wall with a sweep into the floor, ready to shoot.</p></figcaption></figure><figure class="sl-c"><div class="sl-im"><img src="/anne-klein-ss27/studio/after_1436_A.jpg" alt="" loading="lazy"></div><figcaption><span>05</span><h4>Paper backdrop</h4><p>Seamless paper on stands, with the colour swapped per look. Clean, editorial full-length.</p></figcaption></figure></div>
-<p class="sl-fn">Mock-ups for planning: props, framing and light. Wardrobe and product are placeholders.</p>
-</div></section>
+<section class="slide " id="s16"><div class="top"><div class="brand">ANNE KLEIN <i>×</i> ILLUSIA</div><div class="sec">STUDIO VS LOCATION <b>16</b></div></div>
+<a id="split" class="pr sv" href="/anne-klein-ss27/studio-vs-location.html" target="_blank">
+<div class="strat-h"><div><div class="eyebrow">ALL 64 REFS, SORTED</div><h2>In studio vs on location.</h2></div>
+<p class="lede">Every reference on the board sorted by where it’s shot: in front of a backdrop in studio, or out on NYC streets and in real interiors.</p></div>
+<div class="sv-w"><div class="sv-col"><div class="sv-h"><span>In studio</span><b>34</b></div><div class="sv-g"><div class="sv-ph"><img src="/anne-klein-ss27/refs/cam_DTnnpYYkUxH.jpg" alt="" loading="lazy"></div><div class="sv-ph"><img src="/anne-klein-ss27/refs/ip_DDHcJZ_y8Pl.jpg" alt="" loading="lazy"></div><div class="sv-ph"><img src="/anne-klein-ss27/refs/ip_DfC23dIoB5l.jpg" alt="" loading="lazy"></div><div class="sv-ph"><img src="/anne-klein-ss27/refs/cam_DTyDAAeigts.jpg" alt="" loading="lazy"></div><div class="sv-ph"><img src="/anne-klein-ss27/refs/ip_Ddy4QJ6T9WP.jpg" alt="" loading="lazy"></div><div class="sv-ph"><img src="/anne-klein-ss27/refs/ip_DSIFDhngsAm.jpg" alt="" loading="lazy"></div></div></div><div class="sv-col"><div class="sv-h"><span>On location</span><b>30</b></div><div class="sv-g"><div class="sv-ph"><img src="/anne-klein-ss27/refs/cam_DWyKvswk1w3.jpg" alt="" loading="lazy"></div><div class="sv-ph"><img src="/anne-klein-ss27/refs/ip_DGLt8npqK2C.jpg" alt="" loading="lazy"></div><div class="sv-ph"><img src="/anne-klein-ss27/refs/ip_CvIcBulgHRu.jpg" alt="" loading="lazy"></div><div class="sv-ph"><img src="/anne-klein-ss27/refs/ip_DNJ28f4NXZH.jpg" alt="" loading="lazy"></div><div class="sv-ph"><img src="/anne-klein-ss27/refs/ip_C5YsHfctJSV.jpg" alt="" loading="lazy"></div><div class="sv-ph"><img src="/anne-klein-ss27/refs/ip_DdnybIDTe3x.jpg" alt="" loading="lazy"></div></div></div>
+<table class="sv-t"><thead><tr><th></th><th>Studio</th><th>Location</th></tr></thead><tbody><tr><td>Ready-to-Wear</td><td>4</td><td>4</td></tr><tr><td>Jewelry</td><td>8</td><td>0</td></tr><tr><td>Handbags</td><td>3</td><td>4</td></tr><tr><td>Watches</td><td>4</td><td>4</td></tr><tr><td>Footwear</td><td>2</td><td>5</td></tr><tr><td>Eyewear</td><td>4</td><td>4</td></tr><tr><td>Inside</td><td>4</td><td>2</td></tr><tr><td>Outside</td><td>0</td><td>6</td></tr><tr><td>BTS</td><td>5</td><td>1</td></tr></tbody></table></div>
+<div class="pr-cta">Open the full breakdown ↗</div></a></section>
 </div>
 <script>
 document.querySelectorAll('.slide').forEach(s=>{const f=document.createElement('div');f.className='frame';s.parentNode.insertBefore(f,s);if(s.classList.contains('scrolly')){f.classList.add('tall');const st=document.createElement('div');st.className='stick';f.appendChild(st);st.appendChild(s)}else f.appendChild(s)});
@@ -485,13 +484,13 @@ addEventListener('keydown',e=>{if(e.key==='Escape'&&lb.style.display==='flex')cl
 // scroll motion (same system as the Devon deck): headline words rise from behind a mask,
 // everything else crossfades + rises in reading order when its slide comes into view
 if('scrollRestoration' in history)history.scrollRestoration='manual';
-const GO=(location.hash==='#studio'||/[?&]studio\b/.test(location.search))?'studio':null;
+const GO=(location.hash==='#split'||/[?&]split\b/.test(location.search))?'split':null;
 if(location.hash){history.replaceState(null,'',location.pathname+location.search)}
 if(GO)addEventListener('load',()=>setTimeout(()=>{const t=document.getElementById(GO);t&&t.closest('.frame').scrollIntoView({behavior:'auto'});},350));
 scrollTo(0,0);
 document.querySelectorAll('a[href^="#s"]').forEach(a=>a.addEventListener('click',e=>{e.preventDefault();const t=document.querySelector(a.getAttribute('href'));t&&t.closest('.frame').scrollIntoView({behavior:'smooth'})}));
 (()=>{if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;
-const STEP=.08,CAP=1.5,T='.sl-c,.sl-fn,.pr-c,.pr-cta,.tb,.zc,.lever,.hook,.top,.brand,.eyebrow,.lede,p,.card,.k,.pills,.tag,.facts,.sum,.dlw,table,.toc li,.rl,.ref,.dir,.fine,.vd,h3,h4,ul';
+const STEP=.08,CAP=1.5,T='.sv-col,.sv-t,.pr-c,.pr-cta,.tb,.zc,.lever,.hook,.top,.brand,.eyebrow,.lede,p,.card,.k,.pills,.tag,.facts,.sum,.dlw,table,.toc li,.rl,.ref,.dir,.fine,.vd,h3,h4,ul';
 document.documentElement.classList.add('js-rv','rv-init');
 document.querySelectorAll('.slide').forEach(sl=>{
   let t=0;
